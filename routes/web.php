@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/base', function () {
+    return view('base.index');
+});
+Route::get('/users', function () {
+    return view('base.users');
 });
