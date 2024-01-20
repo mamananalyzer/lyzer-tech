@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,7 @@ Route::get('/base', function () {
 Route::get('/users', function () {
     return view('base.users');
 });
+
+Route::get('/users', [UsersController::class, 'index']);
+Route::post('/users.store', [UsersController::class, 'store'])->name('users.create');
+
