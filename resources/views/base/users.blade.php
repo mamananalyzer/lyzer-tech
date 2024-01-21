@@ -2,6 +2,77 @@
 
 @section('title', 'Users')
 
+@section('link')
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="sneat/assets/vendor/fonts/fontawesome.css" />
+    <link rel="stylesheet" href="sneat/assets/vendor/fonts/flag-icons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="sneat/assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="sneat/assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="sneat/assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="sneat/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="sneat/assets/vendor/libs/typeahead-js/typeahead.css" /> 
+    <link rel="stylesheet" href="sneat/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css">
+    <link rel="stylesheet" href="sneat/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css">
+    <link rel="stylesheet" href="sneat/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css">
+    <link rel="stylesheet" href="sneat/assets/vendor/libs/select2/select2.css" />
+    <link rel="stylesheet" href="sneat/assets/vendor/libs/%40form-validation/umd/styles/index.min.css" />
+
+    <!-- Page CSS -->
+
+
+    <!-- Helpers -->
+    <script src="sneat/assets/vendor/js/helpers.js"></script>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
+    <script src="sneat/assets/vendor/js/template-customizer.js"></script>
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="sneat/assets/js/config.js"></script>
+@endsection
+
+@section('zone-link')
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+
+    <script src="sneat/assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="sneat/assets/vendor/libs/popper/popper.js"></script>
+    <script src="sneat/assets/vendor/js/bootstrap.js"></script>
+    <script src="sneat/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="sneat/assets/vendor/libs/hammer/hammer.js"></script>
+    <script src="sneat/assets/vendor/libs/i18n/i18n.js"></script>
+    <script src="sneat/assets/vendor/libs/typeahead-js/typeahead.js"></script>
+    <script src="sneat/assets/vendor/js/menu.js"></script>
+
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+    <script src="sneat/assets/vendor/libs/moment/moment.js"></script>
+    <script src="sneat/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
+    <script src="sneat/assets/vendor/libs/select2/select2.js"></script>
+    <script src="sneat/assets/vendor/libs/%40form-validation/umd/bundle/popular.min.js"></script>
+    <script src="sneat/assets/vendor/libs/%40form-validation/umd/plugin-bootstrap5/index.min.js"></script>
+    <script src="sneat/assets/vendor/libs/%40form-validation/umd/plugin-auto-focus/index.min.js"></script>
+    <script src="sneat/assets/vendor/libs/cleavejs/cleave.js"></script>
+    <script src="sneat/assets/vendor/libs/cleavejs/cleave-phone.js"></script>
+
+    <!-- Main JS -->
+    <script src="sneat/assets/js/main.js"></script>
+
+    <!-- Page JS -->
+    <script src="sneat/assets/js/app-user-list.js"></script>
+@endsection
+
 @section('content')
     <div class=
         "flex-grow-1 container-p-y container-fluid"
@@ -384,10 +455,10 @@
                         <thead>
                           <tr>
                             <th class="control sorting_disabled" rowspan="1" colspan="1">User</th>
-                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1">Role</th>
-                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1">Status</th>
-                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1">QR</th>
-                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1">Actions</th>
+                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" >Role</th>
+                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" >Status</th>
+                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" >QR</th>
+                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" >Actions</th>
                         </tr>
                         </thead>
                         <tbody>     
@@ -410,39 +481,87 @@
                             </td>
                             <td>
                                 <span class="text-truncate d-flex align-items-center">
-                                <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
-                                    <i class="bx bx-mobile-alt bx-xs"></i>
-                                </span>
                                 <span class="fw-medium">
-                                    <span class="badge bg-primary">{{ $user->role_id }}</span>
+                                    @if($user->role_id == 1)
+                                        <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
+                                            <i class='bx bx-conversation'></i>
+                                        </span>
+                                        <span class="badge bg-primary">Sales</span>
+                                    @elseif($user->role_id == 2)
+                                        <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
+                                            <i class='bx bx-purchase-tag-alt'></i>
+                                        </span>
+                                        <span class="badge bg-primary">Purchasing</span>
+                                    @elseif($user->role_id == 3)
+                                        <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
+                                            <i class="bx bx-mobile-alt bx-xs"></i>
+                                        </span>
+                                        <span class="badge bg-primary">IT</span>
+                                    @elseif($user->role_id == 4)
+                                        <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
+                                            <i class='bx bx-wrench'></i>
+                                        </span>
+                                        <span class="badge bg-primary">Labs</span>
+                                    @elseif($user->role_id == 5)
+                                        <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
+                                            <i class="bx bx-package bx-xs"></i>
+                                        </span>
+                                        <span class="badge bg-primary">Courier</span>
+                                    @elseif($user->role_id == 6)
+                                        <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
+                                            <i class='bx bx-building'></i>
+                                        </span>
+                                        <span class="badge bg-primary">Warehouse</span>
+                                    @else
+                                        <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
+                                            <i class="bx bx-mobile-alt bx-xs"></i>
+                                        </span>
+                                        <span class="badge bg-danger">Unknown Status</span>
+                                    @endif
                                 </span>
                                 </span>
                             </td>
                             <td>
                                 <span class="fw-medium">
-                                    <span class="badge bg-success">{{ $user->is_active }}</span>
+                                    @if($user->is_active == 1)
+                                        <span class="badge bg-success">Active</span>
+                                    @elseif($user->is_active == 2)
+                                        <span class="badge bg-danger">Not Active</span>
+                                    @else
+                                        <span class="badge bg-secondary">Unknown Status</span>
+                                    @endif
                                 </span>
                             </td>
-                            <td class="">
-                              <img class="bd-placeholder-img" width="50" src="/qrcodes/{{ $user->qr }}">
+                            <td class="fw-medium">
+                                <img src="data:image/svg+xml;utf8,{{ rawurlencode(QrCode::size(43)->generate($user->name)) }}" alt="QR Code">
                             </td>
                             <td>
                                 <div class="d-inline-block text-nowrap">
-                                    <button class="btn btn-sm btn-icon">
+                                    <a href="{{ route('users.edit', $user->id_user) }}" class="btn btn-sm btn-icon">
                                         <i class="bx bx-edit"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-icon delete-record">
-                                        <i class="bx bx-trash"></i>
-                                    </button>
+                                    </a>
+                                    <form method="POST" action="{{ route('users.destroy', $user->id_user) }}" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-icon delete-record">
+                                            <i class="bx bx-trash"></i>
+                                        </button>
+                                    </form>
                                     <button class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                         <i class="bx bx-dots-vertical-rounded me-2"></i>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-end m-0">
-                                        <a href="app-user-view-account.html" class="dropdown-item">View</a>
-                                        <a href="javascript:;" class="dropdown-item">Suspend</a>
+                                        <a href="{{ route('users.edit', $user->id_user) }}" class="dropdown-item">Edit</a>
+                                        <form method="POST" action="{{ route('users.destroy', $user->id_user) }}" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="dropdown-item">Delete</button>
+                                        </form>
+                                        <a href="{{ route('users.show', $user->id_user) }}" class="dropdown-item">View</a>
+                                        <a href="{{ route('users.suspend', $user->id_user) }}" class="dropdown-item">Suspend</a>
                                     </div>
                                 </div>
-                            </td>
+                            </td>                            
                           </tr>
                         @endforeach  
                         </tbody>

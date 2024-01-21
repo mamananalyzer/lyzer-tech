@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class UsersController extends Controller
 {
@@ -90,8 +91,15 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy($id_user)
     {
-        //
+        $user = User::find($id_user);
+
+        if ($user) {
+            $user->delete();
+            return redirect()->back()->with('success', 'User deleted successfully.');
+        }
+
+        return redirect()->back()->with('error', 'User not found.');
     }
 }

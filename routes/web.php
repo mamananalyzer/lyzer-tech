@@ -22,5 +22,8 @@ Route::get('/users', function () {
 });
 
 Route::get('/users', [UsersController::class, 'index']);
+Route::get('/users/{id_user}/show', [UsersController::class, 'show'])->name('users.show');
 Route::post('/users.store', [UsersController::class, 'store'])->name('users.create');
-
+Route::get('/users/{id_user}/edit', [UsersController::class, 'edit'])->name('users.edit');
+Route::delete('/users/{id_user}', [UsersController::class, 'destroy'])->name('users.destroy');
+Route::get('/users/{id_user}/suspend', [UsersController::class, 'suspend'])->name('users.suspend');

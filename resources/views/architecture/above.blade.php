@@ -58,6 +58,7 @@
     <link rel="stylesheet" href="sneat/assets/vendor/libs/apex-charts/apex-charts.css" />
 
     <!-- Page CSS -->
+    @yield('link')
 
     <!-- Helpers -->
     <script src="sneat/assets/vendor/js/helpers.js"></script>
