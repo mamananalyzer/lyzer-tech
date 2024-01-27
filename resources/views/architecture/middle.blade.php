@@ -171,6 +171,12 @@
                   <span class="menu-header-text">Pages</span>
                 </li>
                 <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
+                  <a href="CRM" class="menu-link sidebar-link">
+                    <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
+                    <div data-i18n="CRM">CRM</div>
+                  </a>
+                </li>
+                <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
                   <a href="users" class="menu-link sidebar-link">
                     <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
                     <div data-i18n="Users">Users</div>

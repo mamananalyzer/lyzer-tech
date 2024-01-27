@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Illuminate\Support\Carbon;
+
 
 class UsersController extends Controller
 {
@@ -14,7 +16,17 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('base.users', compact('users'));
+        $totalUsers = User::count();
+
+        // Count of users created today
+        $usersCreatedToday = User::whereDate('created_at', Carbon::today())->count();
+
+        // Count of users created on any day except today
+        $usersCreatedExceptToday = User::whereDate('created_at', '<>', Carbon::today())->count();
+
+        $session = round($usersCreatedToday/$usersCreatedExceptToday*100, 2);
+        // dd($session);
+        return view('base.users', compact('users', 'totalUsers', 'session'));
     }
 
     /**
