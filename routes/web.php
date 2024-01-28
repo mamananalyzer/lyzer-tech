@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CRMController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,7 @@ use App\Http\Controllers\CRMController;
 |
 */
 
+Route::redirect('/', '/base');
 Route::get('/base', function () {
     return view('base.index');
 });
@@ -35,3 +37,10 @@ Route::post('/CRM.store', [CRMController::class, 'store'])->name('CRM.create');
 Route::get('/CRM/{id_user}/edit', [CRMController::class, 'edit'])->name('CRM.edit');
 Route::delete('/CRM/{id_user}', [CRMController::class, 'destroy'])->name('CRM.destroy');
 Route::get('/CRM/{id_user}/suspend', [CRMController::class, 'suspend'])->name('CRM.suspend');
+
+Route::get('/product', [ProductController::class, 'index']);
+Route::get('/product/{id_user}/show', [ProductController::class, 'show'])->name('product.show');
+Route::post('/product.store', [ProductController::class, 'store'])->name('product.create');
+Route::get('/product/{id_user}/edit', [ProductController::class, 'edit'])->name('product.edit');
+Route::delete('/product/{id_user}', [ProductController::class, 'destroy'])->name('product.destroy');
+Route::get('/product/{id_user}/suspend', [ProductController::class, 'suspend'])->name('product.suspend');

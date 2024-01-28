@@ -2,21 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CRM;
-use App\Models\User;
-use App\Models\Customer;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class CRMController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $sales = User::where('role_id', 1)->get();
-        $customer = Customer::all();
-        return view('base.CRM', compact('sales', 'customer'));
+        $product = Product::all();
+        return view('base.product', compact('product'));
     }
 
     /**
@@ -38,7 +35,7 @@ class CRMController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CRM $cRM)
+    public function show(Product $product)
     {
         //
     }
@@ -46,7 +43,7 @@ class CRMController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CRM $cRM)
+    public function edit(Product $product)
     {
         //
     }
@@ -54,7 +51,7 @@ class CRMController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CRM $cRM)
+    public function update(Request $request, Product $product)
     {
         //
     }
@@ -62,7 +59,7 @@ class CRMController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CRM $cRM)
+    public function destroy(Product $product)
     {
         //
     }

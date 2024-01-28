@@ -183,6 +183,12 @@
                   </a>
                 </li>
                 <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
+                  <a href="product" class="menu-link sidebar-link">
+                    <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
+                    <div data-i18n="Product">Product</div>
+                  </a>
+                </li>
+                <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
                   <a href="javascript:void(0);" class="menu-link sidebar-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-dock-top"></i>
                     <div data-i18n="Account Settings">Account Settings</div>

@@ -23,7 +23,6 @@ class Customer extends Model
         'position',
         'status',
         'updated_at',
-        'created_at',
-        // Add more columns as needed
+        'created_at'
     ];
 }
