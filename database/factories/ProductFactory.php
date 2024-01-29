@@ -17,13 +17,13 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'brand' => fake()->name(),
-            'type' => fake()->name(),
+            'brand' => $this->faker->company,
+            'type' => $this->faker->word,
             'image' => fake()->image(),
             'category' => fake()->name(),
-            'spek1' => fake()->name(),
-            'spek2' => fake()->name(),
-            'spek3' => fake()->name(),
+            'spek1' => $this->faker->sentence,
+            'spek2' => $this->faker->sentence,
+            'spek3' => $this->faker->sentence,
             'price' => fake()->numberBetween($min = 100000, $max = 100000000),
             'diskon' => fake()->numberBetween($min = 10, $max = 50),
             'status' => fake()->numberBetween($min = 1, $max = 2),

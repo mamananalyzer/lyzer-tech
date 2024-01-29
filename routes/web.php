@@ -34,6 +34,7 @@ Route::get('/users/{id_user}/suspend', [UsersController::class, 'suspend'])->nam
 Route::get('/CRM', [CRMController::class, 'index']);
 Route::get('/CRM/{id_user}/show', [CRMController::class, 'show'])->name('CRM.show');
 Route::post('/CRM.store', [CRMController::class, 'store'])->name('CRM.create');
+Route::post('/quot.store', [CRMController::class, 'quot_store'])->name('quot.create');
 Route::get('/CRM/{id_user}/edit', [CRMController::class, 'edit'])->name('CRM.edit');
 Route::delete('/CRM/{id_user}', [CRMController::class, 'destroy'])->name('CRM.destroy');
 Route::get('/CRM/{id_user}/suspend', [CRMController::class, 'suspend'])->name('CRM.suspend');

@@ -58,7 +58,7 @@
     <div class="flex-grow-1 container-p-y container-fluid">
         <div class="row">
             {{-- Team Member --}}
-            <div class="col-md-6 col-lg-5 mb-md-0 mb-4">
+            <div class="col-md-6 col-lg-4 mb-md-0 mb-4">
                 <div class="card h-100">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <h5 class="card-title m-0 me-2">Team Members</h5>
@@ -113,7 +113,7 @@
                 </div>
             </div>
             {{-- Quotation --}}
-            <div class="col-md-6 col-lg-7 mb-0">
+            <div class="col-md-6 col-lg-8 mb-0">
                 <div class="card">
                   <div class="card-datatable table-responsive">
                     <div class="row mx-2 my-3">
@@ -145,20 +145,21 @@
                           <th class="cell-fit">Actions</th>
                         </tr>
                       </thead>
+                    @foreach ($quotation_list as $q_list)
                       <tbody class="table-border-bottom-0">
                         <tr>
                           <td>
                             <div class="d-flex justify-content-start align-items-center">
                               <div class="d-flex flex-column">
-                                <a href="pages-profile-user.html" class="text-body text-truncate fw-medium">Quot.001/I/24/RNI</a>
+                                <a href="pages-profile-user.html" class="text-body text-truncate fw-medium">{{ $q_list->quotNumber }}</a>
                               </div>
                             </div>
                           </td>
-                          <td>PLN Jawa Bali</td>
-                          <td>PT. Schneider Indonesia</td>
-                          <td>$459.65</td>
-                          <td>Rani</td>
-                          <td><span class="badge bg-label-success"> Paid </span></td>
+                          <td>{{ $q_list->project }}</td>
+                          <td>{{ $q_list->customer }}</td>
+                          <td>Rp.{{ number_format($q_list->amount, 2, '.', ',') }}</td>
+                          <td>{{ $q_list->sales }}</td>
+                          <td><span class="badge bg-label-success"> {{ $q_list->status }} </span></td>
                           <td><img src="../../assets/img/icons/payments/master-light.png" class="img-fluid" width="50" alt="masterCard" data-app-light-img="icons/payments/master-light.png" data-app-dark-img="icons/payments/master-dark.png"></td>
                           <td>
                             <div class="d-flex align-items-center">
@@ -174,6 +175,7 @@
                           </td>
                         </tr>
                       </tbody>
+                    @endforeach
                     </table>
                   </div>
                 </div>
@@ -326,37 +328,76 @@
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body mx-0 flex-grow-0">
-            <form method="post" action="{{ route('users.create') }}" enctype="multipart/form-data" class="add-new-user pt-0 fv-plugins-bootstrap5 fv-plugins-framework" id="addNewQuotForm">
+            <form method="post" action="{{ route('quot.create') }}" enctype="multipart/form-data" class="add-new-user pt-0 fv-plugins-bootstrap5 fv-plugins-framework" id="addNewQuotForm">
                 @csrf <!-- CSRF protection -->
                 @method('POST')
-                  <div class="mb-3 fv-plugins-icon-container">
-                      <label class="form-label" for="add-user-project">Project</label>
-                      <input type="text" class="form-control" id="add-user-project" placeholder="PLN Jawa Bali" name="project" aria-label="John Doe">
-                  <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div></div>
-                  <div class="mb-3 fv-plugins-icon-container">
+                <div class="mb-3 fv-plugins-icon-container">
+                    <label class="form-label" for="add-user-project">Project</label>
+                    <input type="text" class="form-control" id="add-user-project" placeholder="PLN Jawa Bali" name="project" aria-label="John Doe">
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div></div>
+                <div class="mb-3 fv-plugins-icon-container">
                     <label class="form-label" for="add-user-customer">Customer</label>
-                      <select id="add-user-customer" class="form-select" name="customer">
+                    <select id="add-user-customer" class="form-select" name="customer">
                         <option>Default select</option>
                         @foreach ( $customer->sortBy('company') as $cust)
-                        <option value="$cust->company">{{ $cust->company }}</option>
+                        <option value="{{ $cust->company }}">{{ $cust->company }}</option>
                         @endforeach
-                      </select>
-                  <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div></div>
-                  <div class="mb-3">
-                      <label class="form-label" for="add-user-picture">Picture</label>
-                      <input class="form-control" type="file" id="formFile" name="image">                    
-                  </div>
-                  <div class="mb-3">
-                      <label class="form-label" for="user-role">User Role</label>
-                      <select id="user-role" class="form-select" name="role_id">
-                          <option value="1">Sales</option>
-                          <option value="2">Purchasing</option>
-                          <option value="3">IT</option>
-                          <option value="4">Labs</option>
-                          <option value="5">Courier</option>
-                          <option value="6">Warehouse</option>
-                      </select>
-                  </div>
+                    </select>
+                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                </div>
+                <div class="mb-3 fv-plugins-icon-container">
+                    <label class="form-label" for="add-user-sales">Sales</label>
+                    <select id="add-user-sales" class="form-select" name="sales">
+                        <option>Default select</option>
+                        @foreach ( $sales_quot->sortBy('name') as $sales_q)
+                        <option value="{{ $sales_q->name }}">{{ $sales_q->name }}</option>
+                        @endforeach
+                    </select>
+                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="status">Status</label>
+                    <select id="status" class="form-select" name="status">
+                        <option value="Quot">Quot</option>
+                        <option value="Issue">Issue</option>
+                        <option value="Technical">Technical</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Loss">Loss</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="paidby">PaidBy</label>
+                    <select id="paidby" class="form-select" name="paidby">
+                        <option value="CBD">CBD</option>
+                        <option value="DP 50%, 100% CBD">DP 50%, 100% CBD</option>
+                        <option value="PreOrder">PreOrder</option>
+                    </select>
+                </div>
+                <div class="mb-3 fv-plugins-icon-container">
+                    <label class="form-label" for="add-user-brand">Brand</label>
+                    <select id="add-user-brand" class="form-select" name="brand">
+                        <option>Default select</option>
+                        @foreach ( $product->sortBy('brand') as $brand_q)
+                        <option value="{{ $brand_q->brand }}">{{ $brand_q->brand }}</option>
+                        @endforeach
+                    </select>
+                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                </div>
+                <div class="mb-3 fv-plugins-icon-container">
+                    <label class="form-label" for="add-user-type">Type</label>
+                    <select id="add-user-type" class="form-select" name="type">
+                        <option>Default select</option>
+                        @foreach ( $product->sortBy('type') as $type_q)
+                        <option value="{{ $type_q->type }}">{{ $type_q->type }} Rp.{{ $type_q->price }}</option>
+                        @endforeach
+                    </select>
+                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                </div>
+                <div class="mb-3 fv-plugins-icon-container">
+                    <label class="form-label" for="add-user-qty">Quantity</label>
+                    <input type="number" class="form-control" id="add-user-qty" placeholder="quantity" name="qty" aria-label="qty">
+                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                </div>
                 <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Submit</button>
                 <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
                 <input type="hidden">

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('brand');
             $table->string('type');
             $table->string('detail');
+            $table->integer('price');
             $table->integer('qty');
             $table->float('total');
             $table->float('discount');
