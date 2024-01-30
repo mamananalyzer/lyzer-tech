@@ -79,25 +79,25 @@
                         <tr>
                         <th>Name</th>
                         <th>Project</th>
-                        <th>Task</th>
+                        <th>Task (%)</th>
                         <th>Progress</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ( $sales as $s)
+                        @foreach ( $task as $result)
                         <tr>
                             <td>
                                 <div class="d-flex justify-content-start align-items-center">
                                 <div class="avatar me-2">
-                                    <img src="/storage/{{ $s->image }}" alt="Avatar" class="rounded-circle">
+                                    {{-- <img src="/storage/{{ $s->image }}" alt="Avatar" class="rounded-circle"> --}}
                                 </div>
                                 <div class="d-flex flex-column">
-                                    <h6 class="mb-0 text-truncate">{{ $s->name }}</h6><small class="text-truncate text-muted">Sales</small>
+                                    <h6 class="mb-0 text-truncate">{{ $result->name }}</h6><small class="text-truncate text-muted">Sales</small>
                                 </div>
                                 </div>
                             </td>
                             <td><span class="badge bg-label-primary rounded-pill text-uppercase">Zipcar</span></td>
-                            <td><small class="fw-medium">87/135</small></td>
+                            <td><small class="fw-medium">{{ $result->task }}/{{ $totaltask }} ({{ number_format($result->task / $totaltask * 100, 2) }}%)</small></td>
                             <td>
                                 <div class="progress mb-3">
                                     <div class="progress-bar bg-primary shadow-none" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
@@ -120,7 +120,7 @@
                       <div class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
                           <div id="DataTable_Table_0_filter" class="dataTable_filter">
                               <label>
-                                <input type="search" id="searchInput" class="form-control" placeholder="Search.." aria-controls="DataTable_Table_0">
+                                <input type="search" id="searchQuot" class="form-control" placeholder="Search.." aria-controls="DataTable_Table_0">
                               </label>
                           </div>
                           <div class="dt-buttons my-1">
@@ -132,51 +132,72 @@
                           </div>
                       </div>
                     </div>
-                    <table class="invoice-list-table table">
-                      <thead>
-                        <tr>
-                          <th>Quotation Number</th>
-                          <th>Project</th>
-                          <th>Customer</th>
-                          <th>Amount</th>
-                          <th>Sales</th>
-                          <th>Status</th>
-                          <th class="cell-fit">Paid By</th>
-                          <th class="cell-fit">Actions</th>
-                        </tr>
-                      </thead>
-                    @foreach ($quotation_list as $q_list)
-                      <tbody class="table-border-bottom-0">
-                        <tr>
-                          <td>
-                            <div class="d-flex justify-content-start align-items-center">
-                              <div class="d-flex flex-column">
-                                <a href="pages-profile-user.html" class="text-body text-truncate fw-medium">{{ $q_list->quotNumber }}</a>
-                              </div>
-                            </div>
-                          </td>
-                          <td>{{ $q_list->project }}</td>
-                          <td>{{ $q_list->customer }}</td>
-                          <td>Rp.{{ number_format($q_list->amount, 2, '.', ',') }}</td>
-                          <td>{{ $q_list->sales }}</td>
-                          <td><span class="badge bg-label-success"> {{ $q_list->status }} </span></td>
-                          <td><img src="../../assets/img/icons/payments/master-light.png" class="img-fluid" width="50" alt="masterCard" data-app-light-img="icons/payments/master-light.png" data-app-dark-img="icons/payments/master-dark.png"></td>
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <div class="dropdown"><a href="javascript:;" class="btn dropdown-toggle hide-arrow text-body p-0" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                  <a href="javascript:void(0);" class="dropdown-item">Edit</a>
-                                  <a href="javascript:;" class="dropdown-item">Duplicate</a>
-                                  <div class="dropdown-divider"></div>
-                                  <a href="javascript:;" class="dropdown-item delete-record text-danger">Delete</a>
+                    <div class="dataTables_scrollBody" style="position: relative; overflow: auto; width: 100%; max-height: 322px;">
+                        <table class="invoice-list-table table" id="quotation">
+                        <thead>
+                            <tr>
+                            <th>Quotation Number</th>
+                            <th>Project</th>
+                            <th>Customer</th>
+                            <th>Amount</th>
+                            <th>Sales</th>
+                            <th>Status</th>
+                            <th class="cell-fit">Paid By</th>
+                            <th class="cell-fit">Actions</th>
+                            </tr>
+                        </thead>
+                        <script>
+                            document.getElementById('searchQuot').addEventListener('input', function() {
+                                // Get user input
+                                const searchText = this.value.toLowerCase();
+                        
+                                // Get all menu items
+                                const menuItems = document.querySelectorAll('#quotation tr');
+                        
+                                // Loop through each menu item and hide/show based on user input
+                                menuItems.forEach(function(item) {
+                                    const itemName = item.textContent.toLowerCase();
+                                    if (itemName.includes(searchText)) {
+                                        item.style.display = 'block';
+                                    } else {
+                                        item.style.display = 'none';
+                                    }
+                                });
+                            });
+                        </script>
+                        @foreach ($quotation_list as $q_list)
+                        <tbody class="table-border-bottom-0">
+                            <tr>
+                            <td>
+                                <div class="d-flex justify-content-start align-items-center">
+                                <div class="d-flex flex-column">
+                                    <a href="pages-profile-user.html" class="text-body text-truncate fw-medium">{{ $q_list->quotNumber }}</a>
                                 </div>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    @endforeach
-                    </table>
+                                </div>
+                            </td>
+                            <td>{{ $q_list->project }}</td>
+                            <td>{{ $q_list->customer }}</td>
+                            <td>Rp.{{ number_format($q_list->amount, 2, '.', ',') }}</td>
+                            <td>{{ $q_list->sales }}</td>
+                            <td><span class="badge bg-label-success"> {{ $q_list->status }} </span></td>
+                            <td><img src="../../assets/img/icons/payments/master-light.png" class="img-fluid" width="50" alt="masterCard" data-app-light-img="icons/payments/master-light.png" data-app-dark-img="icons/payments/master-dark.png"></td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                <div class="dropdown"><a href="javascript:;" class="btn dropdown-toggle hide-arrow text-body p-0" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></a>
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                    <a href="javascript:void(0);" class="dropdown-item">Edit</a>
+                                    <a href="javascript:;" class="dropdown-item">Duplicate</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="javascript:;" class="dropdown-item delete-record text-danger">Delete</a>
+                                    </div>
+                                </div>
+                                </div>
+                            </td>
+                            </tr>
+                        </tbody>
+                        @endforeach
+                        </table>
+                    </div>
                   </div>
                 </div>
             </div>

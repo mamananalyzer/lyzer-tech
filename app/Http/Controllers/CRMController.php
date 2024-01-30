@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Quotation;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CRMController extends Controller
 {
@@ -17,12 +18,30 @@ class CRMController extends Controller
      */
     public function index()
     {
+        //Team Members
         $sales = User::where('role_id', 1)->get();
+        $names = User::where('role_id', 1)->get('name');
+        $task = DB::table('quotation')
+            ->join('users', 'quotation.sales', '=', 'users.name')
+            ->whereIn('users.name', $names)
+            ->select('users.name', DB::raw('count(*) as task'))
+            ->groupBy('users.name')
+            ->get();
+        $totaltask = Quotation::count();
+
+        // dd($task);
+
+        //Customer List
         $customer = Customer::all();
+
+        // Quotation
+        $quotation_list = Quotation::all();
+
+        //Canvas Quot
         $sales_quot = User::where('role_id', 1)->get();
         $product = Product::all();
-        $quotation_list = Quotation::all();
-        return view('base.CRM', compact('sales', 'customer', 'sales_quot', 'product', 'quotation_list'));
+
+        return view('base.CRM', compact('sales', 'customer', 'sales_quot', 'product', 'quotation_list', 'task', 'totaltask'));
     }
 
     /**
@@ -88,7 +107,7 @@ class CRMController extends Controller
         $romanMonth = intval(date('m'));
         $romanMonth = $romanMonth > 0 && $romanMonth < 13 ? $this->intToRoman($romanMonth) : '';
         $lastTwoDigitsOfYear = substr(date('Y'), -2);
-        $quotNumber = 'Quot.' . $idNumberQuot . '/' . $romanMonth . '/' . $lastTwoDigitsOfYear . '/' . $request->input('sales');
+        $quotNumber = $request->input('status') . $idNumberQuot . '/' . $romanMonth . '/' . $lastTwoDigitsOfYear . '/' . $request->input('sales');
         
         //$detail
         // Assuming $selectedType contains the selected type

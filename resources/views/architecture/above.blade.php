@@ -32,6 +32,11 @@
     <title>@yield('title')</title>
 
     <meta name="description" content="" />
+    {{-- <style>
+      body {
+        zoom: 80%;
+      }
+    </style> --}}
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="sneat/assets/img/favicon/favicon.ico" />
