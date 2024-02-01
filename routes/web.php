@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CRMController;
+use App\Http\Controllers\DailyController;
 use App\Http\Controllers\ProductController;
 
 /*
@@ -38,6 +39,14 @@ Route::post('/quot.store', [CRMController::class, 'quot_store'])->name('quot.cre
 Route::get('/CRM/{id_user}/edit', [CRMController::class, 'edit'])->name('CRM.edit');
 Route::delete('/CRM/{id_user}', [CRMController::class, 'destroy'])->name('CRM.destroy');
 Route::get('/CRM/{id_user}/suspend', [CRMController::class, 'suspend'])->name('CRM.suspend');
+
+Route::get('/daily', [DailyController::class, 'index']);
+Route::get('/daily/{id_user}/show', [DailyController::class, 'show'])->name('Daily.show');
+Route::post('/daily.store', [DailyController::class, 'store'])->name('Daily.create');
+Route::post('/quot.store', [DailyController::class, 'quot_store'])->name('quot.create');
+Route::get('/daily/{id_user}/edit', [DailyController::class, 'edit'])->name('Daily.edit');
+Route::delete('/daily/{id_user}', [DailyController::class, 'destroy'])->name('Daily.destroy');
+Route::get('/daily/{id_user}/suspend', [DailyController::class, 'suspend'])->name('Daily.suspend');
 
 Route::get('/product', [ProductController::class, 'index']);
 Route::get('/product/{id_user}/show', [ProductController::class, 'show'])->name('product.show');
