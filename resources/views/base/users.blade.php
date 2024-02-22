@@ -191,7 +191,11 @@
                         <thead>
                           <tr>
                             <th class="control sorting_disabled" rowspan="1" colspan="1">User</th>
-                            <th class="sorting" tabindex="0" aria-controls="DataTable_Table_0" rowspan="1" colspan="1" >Role</th>
+                            <th class="sorting" tabindex="0" aria-controls="DataTable_Table_0" rowspan="1" colspan="1" >Role 
+                                <button class="btn-primary" tabindex="0" aria-controls="DataTable_Table_0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddRole">
+                                    <span class="d-none d-sm-inline-block">+</span>
+                                </button>                             
+                            </th>
                             <th class="sorting" tabindex="0" aria-controls="DataTable_Table_0" rowspan="1" colspan="1" >Status</th>
                             <th class="sorting" tabindex="0" aria-controls="DataTable_Table_0" rowspan="1" colspan="1" >QR</th>
                             <th class="sorting" tabindex="0" aria-controls="DataTable_Table_0" rowspan="1" colspan="1" >Actions</th>
@@ -279,7 +283,7 @@
                                     <form method="POST" action="{{ route('users.destroy', $user->id_user) }}" class="d-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-icon delete-record">
+                                        <button type="submit" class="btn btn-sm btn-icon delete-record" onclick="return confirm('Are you sure you want to delete this User?');">
                                             <i class="bx bx-trash"></i>
                                         </button>
                                     </form>
@@ -291,7 +295,7 @@
                                         <form method="POST" action="{{ route('users.destroy', $user->id_user) }}" class="d-inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="dropdown-item">Delete</button>
+                                            <button type="submit" class="dropdown-item" onclick="return confirm('Are you sure you want to delete this User?');">Delete</button>
                                         </form>
                                         <a href="{{ route('users.show', $user->id_user) }}" class="dropdown-item">View</a>
                                         <a href="{{ route('users.suspend', $user->id_user) }}" class="dropdown-item">Suspend</a>
