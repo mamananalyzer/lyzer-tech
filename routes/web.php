@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CRMController;
+use App\Http\Controllers\BelanjaController;
 use App\Http\Controllers\DailyController;
 use App\Http\Controllers\ProductController;
 
@@ -39,6 +40,14 @@ Route::post('/quot.store', [CRMController::class, 'quot_store'])->name('quot.cre
 Route::get('/CRM/{id_user}/edit', [CRMController::class, 'edit'])->name('CRM.edit');
 Route::delete('/CRM/{id_user}', [CRMController::class, 'destroy'])->name('CRM.destroy');
 Route::get('/CRM/{id_user}/suspend', [CRMController::class, 'suspend'])->name('CRM.suspend');
+
+Route::get('/belanja', [BelanjaController::class, 'index']);
+Route::get('/belanja/{id_user}/show', [BelanjaController::class, 'show'])->name('Belanja.show');
+Route::post('/belanja.store', [BelanjaController::class, 'store'])->name('Belanja.create');
+Route::post('/quot.store', [BelanjaController::class, 'quot_store'])->name('quot.create');
+Route::get('/belanja/{id_user}/edit', [BelanjaController::class, 'edit'])->name('Belanja.edit');
+Route::delete('/belanja/{id_user}', [BelanjaController::class, 'destroy'])->name('Belanja.destroy');
+Route::get('/belanja/{id_user}/suspend', [BelanjaController::class, 'suspend'])->name('Belanja.suspend');
 
 Route::get('/daily', [DailyController::class, 'index']);
 Route::get('/daily/{id_user}/show', [DailyController::class, 'show'])->name('Daily.show');

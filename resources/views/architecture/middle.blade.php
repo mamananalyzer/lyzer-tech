@@ -171,6 +171,12 @@
                   <span class="menu-header-text">Pages</span>
                 </li>
                 <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
+                  <a href="belanja" class="menu-link sidebar-link">
+                    <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
+                    <div data-i18n="Belanja">Belanja</div>
+                  </a>
+                </li>
+                <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
                   <a href="daily" class="menu-link sidebar-link">
                     <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
                     <div data-i18n="Daily">Daily</div>
