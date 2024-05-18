@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CRMController;
 use App\Http\Controllers\BelanjaController;
+use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\DailyController;
 use App\Http\Controllers\ProductController;
 
@@ -47,6 +48,13 @@ Route::post('/belanja.store', [BelanjaController::class, 'store'])->name('Belanj
 Route::get('/belanja/{id_user}/edit', [BelanjaController::class, 'edit'])->name('Belanja.edit');
 Route::delete('/belanja/{id_user}', [BelanjaController::class, 'destroy'])->name('Belanja.destroy');
 Route::get('/belanja/{id_user}/suspend', [BelanjaController::class, 'suspend'])->name('Belanja.suspend');
+
+Route::get('/monitoring', [MonitoringController::class, 'index']);
+Route::get('/monitoring/{id_user}/show', [MonitoringController::class, 'show'])->name('Monitoring.show');
+Route::post('/monitoring.store', [MonitoringController::class, 'store'])->name('Monitoring.create');
+Route::get('/monitoring/{id_user}/edit', [MonitoringController::class, 'edit'])->name('Monitoring.edit');
+Route::delete('/monitoring/{id_user}', [MonitoringController::class, 'destroy'])->name('Monitoring.destroy');
+Route::get('/monitoring/{id_user}/suspend', [MonitoringController::class, 'suspend'])->name('Monitoring.suspend');
 
 Route::get('/daily', [DailyController::class, 'index']);
 Route::get('/daily/{id_user}/show', [DailyController::class, 'show'])->name('Daily.show');
