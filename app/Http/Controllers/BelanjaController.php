@@ -6,13 +6,14 @@ use App\Models\Belanja;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use DataTables;
 
 class BelanjaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $totalBelanja = Belanja::sum('totalBelanja');
 
@@ -30,6 +31,20 @@ class BelanjaController extends Controller
         $session = $totalThisMonth/$totalLastMonth*100;
 
         return view('base.belanja', compact('totalBelanja', 'session'));
+    }
+
+    public function getData()
+    {
+        $users = Belanja::select(['id_product', 'jenisBelanja', 'keteranganBarang', 'totalBelanja', 'created_at']);
+
+        return DataTables::of($users)
+            ->editColumn('created_at', function ($user) {
+                return $user->created_at->format('Y-m-d H:i');
+            })
+            ->addColumn('action', function($user) {
+                return '<a href="#edit-'.$user->id.'" class="btn btn-xs btn-primary">Edit</a>';
+            })
+            ->make(true);
     }
 
     /**

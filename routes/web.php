@@ -42,7 +42,8 @@ Route::get('/CRM/{id_user}/edit', [CRMController::class, 'edit'])->name('CRM.edi
 Route::delete('/CRM/{id_user}', [CRMController::class, 'destroy'])->name('CRM.destroy');
 Route::get('/CRM/{id_user}/suspend', [CRMController::class, 'suspend'])->name('CRM.suspend');
 
-Route::get('/belanja', [BelanjaController::class, 'index']);
+Route::get('/belanja', [BelanjaController::class, 'index'])->name('Belanja.index');;
+Route::get('/belanja/data', [BelanjaController::class, 'getData'])->name('Belanja.data');
 Route::get('/belanja/{id_user}/show', [BelanjaController::class, 'show'])->name('Belanja.show');
 Route::post('/belanja.store', [BelanjaController::class, 'store'])->name('Belanja.create');
 Route::get('/belanja/{id_user}/edit', [BelanjaController::class, 'edit'])->name('Belanja.edit');
