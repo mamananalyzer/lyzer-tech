@@ -46,6 +46,215 @@
 @section('content')
 
 <div class="flex-grow-1 container-p-y container-fluid">
+    <div class="col-12">
+        <div class="card">
+        </div>
+    </div>
+</div>
+
+<div class="flex-grow-1 container-p-y container-fluid">
+    <div class="col-12 mb-4">
+        <div class="card">
+            {{-- <div class="card-header header-elements">
+
+            </div> --}}
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="row">
+                            <div class="card">
+                                <div class="row">
+                                    <div class="card mx-2">
+                                        <div class="d-flex align-items-start">
+                                            <div class="avatar me-3">
+                                                <img src="../sneat/assets/img/avatars/2.png" alt="Avatar" class="rounded-circle" style="width: 50px; height: 50px;">
+                                            </div>
+                                            <div class="me-2">
+                                                <span>Good Evening</span>
+                                                <h3>Mr. LyZer</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="my-2">My Room</span>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col card mx-2 my-1 py-3 d-flex align-items-start">
+                                                <div class="me-2">
+                                                    <i class="bx bx-user"></i>
+                                                    <br>
+                                                    <span>Good Evening</span>
+                                                </div>
+                                            </div>
+                                            <div class="col card mx-2 my-1 py-3 d-flex align-items-start">
+                                                <div class="me-2">
+                                                    <i class="bx bx-user"></i>
+                                                    <br>
+                                                    <span>Good Evening</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col card mx-2 my-1 py-3 d-flex align-items-start">
+                                                <div class="me-2">
+                                                    <i class="bx bx-user"></i>
+                                                    <br>
+                                                    <span>Good Evening</span>
+                                                </div>
+                                            </div>
+                                            <div class="col card mx-2 my-1 py-3 d-flex align-items-start">
+                                                <div class="me-2">
+                                                    <i class="bx bx-user"></i>
+                                                    <br>
+                                                    <span>Good Evening</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col card mx-2 my-1 py-3 d-flex align-items-start">
+                                                <div class="me-2">
+                                                    <i class="bx bx-user"></i>
+                                                    <br>
+                                                    <span>Good Evening</span>
+                                                </div>
+                                            </div>
+                                            <div class="col card mx-2 my-1 py-3 d-flex align-items-start">
+                                                <div class="me-2">
+                                                    <i class="bx bx-user"></i>
+                                                    <br>
+                                                    <span>Good Evening</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col card mx-2 my-1 py-3 d-flex align-items-start">
+                                                <span>Set Room Environment</span>
+                                                <div class="row">
+                                                    <div class="col text-center">
+                                                        <i class="bx bx-user"></i>
+                                                        <a href="">Music</a>
+                                                    </div>
+                                                    <div class="col text-center">
+                                                        <i class="bx bx-user"></i>
+                                                        <a href="">Music</a>
+                                                    </div>
+                                                    <div class="col text-center">
+                                                        <i class="bx bx-user"></i>
+                                                        <a href="">Music</a>
+                                                    </div>
+                                                    <div class="col text-center">
+                                                        <i class="bx bx-user"></i>
+                                                        <a href="">Music</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="row px-3">
+                                <span>Voice Assistance</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="row">
+                            <div class="col card">
+                                <div class="row">
+                                    <div class="col">
+                                        <h2>My Workstation</h2>
+                                        <a href="">Entrance</a>
+                                    </div>
+                                    <div class="col">
+                                        <a href="">Entrance</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col card mx-2">
+                                        <a href="">Entrance</a>
+                                    </div>
+                                    <div class="col card mx-2">
+                                        <a href="">Entrance</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card">
+                                <div class="row">
+                                    <div class="col card my-1">
+                                        <h2>Accessories</h2>
+                                        <div class="row">
+                                            <div class="col">
+                                                <a href="">Wifi</a>
+                                            </div>
+                                            <div class="col">
+                                                <a href="">Wifi</a>
+                                            </div>
+                                            <div class="col">
+                                                <a href="">Wifi</a>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <a href="">Music</a>
+                                        </div>
+                                    </div>
+                                    <div class="col card my-1">
+                                        <div class="row card mx-1 my-1">
+                                            <h2>Accessories</h2>
+                                            <div class="col">
+                                                <a href="">Wifi</a>
+                                            </div>
+                                            <div class="col">
+                                                <a href="">Wifi</a>
+                                            </div>
+                                            <div class="col">
+                                                <a href="">Wifi</a>
+                                            </div>
+                                        </div>
+                                        <div class="row card mx-1 my-1">
+                                            <h3>LED Strips Light</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row my-3">
+                                    <div class="col card ms-3">
+                                        <h3>Air Conditioner</h3>
+                                    </div>
+                                    <div class="col-7 card mx-3">
+                                        <div class="card-header header-elements">
+                                            <div>
+                                            <h5 class="card-title mb-0">Statistics</h5>
+                                            <small class="text-muted">Commercial networks and enterprises</small>
+                                            </div>
+                                            <div class="card-header-elements ms-auto py-0">
+                                            <h5 class="mb-0 me-3">$ 78,000</h5>
+                                            <span class="badge bg-label-secondary">
+                                                <i class="bx bx-up-arrow-alt bx-xs text-success"></i>
+                                                <span class="align-middle">37%</span>
+                                            </span>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <canvas id="lineChart" class="chartjs" data-height="500" height="500" style="display: block; box-sizing: border-box; height: 500px; width: 988px;" width="988"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+</div>
+
+{{-- <div class="flex-grow-1 container-p-y container-fluid">
     <div class="col-12 mb-4">
         <div class="card">
           <div class="card-header header-elements">
@@ -66,7 +275,7 @@
           </div>
         </div>
       </div>
-</div>
+</div> --}}
 
 <div class="flex-grow-1 container-p-y container-fluid">
     <style>
@@ -507,6 +716,14 @@
                 }]
             },
             options: {
+                hover: {
+                    mode: 'nearest',
+                    intersect: false,
+                },
+                tooltips: {
+                    mode: 'nearest',
+                    intersect: false,
+                },
                 responsive: true,
                 scales: {
                     y: {

@@ -17,6 +17,8 @@ class BelanjaController extends Controller
     {
         $totalBelanja = Belanja::sum('totalBelanja');
 
+        // dd($request->all());
+
         // Get the current month and last month
         $currentMonth = Carbon::now()->format('Y-m');
         $lastMonth = Carbon::now()->subMonth()->format('Y-m');
@@ -36,6 +38,8 @@ class BelanjaController extends Controller
     public function getData()
     {
         $users = Belanja::select(['id_product', 'jenisBelanja', 'keteranganBarang', 'totalBelanja', 'created_at']);
+
+        $users = Belanja::whereMonth('created_at', Carbon::now()->month)->get();
 
         return DataTables::of($users)
             ->editColumn('created_at', function ($user) {

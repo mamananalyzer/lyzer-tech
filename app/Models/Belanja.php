@@ -9,6 +9,6 @@ class Belanja extends Model
 {
     protected $table = 'belanja';
 
-    protected $fillable = ['jenisBelanja', 'keteranganBarang', 'totalBelanja'];
+    protected $fillable = ['jenisBelanja', 'keteranganBarang', 'totalBelanja', 'created_at'];
 
 }
