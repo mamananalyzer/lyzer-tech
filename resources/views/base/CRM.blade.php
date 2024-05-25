@@ -15,9 +15,9 @@
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="sneat/assets/vendor/libs/typeahead-js/typeahead.css" /> 
-    <link rel="stylesheet" href="sneat/assets/vendor/libs/datatable-bs5/datatable.bootstrap5.css">
-    <link rel="stylesheet" href="sneat/assets/vendor/libs/datatable-responsive-bs5/responsive.bootstrap5.css">
-    <link rel="stylesheet" href="sneat/assets/vendor/libs/datatable-buttons-bs5/buttons.bootstrap5.css">
+    <link rel="stylesheet" href="sneat/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css">
+    <link rel="stylesheet" href="sneat/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css">
+    <link rel="stylesheet" href="sneat/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css">
     <link rel="stylesheet" href="sneat/assets/vendor/libs/select2/select2.css" />
     <link rel="stylesheet" href="sneat/assets/vendor/libs/%40form-validation/umd/styles/index.min.css" />
 

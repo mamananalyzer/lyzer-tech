@@ -7,10 +7,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css" integrity="sha256-5ZfT5rkfZ4K8CNx3vRy+YzcOBf0aOFaP6P0p9uCqlJ4=" crossorigin="anonymous" />
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oKp1rEu8NHd3ZtqBvVbV1/3mY46ccqV7JvGd5EG9c3E=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha256-j/4tV9lX4x1pLIl50ecZ9FktG17s6cj94eEa3vjZxFQ=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js" integrity="sha256-VoBMsT5IeA2F5r9dBjTf1N1kvgdl7GGvwjXWfS5gC2M=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css" integrity="" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js" integrity="" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -178,7 +178,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel1">Modal title</h5>
+              <h5 class="modal-title" id="exampleModalLabel1">Belanja</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -186,7 +186,7 @@
                     @csrf <!-- CSRF protection -->
                     @method('POST')
                     <div class="card mb-4">
-                        <h5 class="card-header">Belanja</h5>
+                        {{-- <h5 class="card-header">Belanja</h5> --}}
                         <div class="card-body">
                             <div class="mb-3">
                                 <label for="jenisBelanja" class="form-label">Jenis Belanja</label>
@@ -200,109 +200,108 @@
                             <div class="mb-3">
                                 <label for="keteranganBarang" class="form-label">Komponen yang dibeli</label>
                                 <div class="row gy-3">
-                                    <div class="col-8">
+                                    <div class="col">
                                         <div class="row">
-                                            <div class="col-md form-check form-check-inline">
+                                            <div class="col-2 form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" id="berasCheckbox" name="komponen[]" value="Beras">
                                                 <label class="form-check-label" for="berasCheckbox">Beras</label>
                                             </div>
-                                            <div class="col-md form-check form-check-inline">
+                                            <div class="col-2 form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" id="sayurCheckbox" name="komponen[]" value="Sayur">
                                                 <label class="form-check-label" for="sayurCheckbox">Sayur</label>
                                             </div>
-                                            <div class="col-md form-check form-check-inline">
+                                            <div class="col-2 form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" id="gulaCheckbox" name="komponen[]" value="Gula">
                                                 <label class="form-check-label" for="gulaCheckbox">Gula</label>
                                             </div>
-                                            <div class="col-md form-check form-check-inline">
+                                            <div class="col-2 form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" id="minyakCheckbox" name="komponen[]" value="Minyak">
                                                 <label class="form-check-label" for="minyakCheckbox">Minyak</label>
                                             </div>
-                                            <div class="col-md form-check form-check-inline">
+                                            <div class="col-2 form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" id="airCheckbox" name="komponen[]" value="Air">
                                                 <label class="form-check-label" for="airCheckbox">Air</label>
                                             </div>
-                                            <div class="col-md form-check form-check-inline">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row gy-3">
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col-2 form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" id="bumbuCheckbox" name="komponen[]" value="Bumbu">
                                                 <label class="form-check-label" for="bumbuCheckbox">Bumbu</label>
                                             </div>
-                                            <div class="col-md form-check form-check-inline">
+                                            <div class="col-2 form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" id="jajanCheckbox" name="komponen[]" value="Jajan">
                                                 <label class="form-check-label" for="jajanCheckbox">Jajan</label>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col"></div>
-                                </div>
-                                <div class="row gy-3">
-                                    <div class="col-8">
-                                        <div class="row">
-                                            <div class="col-md form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="sabunCheckbox" name="komponen[]" value="Sabun Cuci">
-                                                <label class="form-check-label" for="sabunCheckbox">Sabun Cuci</label>
-                                            </div>
-                                            <div class="col-md form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="gasCheckbox" name="komponen[]" value="Gas">
-                                                <label class="form-check-label" for="gasCheckbox">Gas</label>
-                                            </div>
-                                            <div class="col-md form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="mieCheckbox" name="komponen[]" value="Mie">
-                                                <label class="form-check-label" for="mieCheckbox">Mie</label>
-                                            </div>
-                                            <div class="col-md form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="susuCheckbox" name="komponen[]" value="Susu">
-                                                <label class="form-check-label" for="susuCheckbox">Susu</label>
-                                            </div>
-                                            <div class="col-md form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="kopiCheckbox" name="komponen[]" value="Kopi">
-                                                <label class="form-check-label" for="kopiCheckbox">Kopi</label>
-                                            </div>
-                                            <div class="col-md form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="tehCheckbox" name="komponen[]" value="Teh">
-                                                <label class="form-check-label" for="tehCheckbox">Teh</label>
-                                            </div>
-                                            <div class="col-md form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="alatMandiCheckbox" name="komponen[]" value="Alat Mandi">
-                                                <label class="form-check-label" for="alatMandiCheckbox">Alat Mandi</label>
-                                            </div>
-                                        </div>
-                                    <div class="col"></div>
-                                    </div>
-                                </div>
-                                <div class="row gy-3">
-                                    <div class="col-8">
-                                        <div class="row">
-                                            <div class="col-md form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="alatKebersihanCheckbox" name="komponen[]" value="Alat Kebersihan">
-                                                <label class="form-check-label" for="alatKebersihanCheckbox">Alat Kebersihan</label>
-                                            </div>            
-                                            <div class="col-md form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="ongkosCheckbox" name="komponen[]" value="Ongkos">
-                                                <label class="form-check-label" for="ongkosCheckbox">Ongkos</label>
-                                            </div>
-                                            <div class="col-md form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="kontrakanCheckbox" name="komponen[]" value="Kontrakan">
-                                                <label class="form-check-label" for="kontrakanCheckbox">Kontrakan</label>
-                                            </div>
-                                            <div class="col-md form-check form-check-inline">
+                                            <div class="col-2 form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" id="listrikCheckbox" name="komponen[]" value="Listrik">
                                                 <label class="form-check-label" for="listrikCheckbox">Listrik</label>
                                             </div>
-                                            <div class="col-md form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="komputerCheckbox" name="komponen[]" value="Komputer">
-                                                <label class="form-check-label" for="komputerCheckbox">Komputer</label>
+                                            <div class="col-2 form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="gasCheckbox" name="komponen[]" value="Gas">
+                                                <label class="form-check-label" for="gasCheckbox">Gas</label>
                                             </div>
-                                            <div class="col-md form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="motorCheckbox" name="komponen[]" value="Motor">
-                                                <label class="form-check-label" for="motorCheckbox">Motor</label>
-                                            </div>          
-                                            <div class="col-md form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="lainLainCheckbox" name="komponen[]" value="Lain-lain">
-                                                <label class="form-check-label" for="lainLainCheckbox">Lain-lain</label>
-                                            </div>      
+                                            <div class="col-2 form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="mieCheckbox" name="komponen[]" value="Mie">
+                                                <label class="form-check-label" for="mieCheckbox">Mie</label>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col"></div>
+                                </div>
+                                <div class="row gy-3">
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col-2 form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="susuCheckbox" name="komponen[]" value="Susu">
+                                                <label class="form-check-label" for="susuCheckbox">Susu</label>
+                                            </div>
+                                            <div class="col-2 form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="kopiCheckbox" name="komponen[]" value="Kopi">
+                                                <label class="form-check-label" for="kopiCheckbox">Kopi</label>
+                                            </div>
+                                            <div class="col-2 form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="tehCheckbox" name="komponen[]" value="Teh">
+                                                <label class="form-check-label" for="tehCheckbox">Teh</label>
+                                            </div>       
+                                            <div class="col-2 form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="ongkosCheckbox" name="komponen[]" value="Ongkos">
+                                                <label class="form-check-label" for="ongkosCheckbox">Ongkos</label>
+                                            </div>
+                                            <div class="col-2 form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="kontrakanCheckbox" name="komponen[]" value="Kontrakan">
+                                                <label class="form-check-label" for="kontrakanCheckbox">Kontrakan</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row gy-3">
+                                    <div class="col">
+                                        <div class="row"> 
+                                            <div class="col-2 form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="motorCheckbox" name="komponen[]" value="Motor">
+                                                <label class="form-check-label" for="motorCheckbox">Motor</label>
+                                            </div>   
+                                            <div class="col-2 form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="komputerCheckbox" name="komponen[]" value="Komputer">
+                                                <label class="form-check-label" for="komputerCheckbox">Komputer</label>
+                                            </div>    
+                                            <div class="col-2 form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="sabunCheckbox" name="komponen[]" value="Sabun Cuci">
+                                                <label class="form-check-label" for="sabunCheckbox">Sabun Cuci</label>
+                                            </div>
+                                            <div class="col-2 form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="alatMandiCheckbox" name="komponen[]" value="Alat Mandi">
+                                                <label class="form-check-label" for="alatMandiCheckbox">Alat Mandi</label>
+                                            </div>
+                                            <div class="col-2 form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="alatKebersihanCheckbox" name="komponen[]" value="Alat Kebersihan">
+                                                <label class="form-check-label" for="alatKebersihanCheckbox">Alat Kebersihan</label>
+                                            </div>         
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -317,10 +316,6 @@
                     <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
                     <input type="hidden">
                 </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>

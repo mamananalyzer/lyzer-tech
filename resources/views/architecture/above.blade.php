@@ -50,27 +50,27 @@
     />
 
     <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="sneat/assets/vendor/fonts/boxicons.css" />
+    <link rel="stylesheet" href="{{asset('sneat/assets/vendor/fonts/boxicons.css')}}">
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="sneat/assets/vendor/css/core.css" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="sneat/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="sneat/assets/css/demo.css" />
+    <link rel="stylesheet" href="{{asset('sneat/assets/vendor/css/core.css')}}" class="template-customizer-core-css">
+    <link rel="stylesheet" href="{{asset('sneat/assets/vendor/css/theme-default.css')}}" class="template-customizer-theme-css">
+    <link rel="stylesheet" href="{{asset('sneat/assets/css/demo.css')}}">
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="sneat/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="{{asset('sneat/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}">
 
-    <link rel="stylesheet" href="sneat/assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="{{asset('sneat/assets/vendor/libs/apex-charts/apex-charts.css')}}">
 
     <!-- Page CSS -->
     @yield('link')
 
     <!-- Helpers -->
-    <script src="sneat/assets/vendor/js/helpers.js"></script>
+    <script src="{{asset('sneat/assets/vendor/js/helpers.js')}}"></script>
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="sneat/assets/js/config.js"></script>
+    <script src="{{asset('sneat/assets/js/config.js')}}"></script>
   </head>
 
   <body>

@@ -125,7 +125,7 @@
               <ul class="menu-inner py-1">
                 <!-- Dashboard -->
                 <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
-                  <a href="base" class="menu-link sidebar-link">
+                  <a href="{{ url('/base') }}" class="menu-link sidebar-link">
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
                     <div data-i18n="Analytics">Dashboard</div>
                   </a>
@@ -171,37 +171,37 @@
                   <span class="menu-header-text">Pages</span>
                 </li>
                 <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
-                  <a href="belanja" class="menu-link sidebar-link">
+                  <a href="{{ url('/belanja') }}" class="menu-link sidebar-link">
                     <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
                     <div data-i18n="Belanja">Belanja</div>
                   </a>
                 </li>
                 <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
-                  <a href="monitoring" class="menu-link sidebar-link">
+                  <a href="{{ url('/monitoring') }}" class="menu-link sidebar-link">
                     <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
                     <div data-i18n="Monitoring">Monitoring</div>
                   </a>
                 </li>
                 <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
-                  <a href="daily" class="menu-link sidebar-link">
+                  <a href="{{ url('/daily') }}" class="menu-link sidebar-link">
                     <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
                     <div data-i18n="Daily">Daily</div>
                   </a>
                 </li>
                 <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
-                  <a href="CRM" class="menu-link sidebar-link">
+                  <a href="{{ url('/CRM') }}" class="menu-link sidebar-link">
                     <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
                     <div data-i18n="CRM">CRM</div>
                   </a>
                 </li>
                 <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
-                  <a href="users" class="menu-link sidebar-link">
+                  <a href="{{ url('/users') }}" class="menu-link sidebar-link">
                     <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
                     <div data-i18n="Users">Users</div>
                   </a>
                 </li>
                 <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
-                  <a href="product" class="menu-link sidebar-link">
+                  <a href="{{ url('/product') }}" class="menu-link sidebar-link">
                     <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
                     <div data-i18n="Product">Product</div>
                   </a>
@@ -661,7 +661,7 @@
                       
             
                       <!-- Notification -->
-                      <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
+                      {{-- <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
                         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                           <i class="bx bx-bell bx-sm"></i>
                           <span class="badge bg-danger rounded-pill badge-notifications">5</span>
@@ -843,7 +843,7 @@
                             <button class="btn btn-primary text-uppercase w-100">view all notifications</button>
                           </li>
                         </ul>
-                      </li>
+                      </li> --}}
                       <!--/ Notification -->
                       <!-- User -->
                       <li class="nav-item navbar-dropdown dropdown-user dropdown">

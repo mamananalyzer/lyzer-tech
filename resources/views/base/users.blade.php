@@ -280,6 +280,9 @@
                                     <a href="{{ route('users.edit', $user->id_user) }}" class="btn btn-sm btn-icon">
                                         <i class="bx bx-edit"></i>
                                     </a>
+                                    <a href="{{ route('users.show', $user->id_user) }}" class="btn btn-sm btn-icon">
+                                        <i class='bx bx-show'></i>
+                                    </a>
                                     <form method="POST" action="{{ route('users.destroy', $user->id_user) }}" class="d-inline">
                                         @csrf
                                         @method('DELETE')

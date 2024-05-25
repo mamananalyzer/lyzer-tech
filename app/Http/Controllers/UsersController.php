@@ -71,6 +71,9 @@ class UsersController extends Controller
             // 'password' => $validatedData['password'],
         ]);
 
+        // dd($user->all()); // Dump and die
+
+
         $user->save();
 
         return redirect('/users')->with('success', 'Form submitted successfully!');
@@ -81,7 +84,7 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('base.usersShow');
     }
 
     /**
