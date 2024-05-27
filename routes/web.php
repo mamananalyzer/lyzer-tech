@@ -39,14 +39,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/logout', [UsersController::class, 'logout'])->name('logout');
 
-    Route::get('/users', [UsersController::class, 'index']);
-    Route::get('/users/data', [UsersController::class, 'getData'])->name('users.data');
-    Route::get('/users/{id_user}', [UsersController::class, 'show'])->name('users.show');
-    Route::post('/users.store', [UsersController::class, 'store'])->name('users.create');
-    Route::get('/users/{id_user}/edit', [UsersController::class, 'edit'])->name('users.edit');
-    Route::delete('/users/{id_user}', [UsersController::class, 'destroy'])->name('users.destroy');
-    Route::get('/users/{id_user}/suspend', [UsersController::class, 'suspend'])->name('users.suspend');
-
     Route::get('/belanja', [BelanjaController::class, 'index'])->name('Belanja.index');;
     Route::get('/belanja/data', [BelanjaController::class, 'getData'])->name('Belanja.data');
     Route::get('/belanja/{id_user}/show', [BelanjaController::class, 'show'])->name('Belanja.show');
@@ -87,6 +79,13 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
+Route::get('/users', [UsersController::class, 'index']);
+Route::get('/users/data', [UsersController::class, 'getData'])->name('users.data');
+Route::get('/users/{id_user}', [UsersController::class, 'show'])->name('users.show');
+Route::post('/users.store', [UsersController::class, 'store'])->name('users.create');
+Route::get('/users/{id_user}/edit', [UsersController::class, 'edit'])->name('users.edit');
+Route::delete('/users/{id_user}', [UsersController::class, 'destroy'])->name('users.destroy');
+Route::get('/users/{id_user}/suspend', [UsersController::class, 'suspend'])->name('users.suspend');
 
 
 
