@@ -4,14 +4,6 @@
 
 @section('link')
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FullCalendar Example</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css" integrity="sha256-5ZfT5rkfZ4K8CNx3vRy+YzcOBf0aOFaP6P0p9uCqlJ4=" crossorigin="anonymous" />
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oKp1rEu8NHd3ZtqBvVbV1/3mY46ccqV7JvGd5EG9c3E=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha256-j/4tV9lX4x1pLIl50ecZ9FktG17s6cj94eEa3vjZxFQ=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js" integrity="sha256-VoBMsT5IeA2F5r9dBjTf1N1kvgdl7GGvwjXWfS5gC2M=" crossorigin="anonymous"></script>
-
 @endsection
 
 {{-- @section('zone-link')

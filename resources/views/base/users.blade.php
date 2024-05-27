@@ -4,59 +4,24 @@
 
 @section('link')
 
-    <!-- Icons -->
-    <link rel="stylesheet" href="sneat/assets/vendor/fonts/fontawesome.css" />
-    <link rel="stylesheet" href="sneat/assets/vendor/fonts/flag-icons.css" />
-
-    <!-- Core CSS -->
-    <link rel="stylesheet" href="sneat/assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="sneat/assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="sneat/assets/css/demo.css" />
-
-    <!-- Vendors CSS -->
-    <link rel="stylesheet" href="sneat/assets/vendor/libs/typeahead-js/typeahead.css" /> 
-    <link rel="stylesheet" href="sneat/assets/vendor/libs/datatable-bs5/datatable.bootstrap5.css">
-    <link rel="stylesheet" href="sneat/assets/vendor/libs/datatable-responsive-bs5/responsive.bootstrap5.css">
-    <link rel="stylesheet" href="sneat/assets/vendor/libs/datatable-buttons-bs5/buttons.bootstrap5.css">
-    <link rel="stylesheet" href="sneat/assets/vendor/libs/select2/select2.css" />
-    <link rel="stylesheet" href="sneat/assets/vendor/libs/%40form-validation/umd/styles/index.min.css" />
-
-    <!-- Page CSS -->
-
-
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
-    <script src="sneat/assets/vendor/js/template-customizer.js"></script>
 @endsection
 
-{{-- @section('zone-link')
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-
-    <script src="sneat/assets/vendor/libs/hammer/hammer.js"></script>
-    <script src="sneat/assets/vendor/libs/i18n/i18n.js"></script>
-    <script src="sneat/assets/vendor/libs/typeahead-js/typeahead.js"></script>
-    <script src="sneat/assets/vendor/js/menu.js"></script>
-
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="sneat/assets/vendor/libs/moment/moment.js"></script>
-    <script src="sneat/assets/vendor/libs/datatable-bs5/datatable-bootstrap5.js"></script>
-    <script src="sneat/assets/vendor/libs/select2/select2.js"></script>
-    <script src="sneat/assets/vendor/libs/%40form-validation/umd/bundle/popular.min.js"></script>
-    <script src="sneat/assets/vendor/libs/%40form-validation/umd/plugin-bootstrap5/index.min.js"></script>
-    <script src="sneat/assets/vendor/libs/%40form-validation/umd/plugin-auto-focus/index.min.js"></script>
-    <script src="sneat/assets/vendor/libs/cleavejs/cleave.js"></script>
-    <script src="sneat/assets/vendor/libs/cleavejs/cleave-phone.js"></script>
-
-    <!-- Page JS -->
-    <script src="sneat/assets/js/app-user-list.js"></script>
-@endsection --}}
+@section('zone-link')
+    <!-- Optional: jQuery (required for DataTables) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="sneat/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <!-- DataTables Bootstrap 5 JS -->
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <!-- Optional: Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+@endsection
 
 @section('content')
-    <div class=
-        "flex-grow-1 container-p-y container-fluid">
+    <div class="flex-grow-1 container-p-y container-fluid">
         <div class="row g-4 mb-4">
             <div class="col-sm-6 col-xl-3">
                 <div class="card">
@@ -146,7 +111,7 @@
 
 
         <div class="card">
-            <div class="card-header border-bottom">
+            {{-- <div class="card-header border-bottom">
                 <h5 class="card-title">Search Filter</h5>
                 <div class="d-flex justify-content-between align-items-center row py-3 gap-3 gap-md-0">
                 <div class="col-md-4 user_role"><select id="UserRole" class="form-select text-capitalize"><option value=""> Select Role </option><option value="Admin">Admin</option><option value="Author">Author</option><option value="Editor">Editor</option><option value="Maintainer">Maintainer</option><option value="Subscriber">Subscriber</option></select></div>
@@ -159,24 +124,10 @@
                     <div class="row mx-2 my-3">
                         <div class="col-md-2 col-sm-2">
                             <div class="me-3 my-1">
-                                {{-- <div class="dataTable_length" id="DataTable_Table_0_length">
-                                    <label>
-                                        <select name="DataTable_Table_0_length" aria-controls="DataTable_Table_0" class="form-select">
-                                            <option value="10">10</option>
-                                            <option value="25">25</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
-                                        </select>
-                                    </label>
-                                </div> --}}
                             </div>
                         </div>
                         <div class="col-md-10 col-sm-10">
                             <div class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
-                                {{-- <div id="DataTable_Table_0_filter" class="dataTable_filter">
-                                    <label>
-                                    <input type="search" class="form-control" placeholder="Search.." aria-controls="DataTable_Table_0"></label>
-                                </div> --}}
                                 <div class="dt-buttons my-1">
                                     <button class="dt-button add-new btn btn-primary mx-3" tabindex="0" aria-controls="DataTable_Table_0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser">
                                         <span><i class="bx bx-plus me-0 me-sm-1"></i>
@@ -209,7 +160,7 @@
                               <div class="d-flex justify-content-start align-items-center user-name">
                                 <div class="avatar-wrapper">
                                   <div class="avatar avatar-sm me-3">
-                                    <img src="/storage/{{ $user->image }}" alt="Avatar" class="rounded-circle">
+                                    <img src="{{asset('storage/'. $user->image)}}" alt="Avatar" class="rounded-circle">
                                   </div>
                                 </div>
                                   <div class="d-flex flex-column">
@@ -273,14 +224,14 @@
                                 </span>
                             </td>
                             <td class="fw-medium">
-                                <img src="data:image/svg+xml;utf8,{{ rawurlencode(QrCode::size(43)->generate($user->name)) }}" alt="QR Code">
+                                <img src="/storage/{{ $user->qr }}" width="50px" alt="QR Code">
                             </td>
                             <td>
                                 <div class="d-inline-block text-nowrap">
                                     <a href="{{ route('users.edit', $user->id_user) }}" class="btn btn-sm btn-icon">
                                         <i class="bx bx-edit"></i>
                                     </a>
-                                    <a href="{{ route('users.show', $user->id_user) }}" class="btn btn-sm btn-icon">
+                                    <a href="{{ route('users.show', ['id_user' => Hashids::encode($user->id_user)]) }}" class="btn btn-sm btn-icon">
                                         <i class='bx bx-show'></i>
                                     </a>
                                     <form method="POST" action="{{ route('users.destroy', $user->id_user) }}" class="d-inline">
@@ -309,7 +260,25 @@
                         @endforeach  
                         </tbody>
                     </table>
-            </div>
+                </div>
+            </div> --}}
+
+            <div class="row mx-2 my-3">
+                <div class="col-md-2 col-sm-2">
+                    <div class="me-3 my-1">
+                    </div>
+                </div>
+                <div class="col-md-10 col-sm-10">
+                    <div class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
+                        <div class="dt-buttons my-1">
+                            <button class="dt-button add-new btn btn-primary mx-3" tabindex="0" aria-controls="DataTable_Table_0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser">
+                                <span><i class="bx bx-plus me-0 me-sm-1"></i>
+                                    <span class="d-none d-sm-inline-block">Add New User</span>
+                                </span>
+                            </button> 
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- Offcanvas to add new user -->
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddUser" aria-labelledby="offcanvasAddUserLabel">
@@ -328,7 +297,23 @@
                     <div class="mb-3 fv-plugins-icon-container">
                         <label class="form-label" for="add-user-email">Email</label>
                         <input type="text" id="add-user-email" class="form-control" placeholder="john.doe@example.com" aria-label="john.doe@example.com" name="email">
-                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div></div>
+                        <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                    </div>
+                    <div class="mb-3 fv-plugins-icon-container">
+                        <label class="form-label" for="add-user-phone">Phone</label>
+                        <input type="text" id="add-user-phone" class="form-control" placeholder="08xx xxxx xxxx" aria-label="john.doe@example.com" name="phone">
+                        <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                    </div>
+                    <div class="mb-3 fv-plugins-icon-container">
+                        <label class="form-label" for="add-user-address">Address</label>
+                        <input type="text" id="add-user-address" class="form-control" placeholder="Jalan Swadarma 1" aria-label="john.doe@example.com" name="address">
+                        <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                    </div>
+                    <div class="mb-3 fv-plugins-icon-container">
+                        <label class="form-label" for="add-user-state">state</label>
+                        <input type="text" id="add-user-state" class="form-control" placeholder="Jakarta Barat, DKI Jakarta, Indonesia" aria-label="john.doe@example.com" name="state">
+                        <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                    </div>
                     <div class="mb-3">
                         <label class="form-label" for="add-user-picture">Picture</label>
                         <input class="form-control" type="file" id="formFile" name="image">                    
@@ -351,5 +336,43 @@
                 </div>
             </div>
         </div>
+
+        <div class="card card-datatable table-responsive mt-3">
+            <table class="table table-bordered" id="users-table" data-page-length='7'>
+                <thead>
+                    <tr>
+                        <th>name</th>
+                        <th>company</th>
+                        <th>email</th>
+                        <th>phone</th>
+                        <th>address</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        
+        <script type="text/javascript">
+            $(document).ready(function() {
+                // Destroy existing DataTable before re-initializing
+                if ($.fn.DataTable.isDataTable('#users-table')) {
+                    $('#users-table').DataTable().destroy();
+                }
+        
+                // Initialize DataTable
+                $('#users-table').DataTable({
+                    serverSide: true,
+                    ajax: '{{ route('users.data') }}',
+                    columns: [
+                        { data: 'name', name: 'name' },
+                        { data: 'company', name: 'company' },
+                        { data: 'email', name: 'email' },
+                        { data: 'phone', name: 'phone' },
+                        { data: 'address', name: 'address' },
+                        { data: 'action', name: 'action', orderable: false, searchable: false }
+                    ]
+                });
+            });
+        </script>
     </div>
 @endsection

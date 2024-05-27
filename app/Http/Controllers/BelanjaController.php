@@ -37,16 +37,18 @@ class BelanjaController extends Controller
 
     public function getData()
     {
-        $users = Belanja::select(['id_product', 'jenisBelanja', 'keteranganBarang', 'totalBelanja', 'created_at']);
+        // $users = Belanja::select(['id_product', 'jenisBelanja', 'keteranganBarang', 'totalBelanja', 'created_at']);
 
-        $users = Belanja::whereMonth('created_at', Carbon::now()->month)->get();
+        $belanja = Belanja::whereMonth('created_at', Carbon::now()->month)->get();
 
-        return DataTables::of($users)
-            ->editColumn('created_at', function ($user) {
-                return $user->created_at->format('Y-m-d H:i');
+        // dd($belanja);
+
+        return DataTables::of($belanja)
+            ->editColumn('created_at', function ($belanja) {
+                return $belanja->created_at->format('Y-m-d H:i');
             })
-            ->addColumn('action', function($user) {
-                return '<a href="#edit-'.$user->id.'" class="btn btn-xs btn-primary">Edit</a>';
+            ->addColumn('action', function($belanja) {
+                return '<a href="#edit-'.$belanja->id.'" class="btn btn-xs btn-primary">Edit</a>';
             })
             ->make(true);
     }

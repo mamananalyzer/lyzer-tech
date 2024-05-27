@@ -479,7 +479,14 @@
                         <div data-i18n="Documentation">Documentation</div>
                     </a>
                     </li> --}}
-              </ul>
+                  </ul>
+                  
+                  <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
+                    <a href="{{ url('/logout') }}" class="menu-link sidebar-link">
+                      <i class="menu-icon tf-icons tf-icons bx bx-log-out"></i>
+                      <div data-i18n="Logout">Logout</div>
+                    </a>
+                  </li>
             </aside>
           <!-- / Menu -->
 
