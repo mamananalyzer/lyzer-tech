@@ -170,42 +170,56 @@
                 <li class="menu-header small text-uppercase">
                   <span class="menu-header-text">Pages</span>
                 </li>
-                <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
-                  <a href="{{ url('/belanja') }}" class="menu-link sidebar-link">
-                    <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
-                    <div data-i18n="Belanja">Belanja</div>
-                  </a>
-                </li>
-                <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
-                  <a href="{{ url('/monitoring') }}" class="menu-link sidebar-link">
-                    <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
-                    <div data-i18n="Monitoring">Monitoring</div>
-                  </a>
-                </li>
-                <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
-                  <a href="{{ url('/daily') }}" class="menu-link sidebar-link">
-                    <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
-                    <div data-i18n="Daily">Daily</div>
-                  </a>
-                </li>
-                <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
-                  <a href="{{ url('/CRM') }}" class="menu-link sidebar-link">
-                    <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
-                    <div data-i18n="CRM">CRM</div>
-                  </a>
-                </li>
-                <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
-                  <a href="{{ url('/users') }}" class="menu-link sidebar-link">
-                    <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
-                    <div data-i18n="Users">Users</div>
-                  </a>
-                </li>
-                <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
-                  <a href="{{ url('/product') }}" class="menu-link sidebar-link">
-                    <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
-                    <div data-i18n="Product">Product</div>
-                  </a>
-                </li>
+                @if($auth->role_id == 1)
+                    <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
+                        <a href="{{ url('/belanja') }}" class="menu-link sidebar-link">
+                            <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
+                            <div data-i18n="Belanja">Belanja</div>
+                        </a>
+                    </li>
+                @elseif($auth->role_id == 2)
+                    <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
+                        <a href="{{ url('/monitoring') }}" class="menu-link sidebar-link">
+                            <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
+                            <div data-i18n="Monitoring">Monitoring</div>
+                        </a>
+                    </li>
+                @elseif($auth->role_id == 3)
+                    <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
+                        <a href="{{ url('/daily') }}" class="menu-link sidebar-link">
+                            <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
+                            <div data-i18n="Daily">Daily</div>
+                        </a>
+                    </li>
+                    <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
+                        <a href="{{ url('/belanja') }}" class="menu-link sidebar-link">
+                            <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
+                            <div data-i18n="Belanja">Belanja</div>
+                        </a>
+                    </li>
+                @elseif($auth->role_id == 4)
+                    <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
+                        <a href="{{ url('/CRM') }}" class="menu-link sidebar-link">
+                            <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
+                            <div data-i18n="CRM">CRM</div>
+                        </a>
+                    </li>
+                @elseif($auth->role_id == 5)
+                    <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
+                        <a href="{{ url('/users') }}" class="menu-link sidebar-link">
+                            <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
+                            <div data-i18n="Users">Users</div>
+                        </a>
+                    </li>
+                @elseif($auth->role_id == 6)
+                    <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
+                        <a href="{{ url('/product') }}" class="menu-link sidebar-link">
+                            <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
+                            <div data-i18n="Product">Product</div>
+                        </a>
+                    </li>
+                @endif
+
                 <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
                   <a href="javascript:void(0);" class="menu-link sidebar-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-dock-top"></i>
@@ -869,8 +883,44 @@
                                   </div>
                                 </div>
                                 <div class="flex-grow-1">
-                                  <span class="fw-medium d-block">John Doe</span>
-                                  <small class="text-muted">Admin</small>
+                                  <span class="fw-medium d-block">{{$auth->name}}</span>
+                                  <span class="text-muted">{{$auth->role_id}}</span>
+                                  @if($auth->role_id == 1)
+                                      <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
+                                          <i class='bx bx-conversation'></i>
+                                      </span>
+                                      <span class="text-muted">Sales</span>
+                                  @elseif($auth->role_id == 2)
+                                      <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
+                                          <i class='bx bx-purchase-tag-alt'></i>
+                                      </span>
+                                      <span class="text-muted">Purchasing</span>
+                                  @elseif($auth->role_id == 3)
+                                      <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
+                                          <i class="bx bx-mobile-alt bx-xs"></i>
+                                      </span>
+                                      <span class="text-muted">IT</span>
+                                  @elseif($auth->role_id == 4)
+                                      <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
+                                          <i class='bx bx-wrench'></i>
+                                      </span>
+                                      <span class="text-muted">Labs</span>
+                                  @elseif($auth->role_id == 5)
+                                      <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
+                                          <i class="bx bx-package bx-xs"></i>
+                                      </span>
+                                      <span class="text-muted">Courier</span>
+                                  @elseif($auth->role_id == 6)
+                                      <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
+                                          <i class='bx bx-building'></i>
+                                      </span>
+                                      <span class="text-muted">Warehouse</span>
+                                  @else
+                                      <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
+                                          <i class="bx bx-mobile-alt bx-xs"></i>
+                                      </span>
+                                      <span class="badge bg-danger">Unknown Status</span>
+                                  @endif
                                 </div>
                               </div>
                             </a>

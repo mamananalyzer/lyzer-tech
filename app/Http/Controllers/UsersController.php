@@ -23,6 +23,8 @@ class UsersController extends Controller
     public function index(Request $request)
     {
         // dd($request->all());
+        $auth = Auth::user();
+        // dd($auth->name);
 
         $users = User::all();
         $totalUsers = User::count();
@@ -35,26 +37,39 @@ class UsersController extends Controller
 
         $session = round($usersCreatedToday/$usersCreatedExceptToday*100, 2);
         // dd($users);
-        return view('base.users', compact('users', 'totalUsers'
+        return view('base.users', compact('users', 'totalUsers', 'auth'
         , 'session'
         ));
     }
 
     public function getData()
     {
-        // Fetch the data for the current month
+        // Fetch all users
         $users = User::all();
-        // $users = User::whereMonth('created_at', Carbon::now()->month)->get();
-    
+        // $users = User::whereMonth('created_at', Carbon::now()->month)->get(); // Uncomment this line to fetch users for the current month
+
         return DataTables::of($users)
             ->editColumn('created_at', function ($user) {
                 return $user->created_at->format('Y-m-d H:i');
             })
             ->addColumn('action', function($user) {
-                return '<a href="#edit-'.$user->id.'" class="btn btn-xs btn-primary">Edit</a>';
+                $showUrl = route('users.show', $user->id_user); 
+                $editUrl = route('users.edit', $user->id_user); 
+                $deleteUrl = route('users.destroy', $user->id_user); 
+                return '
+                    <a href="'.$showUrl.'" class="btn btn-xs btn-primary">View</a>
+                    <a href="'.$editUrl.'" class="btn btn-xs btn-primary">Edit</a>
+                    <form action="'.$deleteUrl.'" method="POST" style="display: inline-block;">
+                        '.csrf_field().'
+                        '.method_field('DELETE').'
+                        <button type="submit" class="btn btn-xs btn-danger" onclick="return confirm(\'Are you sure?\')">Delete</button>
+                    </form>
+                ';
             })
+            ->rawColumns(['action']) // Allow raw HTML in the action column
             ->make(true);
     }
+
 
 
     /**
@@ -137,12 +152,10 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($hashId)
+    public function show($user)
     {
-        $hashids = new Hashids();
-        $id = $hashids->decode($hashId)[0];
-        $user = User::findOrFail($id);
         // dd($user);
+        $user = User::findOrFail($user);
         return view('base.usersShow', compact('user'));
     }
 
