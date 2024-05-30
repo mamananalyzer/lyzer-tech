@@ -32,15 +32,15 @@ Route::get('/base', function () {
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => ['checkRole:1,2,4,5']], function() {
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::group(['middleware' => ['checkRole:Office Boy,IT Dev.,3,4,5']], function() {
+    Route::get('/users', [UsersController::class, 'index'])->name('users.index');
     Route::get('/daily', [DailyController::class, 'index'])->name('daily.index');
     Route::get('/belanja', [BelanjaController::class, 'index'])->name('Belanja.index');;
     Route::get('/CRM', [CRMController::class, 'index']);
     Route::get('/monitoring', [MonitoringController::class, 'index']);
 });
 
-Route::group(['middleware' => ['checkRole:3']], function() {
+Route::group(['middleware' => ['checkRole:6']], function() {
     Route::get('/product', [ProductController::class, 'index'])->name('product.index');
 });
 
@@ -95,6 +95,7 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/users/data', [UsersController::class, 'getData'])->name('users.data');
 Route::get('/users/{id_user}', [UsersController::class, 'show'])->name('users.show');
 Route::post('/users.store', [UsersController::class, 'store'])->name('users.create');
+Route::post('/roles.store', [UsersController::class, 'storeRole'])->name('roles.create');
 Route::get('/users/{id_user}/edit', [UsersController::class, 'edit'])->name('users.edit');
 Route::delete('/users/{id_user}', [UsersController::class, 'destroy'])->name('users.destroy');
 Route::get('/users/{id_user}/suspend', [UsersController::class, 'suspend'])->name('users.suspend');

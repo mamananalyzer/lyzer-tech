@@ -271,11 +271,16 @@
                 <div class="col-md-10 col-sm-10">
                     <div class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
                         <div class="dt-buttons my-1">
+                            <button class="dt-button add-new btn btn-primary mx-3" tabindex="0" aria-controls="DataTable_Table_0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddRole">
+                                <span><i class="bx bx-plus me-0 me-sm-1"></i>
+                                    <span class="d-none d-sm-inline-block">Add New Role</span>
+                                </span>
+                            </button> 
                             <button class="dt-button add-new btn btn-primary mx-3" tabindex="0" aria-controls="DataTable_Table_0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser">
                                 <span><i class="bx bx-plus me-0 me-sm-1"></i>
                                     <span class="d-none d-sm-inline-block">Add New User</span>
                                 </span>
-                            </button> 
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -321,14 +326,45 @@
                     <div class="mb-3">
                         <label class="form-label" for="user-role">User Role</label>
                         <select id="user-role" class="form-select" name="role_id">
-                            <option value="1">Sales</option>
-                            <option value="2">Purchasing</option>
-                            <option value="3">IT</option>
-                            <option value="4">Labs</option>
-                            <option value="5">Courier</option>
-                            <option value="6">Warehouse</option>
+                            @foreach($roles as $r)
+                            <option value="{{$r->id}}">{{$r->role}}</option>
+                            @endforeach
                         </select>
                     </div>
+                    <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Submit</button>
+                    <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+                    <input type="hidden">
+                </form>
+                </div>
+            </div>
+
+            <!-- Offcanvas to add new role -->
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddRole" aria-labelledby="offcanvasAddRoleLabel">
+                <div class="offcanvas-header">
+                <h5 id="offcanvasAddRoleLabel" class="offcanvas-title">Add Role</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body mx-0 flex-grow-0">
+                <form method="post" action="{{ route('roles.create') }}" enctype="multipart/form-data" class="add-new-user pt-0 fv-plugins-bootstrap5 fv-plugins-framework" id="addNewUserForm">
+                    @csrf <!-- CSRF protection -->
+                    @method('POST')
+                    <div class="mb-3">
+                        <label class="form-label" for="user-role">User Role</label>
+                        <select id="user-role" class="form-select" name="role_id">
+                            @foreach($roles as $r)
+                            <option value="{{$r->role}}">{{$r->role}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3 fv-plugins-icon-container">
+                        <label class="form-label" for="add-user-role">Role</label>
+                        <input type="text" class="form-control" id="add-user-role" placeholder="IT" name="role" aria-label="IT">
+                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div></div>
+                    {{-- <div class="mb-3 fv-plugins-icon-container">
+                        <label class="form-label" for="add-user-email">Email</label>
+                        <input type="text" id="add-user-email" class="form-control" placeholder="john.doe@example.com" aria-label="john.doe@example.com" name="email">
+                        <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                    </div> --}}
                     <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Submit</button>
                     <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
                     <input type="hidden">

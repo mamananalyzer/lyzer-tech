@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'id';
+    protected $table = 'users_role'; // Ensure the table name is correct
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'role',
+        'created_at',
+        'updated_at'
+    ];
 }

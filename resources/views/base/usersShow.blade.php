@@ -87,36 +87,26 @@
                       </li>
                       <li class="mb-3">
                         <span class="fw-medium me-2">Role:</span>
-                        @if($user->role_id == 1)
+                        @if($user->role_id == IT Dev.)
                             <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
                                 <i class='bx bx-conversation'></i>
                             </span>
-                            <span class="badge bg-primary">Sales</span>
-                        @elseif($user->role_id == 2)
+                            <span class="badge bg-primary">IT Dev.</span>
+                        @elseif($user->role_id == Office Boy)
                             <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
                                 <i class='bx bx-purchase-tag-alt'></i>
                             </span>
-                            <span class="badge bg-primary">Purchasing</span>
-                        @elseif($user->role_id == 3)
+                            <span class="badge bg-primary">Office Boy</span>
+                        @elseif($user->role_id == General Affair)
                             <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
-                                <i class="bx bx-mobile-alt bx-xs"></i>
+                                <i class='bx bx-purchase-tag-alt'></i>
                             </span>
-                            <span class="badge bg-primary">IT</span>
-                        @elseif($user->role_id == 4)
+                            <span class="badge bg-primary">General Affair</span>
+                        @elseif($user->role_id == Office Boy)
                             <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
-                                <i class='bx bx-wrench'></i>
+                                <i class='bx bx-purchase-tag-alt'></i>
                             </span>
-                            <span class="badge bg-primary">Labs</span>
-                        @elseif($user->role_id == 5)
-                            <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
-                                <i class="bx bx-package bx-xs"></i>
-                            </span>
-                            <span class="badge bg-primary">Courier</span>
-                        @elseif($user->role_id == 6)
-                            <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
-                                <i class='bx bx-building'></i>
-                            </span>
-                            <span class="badge bg-primary">Warehouse</span>
+                            <span class="badge bg-primary">Office Boy</span>
                         @else
                             <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
                                 <i class="bx bx-mobile-alt bx-xs"></i>

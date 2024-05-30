@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Belanja;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -27,6 +28,7 @@ class UsersController extends Controller
         // dd($auth->name);
 
         $users = User::all();
+        $roles = Role::all();
         $totalUsers = User::count();
 
         // Count of users created today
@@ -37,7 +39,7 @@ class UsersController extends Controller
 
         $session = round($usersCreatedToday/$usersCreatedExceptToday*100, 2);
         // dd($users);
-        return view('base.users', compact('users', 'totalUsers', 'auth'
+        return view('base.users', compact('users', 'roles', 'totalUsers', 'auth'
         , 'session'
         ));
     }
@@ -85,6 +87,10 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+
+        dd($request->all()); // Dump and die
+
+
         // Handle form submission logic here
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
@@ -145,6 +151,25 @@ class UsersController extends Controller
         // dd($user); // Dump and die
 
         $user->save();
+
+        return redirect('/users')->with('success', 'Form submitted successfully!');
+    }
+
+    public function storeRole(Request $request)
+    {
+        // Handle form submission logic here
+        $validatedData = $request->validate([
+            'role' => 'required|string|max:255',
+        ]);
+        
+        // Create a new User instance
+        $role = new Role([
+            'role' => $validatedData['role'],
+        ]);
+
+        // dd($user); // Dump and die
+
+        $role->save();
 
         return redirect('/users')->with('success', 'Form submitted successfully!');
     }
