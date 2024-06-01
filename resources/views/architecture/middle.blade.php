@@ -170,55 +170,46 @@
                 <li class="menu-header small text-uppercase">
                   <span class="menu-header-text">Pages</span>
                 </li>
-                @if($auth->role_id == 1)
-                    <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
-                        <a href="{{ url('/belanja') }}" class="menu-link sidebar-link">
-                            <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
-                            <div data-i18n="Belanja">Belanja</div>
-                        </a>
-                    </li>
-                @elseif($auth->role_id == 2)
-                    <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
-                        <a href="{{ url('/monitoring') }}" class="menu-link sidebar-link">
-                            <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
-                            <div data-i18n="Monitoring">Monitoring</div>
-                        </a>
-                    </li>
-                @elseif($auth->role_id == 3)
-                    <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
-                        <a href="{{ url('/daily') }}" class="menu-link sidebar-link">
-                            <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
-                            <div data-i18n="Daily">Daily</div>
-                        </a>
-                    </li>
-                    <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
-                        <a href="{{ url('/belanja') }}" class="menu-link sidebar-link">
-                            <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
-                            <div data-i18n="Belanja">Belanja</div>
-                        </a>
-                    </li>
-                @elseif($auth->role_id == 4)
-                    <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
-                        <a href="{{ url('/CRM') }}" class="menu-link sidebar-link">
-                            <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
-                            <div data-i18n="CRM">CRM</div>
-                        </a>
-                    </li>
-                @elseif($auth->role_id == 5)
-                    <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
-                        <a href="{{ url('/users') }}" class="menu-link sidebar-link">
-                            <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
-                            <div data-i18n="Users">Users</div>
-                        </a>
-                    </li>
-                @elseif($auth->role_id == 6)
-                    <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
-                        <a href="{{ url('/product') }}" class="menu-link sidebar-link">
-                            <i class="menu-icon tf-icons tf-icons bx bx-user"></i>
-                            <div data-i18n="Product">Product</div>
-                        </a>
-                    </li>
+                @php
+                    $menus = [
+                        1 => [
+                            ['url' => '/belanja', 'icon' => 'bx bx-user', 'label' => 'Belanja'],
+                            ['url' => '/monitoring', 'icon' => 'bx bx-user', 'label' => 'Monitoring'],
+                            ['url' => '/daily', 'icon' => 'bx bx-user', 'label' => 'Daily'],
+                            ['url' => '/CRM', 'icon' => 'bx bx-user', 'label' => 'CRM'],
+                            ['url' => '/users', 'icon' => 'bx bx-user', 'label' => 'Users'],
+                            ['url' => '/product', 'icon' => 'bx bx-user', 'label' => 'Product'],
+                        ],
+                        2 => [
+                            ['url' => '/monitoring', 'icon' => 'bx bx-user', 'label' => 'Monitoring'],
+                        ],
+                        3 => [
+                            ['url' => '/daily', 'icon' => 'bx bx-user', 'label' => 'Daily'],
+                            ['url' => '/belanja', 'icon' => 'bx bx-user', 'label' => 'Belanja'],
+                        ],
+                        4 => [
+                            ['url' => '/CRM', 'icon' => 'bx bx-user', 'label' => 'CRM'],
+                        ],
+                        5 => [
+                            ['url' => '/users', 'icon' => 'bx bx-user', 'label' => 'Users'],
+                        ],
+                        6 => [
+                            ['url' => '/product', 'icon' => 'bx bx-user', 'label' => 'Product'],
+                        ],
+                    ];
+                @endphp
+
+                @if(isset($menus[$auth->role_id]))
+                    @foreach($menus[$auth->role_id] as $menu)
+                        <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
+                            <a href="{{ url($menu['url']) }}" class="menu-link sidebar-link">
+                                <i class="menu-icon tf-icons {{ $menu['icon'] }}"></i>
+                                <div data-i18n="{{ $menu['label'] }}">{{ $menu['label'] }}</div>
+                            </a>
+                        </li>
+                    @endforeach
                 @endif
+
 
                 <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
                   <a href="javascript:void(0);" class="menu-link sidebar-link menu-toggle">

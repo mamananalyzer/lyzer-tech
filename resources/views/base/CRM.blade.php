@@ -1,35 +1,24 @@
 @extends('base.0layout')
 
-@section('title', 'Users')
+@section('title', 'CRM')
 
 @section('link')
 
 @endsection
 
-{{-- @section('zone-link')
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-
-    <script src="sneat/assets/vendor/libs/hammer/hammer.js"></script>
-    <script src="sneat/assets/vendor/libs/i18n/i18n.js"></script>
-    <script src="sneat/assets/vendor/libs/typeahead-js/typeahead.js"></script>
-    <script src="sneat/assets/vendor/js/menu.js"></script>
-
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="sneat/assets/vendor/libs/moment/moment.js"></script>
-    <script src="sneat/assets/vendor/libs/datatable-bs5/datatable-bootstrap5.js"></script>
-    <script src="sneat/assets/vendor/libs/select2/select2.js"></script>
-    <script src="sneat/assets/vendor/libs/%40form-validation/umd/bundle/popular.min.js"></script>
-    <script src="sneat/assets/vendor/libs/%40form-validation/umd/plugin-bootstrap5/index.min.js"></script>
-    <script src="sneat/assets/vendor/libs/%40form-validation/umd/plugin-auto-focus/index.min.js"></script>
-    <script src="sneat/assets/vendor/libs/cleavejs/cleave.js"></script>
-    <script src="sneat/assets/vendor/libs/cleavejs/cleave-phone.js"></script>
-
-    <!-- Page JS -->
-    <script src="sneat/assets/js/app-user-list.js"></script>
-@endsection --}}
+@section('zone-link')
+    <!-- Optional: jQuery (required for DataTables) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="sneat/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <!-- DataTables Bootstrap 5 JS -->
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <!-- Optional: Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+@endsection
 
 @section('content')
     <div class="flex-grow-1 container-p-y container-fluid">
@@ -252,7 +241,7 @@
                               });
                           </script>
                           <tbody class="table-border-bottom-0" >
-                            @foreach ( $customer as $c)
+                            @foreach ( $custom as $c)
                               <tr>
                                   <td>
                                   <div class="d-flex justify-content-start align-items-center">
@@ -337,7 +326,7 @@
                     <label class="form-label" for="add-user-customer">Customer</label>
                     <select id="add-user-customer" class="form-select" name="customer">
                         <option>Default select</option>
-                        @foreach ( $customer->sortBy('company') as $cust)
+                        @foreach ( $custom->sortBy('company') as $cust)
                         <option value="{{ $cust->company }}">{{ $cust->company }}</option>
                         @endforeach
                     </select>
@@ -442,5 +431,49 @@
             </form>
             </div>
         </div>
+
+        <div class="card card-datatable table-responsive mt-3">
+            <table class="table table-bordered" id="customer-table" data-page-length='7'>
+                <thead>
+                    <tr>
+                        {{-- <th>Name</th>
+                        <th>Email</th>
+                        <th>Area</th>
+                        <th>Phone Number</th>
+                        <th>Mobile Phone</th>
+                        <th>Company</th>
+                        <th>Status</th> --}}
+                        <th>Created At</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        
+        <script type="text/javascript">
+            $(document).ready(function() {
+                // Destroy existing DataTable before re-initializing
+                if ($.fn.DataTable.isDataTable('#customer-table')) {
+                    $('#customer-table').DataTable().destroy();
+                }
+        
+                // Initialize DataTable
+                $('#customer-table').DataTable({
+                    serverSide: true,
+                    ajax: '{{ route('CRM.data') }}',
+                    columns: [
+                        // { data: 'name', name: 'name' },
+                        // { data: 'email', name: 'email' },
+                        // { data: 'area', name: 'area' },
+                        // { data: 'phonenumber', name: 'phonenumber' },
+                        // { data: 'mobilephone', name: 'mobilephone' },
+                        // { data: 'company', name: 'company' },
+                        // { data: 'status', name: 'status' },
+                        { data: 'created_at', name: 'created_at' },
+                        { data: 'action', name: 'action', orderable: false, searchable: false }
+                    ]
+                });
+            });
+        </script>        
     </div>
 @endsection

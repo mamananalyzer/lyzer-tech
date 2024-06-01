@@ -32,15 +32,22 @@ Route::get('/base', function () {
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => ['checkRole:Office Boy,IT Dev.,3,4,5']], function() {
-    Route::get('/users', [UsersController::class, 'index'])->name('users.index');
-    Route::get('/daily', [DailyController::class, 'index'])->name('daily.index');
+Route::group(['middleware' => ['checkRole:1,2,4,5']], function() {
     Route::get('/belanja', [BelanjaController::class, 'index'])->name('Belanja.index');;
-    Route::get('/CRM', [CRMController::class, 'index']);
+});
+Route::group(['middleware' => ['checkRole:1,4,5']], function() {
     Route::get('/monitoring', [MonitoringController::class, 'index']);
 });
-
-Route::group(['middleware' => ['checkRole:6']], function() {
+Route::group(['middleware' => ['checkRole:1,4']], function() {
+    Route::get('/daily', [DailyController::class, 'index'])->name('daily.index');
+});
+Route::group(['middleware' => ['checkRole:1,3,4']], function() {
+    Route::get('/CRM', [CRMController::class, 'index']);
+});
+Route::group(['middleware' => ['checkRole:1,2,3,4']], function() {
+    Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+});
+Route::group(['middleware' => ['checkRole:1,4']], function() {
     Route::get('/product', [ProductController::class, 'index'])->name('product.index');
 });
 
@@ -60,6 +67,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/belanja/{id_user}/suspend', [BelanjaController::class, 'suspend'])->name('Belanja.suspend');
 
     // Route::get('/CRM', [CRMController::class, 'index']);
+    Route::get('CRM/data', [CRMController::class, 'getData'])->name('CRM.data');
     Route::get('/CRM/{id_user}/show', [CRMController::class, 'show'])->name('CRM.show');
     Route::post('/CRM.store', [CRMController::class, 'store'])->name('CRM.create');
     Route::post('/quot.store', [CRMController::class, 'quot_store'])->name('quot.create');

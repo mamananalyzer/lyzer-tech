@@ -39,7 +39,8 @@ class BelanjaController extends Controller
     {
         // $users = Belanja::select(['id_product', 'jenisBelanja', 'keteranganBarang', 'totalBelanja', 'created_at']);
 
-        $belanja = Belanja::whereMonth('created_at', Carbon::now()->month)->get();
+        // $belanja = Belanja::whereMonth('created_at', Carbon::now()->month)->get();
+        $belanja = Belanja::all();
 
         // dd($belanja);
 

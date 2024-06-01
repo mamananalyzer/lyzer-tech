@@ -87,31 +87,11 @@
                       </li>
                       <li class="mb-3">
                         <span class="fw-medium me-2">Role:</span>
-                        @if($user->role_id == IT Dev.)
+                        @if(array_key_exists($user->role_id, $role))
                             <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
                                 <i class='bx bx-conversation'></i>
                             </span>
-                            <span class="badge bg-primary">IT Dev.</span>
-                        @elseif($user->role_id == Office Boy)
-                            <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
-                                <i class='bx bx-purchase-tag-alt'></i>
-                            </span>
-                            <span class="badge bg-primary">Office Boy</span>
-                        @elseif($user->role_id == General Affair)
-                            <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
-                                <i class='bx bx-purchase-tag-alt'></i>
-                            </span>
-                            <span class="badge bg-primary">General Affair</span>
-                        @elseif($user->role_id == Office Boy)
-                            <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
-                                <i class='bx bx-purchase-tag-alt'></i>
-                            </span>
-                            <span class="badge bg-primary">Office Boy</span>
-                        @else
-                            <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
-                                <i class="bx bx-mobile-alt bx-xs"></i>
-                            </span>
-                            <span class="badge bg-danger">Unknown Status</span>
+                            <span class="badge bg-primary">{{ $role[$user->role_id] }}</span>
                         @endif
                       </li>
                       <li class="mb-3">

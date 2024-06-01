@@ -23,9 +23,13 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
-        // dd($request->all());
+
+        // $users = User::join('users_role', 'users.role_id', '=', 'users_role.id')
+        // ->select('users.*', 'users_role.role as role_name')
+        // ->get();
+
         $auth = Auth::user();
-        // dd($auth->name);
+        // dd($users);
 
         $users = User::all();
         $roles = Role::all();
@@ -46,11 +50,14 @@ class UsersController extends Controller
 
     public function getData()
     {
-        // Fetch all users
-        $users = User::all();
-        // $users = User::whereMonth('created_at', Carbon::now()->month)->get(); // Uncomment this line to fetch users for the current month
+        $users = User::join('users_role', 'users.role_id', '=', 'users_role.id')
+                ->select('users.*', 'users_role.role as role_name')
+                ->get();
 
         return DataTables::of($users)
+            ->editColumn('role_id', function($user) {
+                return $user->role_name;
+            })
             ->editColumn('created_at', function ($user) {
                 return $user->created_at->format('Y-m-d H:i');
             })
@@ -88,7 +95,7 @@ class UsersController extends Controller
     public function store(Request $request)
     {
 
-        dd($request->all()); // Dump and die
+        // dd($request->all()); // Dump and die
 
 
         // Handle form submission logic here
@@ -181,7 +188,10 @@ class UsersController extends Controller
     {
         // dd($user);
         $user = User::findOrFail($user);
-        return view('base.usersShow', compact('user'));
+        $role = DB::table('users_role')->pluck('role', 'id')->toArray();
+
+        // dd($role);
+        return view('base.usersShow', compact('user', 'role'));
     }
 
     /**

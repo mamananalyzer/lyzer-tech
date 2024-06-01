@@ -29,10 +29,12 @@ class CRMController extends Controller
             ->get();
         $totaltask = Quotation::count();
 
-        // dd($task);
-
+        
         //Customer List
-        $customer = Customer::all();
+        $custom = Customer::all();
+        // $customers = Customer::all();
+
+        // dd($customers);
 
         // Quotation
         $quotation_list = Quotation::all();
@@ -41,8 +43,38 @@ class CRMController extends Controller
         $sales_quot = User::where('role_id', 1)->get();
         $product = Product::all();
 
-        return view('base.CRM', compact('sales', 'customer', 'sales_quot', 'product', 'quotation_list', 'task', 'totaltask'));
+        return view('base.CRM', compact('sales', 'custom', 'sales_quot', 'product', 'quotation_list', 'task', 'totaltask'));
     }
+
+    public function getData()
+    {
+        $customers = Customer::all();
+
+        // dd($customers);
+
+        return DataTables::of($customers)
+            ->editColumn('created_at', function ($customer) {
+                return $customer->created_at->format('Y-m-d H:i');
+            })
+            ->addColumn('action', function($customer) {
+                $showUrl = route('customers.show', $customer->id_customer); 
+                $editUrl = route('customers.edit', $customer->id_customer); 
+                $deleteUrl = route('customers.destroy', $customer->id_customer); 
+                return '
+                    <a href="'.$showUrl.'" class="btn btn-xs btn-primary">View</a>
+                    <a href="'.$editUrl.'" class="btn btn-xs btn-primary">Edit</a>
+                    <form action="'.$deleteUrl.'" method="POST" style="display: inline-block;">
+                        '.csrf_field().'
+                        '.method_field('DELETE').'
+                        <button type="submit" class="btn btn-xs btn-danger" onclick="return confirm(\'Are you sure?\')">Delete</button>
+                    </form>
+                ';
+            })
+            ->rawColumns(['action']) // Allow raw HTML in the action column
+            ->make(true);
+    }
+
+
 
     /**
      * Show the form for creating a new resource.

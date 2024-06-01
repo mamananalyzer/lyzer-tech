@@ -379,9 +379,11 @@
                     <tr>
                         <th>name</th>
                         <th>company</th>
+                        <th>role</th>
                         <th>email</th>
                         <th>phone</th>
                         <th>address</th>
+                        <th>created_at</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -402,9 +404,11 @@
                     columns: [
                         { data: 'name', name: 'name' },
                         { data: 'company', name: 'company' },
+                        { data: 'role_id', name: 'role_id' },
                         { data: 'email', name: 'email' },
                         { data: 'phone', name: 'phone' },
                         { data: 'address', name: 'address' },
+                        { data: 'created_at', name: 'created_at' },
                         { data: 'action', name: 'action', orderable: false, searchable: false }
                     ]
                 });
