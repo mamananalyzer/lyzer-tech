@@ -314,7 +314,8 @@
                     { data: 'totalBelanja', name: 'totalBelanja' },
                     { data: 'created_at', name: 'created_at' },
                     { data: 'action', name: 'action', orderable: false, searchable: false }
-                ]
+                ],
+                order: [[4, 'desc']] // Order by the created_at column (index 4) in descending order
             });
         });
 

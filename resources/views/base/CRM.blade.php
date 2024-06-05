@@ -436,13 +436,13 @@
             <table class="table table-bordered" id="customer-table" data-page-length='7'>
                 <thead>
                     <tr>
-                        {{-- <th>Name</th>
+                        <th>Name</th>
                         <th>Email</th>
                         <th>Area</th>
                         <th>Phone Number</th>
                         <th>Mobile Phone</th>
                         <th>Company</th>
-                        <th>Status</th> --}}
+                        <th>Status</th>
                         <th>Created At</th>
                         <th>Action</th>
                     </tr>
@@ -462,13 +462,13 @@
                     serverSide: true,
                     ajax: '{{ route('CRM.data') }}',
                     columns: [
-                        // { data: 'name', name: 'name' },
-                        // { data: 'email', name: 'email' },
-                        // { data: 'area', name: 'area' },
-                        // { data: 'phonenumber', name: 'phonenumber' },
-                        // { data: 'mobilephone', name: 'mobilephone' },
-                        // { data: 'company', name: 'company' },
-                        // { data: 'status', name: 'status' },
+                        { data: 'name', name: 'name' },
+                        { data: 'email', name: 'email' },
+                        { data: 'area', name: 'area' },
+                        { data: 'phonenumber', name: 'phonenumber' },
+                        { data: 'mobilephone', name: 'mobilephone' },
+                        { data: 'company', name: 'company' },
+                        { data: 'status', name: 'status' },
                         { data: 'created_at', name: 'created_at' },
                         { data: 'action', name: 'action', orderable: false, searchable: false }
                     ]

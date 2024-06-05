@@ -10,6 +10,7 @@ use App\Models\Quotation;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use DataTables;
 
 class CRMController extends Controller
 {
