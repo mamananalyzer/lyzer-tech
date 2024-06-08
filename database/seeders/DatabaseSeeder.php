@@ -6,8 +6,10 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 // use App\Models\User;
 use App\Models\User;
+use App\Models\Belanja;
 use App\Models\Customer;
 use App\Models\Product;
+use App\Models\HSE_Hazops;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,6 +18,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Customer::factory()->count(10)->create();
+        Belanja::factory()->count(10)->create();
     }
 }

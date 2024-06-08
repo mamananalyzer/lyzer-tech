@@ -41,7 +41,7 @@ class CRMController extends Controller
         $quotation_list = Quotation::all();
 
         //Canvas Quot
-        $sales_quot = User::where('role_id', 1)->get();
+        $sales_quot = User::where('role_id', 9)->get();
         $product = Product::all();
 
         return view('base.CRM', compact('sales', 'custom', 'sales_quot', 'product', 'quotation_list', 'task', 'totaltask'));

@@ -8,6 +8,8 @@ use App\Http\Controllers\BelanjaController;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\DailyController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\HSEController;
+use App\Http\Controllers\HSE_HazopsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +52,12 @@ Route::group(['middleware' => ['checkRole:1,2,3,4']], function() {
 Route::group(['middleware' => ['checkRole:1,4']], function() {
     Route::get('/product', [ProductController::class, 'index'])->name('product.index');
 });
+Route::group(['middleware' => ['checkRole:1,4']], function() {
+    Route::get('/HSE', [HSEController::class, 'index'])->name('HSE.index');
+});
+Route::group(['middleware' => ['checkRole:1,4']], function() {
+    Route::get('/HSE_Hazops', [HSE_HazopsController::class, 'index'])->name('HSE_Hazops.index');
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/base', function () {
@@ -74,6 +82,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/CRM/{id_user}/edit', [CRMController::class, 'edit'])->name('CRM.edit');
     Route::delete('/CRM/{id_user}', [CRMController::class, 'destroy'])->name('CRM.destroy');
     Route::get('/CRM/{id_user}/suspend', [CRMController::class, 'suspend'])->name('CRM.suspend');
+
+    // Route::get('/CRM', [CRMController::class, 'index']);
+    // Route::get('customers/data', [CRMController::class, 'getData'])->name('customers.data');
+    Route::get('/customers/{id_user}/show', [CRMController::class, 'show'])->name('customers.show');
+    // Route::post('/customers.store', [CRMController::class, 'store'])->name('customers.create');
+    // Route::post('/quot.store', [CRMController::class, 'quot_store'])->name('quot.create');
+    Route::get('/customers/{id_user}/edit', [CRMController::class, 'edit'])->name('customers.edit');
+    Route::delete('/customers/{id_user}', [CRMController::class, 'destroy'])->name('customers.destroy');
+    // Route::get('/customers/{id_user}/suspend', [CRMController::class, 'suspend'])->name('customers.suspend');
     
     // Route::get('/monitoring', [MonitoringController::class, 'index']);
     Route::get('/monitoring/{id_user}/show', [MonitoringController::class, 'show'])->name('Monitoring.show');
@@ -85,7 +102,7 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/daily', [DailyController::class, 'index']);
     Route::get('/daily/{id_user}/show', [DailyController::class, 'show'])->name('Daily.show');
     Route::post('/daily.store', [DailyController::class, 'store'])->name('Daily.create');
-    Route::post('/quot.store', [DailyController::class, 'quot_store'])->name('quot.create');
+    // Route::post('/quot.store', [DailyController::class, 'quot_store'])->name('quot.create');
     Route::get('/daily/{id_user}/edit', [DailyController::class, 'edit'])->name('Daily.edit');
     Route::delete('/daily/{id_user}', [DailyController::class, 'destroy'])->name('Daily.destroy');
     Route::get('/daily/{id_user}/suspend', [DailyController::class, 'suspend'])->name('Daily.suspend');
@@ -96,6 +113,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/product/{id_user}/edit', [ProductController::class, 'edit'])->name('product.edit');
     Route::delete('/product/{id_user}', [ProductController::class, 'destroy'])->name('product.destroy');
     Route::get('/product/{id_user}/suspend', [ProductController::class, 'suspend'])->name('product.suspend');
+
+    // Route::get('/HSE_Hazops', [HSE_HazopsController::class, 'index']);
+    Route::get('/HSE_Hazops/data', [HSE_HazopsController::class, 'getData'])->name('HSE_Hazops.data');
+    Route::get('/HSE_Hazops/{id_hse}/show', [HSE_HazopsController::class, 'show'])->name('HSE_Hazops.show');
+    Route::post('/HSE_Hazops.store', [HSE_HazopsController::class, 'store'])->name('HSE_Hazops.create');
+    Route::get('/HSE_Hazops/{id_hse}/edit', [HSE_HazopsController::class, 'edit'])->name('HSE_Hazops.edit');
+    Route::delete('/HSE_Hazops/{id_hse}', [HSE_HazopsController::class, 'destroy'])->name('HSE_Hazops.destroy');
+    Route::get('/HSE_Hazops/{id_hse}/suspend', [HSE_HazopsController::class, 'suspend'])->name('HSE_Hazops.suspend');
 });
 
 

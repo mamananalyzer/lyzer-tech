@@ -162,15 +162,21 @@
                             <div class="mb-3">
                                 <label for="jenisBelanja" class="form-label">Jenis Belanja</label>
                                 <select class="form-select" id="jenisBelanja" aria-label="Default select example" name="jenisBelanja">
-                                    <option selected="">Open this select menu</option>
+                                    <option selected="">Pilih jenis belanja</option>
                                     <option value="1">Harian</option>
+                                    <option value="4">Mingguan</option>
                                     <option value="2">Bulanan</option>
                                     <option value="3">Barang Mewah</option>
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="keteranganBarang" class="form-label">Komponen yang dibeli</label>
-                                <div class="row gy-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="komponenInput" name="komponen" placeholder="Beras, Telor, Kentang" aria-describedby="komponenInputHelp">
+                                    <label for="komponenInput">Komponen yang dibeli</label>
+                                    {{-- <div id="komponenInputHelp" class="form-text">We'll never share your details with anyone else.</div> --}}
+                                </div>
+                                {{-- <label for="keteranganBarang" class="form-label">Komponen yang dibeli</label> --}}
+                                {{-- <div class="row gy-3">
                                     <div class="col">
                                         <div class="row">
                                             <div class="col-2 form-check form-check-inline">
@@ -195,85 +201,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row gy-3">
-                                    <div class="col">
-                                        <div class="row">
-                                            <div class="col-2 form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="bumbuCheckbox" name="komponen[]" value="Bumbu">
-                                                <label class="form-check-label" for="bumbuCheckbox">Bumbu</label>
-                                            </div>
-                                            <div class="col-2 form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="jajanCheckbox" name="komponen[]" value="Jajan">
-                                                <label class="form-check-label" for="jajanCheckbox">Jajan</label>
-                                            </div>
-                                            <div class="col-2 form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="listrikCheckbox" name="komponen[]" value="Listrik">
-                                                <label class="form-check-label" for="listrikCheckbox">Listrik</label>
-                                            </div>
-                                            <div class="col-2 form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="gasCheckbox" name="komponen[]" value="Gas">
-                                                <label class="form-check-label" for="gasCheckbox">Gas</label>
-                                            </div>
-                                            <div class="col-2 form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="mieCheckbox" name="komponen[]" value="Mie">
-                                                <label class="form-check-label" for="mieCheckbox">Mie</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row gy-3">
-                                    <div class="col">
-                                        <div class="row">
-                                            <div class="col-2 form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="susuCheckbox" name="komponen[]" value="Susu">
-                                                <label class="form-check-label" for="susuCheckbox">Susu</label>
-                                            </div>
-                                            <div class="col-2 form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="kopiCheckbox" name="komponen[]" value="Kopi">
-                                                <label class="form-check-label" for="kopiCheckbox">Kopi</label>
-                                            </div>
-                                            <div class="col-2 form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="tehCheckbox" name="komponen[]" value="Teh">
-                                                <label class="form-check-label" for="tehCheckbox">Teh</label>
-                                            </div>       
-                                            <div class="col-2 form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="ongkosCheckbox" name="komponen[]" value="Ongkos">
-                                                <label class="form-check-label" for="ongkosCheckbox">Ongkos</label>
-                                            </div>
-                                            <div class="col-2 form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="kontrakanCheckbox" name="komponen[]" value="Kontrakan">
-                                                <label class="form-check-label" for="kontrakanCheckbox">Kontrakan</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row gy-3">
-                                    <div class="col">
-                                        <div class="row"> 
-                                            <div class="col-2 form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="motorCheckbox" name="komponen[]" value="Motor">
-                                                <label class="form-check-label" for="motorCheckbox">Motor</label>
-                                            </div>   
-                                            <div class="col-2 form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="komputerCheckbox" name="komponen[]" value="Komputer">
-                                                <label class="form-check-label" for="komputerCheckbox">Komputer</label>
-                                            </div>    
-                                            <div class="col-2 form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="sabunCheckbox" name="komponen[]" value="Sabun Cuci">
-                                                <label class="form-check-label" for="sabunCheckbox">Sabun Cuci</label>
-                                            </div>
-                                            <div class="col-2 form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="alatMandiCheckbox" name="komponen[]" value="Alat Mandi">
-                                                <label class="form-check-label" for="alatMandiCheckbox">Alat Mandi</label>
-                                            </div>
-                                            <div class="col-2 form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="alatKebersihanCheckbox" name="komponen[]" value="Alat Kebersihan">
-                                                <label class="form-check-label" for="alatKebersihanCheckbox">Alat Kebersihan</label>
-                                            </div>         
-                                        </div>
-                                    </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="mb-3 row">
                                 <label for="totalBelanja" class="col-md-2 col-form-label">Total Belanja</label>
@@ -284,17 +212,13 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Submit</button>
-                    <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+                    <button type="close" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
                     <input type="hidden">
                 </form>
             </div>
           </div>
         </div>
     </div>
-
-
-
-
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -309,7 +233,23 @@
                 ajax: '{{ route('Belanja.data') }}',
                 columns: [
                     { data: 'id_product', name: 'id_product' },
-                    { data: 'jenisBelanja', name: 'jenisBelanja' },
+                    {
+                        data: 'jenisBelanja',
+                        name: 'jenisBelanja',
+                        render: function(data, type, row) {
+                            if (data == 1) {
+                                return 'Harian';
+                            } else if (data == 2) {
+                                return 'Bulanan';
+                            } else if (data == 3) {
+                                return 'Tahunan';
+                            } else if (data == 4) {
+                                return 'Mingguan';
+                            } else {
+                                return 'Unknown'; // Handle unexpected values gracefully
+                            }
+                        }
+                    },
                     { data: 'keteranganBarang', name: 'keteranganBarang' },
                     { data: 'totalBelanja', name: 'totalBelanja' },
                     { data: 'created_at', name: 'created_at' },

@@ -49,7 +49,18 @@ class BelanjaController extends Controller
                 return $belanja->created_at->format('Y-m-d H:i');
             })
             ->addColumn('action', function($belanja) {
-                return '<a href="#edit-'.$belanja->id.'" class="btn btn-xs btn-primary">Edit</a>';
+                $showUrl = route('Belanja.show', $belanja->id_product); 
+                // $editUrl = route('Belanja.edit', $belanja->id_product); 
+                // <a href="'.$editUrl.'" class="btn btn-xs btn-primary">Edit</a>
+                $deleteUrl = route('Belanja.destroy', $belanja->id_product); 
+                return '
+                    <a href="'.$showUrl.'" class="btn btn-xs btn-primary">View</a>
+                    <form action="'.$deleteUrl.'" method="POST" style="display: inline-block;">
+                        '.csrf_field().'
+                        '.method_field('DELETE').'
+                        <button type="submit" class="btn btn-xs btn-danger" onclick="return confirm(\'Are you sure?\')">Delete</button>
+                    </form>
+                ';
             })
             ->make(true);
     }
@@ -72,17 +83,17 @@ class BelanjaController extends Controller
         // Handle form submission logic here
         $validatedData = $request->validate([
             'jenisBelanja' => 'required',
-            'komponen' => 'required|array',
+            'komponen' => 'required',
             'totalBelanja' => 'required',
         ]);
 
         // Convert the array of selected components to a string
-        $keteranganBarang = implode(', ', $validatedData['komponen']);
+        // $keteranganBarang = implode(', ', $validatedData['komponen']);
 
         // Create a new User instance
         $belanja = Belanja::create([
             'jenisBelanja' => $validatedData['jenisBelanja'],
-            'keteranganBarang' => $keteranganBarang,
+            'keteranganBarang' => $validatedData['komponen'],
             'totalBelanja' => $validatedData['totalBelanja'],
         ]);
         
@@ -118,8 +129,15 @@ class BelanjaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Belanja $belanja)
+    public function destroy($id_product)
     {
-        //
+        $id = Belanja::find($id_product);
+
+        if ($id) {
+            $id->delete();
+            return redirect()->back()->with('success', 'User deleted successfully.');
+        }
+
+        return redirect()->back()->with('error', 'User not found.');
     }
 }

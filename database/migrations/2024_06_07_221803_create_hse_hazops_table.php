@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('belanja', function (Blueprint $table) {
-            $table->id('id_product');
-            $table->string('jenisBelanja');
-            $table->string('keteranganBarang');
-            $table->string('totalBelanja');
+        Schema::create('hse_hazops', function (Blueprint $table) {
+            $table->id('id_hazops');
+            $table->string('node');
+            $table->string('deviation');
+            $table->string('cause');
+            $table->string('consequence');
+            $table->string('safeguards');
+            $table->string('actions');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('belanja');
+        Schema::dropIfExists('hse_hazops');
     }
 };

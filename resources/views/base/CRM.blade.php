@@ -169,8 +169,8 @@
             </div>
         </div>
 
-        <div class="row mt-4">
-            {{-- Customer List --}}
+        {{-- <div class="row mt-4">
+            Customer List
             <div class="col-md-8 col-lg-9 mb-0">
                 <div class="card">
                     <div class="card-datatable table-responsive">
@@ -191,7 +191,7 @@
                         </div>
                       </div>
 
-                      {{-- <div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;">
+                      <div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;">
                         <table class="invoice-list-table table">
                           <thead>
                           <tr>
@@ -205,16 +205,16 @@
                           </tr>
                           </thead>
                         </table>
-                      </div> --}}
+                      </div>
                       <div class="dataTables_scrollBody" style="position: relative; overflow: auto; width: 100%; max-height: 400px;">
                         <table class="invoice-list-table table" id="customer">
                           <thead>
                           <tr>
                               <th>Customer</th>
                               <th>Area</th>
-                              {{-- <th>Address</th> --}}
+                              <th>Address</th>
                               <th>Phone Number</th>
-                              {{-- <th>Mobile Phone</th> --}}
+                              <th>Mobile Phone</th>
                               <th>Company</th>
                               <th>Position</th>
                               <th>Status</th>
@@ -255,9 +255,9 @@
                                   </div>
                                   </td>
                                   <td><span class="badge bg-label-success"> {{ $c->area }} </span></td>
-                                  {{-- <td>{{ $c->address }}</td> --}}
+                                  <td>{{ $c->address }}</td>
                                   <td>{{ $c->phonenumber }}</td>
-                                  {{-- <td>{{ $c->mobilephone }}</td> --}}
+                                  <td>{{ $c->mobilephone }}</td>
                                   <td>{{ $c->company }}</td>
                                   <td>
                                       @if($c->position == 1)
@@ -306,7 +306,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Offcanvas to add new quotation -->
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddQuotation" aria-labelledby="offcanvasAddUserLabel">

@@ -179,6 +179,7 @@
                             ['url' => '/CRM', 'icon' => 'bx bx-user', 'label' => 'CRM'],
                             ['url' => '/users', 'icon' => 'bx bx-user', 'label' => 'Users'],
                             ['url' => '/product', 'icon' => 'bx bx-user', 'label' => 'Product'],
+                            ['url' => '/HSE', 'icon' => 'bx bx-user', 'label' => 'HSE'],
                         ],
                         2 => [
                             ['url' => '/monitoring', 'icon' => 'bx bx-user', 'label' => 'Monitoring'],
