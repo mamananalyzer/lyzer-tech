@@ -173,13 +173,7 @@
                 @php
                     $menus = [
                         1 => [
-                            ['url' => '/belanja', 'icon' => 'bx bx-user', 'label' => 'Belanja'],
                             ['url' => '/monitoring', 'icon' => 'bx bx-user', 'label' => 'Monitoring'],
-                            ['url' => '/daily', 'icon' => 'bx bx-user', 'label' => 'Daily'],
-                            ['url' => '/CRM', 'icon' => 'bx bx-user', 'label' => 'CRM'],
-                            ['url' => '/users', 'icon' => 'bx bx-user', 'label' => 'Users'],
-                            ['url' => '/product', 'icon' => 'bx bx-user', 'label' => 'Product'],
-                            ['url' => '/HSE', 'icon' => 'bx bx-user', 'label' => 'HSE'],
                         ],
                         2 => [
                             ['url' => '/monitoring', 'icon' => 'bx bx-user', 'label' => 'Monitoring'],
@@ -189,8 +183,14 @@
                             ['url' => '/belanja', 'icon' => 'bx bx-user', 'label' => 'Belanja'],
                         ],
                         4 => [
+                            ['url' => '/belanja', 'icon' => 'bx bx-user', 'label' => 'Belanja'],
+                            ['url' => '/monitoring', 'icon' => 'bx bx-user', 'label' => 'Monitoring'],
+                            ['url' => '/daily', 'icon' => 'bx bx-user', 'label' => 'Daily'],
                             ['url' => '/CRM', 'icon' => 'bx bx-user', 'label' => 'CRM'],
-                        ],
+                            ['url' => '/Labs', 'icon' => 'bx bx-user', 'label' => 'Labs'],
+                            ['url' => '/users', 'icon' => 'bx bx-user', 'label' => 'Users'],
+                            ['url' => '/product', 'icon' => 'bx bx-user', 'label' => 'Product'],
+                            ['url' => '/HSE', 'icon' => 'bx bx-user', 'label' => 'HSE'],                        ],
                         5 => [
                             ['url' => '/users', 'icon' => 'bx bx-user', 'label' => 'Users'],
                         ],

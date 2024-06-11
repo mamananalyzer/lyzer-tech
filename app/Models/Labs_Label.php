@@ -6,17 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class HSE_Hazops extends Model
+class Labs_Label extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = 'HSE_Hazops';
+    protected $table = 'Labs_Label';
 
-    protected $primaryKey = 'id_hazops';
+    protected $primaryKey = 'id_label';
 
-    protected $fillable = ['node', 'deviation', 'cause', 'consequence', 'safeguards', 'actions', 'created_at'];
-
+    protected $fillable = [
+        'brand', 'customer', 'PO', 'type', 'qty', 'scale', 'input'
+    ];
+    
     protected $dates = ['deleted_at'];
-
 }

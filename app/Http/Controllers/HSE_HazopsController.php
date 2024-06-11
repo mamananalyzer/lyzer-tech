@@ -34,7 +34,7 @@ class HSE_HazopsController extends Controller
                 return $HSE_Hazops->created_at->format('Y-m-d H:i');
             })
             ->addColumn('action', function($HSE_Hazops) {
-                return '<a href="#edit-'.$HSE_Hazops->id_hazops.'" class="btn btn-xs btn-primary">Edit</a>';
+                return '<a href="/edit/'.$HSE_Hazops->id_hazops.'" class="btn btn-xs btn-primary">Edit</a>';
             })
             ->make(true);
     }
@@ -52,7 +52,34 @@ class HSE_HazopsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+
+        // Handle form submission logic here
+        $validatedData = $request->validate([
+            'node' => 'required',
+            'deviation' => 'required',
+            'cause' => 'required',
+            'consequence' => 'required',
+            'safeguards' => 'required',
+            'actions' => 'required',
+        ]);
+
+        // Convert the array of selected components to a string
+        // $keteranganBarang = implode(', ', $validatedData['komponen']);
+
+        // Create a new User instance
+        $HSE_Hazops = HSE_Hazops::create([
+            'node' => $validatedData['node'],
+            'deviation' => $validatedData['deviation'],
+            'cause' => $validatedData['cause'],
+            'consequence' => $validatedData['consequence'],
+            'safeguards' => $validatedData['safeguards'],
+            'actions' => $validatedData['actions']
+        ]);
+        
+        $HSE_Hazops->save();
+
+        return redirect('/HSE_Hazops')->with('success', 'Form submitted successfully!');
     }
 
     /**

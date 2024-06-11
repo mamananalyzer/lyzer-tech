@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hse_hazops', function (Blueprint $table) {
-            $table->id('id_hazops');
-            $table->string('node');
-            $table->string('deviation');
-            $table->string('cause');
-            $table->string('consequence');
-            $table->string('safeguards');
-            $table->string('actions');
+        Schema::create('labs_label', function (Blueprint $table) {
+            $table->id('id_label');
+            $table->string('brand');
+            $table->string('customer');
+            $table->string('PO');
+            $table->string('type');
+            $table->string('qty');
+            $table->string('scale');
+            $table->string('input');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('hse_hazops');
+        Schema::dropIfExists('labs_label');
     }
 };

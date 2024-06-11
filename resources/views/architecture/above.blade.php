@@ -65,7 +65,7 @@
     <link rel="stylesheet" href="{{asset('sneat/assets/vendor/libs/select2/select2.css')}}"/>
     <link rel="stylesheet" href="{{asset('sneat/assets/vendor/libs/%40form-validation/umd/styles/index.min.css')}}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css" integrity="" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"/>
+    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"/> --}}
     <link rel="stylesheet" href="{{asset('sneat/assets/vendor/libs/apex-charts/apex-charts.css')}}"/>
     <link rel="stylesheet" href="{{asset('sneat/assets/vendor/libs/animate-css/animate.css')}}"/>
     <link rel="stylesheet" href="{{asset('sneat/assets/vendor/libs/sweetalert2/sweetalert2.css')}}"/>
@@ -91,6 +91,10 @@
     <!-- Helpers -->
     <script src="{{asset('sneat/assets/vendor/js/helpers.js')}}"></script>
 
+    <!-- ApexChart -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@latest/dist/apexcharts.css">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
+
     <!-- JS Asset -->
     <script src="{{asset('sneat/assets/js/config.js')}}"></script>
     <script src="{{asset('sneat/assets/vendor/js/template-customizer.js')}}"></script>
@@ -100,11 +104,31 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script type="text/javascript" src="https://a.omappapi.com/app/js/api.min.js" async="" data-user="252882" data-account="269977"></script><link rel="stylesheet" href="https://a.omappapi.com/app/js/api.min.css" id="omapi-css" media="all"></head>
+    <script type="text/javascript" src="https://a.omappapi.com/app/js/api.min.js" async="" data-user="252882" data-account="269977"></script><link rel="stylesheet" href="https://a.omappapi.com/app/js/api.min.css" id="omapi-css" media="all">
+
+    <style>
+        /* Custom styles for sorting arrows */
+        table.dataTable thead .sorting:before,
+        table.dataTable thead .sorting:after {
+            content: "";
+        }
+        table.dataTable thead .sorting_asc:before {
+            content: "▲";
+            float: right;
+            margin-left: 5px;
+        }
+        table.dataTable thead .sorting_desc:after {
+            content: "▼";
+            float: right;
+            margin-left: 5px;
+        }
+        table.dataTable thead .sorting_asc_disabled:before,
+        table.dataTable thead .sorting_desc_disabled:after {
+            content: "";
+        }
+    </style>
 
 
-
-
-</head>
+  </head>
 
   <body>

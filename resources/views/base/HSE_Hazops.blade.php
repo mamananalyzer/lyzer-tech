@@ -46,140 +46,53 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel1">Belanja</h5>
+                  <h5 class="modal-title" id="exampleModalLabel1">HSE Hazops</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="{{ route('Belanja.create') }}" enctype="multipart/form-data" class="add-new-user pt-0 fv-plugins-bootstrap5 fv-plugins-framework" id="addNewQuotForm">
+                    <form method="post" action="{{ route('HSE_Hazops.create') }}" enctype="multipart/form-data" class="add-new-user pt-0 fv-plugins-bootstrap5 fv-plugins-framework" id="addNewQuotForm">
                         @csrf <!-- CSRF protection -->
                         @method('POST')
-                        <div class="card mb-4">
-                            {{-- <h5 class="card-header">Belanja</h5> --}}
                             <div class="card-body">
                                 <div class="mb-3">
-                                    <label for="jenisBelanja" class="form-label">Jenis Belanja</label>
-                                    <select class="form-select" id="jenisBelanja" aria-label="Default select example" name="jenisBelanja">
-                                        <option selected="">Open this select menu</option>
-                                        <option value="1">Harian</option>
-                                        <option value="2">Bulanan</option>
-                                        <option value="3">Barang Mewah</option>
+                                    {{-- <label for="node" class="form-label">Jenis Belanja</label> --}}
+                                    <select class="form-select" id="node" aria-label="Default select example" name="node">
+                                        <option selected="">Select Node</option>
+                                        <option value="No/Not">No/Not: Complete negation of the design intention (e.g., no flow, no reaction).</option>
+                                        <option value="More">More: Quantitative increase (e.g., more flow, more pressure).</option>
+                                        <option value="Less">Less: Quantitative decrease (e.g., less flow, less temperature).</option>
+                                        <option value="As Well As">As Well As: Qualitative increase (e.g., additional phase, impurity).</option>
+                                        <option value="Part Of">Part Of: Qualitative decrease (e.g., missing components, incomplete reaction).</option>
+                                        <option value="Reverse">Reverse: Logical opposite of the design intention (e.g., reverse flow, reverse reaction).</option>
+                                        <option value="Other Than">Other Than: Complete substitution (e.g., wrong material, different reaction).</option>
                                     </select>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="keteranganBarang" class="form-label">Komponen yang dibeli</label>
-                                    <div class="row gy-3">
-                                        <div class="col">
-                                            <div class="row">
-                                                <div class="col-2 form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="berasCheckbox" name="komponen[]" value="Beras">
-                                                    <label class="form-check-label" for="berasCheckbox">Beras</label>
-                                                </div>
-                                                <div class="col-2 form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="sayurCheckbox" name="komponen[]" value="Sayur">
-                                                    <label class="form-check-label" for="sayurCheckbox">Sayur</label>
-                                                </div>
-                                                <div class="col-2 form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="gulaCheckbox" name="komponen[]" value="Gula">
-                                                    <label class="form-check-label" for="gulaCheckbox">Gula</label>
-                                                </div>
-                                                <div class="col-2 form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="minyakCheckbox" name="komponen[]" value="Minyak">
-                                                    <label class="form-check-label" for="minyakCheckbox">Minyak</label>
-                                                </div>
-                                                <div class="col-2 form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="airCheckbox" name="komponen[]" value="Air">
-                                                    <label class="form-check-label" for="airCheckbox">Air</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row gy-3">
-                                        <div class="col">
-                                            <div class="row">
-                                                <div class="col-2 form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="bumbuCheckbox" name="komponen[]" value="Bumbu">
-                                                    <label class="form-check-label" for="bumbuCheckbox">Bumbu</label>
-                                                </div>
-                                                <div class="col-2 form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="jajanCheckbox" name="komponen[]" value="Jajan">
-                                                    <label class="form-check-label" for="jajanCheckbox">Jajan</label>
-                                                </div>
-                                                <div class="col-2 form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="listrikCheckbox" name="komponen[]" value="Listrik">
-                                                    <label class="form-check-label" for="listrikCheckbox">Listrik</label>
-                                                </div>
-                                                <div class="col-2 form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="gasCheckbox" name="komponen[]" value="Gas">
-                                                    <label class="form-check-label" for="gasCheckbox">Gas</label>
-                                                </div>
-                                                <div class="col-2 form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="mieCheckbox" name="komponen[]" value="Mie">
-                                                    <label class="form-check-label" for="mieCheckbox">Mie</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row gy-3">
-                                        <div class="col">
-                                            <div class="row">
-                                                <div class="col-2 form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="susuCheckbox" name="komponen[]" value="Susu">
-                                                    <label class="form-check-label" for="susuCheckbox">Susu</label>
-                                                </div>
-                                                <div class="col-2 form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="kopiCheckbox" name="komponen[]" value="Kopi">
-                                                    <label class="form-check-label" for="kopiCheckbox">Kopi</label>
-                                                </div>
-                                                <div class="col-2 form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="tehCheckbox" name="komponen[]" value="Teh">
-                                                    <label class="form-check-label" for="tehCheckbox">Teh</label>
-                                                </div>       
-                                                <div class="col-2 form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="ongkosCheckbox" name="komponen[]" value="Ongkos">
-                                                    <label class="form-check-label" for="ongkosCheckbox">Ongkos</label>
-                                                </div>
-                                                <div class="col-2 form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="kontrakanCheckbox" name="komponen[]" value="Kontrakan">
-                                                    <label class="form-check-label" for="kontrakanCheckbox">Kontrakan</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row gy-3">
-                                        <div class="col">
-                                            <div class="row"> 
-                                                <div class="col-2 form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="motorCheckbox" name="komponen[]" value="Motor">
-                                                    <label class="form-check-label" for="motorCheckbox">Motor</label>
-                                                </div>   
-                                                <div class="col-2 form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="komputerCheckbox" name="komponen[]" value="Komputer">
-                                                    <label class="form-check-label" for="komputerCheckbox">Komputer</label>
-                                                </div>    
-                                                <div class="col-2 form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="sabunCheckbox" name="komponen[]" value="Sabun Cuci">
-                                                    <label class="form-check-label" for="sabunCheckbox">Sabun Cuci</label>
-                                                </div>
-                                                <div class="col-2 form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="alatMandiCheckbox" name="komponen[]" value="Alat Mandi">
-                                                    <label class="form-check-label" for="alatMandiCheckbox">Alat Mandi</label>
-                                                </div>
-                                                <div class="col-2 form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="alatKebersihanCheckbox" name="komponen[]" value="Alat Kebersihan">
-                                                    <label class="form-check-label" for="alatKebersihanCheckbox">Alat Kebersihan</label>
-                                                </div>         
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="deviation" name="deviation" placeholder="Identify potential deviations from the design intent" aria-describedby="deviationHelp">
+                                    <label for="deviation">Deviation</label>
+                                    <div id="deviationHelp" class="form-text">We'll never share your details with anyone else.</div>
                                 </div>
-                                <div class="mb-3 row">
-                                    <label for="totalBelanja" class="col-md-2 col-form-label">Total Belanja</label>
-                                    <div class="col-md-10">
-                                        <input class="form-control" type="number" value="" placeholder="Rp. 1.000.000" id="totalBelanja" name="totalBelanja">
-                                    </div>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="cause" name="cause" placeholder="Event or condition that leads to the deviation from the intended operation" aria-describedby="causeHelp">
+                                    <label for="cause">Cause</label>
+                                    <div id="causeHelp" class="form-text">We'll never share your details with anyone else.</div>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="consequence" name="consequence" placeholder="Possible outcomes or effects if the deviation occurs" aria-describedby="consequenceHelp">
+                                    <label for="consequence">Consequence</label>
+                                    <div id="consequenceHelp" class="form-text">We'll never share your details with anyone else.</div>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="safeguards" name="safeguards" placeholder="Existing controls or measures that prevent the deviation from occurring or mitigate its consequences" aria-describedby="safeguardsHelp">
+                                    <label for="safeguards">Safeguards</label>
+                                    <div id="safeguardsHelp" class="form-text">We'll never share your details with anyone else.</div>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="actions" name="actions" placeholder="Recommendations for additional measures to address the identified deviation" aria-describedby="actionsHelp">
+                                    <label for="actions">Actions</label>
+                                    <div id="actionsHelp" class="form-text">We'll never share your details with anyone else.</div>
                                 </div>
                             </div>
-                        </div>
                         <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Submit</button>
                         <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
                         <input type="hidden">

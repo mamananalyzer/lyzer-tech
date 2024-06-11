@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CRMController;
+use App\Http\Controllers\LabsController;
+use App\Http\Controllers\Labs_LabelController;
 use App\Http\Controllers\BelanjaController;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\DailyController;
@@ -46,6 +48,12 @@ Route::group(['middleware' => ['checkRole:1,4']], function() {
 Route::group(['middleware' => ['checkRole:1,3,4']], function() {
     Route::get('/CRM', [CRMController::class, 'index']);
 });
+Route::group(['middleware' => ['checkRole:1,3,4']], function() {
+    Route::get('/Labs', [LabsController::class, 'index']);
+});
+Route::group(['middleware' => ['checkRole:1,3,4']], function() {
+    Route::get('/Labs_Label', [LabsController::class, 'index']);
+});
 Route::group(['middleware' => ['checkRole:1,2,3,4']], function() {
     Route::get('/users', [UsersController::class, 'index'])->name('users.index');
 });
@@ -82,6 +90,23 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/CRM/{id_user}/edit', [CRMController::class, 'edit'])->name('CRM.edit');
     Route::delete('/CRM/{id_user}', [CRMController::class, 'destroy'])->name('CRM.destroy');
     Route::get('/CRM/{id_user}/suspend', [CRMController::class, 'suspend'])->name('CRM.suspend');
+
+    // Route::get('/Labs', [LabsController::class, 'index']);
+    Route::get('Labs/data', [LabsController::class, 'getData'])->name('Labs.data');
+    Route::get('/Labs/{id_user}/show', [LabsController::class, 'show'])->name('Labs.show');
+    Route::post('/Labs.store', [LabsController::class, 'store'])->name('Labs.create');
+    Route::post('/quot.store', [LabsController::class, 'quot_store'])->name('quot.create');
+    Route::get('/Labs/{id_user}/edit', [LabsController::class, 'edit'])->name('Labs.edit');
+    Route::delete('/Labs/{id_user}', [LabsController::class, 'destroy'])->name('Labs.destroy');
+    Route::get('/Labs/{id_user}/suspend', [LabsController::class, 'suspend'])->name('Labs.suspend');
+
+    // Route::get('/Labs_Label', [Labs_LabelController::class, 'index']);
+    Route::get('Labs_Label/data', [Labs_LabelController::class, 'getData'])->name('Labs_Label.data');
+    Route::get('/Labs_Label/{id_user}/show', [Labs_LabelController::class, 'show'])->name('Labs_Label.show');
+    Route::post('/Labs_Label.store', [Labs_LabelController::class, 'store'])->name('Labs_Label.create');
+    Route::get('/Labs_Label/{id_user}/edit', [Labs_LabelController::class, 'edit'])->name('Labs_Label.edit');
+    Route::delete('/Labs_Label/{id_user}', [Labs_LabelController::class, 'destroy'])->name('Labs_Label.destroy');
+    Route::get('/Labs_Label/{id_user}/suspend', [Labs_LabelController::class, 'suspend'])->name('Labs_Label.suspend');
 
     // Route::get('/CRM', [CRMController::class, 'index']);
     // Route::get('customers/data', [CRMController::class, 'getData'])->name('customers.data');
