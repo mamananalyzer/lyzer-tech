@@ -32,5 +32,28 @@
 @endsection --}}
 
 @section('content')
-   
+    <div class="flex-grow-1 container-p-y container-fluid">
+        <div class="card">
+            <div class="row">
+                <div class="col">
+                    Card
+                </div>
+                <div class="col">
+                    Card
+                </div>
+                <div class="col">
+                    Card
+                </div>
+                <div class="col">
+                    Card
+                </div>
+                <div class="col">
+                    Card
+                </div>
+                <div class="col">
+                    Card
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
