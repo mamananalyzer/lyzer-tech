@@ -635,25 +635,41 @@
                 <div class="mb-3 fv-plugins-icon-container">
                     <label class="form-label" for="add-user-fullname">Full Name</label>
                     <input type="text" class="form-control" id="add-user-fullname" placeholder="John Doe" name="name" aria-label="John Doe">
-                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div></div>
+                  <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                </div>
                 <div class="mb-3 fv-plugins-icon-container">
                     <label class="form-label" for="add-user-email">Email</label>
                     <input type="text" id="add-user-email" class="form-control" placeholder="john.doe@example.com" aria-label="john.doe@example.com" name="email">
-                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div></div>
+                  <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                </div>
                 <div class="mb-3">
                     <label class="form-label" for="add-user-picture">Picture</label>
                     <input class="form-control" type="file" id="formFile" name="image">                    
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="user-role">User Role</label>
-                    <select id="user-role" class="form-select" name="role_id">
-                        <option value="1">Sales</option>
-                        <option value="2">Purchasing</option>
-                        <option value="3">IT</option>
-                        <option value="4">Labs</option>
-                        <option value="5">Courier</option>
-                        <option value="6">Warehouse</option>
-                    </select>
+                <div class="mb-3 fv-plugins-icon-container">
+                    <label class="form-label" for="add-user-area">Area</label>
+                    <input type="text" class="form-control" id="add-user-area" placeholder="Jakarta" name="area" aria-label="Jakarta">
+                  <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                </div>
+                <div class="mb-3 fv-plugins-icon-container">
+                    <label class="form-label" for="add-user-address">Address</label>
+                    <input type="text" class="form-control" id="add-user-address" placeholder="Blok N15-16" name="address" aria-label="Blok N15-16">
+                  <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                </div>
+                <div class="mb-3 fv-plugins-icon-container">
+                    <label class="form-label" for="add-user-phonenumber">Phone Number</label>
+                    <input type="text" class="form-control" id="add-user-phonenumber" placeholder="+62888 8888 8888" name="phonenumber" aria-label="Jakarta">
+                  <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                </div>
+                <div class="mb-3 fv-plugins-icon-container">
+                    <label class="form-label" for="add-user-mobilephone">Mobile Phone</label>
+                    <input type="text" class="form-control" id="add-user-mobilephone" placeholder="+62888 8888 8888" name="mobilephone" aria-label="Jakarta">
+                  <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                </div>
+                <div class="mb-3 fv-plugins-icon-container">
+                    <label class="form-label" for="add-user-company">Company</label>
+                    <input type="text" class="form-control" id="add-user-company" placeholder="PT. LyZer" name="company" aria-label="LyZer Tech">
+                  <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
                 </div>
                 <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Submit</button>
                 <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>

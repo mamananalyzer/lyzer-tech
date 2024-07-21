@@ -1,17 +1,18 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\UsersController;
-use App\Http\Controllers\CRMController;
-use App\Http\Controllers\LabsController;
-use App\Http\Controllers\Labs_LabelController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\BelanjaController;
-use App\Http\Controllers\MonitoringController;
+use App\Http\Controllers\CRMController;
 use App\Http\Controllers\DailyController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HSEController;
 use App\Http\Controllers\HSE_HazopsController;
+use App\Http\Controllers\LabsController;
+use App\Http\Controllers\Labs_LabelController;
+use App\Http\Controllers\MonitoringController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,35 +37,38 @@ Route::get('/base', function () {
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => ['checkRole:1,2,4,5']], function() {
+Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
+    Route::get('/account', [AccountController::class, 'index'])->name('Account.index');;
+});
+Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
     Route::get('/belanja', [BelanjaController::class, 'index'])->name('Belanja.index');;
 });
-Route::group(['middleware' => ['checkRole:1,4,5']], function() {
-    Route::get('/monitoring', [MonitoringController::class, 'index']);
-});
-Route::group(['middleware' => ['checkRole:1,4']], function() {
-    Route::get('/daily', [DailyController::class, 'index'])->name('daily.index');
-});
-Route::group(['middleware' => ['checkRole:1,3,4']], function() {
+Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
     Route::get('/CRM', [CRMController::class, 'index']);
 });
-Route::group(['middleware' => ['checkRole:1,3,4']], function() {
-    Route::get('/Labs', [LabsController::class, 'index']);
+Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
+    Route::get('/daily', [DailyController::class, 'index'])->name('daily.index');
 });
-Route::group(['middleware' => ['checkRole:1,3,4']], function() {
-    Route::get('/Labs_Label', [LabsController::class, 'index']);
-});
-Route::group(['middleware' => ['checkRole:1,2,3,4']], function() {
-    Route::get('/users', [UsersController::class, 'index'])->name('users.index');
-});
-Route::group(['middleware' => ['checkRole:1,4']], function() {
-    Route::get('/product', [ProductController::class, 'index'])->name('product.index');
-});
-Route::group(['middleware' => ['checkRole:1,4']], function() {
+Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
     Route::get('/HSE', [HSEController::class, 'index'])->name('HSE.index');
 });
-Route::group(['middleware' => ['checkRole:1,4']], function() {
+Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
     Route::get('/HSE_Hazops', [HSE_HazopsController::class, 'index'])->name('HSE_Hazops.index');
+});
+Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
+    Route::get('/Labs', [LabsController::class, 'index']);
+});
+Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
+    Route::get('/Labs_Label', [LabsController::class, 'index']);
+});
+Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
+    Route::get('/monitoring', [MonitoringController::class, 'index']);
+});
+Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
+    Route::get('/product', [ProductController::class, 'index'])->name('product.index');
+});
+Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
+    Route::get('/users', [UsersController::class, 'index'])->name('users.index');
 });
 
 Route::middleware(['auth'])->group(function () {
