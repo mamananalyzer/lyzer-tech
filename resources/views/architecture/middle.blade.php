@@ -190,6 +190,7 @@
                             ['url' => '/HSE', 'icon' => 'bx bx-user', 'label' => 'HSE'],                        
                             ['url' => '/Labs', 'icon' => 'bx bx-user', 'label' => 'Labs'],
                             ['url' => '/monitoring', 'icon' => 'bx bx-user', 'label' => 'Monitoring'],
+                            ['url' => '/motor', 'icon' => 'bx bx-user', 'label' => 'Motor'],
                             ['url' => '/product', 'icon' => 'bx bx-user', 'label' => 'Product'],
                             ['url' => '/users', 'icon' => 'bx bx-user', 'label' => 'Users'],
                         ],
@@ -1036,5 +1037,5 @@
 
         <!-- Overlay -->
         <div class="layout-overlay layout-menu-toggle"></div>
-      </div>
+    </div>
     <!-- / Layout wrapper -->

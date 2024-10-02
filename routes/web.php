@@ -11,6 +11,7 @@ use App\Http\Controllers\HSE_HazopsController;
 use App\Http\Controllers\LabsController;
 use App\Http\Controllers\Labs_LabelController;
 use App\Http\Controllers\MonitoringController;
+use App\Http\Controllers\MotorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UsersController;
 
@@ -26,9 +27,9 @@ use App\Http\Controllers\UsersController;
 */
 
 Route::redirect('/', '/base');
-Route::get('/base', function () {
-    return view('base.index');
-});
+// Route::get('/base', function () {
+//     return view('base.index');
+// });
 // Route::get('/users', function () {
 //     return view('base.users');
 // });
@@ -63,6 +64,9 @@ Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], func
 });
 Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
     Route::get('/monitoring', [MonitoringController::class, 'index']);
+});
+Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
+    Route::get('/motor', [MotorController::class, 'index']);
 });
 Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
     Route::get('/product', [ProductController::class, 'index'])->name('product.index');
