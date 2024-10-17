@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Motor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use DataTables;
 
@@ -107,10 +108,15 @@ class MotorController extends Controller
         // Format serviceDate to store only the date part (YYYY-MM-DD)
         $formattedServiceDate = date('Y-m-d', strtotime($validatedData['serviceDate']));
 
+        $userName = Auth::user()->name; // Get the authenticated user's name
+        // Set namaMotor based on the user's name
+        $namaMotor = $userName === 'Zakiyah Ais Syafira' ? 'All New Vario 150' : 
+                    ($userName === 'Ade Maman Suherman' ? 'ADV 160' : 'User Not Listed');
+
         // Create a new User instance
         $motor = Motor::create([
-            'namaMotor' => 'All New Vario 150',
-            'id_user' => 'Zakiyah Ais Syafira',
+            'namaMotor' => $namaMotor,
+            'id_user' => $userName,
             'typeService' => implode(', ', $validatedData['services']), // Encode array to store in DB
             'komponenBeli' => $validatedData['komponenBeli'],
             'totalBelanja' => $validatedData['totalBelanja'],

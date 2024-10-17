@@ -65,7 +65,7 @@ Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], func
 Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
     Route::get('/monitoring', [MonitoringController::class, 'index']);
 });
-Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
+Route::group(['middleware' => ['checkRole:1,14']], function() {
     Route::get('/motor', [MotorController::class, 'index']);
 });
 Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {

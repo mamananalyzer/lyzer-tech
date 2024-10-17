@@ -200,6 +200,9 @@
                         6 => [
                             ['url' => '/product', 'icon' => 'bx bx-user', 'label' => 'Product'],
                         ],
+                        14 => [
+                          ['url' => '/motor', 'icon' => 'bx bx-user', 'label' => 'Motor'],
+                        ],
                     ];
                 @endphp
 
@@ -910,6 +913,11 @@
                                           <i class='bx bx-building'></i>
                                       </span>
                                       <span class="text-muted">Warehouse</span>
+                                  @elseif($auth->role_id == 14)
+                                      <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
+                                          <i class='bx bx-building'></i>
+                                      </span>
+                                      <span class="text-muted">Family</span>
                                   @else
                                       <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
                                           <i class="bx bx-mobile-alt bx-xs"></i>
