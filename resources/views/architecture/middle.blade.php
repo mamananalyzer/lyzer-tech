@@ -173,7 +173,15 @@
                 @php
                     $menus = [
                         1 => [
+                            ['url' => '/account', 'icon' => 'bx bx-user', 'label' => 'Account'],
+                            ['url' => '/belanja', 'icon' => 'bx bx-user', 'label' => 'Belanja'],
+                            ['url' => '/CRM', 'icon' => 'bx bx-user', 'label' => 'CRM'],
+                            ['url' => '/daily', 'icon' => 'bx bx-user', 'label' => 'Daily'],
+                            ['url' => '/HSE', 'icon' => 'bx bx-user', 'label' => 'HSE'],                        
+                            ['url' => '/Labs', 'icon' => 'bx bx-user', 'label' => 'Labs'],
                             ['url' => '/monitoring', 'icon' => 'bx bx-user', 'label' => 'Monitoring'],
+                            ['url' => '/motor', 'icon' => 'bx bx-user', 'label' => 'Motor'],
+                            ['url' => '/users', 'icon' => 'bx bx-user', 'label' => 'Users'],
                         ],
                         2 => [
                             ['url' => '/monitoring', 'icon' => 'bx bx-user', 'label' => 'Monitoring'],
@@ -887,7 +895,7 @@
                                       <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
                                           <i class='bx bx-conversation'></i>
                                       </span>
-                                      <span class="text-muted">Sales</span>
+                                      <span class="text-muted">IT Dev.</span>
                                   @elseif($auth->role_id == 2)
                                       <span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2">
                                           <i class='bx bx-purchase-tag-alt'></i>

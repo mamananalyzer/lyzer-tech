@@ -251,7 +251,7 @@
                     { data: 'serviceDate', name: 'serviceDate' },
                     { data: 'action', name: 'action', orderable: false, searchable: false }
                 ],
-                order: [[4, 'desc']] // Order by the created_at column (index 4) in descending order
+                order: [[0, 'desc']] // Order by the created_at column (index 4) in descending order
             });
         });
 
