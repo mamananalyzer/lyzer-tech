@@ -132,6 +132,14 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/monitoring/{id_user}', [MonitoringController::class, 'destroy'])->name('Monitoring.destroy');
     Route::get('/monitoring/{id_user}/suspend', [MonitoringController::class, 'suspend'])->name('Monitoring.suspend');
 
+    // Route::get('/motor', [MotorController::class, 'index']);
+    Route::get('/motor/data', [MotorController::class, 'getData'])->name('Motor.data');
+    Route::get('/motor/{id_user}/show', [MotorController::class, 'show'])->name('Motor.show');
+    Route::post('/motor.store', [MotorController::class, 'store'])->name('Motor.create');
+    Route::get('/motor/{id_user}/edit', [MotorController::class, 'edit'])->name('Motor.edit');
+    Route::delete('/motor/{id_user}', [MotorController::class, 'destroy'])->name('Motor.destroy');
+    Route::get('/motor/{id_user}/suspend', [MotorController::class, 'suspend'])->name('Motor.suspend');
+
     // Route::get('/daily', [DailyController::class, 'index']);
     Route::get('/daily/{id_user}/show', [DailyController::class, 'show'])->name('Daily.show');
     Route::post('/daily.store', [DailyController::class, 'store'])->name('Daily.create');

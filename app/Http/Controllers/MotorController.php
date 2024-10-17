@@ -48,6 +48,34 @@ class MotorController extends Controller
         // return view('base.belanja', compact('totalBelanja', 'session'));
     }
 
+    public function getData()
+    {
+        // $users = Belanja::select(['id_product', 'jenisBelanja', 'keteranganBarang', 'totalBelanja', 'created_at']);
+
+        // $belanja = Belanja::whereMonth('created_at', Carbon::now()->month)->get();
+        $motor = Motor::all();
+
+        return DataTables::of($motor)
+            ->editColumn('created_at', function ($motor) {
+                return $motor->created_at->format('Y-m-d H:i');
+            })
+            ->addColumn('action', function($motor) {
+                $showUrl = route('Motor.show', $motor->id_motor); 
+                // $editUrl = route('Motor.edit', $motor->id_motor); 
+                // <a href="'.$editUrl.'" class="btn btn-xs btn-primary">Edit</a>
+                $deleteUrl = route('Motor.destroy', $motor->id_motor); 
+                return '
+                    <a href="'.$showUrl.'" class="btn btn-xs btn-primary">View</a>
+                    <form action="'.$deleteUrl.'" method="POST" style="display: inline-block;">
+                        '.csrf_field().'
+                        '.method_field('DELETE').'
+                        <button type="submit" class="btn btn-xs btn-danger" onclick="return confirm(\'Are you sure?\')">Delete</button>
+                    </form>
+                ';
+            })
+            ->make(true);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -61,8 +89,43 @@ class MotorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+
+        // Validate the request to ensure 'services' array is submitted
+        $validatedData = $request->validate([
+            'services' => 'required|array',
+            'services.*' => 'string',
+            'komponenBeli' => 'required',
+            'komponenBeli.*' => 'string',
+            'totalBelanja' => 'required',
+            'totalBelanja.*' => 'numeric',
+            'image' => 'required',
+            'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'serviceDate' => 'required|date',
+        ]);        
+
+        // Format serviceDate to store only the date part (YYYY-MM-DD)
+        $formattedServiceDate = date('Y-m-d', strtotime($validatedData['serviceDate']));
+
+        // Create a new User instance
+        $motor = Motor::create([
+            'namaMotor' => 'All New Vario 150',
+            'id_user' => 'Zakiyah Ais Syafira',
+            'typeService' => implode(', ', $validatedData['services']), // Encode array to store in DB
+            'komponenBeli' => $validatedData['komponenBeli'],
+            'totalBelanja' => $validatedData['totalBelanja'],
+            'image' => $validatedData['image'],
+            'serviceDate' => $formattedServiceDate,
+        ]);
+
+        // dd($motor);
+
+
+        $motor->save();
+
+        return redirect('/motor')->with('success', 'Form submitted successfully!');
     }
+
 
     /**
      * Display the specified resource.
@@ -91,8 +154,15 @@ class MotorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Motor $motor)
+    public function destroy($id_motor)
     {
-        //
+        $id = Motor::find($id_motor);
+
+        if ($id) {
+            $id->delete();
+            return redirect()->back()->with('success', 'User deleted successfully.');
+        }
+
+        return redirect()->back()->with('error', 'User not found.');
     }
 }

@@ -48,10 +48,11 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Jenis Belanja</th>
-                    <th>Keterangan Barang</th>
-                    <th>Total Belanja</th>
-                    <th>Created At</th>
+                    <th>Motor</th>
+                    <th>User</th>
+                    <th>Type Service</th>
+                    <th>Total Cost</th>
+                    <th>Service Date</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -153,17 +154,17 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="{{ route('Belanja.create') }}" enctype="multipart/form-data" class="add-new-user pt-0 fv-plugins-bootstrap5 fv-plugins-framework" id="addNewQuotForm">
+                <form method="post" action="{{ route('Motor.create') }}" enctype="multipart/form-data" class="add-new-user pt-0 fv-plugins-bootstrap5 fv-plugins-framework" id="addNewQuotForm">
                     @csrf <!-- CSRF protection -->
                     @method('POST')
                     <div class="card mb-4">
-                        {{-- <h5 class="card-header">Belanja</h5> --}}
+                        {{-- <h5 class="card-header">Motor</h5> --}}
                         <div class="card-body">
                             <div class="row mb-3">
-                                <label for="jenisBelanja" class="form-label">Type Service</label>
+                                <label for="typeService" class="form-label">Type Service</label>
                                 <div class="col-4">
                                     <div class="form-check">
-                                      <input class="form-check-input" type="checkbox" value="" id="oli mesin">
+                                      <input class="form-check-input" type="checkbox" name="services[]" value="Oil Engine" id="oli mesin">
                                       <label class="form-check-label" for="oli mesin">
                                         Oil Engine
                                       </label>
@@ -171,7 +172,7 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="form-check">
-                                      <input class="form-check-input" type="checkbox" value="" id="TB">
+                                      <input class="form-check-input" type="checkbox" name="services[]" value="Throttle Body" id="TB">
                                       <label class="form-check-label" for="TB">
                                         Throttle Body
                                       </label>
@@ -179,7 +180,7 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="form-check">
-                                      <input class="form-check-input" type="checkbox" value="" id="cvt">
+                                      <input class="form-check-input" type="checkbox" name="services[]" value="CVT" id="cvt">
                                       <label class="form-check-label" for="cvt">
                                         CVT
                                       </label>
@@ -187,7 +188,7 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="oli gardan">
+                                        <input class="form-check-input" type="checkbox" name="services[]" value="Oil Gear" id="oli gardan">
                                         <label class="form-check-label" for="oli gardan">
                                           Oil Gear
                                         </label>
@@ -208,7 +209,16 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="add-user-picture">Picture</label>
-                                <input class="form-control" type="file" id="formFile" name="image">                    
+                                <input class="form-control" type="file" id="formFile" name="image">
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="serviceDate" class="col-md-2 col-form-label">Service Date</label>
+                                <div class="col-md-10">
+                                  <input class="form-control" type="date" id="serviceDate" name="serviceDate">
+                                </div>
+                                <script>
+                                    document.getElementById('serviceDate').value = new Date().toISOString().split('T')[0];
+                                </script>
                             </div>
                         </div>
                     </div>
@@ -231,29 +241,14 @@
             // Initialize DataTable
             $('#users-table').DataTable({
                 serverSide: true,
-                ajax: '{{ route('Belanja.data') }}',
+                ajax: '{{ route('Motor.data') }}',
                 columns: [
-                    { data: 'id_product', name: 'id_product' },
-                    {
-                        data: 'jenisBelanja',
-                        name: 'jenisBelanja',
-                        render: function(data, type, row) {
-                            if (data == 1) {
-                                return 'Harian';
-                            } else if (data == 2) {
-                                return 'Bulanan';
-                            } else if (data == 3) {
-                                return 'Tahunan';
-                            } else if (data == 4) {
-                                return 'Mingguan';
-                            } else {
-                                return 'Unknown'; // Handle unexpected values gracefully
-                            }
-                        }
-                    },
-                    { data: 'keteranganBarang', name: 'keteranganBarang' },
+                    { data: 'id_motor', name: 'id_motor' },
+                    { data: 'namaMotor', name: 'namaMotor' },
+                    { data: 'id_user', name: 'id_user' },
+                    { data: 'typeService', name: 'typeService' },            
                     { data: 'totalBelanja', name: 'totalBelanja' },
-                    { data: 'created_at', name: 'created_at' },
+                    { data: 'serviceDate', name: 'serviceDate' },
                     { data: 'action', name: 'action', orderable: false, searchable: false }
                 ],
                 order: [[4, 'desc']] // Order by the created_at column (index 4) in descending order

@@ -122,7 +122,7 @@ class UsersController extends Controller
 
         // Generate QR code from id_no
         $qrCodePath = 'qrcodes/' . $validatedData['id_no'] . '.png';
-        QrCode::format('png')->size(200)->generate($validatedData['id_no'], storage_path('app/public/' . $qrCodePath));
+        // QrCode::format('png')->size(200)->generate($validatedData['id_no'], storage_path('app/public/' . $qrCodePath));
         // Store QR code path in the validated data
         $validatedData['qr'] = $qrCodePath;     
         
