@@ -183,25 +183,17 @@
                             ['url' => '/motor', 'icon' => 'bx bx-user', 'label' => 'Motor'],
                             ['url' => '/product', 'icon' => 'bx bx-user', 'label' => 'Product'],
                             ['url' => '/users', 'icon' => 'bx bx-user', 'label' => 'Users'],
+                            ['url' => '/quickpin', 'icon' => 'bx bx-user', 'label' => 'QuickPin'],
                         ],
                         2 => [
                             ['url' => '/monitoring', 'icon' => 'bx bx-user', 'label' => 'Monitoring'],
                         ],
                         3 => [
-                            ['url' => '/daily', 'icon' => 'bx bx-user', 'label' => 'Daily'],
                             ['url' => '/belanja', 'icon' => 'bx bx-user', 'label' => 'Belanja'],
+                            ['url' => '/daily', 'icon' => 'bx bx-user', 'label' => 'Daily'],
                         ],
                         4 => [
                             ['url' => '/account', 'icon' => 'bx bx-user', 'label' => 'Account'],
-                            ['url' => '/belanja', 'icon' => 'bx bx-user', 'label' => 'Belanja'],
-                            ['url' => '/CRM', 'icon' => 'bx bx-user', 'label' => 'CRM'],
-                            ['url' => '/daily', 'icon' => 'bx bx-user', 'label' => 'Daily'],
-                            ['url' => '/HSE', 'icon' => 'bx bx-user', 'label' => 'HSE'],                        
-                            ['url' => '/Labs', 'icon' => 'bx bx-user', 'label' => 'Labs'],
-                            ['url' => '/monitoring', 'icon' => 'bx bx-user', 'label' => 'Monitoring'],
-                            ['url' => '/motor', 'icon' => 'bx bx-user', 'label' => 'Motor'],
-                            ['url' => '/product', 'icon' => 'bx bx-user', 'label' => 'Product'],
-                            ['url' => '/users', 'icon' => 'bx bx-user', 'label' => 'Users'],
                         ],
                         5 => [
                             ['url' => '/users', 'icon' => 'bx bx-user', 'label' => 'Users'],
@@ -210,7 +202,7 @@
                             ['url' => '/product', 'icon' => 'bx bx-user', 'label' => 'Product'],
                         ],
                         14 => [
-                          ['url' => '/motor', 'icon' => 'bx bx-user', 'label' => 'Motor'],
+                            ['url' => '/motor', 'icon' => 'bx bx-user', 'label' => 'Motor'],
                         ],
                     ];
                 @endphp
@@ -979,12 +971,12 @@
                           <li>
                             <div class="dropdown-divider"></div>
                           </li>
-                          <li>
+                          {{-- <li>
                             <a class="dropdown-item" href="auth-login-cover.html" target="_blank">
                               <i class="bx bx-power-off me-2"></i>
                               <span class="align-middle">Log Out</span>
                             </a>
-                          </li>
+                          </li> --}}
                         </ul>
                       </li>
                       <!--/ User -->

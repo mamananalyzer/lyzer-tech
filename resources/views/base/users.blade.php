@@ -349,7 +349,7 @@
                     @csrf <!-- CSRF protection -->
                     @method('POST')
                     <div class="mb-3">
-                        <label class="form-label" for="user-role">User Role</label>
+                        <label class="form-label" for="user-role">Listed User Role</label>
                         <select id="user-role" class="form-select" name="role_id">
                             @foreach($roles as $r)
                             <option value="{{$r->role}}">{{$r->role}}</option>
@@ -357,8 +357,8 @@
                         </select>
                     </div>
                     <div class="mb-3 fv-plugins-icon-container">
-                        <label class="form-label" for="add-user-role">Role</label>
-                        <input type="text" class="form-control" id="add-user-role" placeholder="IT" name="role" aria-label="IT">
+                        <label class="form-label" for="add-user-role">New Role</label>
+                        <input type="text" class="form-control" id="add-user-role" placeholder="Engineer" name="role" aria-label="Engineer">
                     <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div></div>
                     {{-- <div class="mb-3 fv-plugins-icon-container">
                         <label class="form-label" for="add-user-email">Email</label>

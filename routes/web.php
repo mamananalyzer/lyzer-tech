@@ -14,6 +14,7 @@ use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\MotorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\QuickpinController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,41 +39,44 @@ Route::redirect('/', '/base');
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
+Route::group(['middleware' => ['checkRole:1']], function() {
     Route::get('/account', [AccountController::class, 'index'])->name('Account.index');;
 });
-Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
+Route::group(['middleware' => ['checkRole:1']], function() {
     Route::get('/belanja', [BelanjaController::class, 'index'])->name('Belanja.index');;
 });
-Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
+Route::group(['middleware' => ['checkRole:1']], function() {
     Route::get('/CRM', [CRMController::class, 'index']);
 });
-Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
+Route::group(['middleware' => ['checkRole:1']], function() {
     Route::get('/daily', [DailyController::class, 'index'])->name('daily.index');
 });
-Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
+Route::group(['middleware' => ['checkRole:1']], function() {
     Route::get('/HSE', [HSEController::class, 'index'])->name('HSE.index');
 });
-Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
+Route::group(['middleware' => ['checkRole:1']], function() {
     Route::get('/HSE_Hazops', [HSE_HazopsController::class, 'index'])->name('HSE_Hazops.index');
 });
-Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
+Route::group(['middleware' => ['checkRole:1']], function() {
     Route::get('/Labs', [LabsController::class, 'index']);
 });
-Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
+Route::group(['middleware' => ['checkRole:1']], function() {
     Route::get('/Labs_Label', [LabsController::class, 'index']);
 });
-Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
+Route::group(['middleware' => ['checkRole:1']], function() {
     Route::get('/monitoring', [MonitoringController::class, 'index']);
 });
 Route::group(['middleware' => ['checkRole:1,14']], function() {
     Route::get('/motor', [MotorController::class, 'index']);
 });
-Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
+Route::group(['middleware' => ['checkRole:1']], function() {
     Route::get('/product', [ProductController::class, 'index'])->name('product.index');
 });
-Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
+Route::group(['middleware' => ['checkRole:1']], function() {
     Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+});
+Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
+    Route::get('/quickpin', [QuickpinController::class, 'index'])->name('quickpin.index');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -162,6 +166,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/HSE_Hazops/{id_hse}/edit', [HSE_HazopsController::class, 'edit'])->name('HSE_Hazops.edit');
     Route::delete('/HSE_Hazops/{id_hse}', [HSE_HazopsController::class, 'destroy'])->name('HSE_Hazops.destroy');
     Route::get('/HSE_Hazops/{id_hse}/suspend', [HSE_HazopsController::class, 'suspend'])->name('HSE_Hazops.suspend');
+
+    // Route::get('/quickpin', [QuickpinController::class, 'index']);
+    Route::get('/quickpin/data', [QuickpinController::class, 'getData'])->name('quickpin.data');
+    Route::get('/quickpin/{id_user}/show', [QuickpinController::class, 'show'])->name('quickpin.show');
+    Route::post('/quickpin.store', [QuickpinController::class, 'store'])->name('quickpin.create');
+    Route::get('/quickpin/{id_user}/edit', [QuickpinController::class, 'edit'])->name('quickpin.edit');
+    Route::delete('/quickpin/{id_user}', [QuickpinController::class, 'destroy'])->name('quickpin.destroy');
+    Route::get('/quickpin/{id_user}/suspend', [QuickpinController::class, 'suspend'])->name('quickpin.suspend');
 });
 
 
