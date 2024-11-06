@@ -8,7 +8,7 @@
     {{-- "container-xxl flex-grow-1 container-p-y" --}}
     >
 
-        <div class="newMenu">
+        {{-- <div class="newMenu">
             <h2>Website</h2>
             <div class="row">
                 <div class="col-sm-6 col-lg-3 mb-4">
@@ -681,7 +681,7 @@
                 </div>
             </div>
             <br>
-        </div>
+        </div> --}}
 
         <div class="row">
             <div class="col-lg-8 mb-4 order-0">
@@ -689,7 +689,7 @@
                     <div class="d-flex align-items-end row">
                     <div class="col-sm-7">
                         <div class="card-body">
-                        <h5 class="card-title text-primary">Congratulations John! 🎉</h5>
+                        <h5 class="card-title text-primary">Congratulations Team! 🎉</h5>
                         <p class="mb-4">
                             You have done <span class="fw-bold">72%</span> more sales today. Check your new badge in
                             your profile.

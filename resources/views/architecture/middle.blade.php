@@ -132,7 +132,7 @@
                 </li>
 
                 <!-- Layouts -->
-                <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
+                {{-- <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
                   <a href="javascript:void(0);" class="menu-link sidebar-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-layout"></i>
                     <div data-i18n="Layouts">Layouts</div>
@@ -165,7 +165,7 @@
                       </a>
                     </li>
                   </ul>
-                </li>
+                </li> --}}
 
                 <li class="menu-header small text-uppercase">
                   <span class="menu-header-text">Pages</span>
@@ -173,14 +173,14 @@
                 @php
                     $menus = [
                         1 => [
-                            ['url' => '/account', 'icon' => 'bx bx-user', 'label' => 'Account'],
-                            ['url' => '/belanja', 'icon' => 'bx bx-user', 'label' => 'Belanja'],
+                            // ['url' => '/account', 'icon' => 'bx bx-user', 'label' => 'Account'],
+                            // ['url' => '/belanja', 'icon' => 'bx bx-user', 'label' => 'Belanja'],
                             ['url' => '/CRM', 'icon' => 'bx bx-user', 'label' => 'CRM'],
-                            ['url' => '/daily', 'icon' => 'bx bx-user', 'label' => 'Daily'],
-                            ['url' => '/HSE', 'icon' => 'bx bx-user', 'label' => 'HSE'],                        
+                            // ['url' => '/daily', 'icon' => 'bx bx-user', 'label' => 'Daily'],
+                            // ['url' => '/HSE', 'icon' => 'bx bx-user', 'label' => 'HSE'],                        
                             ['url' => '/Labs', 'icon' => 'bx bx-user', 'label' => 'Labs'],
                             ['url' => '/monitoring', 'icon' => 'bx bx-user', 'label' => 'Monitoring'],
-                            ['url' => '/motor', 'icon' => 'bx bx-user', 'label' => 'Motor'],
+                            // ['url' => '/motor', 'icon' => 'bx bx-user', 'label' => 'Motor'],
                             ['url' => '/product', 'icon' => 'bx bx-user', 'label' => 'Product'],
                             ['url' => '/users', 'icon' => 'bx bx-user', 'label' => 'Users'],
                             ['url' => '/quickpin', 'icon' => 'bx bx-user', 'label' => 'QuickPin'],
@@ -572,7 +572,7 @@
                       <!-- /Language -->
             
                       <!-- Quick links  -->
-                      <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown me-2 me-xl-0">
+                      {{-- <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown me-2 me-xl-0">
                         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                           <i class="bx bx-grid-alt bx-sm"></i>
                         </a>
@@ -650,7 +650,7 @@
                             </div>
                           <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
                         </div>
-                      </li>
+                      </li> --}}
                       <!-- Quick links -->
             
                       
@@ -869,16 +869,16 @@
                       <li class="nav-item navbar-dropdown dropdown-user dropdown">
                         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                           <div class="avatar avatar-online">
-                            <img src="/sneat/assets/img/avatars/2.png" alt="" class="w-px-40 h-auto rounded-circle">
+                            <img src="/sneat/assets/img/avatars/1.png" alt="" class="w-px-40 h-auto rounded-circle">
                           </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                           <li>
-                            <a class="dropdown-item" href="pages-account-settings-account.html">
+                            <a class="dropdown-item" href="#">
                               <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                   <div class="avatar avatar-online">
-                                    <img src="/sneat/assets/img/avatars/2.png" alt="" class="w-px-40 h-auto rounded-circle">
+                                    <img src="/sneat/assets/img/avatars/1.png" alt="" class="w-px-40 h-auto rounded-circle">
                                   </div>
                                 </div>
                                 <div class="flex-grow-1">
@@ -933,18 +933,18 @@
                             <div class="dropdown-divider"></div>
                           </li>
                           <li>
-                            <a class="dropdown-item" href="pages-profile-user.html">
+                            <a class="dropdown-item" href="#">
                               <i class="bx bx-user me-2"></i>
                               <span class="align-middle">My Profile</span>
                             </a>
                           </li>
                           <li>
-                            <a class="dropdown-item" href="pages-account-settings-account.html">
+                            <a class="dropdown-item" href="#">
                               <i class="bx bx-cog me-2"></i>
                               <span class="align-middle">Settings</span>
                             </a>
                           </li>
-                          <li>
+                          {{-- <li>
                             <a class="dropdown-item" href="pages-account-settings-billing.html">
                               <span class="d-flex align-items-center align-middle">
                                 <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
@@ -970,7 +970,7 @@
                           </li>
                           <li>
                             <div class="dropdown-divider"></div>
-                          </li>
+                          </li> --}}
                           {{-- <li>
                             <a class="dropdown-item" href="auth-login-cover.html" target="_blank">
                               <i class="bx bx-power-off me-2"></i>

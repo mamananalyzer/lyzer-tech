@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="{{asset('auth/style.css')}}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Modern Login Page | AsmrProg</title>
+    <title>Login Page | LyZerTech</title>
 </head>
 
 <body>
@@ -16,14 +16,14 @@
             <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <h1>Create Account</h1>
-                <div class="social-icons">
+                {{-- <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
+                </div> --}}
                 <span>or use your email for registration</span>
-                <input type="text" placeholder="Name" name="name" value="{{ old('name') }}" required>
+                <input type="name" placeholder="Name" name="name" value="{{ old('name') }}" required>
                 @error('name')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -48,12 +48,12 @@
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <h1>Sign In</h1>
-                <div class="social-icons">
+                {{-- <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
+                </div> --}}
                 <span>or use your email for login</span>
                 <input id="email" type="email" placeholder="Email" name="email" value="{{ old('email') }}" required>
                 @error('email')
@@ -67,7 +67,7 @@
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
-                <a href="{{ route('password.request') }}">Forgot Your Password?</a>
+                {{-- <a href="{{ route('password.request') }}">Forgot Your Password?</a> --}}
                 <button>Sign In</button>
             </form>
         </div>
