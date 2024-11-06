@@ -76,25 +76,25 @@
                               <div class="row g-1" id="dynamicTypeQty">
                                 <div class="col">
                                   <div class="form-floating">
-                                    <input type="text" class="form-control" id="type" name="type" placeholder="DE96" aria-label="DE96" aria-describedby="typeHelp">
+                                    <input type="text" class="form-control" id="type" name="type[]" placeholder="DE96" aria-label="DE96" aria-describedby="typeHelp">
                                     <label for="type">Type</label>
                                   </div>
                                 </div>
                                 <div class="col">
                                   <div class="form-floating">
-                                    <input type="text" class="form-control" id="scale" name="scale" placeholder="10" aria-label="DE96" aria-describedby="scaleHelp">
+                                    <input type="text" class="form-control" id="scale" name="scale[]" placeholder="10" aria-label="DE96" aria-describedby="scaleHelp">
                                     <label for="scale">Scale</label>
                                   </div>
                                 </div>
                                 <div class="col">
                                   <div class="form-floating">
-                                    <input type="text" class="form-control" id="input" name="input" placeholder="10" aria-label="DE96" aria-describedby="inputHelp">
+                                    <input type="text" class="form-control" id="input" name="input[]" placeholder="10" aria-label="DE96" aria-describedby="inputHelp">
                                     <label for="input">Input</label>
                                   </div>
                                 </div>
                                 <div class="col">
                                   <div class="form-floating">
-                                    <input type="text" class="form-control" id="qty" name="qty" placeholder="10" aria-label="DE96" aria-describedby="qtyHelp">
+                                    <input type="text" class="form-control" id="qty" name="qty[]" placeholder="10" aria-label="DE96" aria-describedby="qtyHelp">
                                     <label for="qty">Quantity</label>
                                   </div>
                                 </div>
@@ -120,38 +120,40 @@
         <script>
             function addTypeQty() {
                 const div = document.createElement('div');
-                div.innerHTML = `<div class="row g-1" id="dynamicTypeQty">
-                                  <div class="col">
-                                    <div class="form-floating">
-                                      <input type="text" class="form-control" id="type" name="type" placeholder="DE96" aria-label="DE96" aria-describedby="typeHelp">
-                                      <label for="type">Type</label>
+                div.innerHTML = `
+                                  <div class="row g-1" id="dynamicTypeQty">
+                                    <div class="col">
+                                      <div class="form-floating">
+                                        <input type="text" class="form-control" id="type" name="type[]" placeholder="DE96" aria-label="DE96" aria-describedby="typeHelp">
+                                        <label for="type">Type</label>
+                                      </div>
                                     </div>
-                                  </div>
-                                  <div class="col">
-                                    <div class="form-floating">
-                                      <input type="text" class="form-control" id="qty" name="qty" placeholder="10" aria-label="DE96" aria-describedby="qtyHelp">
-                                      <label for="qty">Quantity</label>
+                                    <div class="col">
+                                      <div class="form-floating">
+                                        <input type="text" class="form-control" id="scale" name="scale[]" placeholder="10" aria-label="DE96" aria-describedby="scaleHelp">
+                                        <label for="scale">Scale</label>
+                                      </div>
                                     </div>
-                                  </div>
-                                  <div class="col">
-                                    <div class="form-floating">
-                                      <input type="text" class="form-control" id="scale" name="scale" placeholder="10" aria-label="DE96" aria-describedby="scaleHelp">
-                                      <label for="scale">Scale</label>
+                                    <div class="col">
+                                      <div class="form-floating">
+                                        <input type="text" class="form-control" id="input" name="input[]" placeholder="10" aria-label="DE96" aria-describedby="inputHelp">
+                                        <label for="input">Input</label>
+                                      </div>
                                     </div>
-                                  </div>
-                                  <div class="col">
-                                    <div class="form-floating">
-                                      <input type="text" class="form-control" id="input" name="input" placeholder="10" aria-label="DE96" aria-describedby="inputHelp">
-                                      <label for="input">Input</label>
+                                    <div class="col">
+                                      <div class="form-floating">
+                                        <input type="text" class="form-control" id="qty" name="qty[]" placeholder="10" aria-label="DE96" aria-describedby="qtyHelp">
+                                        <label for="qty">Quantity</label>
+                                      </div>
                                     </div>
+                                    <div class="col-1 d-flex justify-content-center mx-1">
+                                      <span class="input-group-text btn btn-outline-danger" onclick="removeTypeQty(this)">
+                                        <i class="fa-solid fa-trash"></i>
+                                      </span>
+                                    </div>
+                                    <div id="typeHelp" class="form-text mx-4" onclick="addTypeQty()">Add More</div>
                                   </div>
-                                  <div class="col-1 d-flex justify-content-center mx-1">
-                                    <span class="input-group-text btn btn-outline-danger" onclick="removeTypeQty(this)">
-                                      <i class="fa-solid fa-trash"></i>
-                                    </span>
-                                  </div>
-                                  <div id="typeHelp" class="form-text mx-4" onclick="addTypeQty()">Add More</div>
-                                </div>`;
+                                `;
                 document.getElementById('dynamicTypeQty').appendChild(div);
             }
     

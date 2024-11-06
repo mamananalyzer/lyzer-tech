@@ -35,7 +35,7 @@ class Labs_LabelController extends Controller
                 return $labs_label->created_at->format('Y-m-d H:i');
             })
             ->addColumn('action', function($labs_label) {
-                $showUrl = route('Labs_Label.show', $labs_label->PO); 
+                $showUrl = route('Labs_Label.show', $labs_label->created_at); 
                 // $editUrl = route('Labs_Label.edit', $labs_label->id_label); 
                 // <a href="'.$editUrl.'" class="btn btn-xs btn-primary">Edit</a>
                 $deleteUrl = route('Labs_Label.destroy', $labs_label->id_label); 
@@ -62,48 +62,79 @@ class Labs_LabelController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    // public function store(Request $request)
+    // {
+    //     $validatedData = $request->validate([
+    //         'brand' => 'required',
+    //         'customer' => 'required',
+    //         'PO' => 'required',
+    //         'type' => 'required',
+    //         'qty' => 'required|integer|min:1',
+    //         'scale' => 'required',
+    //         'input' => 'required',
+    //     ]);
+
+    //     $quantity = $validatedData['qty'];
+
+    //     for ($i = 0; $i < $quantity; $i++) {
+    //         Labs_Label::create([
+    //             'brand' => $validatedData['brand'],
+    //             'customer' => $validatedData['customer'],
+    //             'PO' => $validatedData['PO'],
+    //             'type' => $validatedData['type'],
+    //             'qty' => 1,
+    //             'scale' => $validatedData['scale'],
+    //             'input' => $validatedData['input'],
+    //         ]);
+    //     }
+
+    //     return redirect('/Labs')->with('success', 'Form submitted successfully!');
+    // }
+
     public function store(Request $request)
     {
-        // Validate form submission data
-        $validatedData = $request->validate([
+        // Validate the input data
+        $request->validate([
             'brand' => 'required',
             'customer' => 'required',
             'PO' => 'required',
-            'type' => 'required',
-            'qty' => 'required|integer|min:1',
-            'scale' => 'required',
-            'input' => 'required',
+            'type.*' => 'required',  // Using the * syntax to validate each array entry
+            'scale.*' => 'required',
+            'input.*' => 'required',
+            'qty.*' => 'required',
         ]);
 
-        // Retrieve the quantity from the validated data
-        $quantity = $validatedData['qty'];
+        // Loop through each set of inputs
+        foreach ($request['type'] as $index => $type) {
+            // Get the quantity for the current index
+            $quantity = $request['qty'][$index];
 
-        // Loop through the quantity value to create multiple records
-        for ($i = 0; $i < $quantity; $i++) {
-            // Create a new Labs_Label instance and save it
-            Labs_Label::create([
-                'brand' => $validatedData['brand'],
-                'customer' => $validatedData['customer'],
-                'PO' => $validatedData['PO'],
-                'type' => $validatedData['type'],
-                'qty' => 1, // Store qty as 1 for each record since we're creating multiple
-                'scale' => $validatedData['scale'],
-                'input' => $validatedData['input'],
-            ]);
+            // Create multiple entries based on the quantity
+            for ($i = 0; $i < $quantity; $i++) {
+                Labs_Label::create([
+                    'brand' => $request['brand'],
+                    'customer' => $request['customer'],
+                    'PO' => $request['PO'],
+                    'type' => $type,
+                    'scale' => $request['scale'][$index],
+                    'input' => $request['input'][$index],
+                    'qty' => 1, // Set qty to 1 for each individual entry
+                ]);
+            }
         }
 
-        // Redirect to the desired page with a success message
         return redirect('/Labs')->with('success', 'Form submitted successfully!');
-    }
+}
+
 
 
     /**
      * Display the specified resource.
      */
-    public function show($po)
+    public function show($created_at)
     {
         // Fetch all records with the given PO
-        $Labs_Label = Labs_Label::where('PO', $po)->get();
+        $Labs_Label = Labs_Label::where('created_at', $created_at)->get();
 
         // dd($Labs_Label);
 

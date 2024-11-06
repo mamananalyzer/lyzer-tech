@@ -32,7 +32,46 @@
 @endsection --}}
 
 @section('content')
-    <div class="flex-grow-1 container-p-y container-fluid">
+
+<style>
+    #printableArea {
+
+    }
+    @media print {
+        /* Adjust the font size in the print preview */
+        #printableArea {
+            font-size: 6px; /* Change to your desired font size */
+        }
+        /* Optional: Hide other content during print preview */
+        body * {
+            visibility: hidden;
+        }
+        #printableArea, #printableArea * {
+            visibility: visible;
+        }
+        #printableArea {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+        #printableArea {
+            padding: 0; /* Remove padding */
+            border: none; /* Remove border */
+            margin: 0; /* Remove margin if needed */
+        }
+    }
+</style>
+
+<button onclick="printArea()">Print Specific Area</button>
+
+<script>
+    function printArea() {
+        window.print();
+    }
+</script>
+
+    <div class="flex-grow-1 container-p-y container-fluid" id="printableArea">
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4">
@@ -41,14 +80,6 @@
                         @php
                             $chunks = $Labs_Label->chunk(5);
                         @endphp
-
-                        <style>
-                            @media print {
-                                p.small-font {
-                                    font-size: 7px;
-                                }
-                            }
-                        </style>
 
                         @foreach ($chunks as $chunk)
                             <div class="row row-cols-5 gy-4 gy-sm-1">
@@ -60,8 +91,9 @@
                                                 <p class="mb-0 small-font">Scale : {{ $Label->scale }}</p>
                                                 <p class="mb-0 small-font">Input : {{ $Label->input }}</p>
                                             </div>
-                                            <span class="badge bg-label-secondary rounded p-2 me-sm-4">
+                                            <span class="badge bg-label-secondary rounded p-2 me-sm-4 text-right">
                                                 {{-- <i class="bx bx-user bx-sm"></i> --}}
+                                                <img src="{{ asset('img/logo/aii.png') }}" width="20" alt="">
                                             </span>
                                         </div>
                                         <hr class="d-none d-sm-block d-lg-block me-4">
