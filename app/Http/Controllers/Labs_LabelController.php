@@ -139,7 +139,7 @@ class Labs_LabelController extends Controller
         // dd($Labs_Label);
 
         // Pass the records to the view
-        return view('base.Labs_LabelShow', compact('Labs_Label'));
+        return view('base.labs_LabelShow', compact('Labs_Label'));
     }
 
     /**

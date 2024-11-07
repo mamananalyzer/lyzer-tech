@@ -13,7 +13,7 @@ class LabsController extends Controller
     public function index()
     {
         // $Labs = Labs::all();
-        return view('base.Labs'
+        return view('base.labs'
             // , compact('Labs')
         );
     }
