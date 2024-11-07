@@ -1,4 +1,4 @@
-@extends('base.0layout')
+@extends('base.1layout')
 
 @section('title', 'Labs Label')
 
@@ -61,6 +61,21 @@
             margin: 0; /* Remove margin if needed */
         }
     }
+
+    .letter-paper {
+        width: 8.5in; /* Letter size width */
+        min-height: 10in; /* Letter size height */
+        margin: auto;
+        /* padding: 1in; */
+        border: 1px solid #ccc;
+        background-color: #fff;
+        position: relative;
+        font-size: 9px; /* Change to your desired font size */
+    }
+
+    img {
+        width: 90%; /* Scale image to 50% */
+    }
 </style>
 
 <button onclick="printArea()">Print Specific Area</button>
@@ -72,44 +87,63 @@
 </script>
 
     <div class="flex-grow-1 container-p-y container-fluid" id="printableArea">
-        <div class="row">
+        <div class="row letter-paper">
             <div class="col-12">
-                <div class="card mb-4">
-                    <div class="card-widget-separator-wrapper">
-                    <div class="card-body card-widget-separator">
+                <div class="card-widget-separator-wrapper">
+                    <div class="card-body p-2">
                         @php
                             $chunks = $Labs_Label->chunk(5);
                         @endphp
-
-                        @foreach ($chunks as $chunk)
-                            <div class="row row-cols-5 gy-4 gy-sm-1">
+                            @foreach ($chunks as $chunk)
+                            <div class="row">
                                 @foreach ($chunk as $Label)
-                                    <div class="col-sm col-lg">
-                                        <div class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-3 pb-sm-0">
-                                            <div>
-                                                <p class="mb-0 small-font">Type : {{ $Label->type }}</p>
-                                                <p class="mb-0 small-font">Scale : {{ $Label->scale }}</p>
-                                                <p class="mb-0 small-font">Input : {{ $Label->input }}</p>
+                                    <div class="col-sm col-lg p-1 border">
+                                        <div class="row">
+                                            <div class="d-flex">
+                                                <div class="col-8">
+                                                    <p class="mb-0 small-font">Type : {{ $Label->type }}</p>
+                                                    <p class="mb-0 small-font">Scale : {{ $Label->scale }}</p>
+                                                    <p class="mb-0 small-font">Input : {{ $Label->input }}</p>
+                                                </div>
+                                                <span class="badge d-flex justify-content-end p-0">
+                                                    <img src="{{ asset('img/logo/aii.png') }}" alt="">
+                                                </span>
                                             </div>
-                                            <span class="badge bg-label-secondary rounded p-2 me-sm-4 text-right">
-                                                {{-- <i class="bx bx-user bx-sm"></i> --}}
-                                                <img src="{{ asset('img/logo/aii.png') }}" width="20" alt="">
-                                            </span>
                                         </div>
-                                        <hr class="d-none d-sm-block d-lg-block me-4">
+                                        <br>
+                                        <div class="row">
+                                            <div class="d-flex">
+                                                <div class="col">
+                                                    <p class="mb-0 small-font d-flex justify-content-center">{{ $Label->type == 'DE96' ? '50/60Hz' : $Label->type }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="d-flex">
+                                                <div class="col">
+                                                    <p class="mb-0 small-font d-flex justify-content-start">{{ $Label->PO }}</p>
+                                                </div>
+                                                <div class="col">
+                                                    <p class="mb-0 small-font d-flex justify-content-end">{{ substr(date('Y'), 2) }}0{{ $Label->id_label }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 @endforeach
 
+                                {{-- Adjust column sizing if chunk count is less than 5 --}}
                                 @if ($chunk->count() < 5)
+                                    @php
+                                        $colSize = 12 / $chunk->count(); // Dynamically adjust width
+                                    @endphp
                                     @for ($i = 0; $i < 5 - $chunk->count(); $i++)
-                                        <div class="col-sm col-lg">
-                                            <!-- Empty placeholder to maintain 5 columns in the row -->
+                                        <div class="col-sm col-lg p-1 border" style="visibility: hidden;">
+                                            <!-- Empty placeholder to maintain spacing in row with fewer items -->
                                         </div>
                                     @endfor
                                 @endif
                             </div>
-                        @endforeach
-                    </div>
+                            @endforeach
                     </div>
                 </div>
             </div>
