@@ -125,7 +125,7 @@
                                             <div class="row">
                                                 <div class="d-flex">
                                                     <div class="col">
-                                                        <p class="mb-0 small-font d-flex justify-content-start">{{ $Label->PO }}</p>
+                                                        <p class="mb-0 small-font d-flex justify-content-start">{{ $Label->PO }} Line 00001</p>
                                                     </div>
                                                     <div class="col">
                                                         <p class="mb-0 small-font d-flex justify-content-end">{{ substr(date('Y'), 2) }}0{{ $Label->id_label }}</p>
