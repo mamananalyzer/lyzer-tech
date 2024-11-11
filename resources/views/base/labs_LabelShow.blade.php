@@ -76,6 +76,9 @@
     img {
         width: 90%; /* Scale image to 50% */
     }
+    .bord {
+        border: 0.5pt dashed black; /* 2px width, dashed style, black color */
+    }
 </style>
 
 <button onclick="printArea()">Print Specific Area</button>
@@ -97,34 +100,36 @@
                             @foreach ($chunks as $chunk)
                             <div class="row">
                                 @foreach ($chunk as $Label)
-                                    <div class="col-sm col-lg p-1 border">
-                                        <div class="row">
-                                            <div class="d-flex">
-                                                <div class="col-8">
-                                                    <p class="mb-0 small-font">Type : {{ $Label->type }}</p>
-                                                    <p class="mb-0 small-font">Scale : {{ $Label->scale }}</p>
-                                                    <p class="mb-0 small-font">Input : {{ $Label->input }}</p>
-                                                </div>
-                                                <span class="badge d-flex justify-content-end p-0">
-                                                    <img src="{{ asset('img/logo/aii.png') }}" alt="">
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="d-flex">
-                                                <div class="col">
-                                                    <p class="mb-0 small-font d-flex justify-content-center">{{ $Label->type == 'DE96' ? '50/60Hz' : $Label->type }}</p>
+                                    <div class="col-sm col-lg p-1 bord">
+                                        <div class="p-1 border">
+                                            <div class="row">
+                                                <div class="d-flex">
+                                                    <div class="col-8">
+                                                        <p class="mb-0 small-font">Type : {{ $Label->type }}</p>
+                                                        <p class="mb-0 small-font">Scale : {{ $Label->scale }}</p>
+                                                        <p class="mb-0 small-font">Input : {{ $Label->input }}</p>
+                                                    </div>
+                                                    <span class="badge d-flex justify-content-end p-0">
+                                                        <img src="{{ asset('img/logo/aii.png') }}" alt="">
+                                                    </span>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="d-flex">
-                                                <div class="col">
-                                                    <p class="mb-0 small-font d-flex justify-content-start">{{ $Label->PO }}</p>
+                                            <br>
+                                            <div class="row">
+                                                <div class="d-flex">
+                                                    <div class="col">
+                                                        <p class="mb-0 small-font d-flex justify-content-center">{{ $Label->type == 'DE96' ? '50/60Hz' : $Label->type }}</p>
+                                                    </div>
                                                 </div>
-                                                <div class="col">
-                                                    <p class="mb-0 small-font d-flex justify-content-end">{{ substr(date('Y'), 2) }}0{{ $Label->id_label }}</p>
+                                            </div>
+                                            <div class="row">
+                                                <div class="d-flex">
+                                                    <div class="col">
+                                                        <p class="mb-0 small-font d-flex justify-content-start">{{ $Label->PO }}</p>
+                                                    </div>
+                                                    <div class="col">
+                                                        <p class="mb-0 small-font d-flex justify-content-end">{{ substr(date('Y'), 2) }}0{{ $Label->id_label }}</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
