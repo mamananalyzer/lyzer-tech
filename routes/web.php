@@ -15,6 +15,7 @@ use App\Http\Controllers\MotorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\QuickpinController;
+use App\Http\Controllers\ZerotestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,6 +78,9 @@ Route::group(['middleware' => ['checkRole:1']], function() {
 });
 Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
     Route::get('/quickpin', [QuickpinController::class, 'index'])->name('quickpin.index');
+});
+Route::group(['middleware' => ['checkRole:1,2,3,4,5,6,7,8,9,10,11,12,13']], function() {
+    Route::get('/zerotest', [ZerotestController::class, 'index'])->name('zerotest.index');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -174,6 +178,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/quickpin/{id_user}/edit', [QuickpinController::class, 'edit'])->name('quickpin.edit');
     Route::delete('/quickpin/{id_user}', [QuickpinController::class, 'destroy'])->name('quickpin.destroy');
     Route::get('/quickpin/{id_user}/suspend', [QuickpinController::class, 'suspend'])->name('quickpin.suspend');
+
+    // Route::get('/zerotest', [ZerotestController::class, 'index']);
+    Route::get('/zerotest/data', [ZerotestController::class, 'getData'])->name('zerotest.data');
+    Route::get('/zerotest/{id_user}/show', [ZerotestController::class, 'show'])->name('zerotest.show');
+    Route::post('/zerotest.store', [ZerotestController::class, 'store'])->name('zerotest.create');
+    Route::get('/zerotest/{id_user}/edit', [ZerotestController::class, 'edit'])->name('zerotest.edit');
+    Route::delete('/zerotest/{id_user}', [ZerotestController::class, 'destroy'])->name('zerotest.destroy');
+    Route::get('/zerotest/{id_user}/suspend', [ZerotestController::class, 'suspend'])->name('zerotest.suspend');
 });
 
 

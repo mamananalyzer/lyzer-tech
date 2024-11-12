@@ -1,0 +1,202 @@
+[
+    {
+        "Country": "Germany",
+        "Year": 1950,
+        "Income": 1000
+    },
+    {
+        "Country": "Germany",
+        "Year": 1960,
+        "Income": 2000
+    },
+    {
+        "Country": "Germany",
+        "Year": 1970,
+        "Income": 3000
+    },
+    {
+        "Country": "Germany",
+        "Year": 1980,
+        "Income": 5000
+    },
+    {
+        "Country": "Germany",
+        "Year": 1990,
+        "Income": 8000
+    },
+    {
+        "Country": "Germany",
+        "Year": 2000,
+        "Income": 12000
+    },
+    {
+        "Country": "Germany",
+        "Year": 2010,
+        "Income": 16000
+    },
+    {
+        "Country": "Germany",
+        "Year": 2020,
+        "Income": 20000
+    },
+    {
+        "Country": "France",
+        "Year": 1950,
+        "Income": 1500
+    },
+    {
+        "Country": "France",
+        "Year": 1960,
+        "Income": 2500
+    },
+    {
+        "Country": "France",
+        "Year": 1970,
+        "Income": 3500
+    },
+    {
+        "Country": "France",
+        "Year": 1980,
+        "Income": 5500
+    },
+    {
+        "Country": "France",
+        "Year": 1990,
+        "Income": 8000
+    },
+    {
+        "Country": "France",
+        "Year": 2000,
+        "Income": 10000
+    },
+    {
+        "Country": "France",
+        "Year": 2010,
+        "Income": 15000
+    },
+    {
+        "Country": "France",
+        "Year": 2020,
+        "Income": 18000
+    },
+    {
+        "Country": "United Kingdom",
+        "Year": 1950,
+        "Income": 1800
+    },
+    {
+        "Country": "United Kingdom",
+        "Year": 1960,
+        "Income": 2800
+    },
+    {
+        "Country": "United Kingdom",
+        "Year": 1970,
+        "Income": 4000
+    },
+    {
+        "Country": "United Kingdom",
+        "Year": 1980,
+        "Income": 6000
+    },
+    {
+        "Country": "United Kingdom",
+        "Year": 1990,
+        "Income": 9000
+    },
+    {
+        "Country": "United Kingdom",
+        "Year": 2000,
+        "Income": 12000
+    },
+    {
+        "Country": "United Kingdom",
+        "Year": 2010,
+        "Income": 16000
+    },
+    {
+        "Country": "United Kingdom",
+        "Year": 2020,
+        "Income": 20000
+    },
+    {
+        "Country": "United States",
+        "Year": 1950,
+        "Income": 2500
+    },
+    {
+        "Country": "United States",
+        "Year": 1960,
+        "Income": 3500
+    },
+    {
+        "Country": "United States",
+        "Year": 1970,
+        "Income": 4500
+    },
+    {
+        "Country": "United States",
+        "Year": 1980,
+        "Income": 6500
+    },
+    {
+        "Country": "United States",
+        "Year": 1990,
+        "Income": 9500
+    },
+    {
+        "Country": "United States",
+        "Year": 2000,
+        "Income": 13000
+    },
+    {
+        "Country": "United States",
+        "Year": 2010,
+        "Income": 17000
+    },
+    {
+        "Country": "United States",
+        "Year": 2020,
+        "Income": 21000
+    },
+    {
+        "Country": "Japan",
+        "Year": 1950,
+        "Income": 1000
+    },
+    {
+        "Country": "Japan",
+        "Year": 1960,
+        "Income": 2000
+    },
+    {
+        "Country": "Japan",
+        "Year": 1970,
+        "Income": 3000
+    },
+    {
+        "Country": "Japan",
+        "Year": 1980,
+        "Income": 5000
+    },
+    {
+        "Country": "Japan",
+        "Year": 1990,
+        "Income": 8000
+    },
+    {
+        "Country": "Japan",
+        "Year": 2000,
+        "Income": 12000
+    },
+    {
+        "Country": "Japan",
+        "Year": 2010,
+        "Income": 15000
+    },
+    {
+        "Country": "Japan",
+        "Year": 2020,
+        "Income": 18000
+    }
+]

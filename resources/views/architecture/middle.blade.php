@@ -173,17 +173,18 @@
                 @php
                     $menus = [
                         1 => [
-                            // ['url' => '/account', 'icon' => 'bx bx-user', 'label' => 'Account'],
-                            // ['url' => '/belanja', 'icon' => 'bx bx-user', 'label' => 'Belanja'],
+                            ['url' => '/account', 'icon' => 'bx bx-user', 'label' => 'Account'],
+                            ['url' => '/belanja', 'icon' => 'bx bx-user', 'label' => 'Belanja'],
                             ['url' => '/CRM', 'icon' => 'bx bx-user', 'label' => 'CRM'],
-                            // ['url' => '/daily', 'icon' => 'bx bx-user', 'label' => 'Daily'],
-                            // ['url' => '/HSE', 'icon' => 'bx bx-user', 'label' => 'HSE'],                        
+                            ['url' => '/daily', 'icon' => 'bx bx-user', 'label' => 'Daily'],
+                            ['url' => '/HSE', 'icon' => 'bx bx-user', 'label' => 'HSE'],                        
                             ['url' => '/Labs', 'icon' => 'bx bx-user', 'label' => 'Labs'],
                             ['url' => '/monitoring', 'icon' => 'bx bx-user', 'label' => 'Monitoring'],
-                            // ['url' => '/motor', 'icon' => 'bx bx-user', 'label' => 'Motor'],
+                            ['url' => '/motor', 'icon' => 'bx bx-user', 'label' => 'Motor'],
                             ['url' => '/product', 'icon' => 'bx bx-user', 'label' => 'Product'],
                             ['url' => '/users', 'icon' => 'bx bx-user', 'label' => 'Users'],
                             ['url' => '/quickpin', 'icon' => 'bx bx-user', 'label' => 'QuickPin'],
+                            ['url' => '/zerotest', 'icon' => 'bx bx-user', 'label' => 'Zerotest'],
                         ],
                         2 => [
                             ['url' => '/monitoring', 'icon' => 'bx bx-user', 'label' => 'Monitoring'],
