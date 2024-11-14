@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
 
 @endsection
 
@@ -38,7 +39,6 @@
 @section('content')
 <div class="flex-grow-1 container-p-y container-fluid">
 
-<<<<<<< Updated upstream
     <div class="row mb-4 justify-content-center">
         <div class="col-lg-8 col-md-12">
             <div class="card text-left">
@@ -57,9 +57,7 @@
                         <div class="tab-content" id="tabContent"></div>
                     </div>
                     <div class="col-lg-3 px-2 mt-4">
-                        <div class="" id="datepicker">
-
-                        </div>
+                        <div class="" id="datepicker"></div>
                     </div>
                 </div>
             </div>
@@ -91,25 +89,12 @@
                     <div class="row">
                         <div class="col" id="energy" style="width: 60vw; height: 50vh;"></div>
                     </div>
-=======
-    {{-- <div class="row mb-4 justify-content-center">
-        <div class="col-lg-10 col-md-12">
-            <div class="card text-center">
-                <div class="card-header py-3">
-                    <ul class="nav nav-pills" role="tablist" id="tabList"></ul>
->>>>>>> Stashed changes
                 </div>
             </div>
         </div>
-<<<<<<< Updated upstream
     </div>
 
     <script>
-=======
-    </div> --}}
-    
-    {{-- <script>
->>>>>>> Stashed changes
         // Define your tabs here
         const tabs = [
             { id: 'F', label: 'Freq' },
@@ -157,15 +142,10 @@
             `;
             tabContent.appendChild(contentPane); // Append pane to tab content
         });
-<<<<<<< Updated upstream
     </script>
 
-=======
-    </script> --}}
-    
->>>>>>> Stashed changes
 
-    <div class="row mb-4 g-6 justify-content-center">
+    {{-- <div class="row mb-4 g-6 justify-content-center">
         <div class="col-lg-10 col-md-12 order-3 order-lg-4 mb-4 mb-lg-0">
             <div class="card text-center">
                 <div class="card-header py-3">
@@ -488,7 +468,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     {{-- <div class="row mb-12 g-6">
         <div class="col-lg-3 col-md-6">
@@ -514,37 +494,55 @@
         </div>
     </div> --}}
 
-    <script type="text/javascript">
-        // Helper function to add only available data points, skipping gaps
-        function fillMissingData(data, intervalMinutes) {
-            const filledData = [];
-            const intervalMillis = intervalMinutes * 60 * 1000; // Convert minutes to milliseconds
 
-            for (let i = 0; i < data.length - 1; i++) {
-                filledData.push(data[i]);
 
-                const currentTime = new Date(data[i].name).getTime();
-                const nextTime = new Date(data[i + 1].name).getTime();
-
-                // Only push data points without inserting null values for gaps
-                if (nextTime - currentTime <= intervalMillis) {
-                    filledData.push(data[i + 1]);
-                }
+    {{-- Real-time --}}
+    <script>
+        // Initialize Flatpickr with inline option enabled
+        flatpickr("#datepicker", {
+            inline: true,
+            disableMobile: true, // Disable mobile default date picker
+            weekNumbers: true,   // Show week numbers for a more complete calendar view
+            onChange: function(selectedDates, dateStr, instance) {
+                // Handle the date selection change
+                const selectedDate = new Date(dateStr);
+                renderChartsForSelectedDate(selectedDate);
+            },
+            onOpen: function() {
+                document.querySelector(".flatpickr-calendar").classList.add("animate");
+            },
+            onClose: function() {
+                document.querySelector(".flatpickr-calendar").classList.remove("animate");
             }
+        });
 
-            // Add the last data point
-            filledData.push(data[data.length - 1]);
-            return filledData;
+    
+        function renderChartsForSelectedDate(selectedDate) {
+            // Format selected date to YYYY-MM-DD
+            const formattedDate = selectedDate.toISOString().split('T')[0];
+    
+            // Render the charts for the selected date
+            renderChart('F', 'Frequency Over Time', 'Frequency (Hz)', 'F', 'Hz', selectedDate);
+            renderChart('U1', 'U1 Over Time', 'Voltage (V)', 'U1', 'V', selectedDate);
+            renderChart('U2', 'U2 Over Time', 'Voltage (V)', 'U2', 'V', selectedDate);
+            renderChart('U3', 'U3 Over Time', 'Voltage (V)', 'U3', 'V', selectedDate);
+            renderChart('U12', 'U12 Over Time', 'Voltage (V)', 'U12', 'V', selectedDate);
+            renderChart('U23', 'U23 Over Time', 'Voltage (V)', 'U23', 'V', selectedDate);
+            renderChart('U31', 'U31 Over Time', 'Voltage (V)', 'U31', 'V', selectedDate);
+            renderChart('IL1', 'IL1 Over Time', 'Current (A)', 'IL1', 'A', selectedDate);
+            renderChart('IL2', 'IL2 Over Time', 'Current (A)', 'IL2', 'A', selectedDate);
+            renderChart('IL3', 'IL3 Over Time', 'Current (A)', 'IL3', 'A', selectedDate);
         }
-
-        function renderChart(containerId, titleText, yAxisName, dataKey, unit) {
+    
+        function renderChart(containerId, titleText, yAxisName, dataKey, unit, selectedDate) {
             var dom = document.getElementById(containerId);
             var myChart = echarts.init(dom, null, {
                 renderer: 'canvas',
                 useDirtyRect: false
             });
 
-            fetch('http://127.0.0.1:8000/api/v1/metering')
+            // Fetch data for the selected date
+            fetch(`http://127.0.0.1:8000/api/v1/metering?date=${selectedDate.toISOString().split('T')[0]}`)
                 .then(response => response.json())
                 .then(data => {
                     // Extract updated_at and specified dataKey values for the chart without modifying seconds
@@ -552,45 +550,20 @@
                         name: item.updated_at,
                         value: [item.updated_at, item[dataKey]]
                     }));
-<<<<<<< Updated upstream
 
                     // Process data to exclude nulls for gaps over the interval
                     let filledData = fillMissingData(chartData, 5); // 5-minute interval
 
-=======
-    
-                    // Fill missing data with nulls to break the line
-                    let filledData = fillMissingData(chartData, 1); // 1-minute interval
+                    // Calculate the min and max values from the data for the Y-axis range
+                    const values = filledData.map(item => item.value[1]).filter(value => value !== null);
+                    const minValue = Math.min(...values);
+                    const maxValue = Math.max(...values);
 
-                    // Extract U1 values from the data
-                    let freqValues = data.map(item => item.F); 
-                    let u1Values = data.map(item => item.U1);
-                    let u2Values = data.map(item => item.U2);
-                    let u3Values = data.map(item => item.U3);
-                    let u12Values = data.map(item => item.U12);
-                    let u23Values = data.map(item => item.U23);
-                    let u31Values = data.map(item => item.U31);
+                    // Add a margin of 10% to both min and max for better visualization
+                    const margin = (maxValue - minValue) * 0.1; 
+                    const yAxisMin = Math.floor(minValue - margin);  // Round to nearest integer
+                    const yAxisMax = Math.ceil(maxValue + margin);   // Round to nearest integer
 
-                    // Find the highest U1 value
-                    let highestF = Math.max(...freqValues);
-                    let highestU1 = Math.max(...u1Values);
-                    let highestU2 = Math.max(...u2Values);
-                    let highestU3 = Math.max(...u3Values);
-                    let highestU12 = Math.max(...u12Values);
-                    let highestU23 = Math.max(...u23Values);
-                    let highestU31 = Math.max(...u31Values);
-
-                    document.getElementById('highestFValue').textContent = highestF + ' Hz';
-                    document.getElementById('highestU1Value').textContent = highestU1 + ' V';
-                    document.getElementById('highestU2Value').textContent = highestU2 + ' V';
-                    document.getElementById('highestU3Value').textContent = highestU3 + ' V';
-                    document.getElementById('highestU12Value').textContent = highestU12 + ' V';
-                    document.getElementById('highestU23Value').textContent = highestU23 + ' V';
-                    document.getElementById('highestU31Value').textContent = highestU31 + ' V';
-
-                    // console.log("Highest U1 value:", highestU1);
-    
->>>>>>> Stashed changes
                     var option = {
                         title: {
                             text: titleText
@@ -602,8 +575,7 @@
                                 let date = new Date(params.name);
                                 return (
                                     date.getHours().toString().padStart(2, '0') + ':' +
-                                    date.getMinutes().toString().padStart(2, '0') + ':' +
-                                    date.getSeconds().toString().padStart(2, '0') +
+                                    date.getMinutes().toString().padStart(2, '0') +
                                     ' : ' + (params.value[1] !== null ? params.value[1] + ' ' + unit : 'No Data')
                                 );
                             },
@@ -616,8 +588,8 @@
                             splitLine: {
                                 show: false
                             },
-                            min: new Date(new Date().setHours(0, 0, 0, 0)).toISOString(),
-                            max: new Date(new Date().setHours(23, 59, 59, 999)).toISOString()
+                            min: new Date(selectedDate.setHours(0, 0, 0, 0)), // Start of the selected date
+                            max: new Date(selectedDate.setHours(23, 59, 59, 999)) // End of the selected date
                         },
                         yAxis: {
                             type: 'value',
@@ -625,7 +597,9 @@
                             splitLine: {
                                 show: false
                             },
-                            name: yAxisName
+                            name: yAxisName,
+                            min: yAxisMin, // Set dynamic min value, rounded
+                            max: yAxisMax  // Set dynamic max value, rounded
                         },
 
                         dataZoom: [
@@ -658,19 +632,52 @@
             window.addEventListener('resize', myChart.resize);
         }
 
-        // Render the charts without modifying timestamps
-        renderChart('F', 'Frequency Over Time', 'Frequency (Hz)', 'F', 'Hz');
-        renderChart('U1', 'U1 Over Time', 'Voltage (V)', 'U1', 'V');
-        renderChart('U2', 'U2 Over Time', 'Voltage (V)', 'U2', 'V');
-        renderChart('U3', 'U3 Over Time', 'Voltage (V)', 'U3', 'V');
-        renderChart('U12', 'U12 Over Time', 'Voltage (V)', 'U12', 'V');
-        renderChart('U23', 'U23 Over Time', 'Voltage (V)', 'U23', 'V');
-        renderChart('U31', 'U31 Over Time', 'Voltage (V)', 'U31', 'V');
-        renderChart('IL1', 'IL1 Over Time', 'Current (A)', 'IL1', 'A');
-        renderChart('IL2', 'IL2 Over Time', 'Current (A)', 'IL2', 'A');
-        renderChart('IL3', 'IL3 Over Time', 'Current (A)', 'IL3', 'A');
+        // Function to fill missing data points at regular intervals (5-minute)
+        function fillMissingData(data, intervalMinutes) {
+            const filledData = [];
+            const intervalMillis = intervalMinutes * 60 * 1000; // Convert minutes to milliseconds
+    
+            // Round the first data point's timestamp
+            let currentTime = roundToNearestInterval(new Date(data[0].name), intervalMinutes).getTime();
+            filledData.push({
+                name: new Date(currentTime).toISOString(),
+                value: [new Date(currentTime).toISOString(), data[0].value[1]] // Use original value
+            });
+    
+            // Loop through the data and fill missing intervals
+            for (let i = 1; i < data.length; i++) {
+                let nextTime = roundToNearestInterval(new Date(data[i].name), intervalMinutes).getTime();
+    
+                // Add missing intervals between data points
+                while (nextTime - currentTime > intervalMillis) {
+                    currentTime += intervalMillis; // Increment by 5-minute intervals
+                    filledData.push({
+                        name: new Date(currentTime).toISOString(),
+                        value: [new Date(currentTime).toISOString(), null] // Empty data point
+                    });
+                }
+    
+                // Add the current data point
+                filledData.push({
+                    name: new Date(nextTime).toISOString(),
+                    value: [new Date(nextTime).toISOString(), data[i].value[1]]
+                });
+                currentTime = nextTime;
+            }
+    
+            return filledData;
+        }
+    
+        // Helper function to round timestamp to nearest interval
+        function roundToNearestInterval(date, intervalMinutes) {
+            const intervalMillis = intervalMinutes * 60 * 1000;
+            const roundedMillis = Math.round(date.getTime() / intervalMillis) * intervalMillis;
+            return new Date(roundedMillis);
+        }
+    
+        // Initial chart render for the current date (optional)
+        renderChartsForSelectedDate(new Date());
     </script>
-
 
     {{-- Energy --}}
     <script>
@@ -722,21 +729,6 @@
         myChart.setOption(option);
 
     </script>
-
-    {{-- Calendar --}}
-    <script>
-        // Initialize Flatpickr with inline option enabled
-        flatpickr("#datepicker", {
-            inline: true,           // Enable inline display
-            onOpen: function() {     // Trigger animation on open
-            document.querySelector(".flatpickr-calendar").classList.add("animate");
-            },
-            onClose: function() {    // Reset animation when closed
-            document.querySelector(".flatpickr-calendar").classList.remove("animate");
-            }
-        });
-    </script>
-
 
 </div>
 @endsection
