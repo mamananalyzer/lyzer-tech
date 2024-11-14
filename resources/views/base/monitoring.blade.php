@@ -4,6 +4,10 @@
 
 @section('link')
     <script src="vendor/echarts.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 @endsection
 
 {{-- @section('zone-link')
@@ -35,16 +39,62 @@
 <div class="flex-grow-1 container-p-y container-fluid">
 
     <div class="row mb-4 justify-content-center">
-        <div class="col-lg-10 col-md-12">
-            <div class="card text-center">
-                <div class="card-header py-3">
-                    <ul class="nav nav-pills" role="tablist" id="tabList"></ul>
+        <div class="col-lg-8 col-md-12">
+            <div class="card text-left">
+                <div class="row">
+                    <div class="col-lg-9 px-2">
+                        <div class="card-header py-3">
+                            <div class="row">
+                                <div class="col-lg-4 pt-1">
+                                    <h4>Real-time</h4>
+                                </div>
+                                <div class="col-lg-8">
+                                    <ul class="nav nav-pills" role="tablist" id="tabList"></ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content" id="tabContent"></div>
+                    </div>
+                    <div class="col-lg-3 px-2 mt-4">
+                        <div class="" id="datepicker">
+
+                        </div>
+                    </div>
                 </div>
-                <div class="tab-content" id="tabContent"></div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+            <div class="card text-left">
+                <div class="card-header py-3">
+                    <div class="row">
+                        <div class="col-lg-4 pt-1">
+                            <h4>Energy</h4>
+                        </div>
+                        <div class="col-lg-8 card card-border-shadow-primary h-100">
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="card">Today</h5>
+                                </div>
+                                <div class="col">
+                                    <h5 class="card">Week</h5>
+                                </div>
+                                <div class="col">
+                                    <h5 class="card">Month</h5>
+                                </div>
+                                <div class="col">
+                                    <h5 class="card">Year</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col" id="energy" style="width: 60vw; height: 50vh;"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    
+
     <script>
         // Define your tabs here
         const tabs = [
@@ -60,17 +110,17 @@
             { id: 'IL3', label: 'I3' },
             // Add more tabs as needed
         ];
-    
+
         const tabList = document.getElementById('tabList');
         const tabContent = document.getElementById('tabContent');
-    
+
         // Loop to create tabs and corresponding content panes
         tabs.forEach((tab, index) => {
             // Create <li> wrapper
             const listItem = document.createElement('li');
             listItem.className = 'nav-item';
             listItem.role = 'presentation';
-    
+
             // Create tab button
             const tabButton = document.createElement('button');
             tabButton.type = 'button';
@@ -78,23 +128,23 @@
             tabButton.setAttribute('data-bs-toggle', 'tab');
             tabButton.setAttribute('data-bs-target', `#navs-pills-${tab.id}`);
             tabButton.innerText = tab.label;
-    
+
             listItem.appendChild(tabButton); // Append button to <li>
             tabList.appendChild(listItem);   // Append <li> to the tab list
-    
+
             // Create content pane
             const contentPane = document.createElement('div');
             contentPane.className = `tab-pane fade ${index === 0 ? 'show active' : ''}`;
             contentPane.id = `navs-pills-${tab.id}`;
             contentPane.innerHTML = `
                 <div class="d-flex justify-content-center">
-                    <div id="${tab.id}" style="width: 75vw; height: 50vh;"></div>
+                    <div id="${tab.id}" style="width: 45vw; height: 50vh;"></div>
                 </div>
             `;
             tabContent.appendChild(contentPane); // Append pane to tab content
         });
     </script>
-    
+
 
     {{-- <div class="row mb-4 g-6 justify-content-center">
         <div class="col-lg-10 col-md-12 order-3 order-lg-4 mb-4 mb-lg-0">
@@ -166,35 +216,35 @@
     </div> --}}
 
     <script type="text/javascript">
-        // Helper function to add missing data points without adjusting time
+        // Helper function to add only available data points, skipping gaps
         function fillMissingData(data, intervalMinutes) {
             const filledData = [];
             const intervalMillis = intervalMinutes * 60 * 1000; // Convert minutes to milliseconds
-    
+
             for (let i = 0; i < data.length - 1; i++) {
                 filledData.push(data[i]);
-    
+
                 const currentTime = new Date(data[i].name).getTime();
                 const nextTime = new Date(data[i + 1].name).getTime();
-    
-                // If the gap between data points is greater than the interval, insert a null value
-                if (nextTime - currentTime > intervalMillis) {
-                    filledData.push({ name: data[i + 1].name, value: [data[i + 1].name, null] });
+
+                // Only push data points without inserting null values for gaps
+                if (nextTime - currentTime <= intervalMillis) {
+                    filledData.push(data[i + 1]);
                 }
             }
-    
+
             // Add the last data point
             filledData.push(data[data.length - 1]);
             return filledData;
         }
-    
+
         function renderChart(containerId, titleText, yAxisName, dataKey, unit) {
             var dom = document.getElementById(containerId);
             var myChart = echarts.init(dom, null, {
                 renderer: 'canvas',
                 useDirtyRect: false
             });
-    
+
             fetch('http://127.0.0.1:8000/api/v1/metering')
                 .then(response => response.json())
                 .then(data => {
@@ -203,10 +253,10 @@
                         name: item.updated_at,
                         value: [item.updated_at, item[dataKey]]
                     }));
-    
-                    // Fill missing data with nulls to break the line
-                    let filledData = fillMissingData(chartData, 1); // 1-minute interval
-    
+
+                    // Process data to exclude nulls for gaps over the interval
+                    let filledData = fillMissingData(chartData, 5); // 5-minute interval
+
                     var option = {
                         title: {
                             text: titleText
@@ -243,39 +293,37 @@
                             },
                             name: yAxisName
                         },
-    
+
                         dataZoom: [
                             {
                                 type: 'inside',
                                 start: 0,
-                                end: 100,
-                                connectNulls: true // Smooth out the mini-chart
+                                end: 100
                             },
                             {
                                 start: 0,
-                                end: 100,
-                                connectNulls: true
+                                end: 100
                             }
                         ],
-    
+
                         series: [
                             {
                                 name: titleText,
                                 type: 'line',
                                 showSymbol: true,
-                                connectNulls: false, // Show gaps in main chart
+                                connectNulls: false, // Do not connect gaps, show breaks instead
                                 data: filledData
                             }
                         ]
                     };
-    
+
                     myChart.setOption(option);
                 })
                 .catch(error => console.error('Error fetching data:', error));
-    
+
             window.addEventListener('resize', myChart.resize);
         }
-    
+
         // Render the charts without modifying timestamps
         renderChart('F', 'Frequency Over Time', 'Frequency (Hz)', 'F', 'Hz');
         renderChart('U1', 'U1 Over Time', 'Voltage (V)', 'U1', 'V');
@@ -287,6 +335,72 @@
         renderChart('IL1', 'IL1 Over Time', 'Current (A)', 'IL1', 'A');
         renderChart('IL2', 'IL2 Over Time', 'Current (A)', 'IL2', 'A');
         renderChart('IL3', 'IL3 Over Time', 'Current (A)', 'IL3', 'A');
+    </script>
+
+
+    {{-- Energy --}}
+    <script>
+        // Sample JSON data
+        var jsonData = [
+            { created_at: "2024-11-12T10:30:00Z", Ep_sum: 150 },
+            { created_at: "2024-11-12T14:30:00Z", Ep_sum: 200 },
+            { created_at: "2024-11-13T09:30:00Z", Ep_sum: 300 },
+            // Add more data as needed
+        ];
+
+        // Step 1: Define days of the week
+        var daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        var dataByDay = { 'Sun': 0, 'Mon': 0, 'Tue': 0, 'Wed': 0, 'Thu': 0, 'Fri': 0, 'Sat': 0 };
+
+        // Step 2: Group data by day of the week and sum Ep_sum for each day
+        jsonData.forEach(entry => {
+            const day = daysOfWeek[new Date(entry.created_at).getUTCDay()]; // Get day name
+            dataByDay[day] += entry.Ep_sum;
+        });
+
+        // Step 3: Prepare data array in the correct order for the chart
+        var activeEnergyByDay = daysOfWeek.map(day => dataByDay[day]);
+        var reactiveEnergyByDay = daysOfWeek.map(day => dataByDay[day]);
+
+        // Step 4: Configure the chart
+        var chartDom = document.getElementById('energy');
+        var myChart = echarts.init(chartDom);
+        var option = {
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: { type: 'shadow' }
+            },
+            legend: {},
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [{ type: 'category', data: daysOfWeek }],
+            yAxis: [{ type: 'value' }],
+            series: [
+                { name: 'Active Energy', type: 'bar', stack: 'Ad', emphasis: { focus: 'series' }, data: activeEnergyByDay },
+                { name: 'Reactive Energy', type: 'bar', stack: 'Ad', emphasis: { focus: 'series' }, data: reactiveEnergyByDay },
+            ]
+        };
+
+        myChart.setOption(option);
+
+    </script>
+
+    {{-- Calendar --}}
+    <script>
+        // Initialize Flatpickr with inline option enabled
+        flatpickr("#datepicker", {
+            inline: true,           // Enable inline display
+            onOpen: function() {     // Trigger animation on open
+            document.querySelector(".flatpickr-calendar").classList.add("animate");
+            },
+            onClose: function() {    // Reset animation when closed
+            document.querySelector(".flatpickr-calendar").classList.remove("animate");
+            }
+        });
     </script>
 
 
