@@ -38,6 +38,7 @@
 @section('content')
 <div class="flex-grow-1 container-p-y container-fluid">
 
+<<<<<<< Updated upstream
     <div class="row mb-4 justify-content-center">
         <div class="col-lg-8 col-md-12">
             <div class="card text-left">
@@ -90,12 +91,25 @@
                     <div class="row">
                         <div class="col" id="energy" style="width: 60vw; height: 50vh;"></div>
                     </div>
+=======
+    {{-- <div class="row mb-4 justify-content-center">
+        <div class="col-lg-10 col-md-12">
+            <div class="card text-center">
+                <div class="card-header py-3">
+                    <ul class="nav nav-pills" role="tablist" id="tabList"></ul>
+>>>>>>> Stashed changes
                 </div>
             </div>
         </div>
+<<<<<<< Updated upstream
     </div>
 
     <script>
+=======
+    </div> --}}
+    
+    {{-- <script>
+>>>>>>> Stashed changes
         // Define your tabs here
         const tabs = [
             { id: 'F', label: 'Freq' },
@@ -143,10 +157,15 @@
             `;
             tabContent.appendChild(contentPane); // Append pane to tab content
         });
+<<<<<<< Updated upstream
     </script>
 
+=======
+    </script> --}}
+    
+>>>>>>> Stashed changes
 
-    {{-- <div class="row mb-4 g-6 justify-content-center">
+    <div class="row mb-4 g-6 justify-content-center">
         <div class="col-lg-10 col-md-12 order-3 order-lg-4 mb-4 mb-lg-0">
             <div class="card text-center">
                 <div class="card-header py-3">
@@ -170,26 +189,306 @@
                         <div class="d-flex justify-content-center">
                             <div id="F" style="width: 75vw; height: 50vh;"></div>
                         </div>
+                        <div class="row mt-4 justify-content-center">
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card card-border-shadow-primary h-100">
+                                  <div class="card-body">
+                                    <div class="d-flex align-items-center mb-2">
+                                      <div class="avatar me-4">
+                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
+                                      </div>
+                                      <h5 class="mb-0">Highest Reading</h5>
+                                    </div>
+                                    <p class="mb-2" id="highestFValue">No data available</p>
+                                    <p class="mb-0">
+                                      <span class="text-heading fw-medium me-2">+18.2%</span>
+                                      <span class="text-muted">than last week</span>
+                                    </p>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card card-border-shadow-primary h-100">
+                                  <div class="card-body">
+                                    <div class="d-flex align-items-center mb-2">
+                                      <div class="avatar me-4">
+                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
+                                      </div>
+                                      <h5 class="mb-0">42</h5>
+                                    </div>
+                                    <p class="mb-2">On route vehicles</p>
+                                    <p class="mb-0">
+                                      <span class="text-heading fw-medium me-2">+18.2%</span>
+                                      <span class="text-muted">than last week</span>
+                                    </p>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card card-border-shadow-primary h-100">
+                                  <div class="card-body">
+                                    <div class="d-flex align-items-center mb-2">
+                                      <div class="avatar me-4">
+                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
+                                      </div>
+                                      <h5 class="mb-0">42</h5>
+                                    </div>
+                                    <p class="mb-2">On route vehicles</p>
+                                    <p class="mb-0">
+                                      <span class="text-heading fw-medium me-2">+18.2%</span>
+                                      <span class="text-muted">than last week</span>
+                                    </p>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card card-border-shadow-primary h-100">
+                                  <div class="card-body">
+                                    <div class="d-flex align-items-center mb-2">
+                                      <div class="avatar me-4">
+                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
+                                      </div>
+                                      <h5 class="mb-0">42</h5>
+                                    </div>
+                                    <p class="mb-2">On route vehicles</p>
+                                    <p class="mb-0">
+                                      <span class="text-heading fw-medium me-2">+18.2%</span>
+                                      <span class="text-muted">than last week</span>
+                                    </p>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="navs-pills-U1" role="tabpanel">
                         <div class="d-flex justify-content-center">
                             <div id="U1" style="width:75vw; height: 50vh;"></div>
+                        </div>
+                        <div class="row mt-4 justify-content-center">
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card card-border-shadow-primary h-100">
+                                  <div class="card-body">
+                                    <div class="d-flex align-items-center mb-2">
+                                      <div class="avatar me-4">
+                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
+                                      </div>
+                                      <h5 class="mb-0">Highest Reading</h5>
+                                    </div>
+                                    <p class="mb-2" id="highestU1Value">No data available</p>
+                                    <p class="mb-0">
+                                      <span class="text-heading fw-medium me-2">+18.2%</span>
+                                      <span class="text-muted">than last week</span>
+                                    </p>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card card-border-shadow-primary h-100">
+                                  <div class="card-body">
+                                    <div class="d-flex align-items-center mb-2">
+                                      <div class="avatar me-4">
+                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
+                                      </div>
+                                      <h5 class="mb-0">42</h5>
+                                    </div>
+                                    <p class="mb-2">On route vehicles</p>
+                                    <p class="mb-0">
+                                      <span class="text-heading fw-medium me-2">+18.2%</span>
+                                      <span class="text-muted">than last week</span>
+                                    </p>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card card-border-shadow-primary h-100">
+                                  <div class="card-body">
+                                    <div class="d-flex align-items-center mb-2">
+                                      <div class="avatar me-4">
+                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
+                                      </div>
+                                      <h5 class="mb-0">42</h5>
+                                    </div>
+                                    <p class="mb-2">On route vehicles</p>
+                                    <p class="mb-0">
+                                      <span class="text-heading fw-medium me-2">+18.2%</span>
+                                      <span class="text-muted">than last week</span>
+                                    </p>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card card-border-shadow-primary h-100">
+                                  <div class="card-body">
+                                    <div class="d-flex align-items-center mb-2">
+                                      <div class="avatar me-4">
+                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
+                                      </div>
+                                      <h5 class="mb-0">42</h5>
+                                    </div>
+                                    <p class="mb-2">On route vehicles</p>
+                                    <p class="mb-0">
+                                      <span class="text-heading fw-medium me-2">+18.2%</span>
+                                      <span class="text-muted">than last week</span>
+                                    </p>
+                                  </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="navs-pills-U2" role="tabpanel">
                         <div class="d-flex justify-content-center">
                             <div id="U2" style="width:75vw; height: 50vh;"></div>
                         </div>
+                        <div class="row mt-4 justify-content-center">
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card card-border-shadow-primary h-100">
+                                  <div class="card-body">
+                                    <div class="d-flex align-items-center mb-2">
+                                      <div class="avatar me-4">
+                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
+                                      </div>
+                                      <h5 class="mb-0">Highest Reading</h5>
+                                    </div>
+                                    <p class="mb-2" id="highestU2Value">No data available</p>
+                                    <p class="mb-0">
+                                      <span class="text-heading fw-medium me-2">+18.2%</span>
+                                      <span class="text-muted">than last week</span>
+                                    </p>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card card-border-shadow-primary h-100">
+                                  <div class="card-body">
+                                    <div class="d-flex align-items-center mb-2">
+                                      <div class="avatar me-4">
+                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
+                                      </div>
+                                      <h5 class="mb-0">42</h5>
+                                    </div>
+                                    <p class="mb-2">On route vehicles</p>
+                                    <p class="mb-0">
+                                      <span class="text-heading fw-medium me-2">+18.2%</span>
+                                      <span class="text-muted">than last week</span>
+                                    </p>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card card-border-shadow-primary h-100">
+                                  <div class="card-body">
+                                    <div class="d-flex align-items-center mb-2">
+                                      <div class="avatar me-4">
+                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
+                                      </div>
+                                      <h5 class="mb-0">42</h5>
+                                    </div>
+                                    <p class="mb-2">On route vehicles</p>
+                                    <p class="mb-0">
+                                      <span class="text-heading fw-medium me-2">+18.2%</span>
+                                      <span class="text-muted">than last week</span>
+                                    </p>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card card-border-shadow-primary h-100">
+                                  <div class="card-body">
+                                    <div class="d-flex align-items-center mb-2">
+                                      <div class="avatar me-4">
+                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
+                                      </div>
+                                      <h5 class="mb-0">42</h5>
+                                    </div>
+                                    <p class="mb-2">On route vehicles</p>
+                                    <p class="mb-0">
+                                      <span class="text-heading fw-medium me-2">+18.2%</span>
+                                      <span class="text-muted">than last week</span>
+                                    </p>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="navs-pills-U3" role="tabpanel">
                         <div class="d-flex justify-content-center">
                             <div id="U3" style="width:75vw; height: 50vh;"></div>
                         </div>
+                        <div class="row mt-4 justify-content-center">
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card card-border-shadow-primary h-100">
+                                  <div class="card-body">
+                                    <div class="d-flex align-items-center mb-2">
+                                      <div class="avatar me-4">
+                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
+                                      </div>
+                                      <h5 class="mb-0">Highest Reading</h5>
+                                    </div>
+                                    <p class="mb-2" id="highestU3Value">No data available</p>
+                                    <p class="mb-0">
+                                      <span class="text-heading fw-medium me-2">+18.2%</span>
+                                      <span class="text-muted">than last week</span>
+                                    </p>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card card-border-shadow-primary h-100">
+                                  <div class="card-body">
+                                    <div class="d-flex align-items-center mb-2">
+                                      <div class="avatar me-4">
+                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
+                                      </div>
+                                      <h5 class="mb-0">42</h5>
+                                    </div>
+                                    <p class="mb-2">On route vehicles</p>
+                                    <p class="mb-0">
+                                      <span class="text-heading fw-medium me-2">+18.2%</span>
+                                      <span class="text-muted">than last week</span>
+                                    </p>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card card-border-shadow-primary h-100">
+                                  <div class="card-body">
+                                    <div class="d-flex align-items-center mb-2">
+                                      <div class="avatar me-4">
+                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
+                                      </div>
+                                      <h5 class="mb-0">42</h5>
+                                    </div>
+                                    <p class="mb-2">On route vehicles</p>
+                                    <p class="mb-0">
+                                      <span class="text-heading fw-medium me-2">+18.2%</span>
+                                      <span class="text-muted">than last week</span>
+                                    </p>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card card-border-shadow-primary h-100">
+                                  <div class="card-body">
+                                    <div class="d-flex align-items-center mb-2">
+                                      <div class="avatar me-4">
+                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
+                                      </div>
+                                      <h5 class="mb-0">42</h5>
+                                    </div>
+                                    <p class="mb-2">On route vehicles</p>
+                                    <p class="mb-0">
+                                      <span class="text-heading fw-medium me-2">+18.2%</span>
+                                      <span class="text-muted">than last week</span>
+                                    </p>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     {{-- <div class="row mb-12 g-6">
         <div class="col-lg-3 col-md-6">
@@ -253,10 +552,45 @@
                         name: item.updated_at,
                         value: [item.updated_at, item[dataKey]]
                     }));
+<<<<<<< Updated upstream
 
                     // Process data to exclude nulls for gaps over the interval
                     let filledData = fillMissingData(chartData, 5); // 5-minute interval
 
+=======
+    
+                    // Fill missing data with nulls to break the line
+                    let filledData = fillMissingData(chartData, 1); // 1-minute interval
+
+                    // Extract U1 values from the data
+                    let freqValues = data.map(item => item.F); 
+                    let u1Values = data.map(item => item.U1);
+                    let u2Values = data.map(item => item.U2);
+                    let u3Values = data.map(item => item.U3);
+                    let u12Values = data.map(item => item.U12);
+                    let u23Values = data.map(item => item.U23);
+                    let u31Values = data.map(item => item.U31);
+
+                    // Find the highest U1 value
+                    let highestF = Math.max(...freqValues);
+                    let highestU1 = Math.max(...u1Values);
+                    let highestU2 = Math.max(...u2Values);
+                    let highestU3 = Math.max(...u3Values);
+                    let highestU12 = Math.max(...u12Values);
+                    let highestU23 = Math.max(...u23Values);
+                    let highestU31 = Math.max(...u31Values);
+
+                    document.getElementById('highestFValue').textContent = highestF + ' Hz';
+                    document.getElementById('highestU1Value').textContent = highestU1 + ' V';
+                    document.getElementById('highestU2Value').textContent = highestU2 + ' V';
+                    document.getElementById('highestU3Value').textContent = highestU3 + ' V';
+                    document.getElementById('highestU12Value').textContent = highestU12 + ' V';
+                    document.getElementById('highestU23Value').textContent = highestU23 + ' V';
+                    document.getElementById('highestU31Value').textContent = highestU31 + ' V';
+
+                    // console.log("Highest U1 value:", highestU1);
+    
+>>>>>>> Stashed changes
                     var option = {
                         title: {
                             text: titleText
