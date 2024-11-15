@@ -7,7 +7,8 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
+    <link rel="stylesheet" href="sneat/assets/vendor/libs/flatpickr/flatpickr.css">
+    <link rel="stylesheet" href="sneat/assets/vendor/css/pages/app-calendar.css">
 
 @endsection
 
@@ -37,11 +38,12 @@
 @endsection --}}
 
 @section('content')
+
 <div class="flex-grow-1 container-p-y container-fluid">
 
     <div class="row mb-4 justify-content-center">
         <div class="col-lg-8 col-md-12">
-            <div class="card text-left">
+            <div class="card card-border-shadow-primary h-100 text-left">
                 <div class="row">
                     <div class="col-lg-9 px-2">
                         <div class="card-header py-3">
@@ -63,7 +65,7 @@
             </div>
         </div>
         <div class="col-lg-4 col-md-12">
-            <div class="card text-left">
+            <div class="card card-border-shadow-primary h-100 text-left">
                 <div class="card-header py-3">
                     <div class="row">
                         <div class="col-lg-4 pt-1">
@@ -495,16 +497,14 @@
     </div> --}}
 
 
-
     {{-- Real-time --}}
     <script>
         // Initialize Flatpickr with inline option enabled
         flatpickr("#datepicker", {
             inline: true,
-            disableMobile: true, // Disable mobile default date picker
-            weekNumbers: true,   // Show week numbers for a more complete calendar view
+            disableMobile: true,
+            locale: { firstDayOfWeek: 1 }, // Sets Monday as the first day of the week
             onChange: function(selectedDates, dateStr, instance) {
-                // Handle the date selection change
                 const selectedDate = new Date(dateStr);
                 renderChartsForSelectedDate(selectedDate);
             },
@@ -516,11 +516,10 @@
             }
         });
 
-    
         function renderChartsForSelectedDate(selectedDate) {
             // Format selected date to YYYY-MM-DD
             const formattedDate = selectedDate.toISOString().split('T')[0];
-    
+
             // Render the charts for the selected date
             renderChart('F', 'Frequency Over Time', 'Frequency (Hz)', 'F', 'Hz', selectedDate);
             renderChart('U1', 'U1 Over Time', 'Voltage (V)', 'U1', 'V', selectedDate);
@@ -533,7 +532,7 @@
             renderChart('IL2', 'IL2 Over Time', 'Current (A)', 'IL2', 'A', selectedDate);
             renderChart('IL3', 'IL3 Over Time', 'Current (A)', 'IL3', 'A', selectedDate);
         }
-    
+
         function renderChart(containerId, titleText, yAxisName, dataKey, unit, selectedDate) {
             var dom = document.getElementById(containerId);
             var myChart = echarts.init(dom, null, {
@@ -560,9 +559,9 @@
                     const maxValue = Math.max(...values);
 
                     // Add a margin of 10% to both min and max for better visualization
-                    const margin = (maxValue - minValue) * 0.1; 
-                    const yAxisMin = Math.floor(minValue - margin);  // Round to nearest integer
-                    const yAxisMax = Math.ceil(maxValue + margin);   // Round to nearest integer
+                    const margin = (maxValue - minValue) * 0.01;
+                    const yAxisMin = (minValue - margin).toFixed(2); // Keep two decimal places
+                    const yAxisMax = (maxValue + margin).toFixed(2); // Keep two decimal places
 
                     var option = {
                         title: {
@@ -575,7 +574,8 @@
                                 let date = new Date(params.name);
                                 return (
                                     date.getHours().toString().padStart(2, '0') + ':' +
-                                    date.getMinutes().toString().padStart(2, '0') +
+                                    date.getMinutes().toString().padStart(2, '0') + ' ' +
+                                    titleText +
                                     ' : ' + (params.value[1] !== null ? params.value[1] + ' ' + unit : 'No Data')
                                 );
                             },
@@ -636,18 +636,18 @@
         function fillMissingData(data, intervalMinutes) {
             const filledData = [];
             const intervalMillis = intervalMinutes * 60 * 1000; // Convert minutes to milliseconds
-    
+
             // Round the first data point's timestamp
             let currentTime = roundToNearestInterval(new Date(data[0].name), intervalMinutes).getTime();
             filledData.push({
                 name: new Date(currentTime).toISOString(),
                 value: [new Date(currentTime).toISOString(), data[0].value[1]] // Use original value
             });
-    
+
             // Loop through the data and fill missing intervals
             for (let i = 1; i < data.length; i++) {
                 let nextTime = roundToNearestInterval(new Date(data[i].name), intervalMinutes).getTime();
-    
+
                 // Add missing intervals between data points
                 while (nextTime - currentTime > intervalMillis) {
                     currentTime += intervalMillis; // Increment by 5-minute intervals
@@ -656,7 +656,7 @@
                         value: [new Date(currentTime).toISOString(), null] // Empty data point
                     });
                 }
-    
+
                 // Add the current data point
                 filledData.push({
                     name: new Date(nextTime).toISOString(),
@@ -664,71 +664,110 @@
                 });
                 currentTime = nextTime;
             }
-    
+
             return filledData;
         }
-    
+
         // Helper function to round timestamp to nearest interval
         function roundToNearestInterval(date, intervalMinutes) {
             const intervalMillis = intervalMinutes * 60 * 1000;
             const roundedMillis = Math.round(date.getTime() / intervalMillis) * intervalMillis;
             return new Date(roundedMillis);
         }
-    
+
         // Initial chart render for the current date (optional)
         renderChartsForSelectedDate(new Date());
     </script>
 
     {{-- Energy --}}
     <script>
-        // Sample JSON data
-        var jsonData = [
-            { created_at: "2024-11-12T10:30:00Z", Ep_sum: 150 },
-            { created_at: "2024-11-12T14:30:00Z", Ep_sum: 200 },
-            { created_at: "2024-11-13T09:30:00Z", Ep_sum: 300 },
-            // Add more data as needed
-        ];
+        // Define days of the week and initialize data structure
+        const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const dataByDay = { 'Sun': { start: { Ep_sum: null, Eq_sum: null }, end: { Ep_sum: null, Eq_sum: null }, difference: { Ep_sum: 0, Eq_sum: 0 } },
+                            'Mon': { start: { Ep_sum: null, Eq_sum: null }, end: { Ep_sum: null, Eq_sum: null }, difference: { Ep_sum: 0, Eq_sum: 0 } },
+                            'Tue': { start: { Ep_sum: null, Eq_sum: null }, end: { Ep_sum: null, Eq_sum: null }, difference: { Ep_sum: 0, Eq_sum: 0 } },
+                            'Wed': { start: { Ep_sum: null, Eq_sum: null }, end: { Ep_sum: null, Eq_sum: null }, difference: { Ep_sum: 0, Eq_sum: 0 } },
+                            'Thu': { start: { Ep_sum: null, Eq_sum: null }, end: { Ep_sum: null, Eq_sum: null }, difference: { Ep_sum: 0, Eq_sum: 0 } },
+                            'Fri': { start: { Ep_sum: null, Eq_sum: null }, end: { Ep_sum: null, Eq_sum: null }, difference: { Ep_sum: 0, Eq_sum: 0 } },
+                            'Sat': { start: { Ep_sum: null, Eq_sum: null }, end: { Ep_sum: null, Eq_sum: null }, difference: { Ep_sum: 0, Eq_sum: 0 } } };
 
-        // Step 1: Define days of the week
-        var daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-        var dataByDay = { 'Sun': 0, 'Mon': 0, 'Tue': 0, 'Wed': 0, 'Thu': 0, 'Fri': 0, 'Sat': 0 };
+        // Helper function to check if a date is in the current week
+        function isInCurrentWeek(date) {
+            const today = new Date();
+            const dayOfWeek = today.getUTCDay();
+            const weekStart = new Date(today);
+            weekStart.setUTCDate(today.getUTCDate() - dayOfWeek);
+            const weekEnd = new Date(weekStart);
+            weekEnd.setUTCDate(weekStart.getUTCDate() + 6);
+            return date >= weekStart && date <= weekEnd;
+        }
 
-        // Step 2: Group data by day of the week and sum Ep_sum for each day
-        jsonData.forEach(entry => {
-            const day = daysOfWeek[new Date(entry.created_at).getUTCDay()]; // Get day name
-            dataByDay[day] += entry.Ep_sum;
-        });
+        // Fetch data from the API and process it
+        fetch('http://127.0.0.1:8000/api/v1/metering')
+            .then(response => response.json())
+            .then(jsonData => {
+                // Step 1: Process data to calculate start and end values for each day in the current week
+                jsonData.forEach(entry => {
+                    const date = new Date(entry.created_at);
+                    if (isInCurrentWeek(date)) {
+                        const day = daysOfWeek[date.getUTCDay()];
+                        // For Ep_sum and Eq_sum
+                        if (dataByDay[day].start.Ep_sum === null) {
+                            dataByDay[day].start.Ep_sum = entry.Ep_sum; // First value of Ep_sum for the day
+                        }
+                        if (dataByDay[day].start.Eq_sum === null) {
+                            dataByDay[day].start.Eq_sum = entry.Eq_sum; // First value of Eq_sum for the day
+                        }
+                        dataByDay[day].end.Ep_sum = entry.Ep_sum; // Last value of Ep_sum for the day
+                        dataByDay[day].end.Eq_sum = entry.Eq_sum; // Last value of Eq_sum for the day
+                    }
+                });
 
-        // Step 3: Prepare data array in the correct order for the chart
-        var activeEnergyByDay = daysOfWeek.map(day => dataByDay[day]);
-        var reactiveEnergyByDay = daysOfWeek.map(day => dataByDay[day]);
+                // Step 2: Calculate differences for each day and format to 2 decimal places
+                daysOfWeek.forEach(day => {
+                    const { start, end } = dataByDay[day];
+                    if (start.Ep_sum !== null && end.Ep_sum !== null) {
+                        dataByDay[day].difference.Ep_sum = (end.Ep_sum - start.Ep_sum).toFixed(2); // Calculate Ep_sum difference
+                    }
+                    if (start.Eq_sum !== null && end.Eq_sum !== null) {
+                        dataByDay[day].difference.Eq_sum = (end.Eq_sum - start.Eq_sum).toFixed(2); // Calculate Eq_sum difference
+                    }
+                });
 
-        // Step 4: Configure the chart
-        var chartDom = document.getElementById('energy');
-        var myChart = echarts.init(chartDom);
-        var option = {
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: { type: 'shadow' }
-            },
-            legend: {},
-            grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
-            },
-            xAxis: [{ type: 'category', data: daysOfWeek }],
-            yAxis: [{ type: 'value' }],
-            series: [
-                { name: 'Active Energy', type: 'bar', stack: 'Ad', emphasis: { focus: 'series' }, data: activeEnergyByDay },
-                { name: 'Reactive Energy', type: 'bar', stack: 'Ad', emphasis: { focus: 'series' }, data: reactiveEnergyByDay },
-            ]
-        };
+                // Step 3: Prepare data for the chart
+                const activeEnergyByDay = daysOfWeek.map(day => parseFloat(dataByDay[day].difference.Ep_sum));
+                const reactiveEnergyByDay = daysOfWeek.map(day => parseFloat(dataByDay[day].difference.Eq_sum));
 
-        myChart.setOption(option);
+                // Step 4: Configure and render the chart
+                const chartDom = document.getElementById('energy');
+                const myChart = echarts.init(chartDom);
+                const option = {
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: { type: 'shadow' }
+                    },
+                    legend: {},
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    xAxis: [{ type: 'category', data: daysOfWeek }],
+                    yAxis: [{ type: 'value' }],
+                    series: [
+                        { name: 'Active Energy', type: 'bar', stack: 'Ad', emphasis: { focus: 'series' }, data: activeEnergyByDay },
+                        { name: 'Reactive Energy', type: 'bar', stack: 'Ad', emphasis: { focus: 'series' }, data: reactiveEnergyByDay },
+                    ]
+                };
 
+                myChart.setOption(option);
+            })
+            .catch(error => console.error('Error fetching data:', error));
     </script>
+
+
+
 
 </div>
 @endsection
