@@ -45,7 +45,7 @@
                           </label>
                       </div>
                       <div class="dt-buttons my-1">
-                          <button class="dt-button add-new btn btn-primary mx-3" tabindex="0" aria-controls="DataTable_Table_0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddCustomer">
+                          <button class="dt-button add-new btn btn-primary mx-3" tabindex="0" aria-controls="DataTable_Table_0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddProduct">
                               <span><i class="bx bx-plus me-0 me-sm-1"></i>
                                   <span class="d-none d-sm-inline-block">Add New Product</span>
                               </span>
@@ -154,7 +154,7 @@
   </div>
 
   <!-- Offcanvas to add new customer -->
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddCustomer" aria-labelledby="offcanvasAddUserLabel">
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddProduct" aria-labelledby="offcanvasAddUserLabel">
       <div class="offcanvas-header">
       <h5 id="offcanvasAddUserLabel" class="offcanvas-title">Add Customer</h5>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>

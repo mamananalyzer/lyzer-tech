@@ -10,6 +10,7 @@ use App\Models\Quotation;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 use DataTables;
 
 class CRMController extends Controller
@@ -30,7 +31,7 @@ class CRMController extends Controller
             ->get();
         $totaltask = Quotation::count();
 
-        
+
         //Customer List
         $custom = Customer::all();
         // $customers = Customer::all();
@@ -57,16 +58,16 @@ class CRMController extends Controller
             ->editColumn('created_at', function ($customer) {
                 return $customer->created_at->format('Y-m-d H:i');
             })
-            ->addColumn('action', function($customer) {
-                $showUrl = route('customers.show', $customer->id_customer); 
-                $editUrl = route('customers.edit', $customer->id_customer); 
-                $deleteUrl = route('customers.destroy', $customer->id_customer); 
+            ->addColumn('action', function ($customer) {
+                $showUrl = route('customers.show', $customer->id_customer);
+                $editUrl = route('customers.edit', $customer->id_customer);
+                $deleteUrl = route('customers.destroy', $customer->id_customer);
                 return '
-                    <a href="'.$showUrl.'" class="btn btn-xs btn-primary">View</a>
-                    <a href="'.$editUrl.'" class="btn btn-xs btn-primary">Edit</a>
-                    <form action="'.$deleteUrl.'" method="POST" style="display: inline-block;">
-                        '.csrf_field().'
-                        '.method_field('DELETE').'
+                    <a href="' . $showUrl . '" class="btn btn-xs btn-primary">View</a>
+                    <a href="' . $editUrl . '" class="btn btn-xs btn-primary">Edit</a>
+                    <form action="' . $deleteUrl . '" method="POST" style="display: inline-block;">
+                        ' . csrf_field() . '
+                        ' . method_field('DELETE') . '
                         <button type="submit" class="btn btn-xs btn-danger" onclick="return confirm(\'Are you sure?\')">Delete</button>
                     </form>
                 ';
@@ -135,13 +136,13 @@ class CRMController extends Controller
 
         //$quotNumber
         $idNumberQuot = Quotation::latest('id_quotation')->value('id_quotation');
-        $idNumberQuot = str_pad($idNumberQuot+1, 3, '0', STR_PAD_LEFT);
+        $idNumberQuot = str_pad($idNumberQuot + 1, 3, '0', STR_PAD_LEFT);
         // Format the current date with Roman numerals for the month and last two digits of the year
         $romanMonth = intval(date('m'));
         $romanMonth = $romanMonth > 0 && $romanMonth < 13 ? $this->intToRoman($romanMonth) : '';
         $lastTwoDigitsOfYear = substr(date('Y'), -2);
         $quotNumber = $request->input('status') . $idNumberQuot . '/' . $romanMonth . '/' . $lastTwoDigitsOfYear . '/' . $request->input('sales');
-        
+
         //$detail
         // Assuming $selectedType contains the selected type
         $selectedTypeforDetail = $request->input('type');
@@ -157,13 +158,13 @@ class CRMController extends Controller
         // $price now contains the price for the selected type
 
         //$total
-        $total = $price*$request->input('qty');
-        
+        $total = $price * $request->input('qty');
+
         //$discount
         $discount = $request->input('discount', 90);
-        
+
         //$amount
-        $amount = $total-($total*$discount/100);
+        $amount = $total - ($total * $discount / 100);
 
         // Create a new User instance
         $quotation = Quotation::create([
@@ -182,7 +183,7 @@ class CRMController extends Controller
             'total' => $total,
             'discount' => $discount,
         ]);
-        
+
         $quotation->save();
 
         return redirect('/CRM')->with('success', 'Form submitted successfully!');
@@ -191,9 +192,58 @@ class CRMController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function customers_store(Request $request)
     {
-        //
+        // dd($request->all());
+
+        // Handle form submission logic here
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the allowed file types and size as needed
+            'area' => 'required|max:255',
+            'address' => 'required|max:255',
+            'phonenumber' => 'required|max:255',
+            'mobilephone' => 'required|max:255',
+            'company' => 'required|max:255',
+            'position' => 'required|max:255',
+        ]);
+               
+
+        $yearOfJoin = Carbon::now()->year;
+        $validatedData['id_customer'] = $yearOfJoin . 1234;
+        
+        // $validatedData['company'] = $request->input('company', "PT. LyZer-Tech");
+        $validatedData['status'] = $request->input('status', 1);
+
+        // Handle file upload
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $validatedData['image'] = $imagePath;
+        } else {
+            return redirect()->back()->withErrors(['image' => 'Image upload failed'])->withInput();
+        }
+        
+        // Create a new Customer instance
+        $customer = new Customer([
+            'id_customer' => $validatedData['id_customer'],
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'image' => $validatedData['image'],
+            'area' => $validatedData['area'],
+            'address' => $validatedData['address'],
+            'phonenumber' => $validatedData['phonenumber'],
+            'mobilephone' => $validatedData['mobilephone'],
+            'company' => $validatedData['company'],
+            'position' => $validatedData['position'],
+            'status' => $validatedData['status'],
+        ]);
+
+        // dd($user); // Dump and die
+
+        $customer->save();
+
+        return redirect('/CRM')->with('success', 'Form submitted successfully!');
     }
 
     /**

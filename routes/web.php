@@ -108,7 +108,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('Labs/data', [LabsController::class, 'getData'])->name('Labs.data');
     Route::get('/Labs/{id_user}/show', [LabsController::class, 'show'])->name('Labs.show');
     Route::post('/Labs.store', [LabsController::class, 'store'])->name('Labs.create');
-    Route::post('/quot.store', [LabsController::class, 'quot_store'])->name('quot.create');
     Route::get('/Labs/{id_user}/edit', [LabsController::class, 'edit'])->name('Labs.edit');
     Route::delete('/Labs/{id_user}', [LabsController::class, 'destroy'])->name('Labs.destroy');
     Route::get('/Labs/{id_user}/suspend', [LabsController::class, 'suspend'])->name('Labs.suspend');
@@ -124,7 +123,7 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/CRM', [CRMController::class, 'index']);
     // Route::get('customers/data', [CRMController::class, 'getData'])->name('customers.data');
     Route::get('/customers/{id_user}/show', [CRMController::class, 'show'])->name('customers.show');
-    // Route::post('/customers.store', [CRMController::class, 'store'])->name('customers.create');
+    Route::post('/customers.store', [CRMController::class, 'customers_store'])->name('customers.create');
     // Route::post('/quot.store', [CRMController::class, 'quot_store'])->name('quot.create');
     Route::get('/customers/{id_user}/edit', [CRMController::class, 'edit'])->name('customers.edit');
     Route::delete('/customers/{id_user}', [CRMController::class, 'destroy'])->name('customers.destroy');
