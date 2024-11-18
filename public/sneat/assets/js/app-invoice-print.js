@@ -1,1 +1,1 @@
-"use strict";window.print();
+window.print();

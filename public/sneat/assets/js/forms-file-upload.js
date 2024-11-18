@@ -1,4 +1,4 @@
-"use strict";!function(){var e=`<div class="dz-preview dz-file-preview">
+!function(){var e=`<div class="dz-preview dz-file-preview">
 <div class="dz-details">
   <div class="dz-thumbnail">
     <img data-dz-thumbnail>

@@ -15,6 +15,7 @@ use App\Http\Controllers\MotorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\QuickpinController;
+use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\ZerotestController;
 
 /*
@@ -28,14 +29,10 @@ use App\Http\Controllers\ZerotestController;
 |
 */
 
-Route::redirect('/', '/base');
-// Route::get('/base', function () {
-//     return view('base.index');
-// });
-// Route::get('/users', function () {
-//     return view('base.users');
-// });
+Route::get('/visitor', [VisitorController::class, 'index'])->name('index');
 
+
+Route::redirect('/', '/base');
 
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -132,7 +129,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/customers/{id_user}/edit', [CRMController::class, 'edit'])->name('customers.edit');
     Route::delete('/customers/{id_user}', [CRMController::class, 'destroy'])->name('customers.destroy');
     // Route::get('/customers/{id_user}/suspend', [CRMController::class, 'suspend'])->name('customers.suspend');
-    
+
     // Route::get('/monitoring', [MonitoringController::class, 'index']);
     Route::get('/monitoring/{id_user}/show', [MonitoringController::class, 'show'])->name('Monitoring.show');
     Route::post('/monitoring.store', [MonitoringController::class, 'store'])->name('Monitoring.create');
