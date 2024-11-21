@@ -98,7 +98,7 @@
                         // If the clicked element has a parent with class 'menu-sub', activate the parent too
                         if ($(element).parent().hasClass('sidebar-item')) {
                             activateSidebarItem($(element).parent().parent());
-                            
+
                             // Additionally, add 'open' class to the parent
                             $(element).parent().parent().addClass('open');
                         }
@@ -177,7 +177,7 @@
                             ['url' => '/belanja', 'icon' => 'bx bx-user', 'label' => 'Belanja'],
                             ['url' => '/CRM', 'icon' => 'bx bx-user', 'label' => 'CRM'],
                             ['url' => '/daily', 'icon' => 'bx bx-user', 'label' => 'Daily'],
-                            ['url' => '/HSE', 'icon' => 'bx bx-user', 'label' => 'HSE'],                        
+                            ['url' => '/HSE', 'icon' => 'bx bx-user', 'label' => 'HSE'],
                             ['url' => '/Labs', 'icon' => 'bx bx-user', 'label' => 'Labs'],
                             ['url' => '/monitoring', 'icon' => 'bx bx-user', 'label' => 'Monitoring'],
                             ['url' => '/motor', 'icon' => 'bx bx-user', 'label' => 'Motor'],
@@ -200,6 +200,10 @@
                             ['url' => '/users', 'icon' => 'bx bx-user', 'label' => 'Users'],
                         ],
                         6 => [
+                            ['url' => '/product', 'icon' => 'bx bx-user', 'label' => 'Product'],
+                        ],
+                        9 => [
+                            ['url' => '/CRM', 'icon' => 'bx bx-user', 'label' => 'CRM'],
                             ['url' => '/product', 'icon' => 'bx bx-user', 'label' => 'Product'],
                         ],
                         14 => [
@@ -494,7 +498,7 @@
                     </a>
                     </li> --}}
                   </ul>
-                  
+
                   <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
                     <a href="{{ url('/logout') }}" class="menu-link sidebar-link">
                       <i class="menu-icon tf-icons tf-icons bx bx-log-out"></i>
@@ -515,13 +519,13 @@
                       <i class="bx bx-menu bx-sm"></i>
                     </a>
                   </div>
-                  
-            
+
+
                   <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-            
-                    
-            
-                    
+
+
+
+
                     <!-- Search -->
                     <div class="navbar-nav align-items-center">
                       <div class="nav-item navbar-search-wrapper mb-0">
@@ -532,16 +536,16 @@
                       </div>
                     </div>
                     <!-- /Search -->
-                    
-            
-            
-                    
-            
+
+
+
+
+
                     <ul class="navbar-nav flex-row align-items-center ms-auto">
-                      
-            
-                      
-            
+
+
+
+
                       <!-- Language -->
                       <li class="nav-item dropdown-language dropdown me-2 me-xl-0">
                         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
@@ -571,7 +575,7 @@
                         </ul>
                       </li>
                       <!-- /Language -->
-            
+
                       <!-- Quick links  -->
                       {{-- <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown me-2 me-xl-0">
                         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
@@ -653,8 +657,8 @@
                         </div>
                       </li> --}}
                       <!-- Quick links -->
-            
-                      
+
+
                       <!-- Style Switcher -->
                       <li class="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
                         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
@@ -679,8 +683,8 @@
                         </ul>
                       </li>
                       <!-- / Style Switcher-->
-                      
-            
+
+
                       <!-- Notification -->
                       {{-- <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
                         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
@@ -981,19 +985,19 @@
                         </ul>
                       </li>
                       <!--/ User -->
-                      
-            
+
+
                     </ul>
                   </div>
-            
-                  
+
+
                   <!-- Search Small Screens -->
                   <div class="navbar-search-wrapper search-input-wrapper d-none">
                     <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input type="text" class="form-control search-input border-0 tt-input container-fluid" placeholder="Search..." aria-label="Search..." autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;"><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: &quot;Public Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; font-size: 15px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre><div class="tt-menu navbar-search-suggestion ps" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"><div class="tt-dataset tt-dataset-pages"></div><div class="tt-dataset tt-dataset-files"></div><div class="tt-dataset tt-dataset-members"></div><div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div></span>
                     <i class="bx bx-x bx-sm search-toggler cursor-pointer"></i>
                   </div>
-                  
-                  
+
+
                 </nav>
 
               <!-- / Navbar -->

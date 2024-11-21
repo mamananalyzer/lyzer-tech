@@ -43,7 +43,7 @@ Route::group(['middleware' => ['checkRole:1']], function() {
 Route::group(['middleware' => ['checkRole:1']], function() {
     Route::get('/belanja', [BelanjaController::class, 'index'])->name('Belanja.index');;
 });
-Route::group(['middleware' => ['checkRole:1']], function() {
+Route::group(['middleware' => ['checkRole:1,9']], function() {
     Route::get('/CRM', [CRMController::class, 'index']);
 });
 Route::group(['middleware' => ['checkRole:1']], function() {
@@ -67,7 +67,7 @@ Route::group(['middleware' => ['checkRole:1']], function() {
 Route::group(['middleware' => ['checkRole:1,14']], function() {
     Route::get('/motor', [MotorController::class, 'index']);
 });
-Route::group(['middleware' => ['checkRole:1']], function() {
+Route::group(['middleware' => ['checkRole:1,9']], function() {
     Route::get('/product', [ProductController::class, 'index'])->name('product.index');
 });
 Route::group(['middleware' => ['checkRole:1']], function() {

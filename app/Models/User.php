@@ -33,7 +33,7 @@ class User extends Authenticatable
         'is_active',
         'qr',
         'join_date',
-        'expire_date',
+        // 'expire_date',
         'created_at',
         'updated_at'
     ];
