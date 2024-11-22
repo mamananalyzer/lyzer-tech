@@ -59,9 +59,9 @@ class CRMController extends Controller
                 return $customer->created_at->format('Y-m-d H:i');
             })
             ->addColumn('action', function ($customer) {
-                $showUrl = route('customers.show', $customer->id_customer);
-                $editUrl = route('customers.edit', $customer->id_customer);
-                $deleteUrl = route('customers.destroy', $customer->id_customer);
+                $showUrl = route('Customers.show', $customer->id_customer);
+                $editUrl = route('Customers.edit', $customer->id_customer);
+                $deleteUrl = route('Customers.destroy', $customer->id_customer);
                 return '
                     <a href="' . $showUrl . '" class="btn btn-xs btn-primary">View</a>
                     <a href="' . $editUrl . '" class="btn btn-xs btn-primary">Edit</a>
@@ -208,11 +208,11 @@ class CRMController extends Controller
             'company' => 'required|max:255',
             'position' => 'required|max:255',
         ]);
-               
+
 
         $yearOfJoin = Carbon::now()->year;
         $validatedData['id_customer'] = $yearOfJoin . 1234;
-        
+
         // $validatedData['company'] = $request->input('company', "PT. LyZer-Tech");
         $validatedData['status'] = $request->input('status', 1);
 
@@ -223,7 +223,7 @@ class CRMController extends Controller
         } else {
             return redirect()->back()->withErrors(['image' => 'Image upload failed'])->withInput();
         }
-        
+
         // Create a new Customer instance
         $customer = new Customer([
             'id_customer' => $validatedData['id_customer'],

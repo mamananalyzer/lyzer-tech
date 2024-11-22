@@ -104,6 +104,39 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/CRM/{id_user}', [CRMController::class, 'destroy'])->name('CRM.destroy');
     Route::get('/CRM/{id_user}/suspend', [CRMController::class, 'suspend'])->name('CRM.suspend');
 
+    // Route::get('/CRM', [CRMController::class, 'index']);
+    // Route::get('customers/data', [CRMController::class, 'getData'])->name('Customers.data');
+    Route::get('/customers/{id_user}/show', [CRMController::class, 'show'])->name('Customers.show');
+    Route::post('/customers.store', [CRMController::class, 'customers_store'])->name('Customers.create');
+    // Route::post('/quot.store', [CRMController::class, 'quot_store'])->name('quot.create');
+    Route::get('/customers/{id_user}/edit', [CRMController::class, 'edit'])->name('Customers.edit');
+    Route::delete('/customers/{id_user}', [CRMController::class, 'destroy'])->name('Customers.destroy');
+    // Route::get('/customers/{id_user}/suspend', [CRMController::class, 'suspend'])->name('Customers.suspend');
+
+    // Route::get('/CRM', [CRMController::class, 'index']);
+    Route::get('Visit/data', [CRMController::class, 'visit_getData'])->name('Visit.data');
+    Route::get('/Visit/{id_user}/show', [CRMController::class, 'visit_show'])->name('Visit.show');
+    Route::post('/Visit.store', [CRMController::class, 'visit_store'])->name('Visit.create');
+    Route::get('/Visit/{id_user}/edit', [CRMController::class, 'visit_edit'])->name('Visit.edit');
+    Route::delete('/Visit/{id_user}', [CRMController::class, 'visit_destroy'])->name('Visit.destroy');
+    Route::get('/Visit/{id_user}/suspend', [CRMController::class, 'visit_suspend'])->name('Visit.suspend');
+
+    // Route::get('/daily', [DailyController::class, 'index']);
+    Route::get('/daily/{id_user}/show', [DailyController::class, 'show'])->name('Daily.show');
+    Route::post('/daily.store', [DailyController::class, 'store'])->name('Daily.create');
+    // Route::post('/quot.store', [DailyController::class, 'quot_store'])->name('quot.create');
+    Route::get('/daily/{id_user}/edit', [DailyController::class, 'edit'])->name('Daily.edit');
+    Route::delete('/daily/{id_user}', [DailyController::class, 'destroy'])->name('Daily.destroy');
+    Route::get('/daily/{id_user}/suspend', [DailyController::class, 'suspend'])->name('Daily.suspend');
+
+    // Route::get('/HSE_Hazops', [HSE_HazopsController::class, 'index']);
+    Route::get('/HSE_Hazops/data', [HSE_HazopsController::class, 'getData'])->name('HSE_Hazops.data');
+    Route::get('/HSE_Hazops/{id_hse}/show', [HSE_HazopsController::class, 'show'])->name('HSE_Hazops.show');
+    Route::post('/HSE_Hazops.store', [HSE_HazopsController::class, 'store'])->name('HSE_Hazops.create');
+    Route::get('/HSE_Hazops/{id_hse}/edit', [HSE_HazopsController::class, 'edit'])->name('HSE_Hazops.edit');
+    Route::delete('/HSE_Hazops/{id_hse}', [HSE_HazopsController::class, 'destroy'])->name('HSE_Hazops.destroy');
+    Route::get('/HSE_Hazops/{id_hse}/suspend', [HSE_HazopsController::class, 'suspend'])->name('HSE_Hazops.suspend');
+
     // Route::get('/Labs', [LabsController::class, 'index']);
     Route::get('Labs/data', [LabsController::class, 'getData'])->name('Labs.data');
     Route::get('/Labs/{id_user}/show', [LabsController::class, 'show'])->name('Labs.show');
@@ -120,15 +153,6 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/Labs_Label/{id_user}', [Labs_LabelController::class, 'destroy'])->name('Labs_Label.destroy');
     Route::get('/Labs_Label/{id_user}/suspend', [Labs_LabelController::class, 'suspend'])->name('Labs_Label.suspend');
 
-    // Route::get('/CRM', [CRMController::class, 'index']);
-    // Route::get('customers/data', [CRMController::class, 'getData'])->name('customers.data');
-    Route::get('/customers/{id_user}/show', [CRMController::class, 'show'])->name('customers.show');
-    Route::post('/customers.store', [CRMController::class, 'customers_store'])->name('customers.create');
-    // Route::post('/quot.store', [CRMController::class, 'quot_store'])->name('quot.create');
-    Route::get('/customers/{id_user}/edit', [CRMController::class, 'edit'])->name('customers.edit');
-    Route::delete('/customers/{id_user}', [CRMController::class, 'destroy'])->name('customers.destroy');
-    // Route::get('/customers/{id_user}/suspend', [CRMController::class, 'suspend'])->name('customers.suspend');
-
     // Route::get('/monitoring', [MonitoringController::class, 'index']);
     Route::get('/monitoring/{id_user}/show', [MonitoringController::class, 'show'])->name('Monitoring.show');
     Route::post('/monitoring.store', [MonitoringController::class, 'store'])->name('Monitoring.create');
@@ -144,28 +168,12 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/motor/{id_user}', [MotorController::class, 'destroy'])->name('Motor.destroy');
     Route::get('/motor/{id_user}/suspend', [MotorController::class, 'suspend'])->name('Motor.suspend');
 
-    // Route::get('/daily', [DailyController::class, 'index']);
-    Route::get('/daily/{id_user}/show', [DailyController::class, 'show'])->name('Daily.show');
-    Route::post('/daily.store', [DailyController::class, 'store'])->name('Daily.create');
-    // Route::post('/quot.store', [DailyController::class, 'quot_store'])->name('quot.create');
-    Route::get('/daily/{id_user}/edit', [DailyController::class, 'edit'])->name('Daily.edit');
-    Route::delete('/daily/{id_user}', [DailyController::class, 'destroy'])->name('Daily.destroy');
-    Route::get('/daily/{id_user}/suspend', [DailyController::class, 'suspend'])->name('Daily.suspend');
-
     // Route::get('/product', [ProductController::class, 'index']);
     Route::get('/product/{id_user}/show', [ProductController::class, 'show'])->name('product.show');
     Route::post('/product.store', [ProductController::class, 'store'])->name('product.create');
     Route::get('/product/{id_user}/edit', [ProductController::class, 'edit'])->name('product.edit');
     Route::delete('/product/{id_user}', [ProductController::class, 'destroy'])->name('product.destroy');
     Route::get('/product/{id_user}/suspend', [ProductController::class, 'suspend'])->name('product.suspend');
-
-    // Route::get('/HSE_Hazops', [HSE_HazopsController::class, 'index']);
-    Route::get('/HSE_Hazops/data', [HSE_HazopsController::class, 'getData'])->name('HSE_Hazops.data');
-    Route::get('/HSE_Hazops/{id_hse}/show', [HSE_HazopsController::class, 'show'])->name('HSE_Hazops.show');
-    Route::post('/HSE_Hazops.store', [HSE_HazopsController::class, 'store'])->name('HSE_Hazops.create');
-    Route::get('/HSE_Hazops/{id_hse}/edit', [HSE_HazopsController::class, 'edit'])->name('HSE_Hazops.edit');
-    Route::delete('/HSE_Hazops/{id_hse}', [HSE_HazopsController::class, 'destroy'])->name('HSE_Hazops.destroy');
-    Route::get('/HSE_Hazops/{id_hse}/suspend', [HSE_HazopsController::class, 'suspend'])->name('HSE_Hazops.suspend');
 
     // Route::get('/quickpin', [QuickpinController::class, 'index']);
     Route::get('/quickpin/data', [QuickpinController::class, 'getData'])->name('quickpin.data');
