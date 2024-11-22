@@ -33,7 +33,7 @@ class CRMController extends Controller
 
 
         //Customer List
-        $custom = Customer::all();
+        $customer = Customer::all();
         // $customers = Customer::all();
 
         // dd($customers);
@@ -45,7 +45,7 @@ class CRMController extends Controller
         $sales_quot = User::where('role_id', 9)->get();
         $product = Product::all();
 
-        return view('base.CRM', compact('sales', 'custom', 'sales_quot', 'product', 'quotation_list', 'task', 'totaltask'));
+        return view('base.CRM', compact('sales', 'customer', 'sales_quot', 'product', 'quotation_list', 'task', 'totaltask'));
     }
 
     public function getData()

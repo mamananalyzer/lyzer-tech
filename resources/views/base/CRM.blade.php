@@ -26,7 +26,7 @@
         <div class="col-md-12 order-3 order-lg-12 mb-4">
             <div class="card text-center">
                 {{-- tab-list --}}
-                <div class="card-header py-3">
+                <div class="card-header py-4">
                     <ul class="nav nav-pills" role="tablist">
                         <li class="nav-item px-2" role="presentation">
                             <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
@@ -89,7 +89,7 @@
                                             <th>Mobile Phone</th>
                                             <th>Company</th>
                                             <th>Status</th>
-                                            <th>Created At</th>
+                                            {{-- <th>Created At</th> --}}
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -118,26 +118,6 @@
                                             <span class="d-none d-sm-inline-block">Add New Visit</span>
                                         </span>
                                     </button>
-                                    <div class="modal fade" id="ModalAddVisit" tabindex="-1"
-                                        aria-labelledby="ModalAddVisit" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="ModalAddVisit">Modal title</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    ...
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -239,7 +219,7 @@
                                                         <td><span class="badge bg-label-success"> {{ $q_list->status }}
                                                             </span></td>
                                                         <td><img src="../../assets/img/icons/payments/master-light.png"
-                                                                class="img-fluid" width="50" alt="masterCard"
+                                                                class="img-fluid" width="222 alt="masterCard"
                                                                 data-app-light-img="icons/payments/master-light.png"
                                                                 data-app-dark-img="icons/payments/master-dark.png"></td>
                                                         <td>
@@ -601,213 +581,192 @@
             </div>
         </div>
 
-        <!-- Offcanvas to add new visit -->
-        {{-- <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddVisit" aria-labelledby="offcanvasAddVisit">
-            <div class="offcanvas-header">
-                <h5 id="offcanvasAddVisit" class="offcanvas-title">Add Visit</h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                    aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body mx-0 flex-grow-0">
-                <form method="post" action="{{ route('Visit.create') }}" enctype="multipart/form-data"
-                    class="add-new-user pt-0 fv-plugins-bootstrap5 fv-plugins-framework" id="addNewUserForm">
-                    @csrf <!-- CSRF protection -->
-                    @method('POST')
-                    <div class="mb-3 fv-plugins-icon-container">
-                        <label class="form-label" for="add-user-fullname">Full Name</label>
-                        <input type="text" class="form-control" id="add-user-fullname" placeholder="John Doe"
-                            name="name" aria-label="John Doe">
-                        <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                        </div>
-                    </div>
-                    <div class="mb-3 fv-plugins-icon-container">
-                        <label class="form-label" for="add-user-email">Email</label>
-                        <input type="text" id="add-user-email" class="form-control"
-                            placeholder="john.doe@example.com" aria-label="john.doe@example.com" name="email">
-                        <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="add-user-picture">Picture</label>
-                        <input class="form-control" type="file" id="formFile" name="image">
-                    </div>
-                    <div class="mb-3 fv-plugins-icon-container">
-                        <label class="form-label" for="add-user-area">Area</label>
-                        <input type="text" class="form-control" id="add-user-area" placeholder="Jakarta"
-                            name="area" aria-label="Jakarta">
-                        <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                        </div>
-                    </div>
-                    <div class="mb-3 fv-plugins-icon-container">
-                        <label class="form-label" for="add-user-address">Address</label>
-                        <input type="text" class="form-control" id="add-user-address" placeholder="Blok N15-16"
-                            name="address" aria-label="Blok N15-16">
-                        <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                        </div>
-                    </div>
-                    <div class="mb-3 fv-plugins-icon-container">
-                        <label class="form-label" for="add-user-phonenumber">Phone Number</label>
-                        <input type="text" class="form-control" id="add-user-phonenumber"
-                            placeholder="+62888 8888 8888" name="phonenumber" aria-label="Jakarta">
-                        <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                        </div>
-                    </div>
-                    <div class="mb-3 fv-plugins-icon-container">
-                        <label class="form-label" for="add-user-mobilephone">Mobile Phone</label>
-                        <input type="text" class="form-control" id="add-user-mobilephone"
-                            placeholder="+62888 8888 8888" name="mobilephone" aria-label="Jakarta">
-                        <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                        </div>
-                    </div>
-                    <div class="mb-3 fv-plugins-icon-container">
-                        <label class="form-label" for="add-user-company">Company</label>
-                        <input type="text" class="form-control" id="add-user-company" placeholder="PT. LyZer"
-                            name="company" aria-label="LyZer Tech">
-                        <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                        </div>
-                    </div>
-                    <div class="mb-3 fv-plugins-icon-container">
-                        <label class="form-label" for="add-user-position">Position</label>
-                        <input type="text" class="form-control" id="add-user-position" placeholder="PT. LyZer"
-                            name="position" aria-label="LyZer Tech">
-                        <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Submit</button>
-                    <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
-                    <input type="hidden">
-                </form>
-            </div>
-        </div> --}}
-
-        <div class="modal-onboarding modal fade animate_animated" id="offcanvasAddVisit" tabindex="-1"
+        <!-- Modal to add new visit -->
+        <div class="modal-onboarding modal fade animate_animated" id="ModalAddVisit" tabindex="-1"
             style="display: none;" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content text-center">
                     <div class="modal-header border-0">
-                        <a class="text-muted close-label" href="javascript:void(0);" data-bs-dismiss="modal">Skip
-                            Intro</a>
+                        {{-- <a class="text-muted close-label" href="javascript:void(0);" data-bs-dismiss="modal">Skip Intro</a> --}}
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                         </button>
                     </div>
                     <div id="modalCarouselControls" class="carousel slide pb-6 mb-2" data-bs-interval="false">
                         <div class="carousel-indicators">
                             <button type="button" data-bs-target="#modalCarouselControls" data-bs-slide-to="0"
-                                class=""></button>
-                            <button type="button" data-bs-target="#modalCarouselControls" data-bs-slide-to="1"
-                                class=""></button>
-                            <button type="button" data-bs-target="#modalCarouselControls" data-bs-slide-to="2"
-                                class="active" aria-current="true"></button>
+                                class="active"></button>
+                            <button type="button" data-bs-target="#modalCarouselControls" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#modalCarouselControls" data-bs-slide-to="2"></button>
                         </div>
-                        <div class="carousel-inner" style="height: 593.672px;">
-                            <div class="carousel-item" style="">
-                                <div class="onboarding-media">
-                                    <div class="mx-2">
-                                        <img src="../../assets/img/illustrations/girl-with-laptop-light.png"
-                                            alt="girl-with-laptop-light" width="335" class="img-fluid"
-                                            data-app-dark-img="illustrations/girl-with-laptop-dark.png"
-                                            data-app-light-img="illustrations/girl-with-laptop-light.png">
+                        <div class="carousel-inner">
+                            <form method="post" action="{{ route('Visit.create') }}" enctype="multipart/form-data">
+                                @csrf <!-- CSRF protection -->
+                                @method('POST')
+                                <div class="carousel-item active">
+                                    <div class="onboarding-media">
+                                        <div class="mx-2">
+                                            <img src="../../assets/img/illustrations/girl-with-laptop-light.png"
+                                                alt="girl-with-laptop-light" width="222" class="img-fluid"
+                                                data-app-dark-img="illustrations/girl-with-laptop-dark.png"
+                                                data-app-light-img="illustrations/girl-with-laptop-light.png">
+                                        </div>
+                                    </div>
+                                    <div class="onboarding-content">
+                                        <h4 class="onboarding-title text-body">Visit Information</h4>
+                                        <form>
+                                            <div class="row g-6">
+                                                <!-- Customer Name -->
+                                                <div class="col-sm-6">
+                                                    <div class="mb-4">
+                                                        <label class="form-label" for="customer-company">Customer
+                                                            Company</label>
+                                                        <select id="customer-company" class="form-select"
+                                                            name="customer_name">
+                                                            <option value="">Select Company</option>
+                                                            @foreach ($customer->sortBy('company') as $cust)
+                                                                <option value="{{ $cust->company }}">{{ $cust->company }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Contact Person -->
+                                                <div class="col-sm-6">
+                                                    <div class="mb-4">
+                                                        <label class="form-label" for="customer-name">Contact
+                                                            Person</label>
+                                                        <select id="customer-name" class="form-select">
+                                                            <option value="">Select Name</option>
+                                                            @foreach ($customer->sortBy('company') as $cust)
+                                                                <option value="{{ $cust->name }}"
+                                                                    data-company="{{ $cust->company }}">
+                                                                    {{ $cust->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-6">
+                                                <!-- Location -->
+                                                <div class="col-sm-6">
+                                                    <div class="mb-4">
+                                                        <label class="form-label" for="location">Location</label>
+                                                        <input type="text" id="location" class="form-control"
+                                                            placeholder="Meruya Utara" name="location">
+                                                    </div>
+                                                </div>
+
+                                                <!-- Purpose -->
+                                                <div class="col-sm-6">
+                                                    <div class="mb-4">
+                                                        <label class="form-label" for="purpose">Purpose</label>
+                                                        <input type="text" id="purpose" class="form-control"
+                                                            placeholder="Present Transducer & Annunciator" name="purpose">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-6">
+                                                <!-- Visit Date -->
+                                                <div class="col-sm-6">
+                                                    <div class="mb-4">
+                                                        <label class="form-label" for="visit_date">Visit Date</label>
+                                                        <input class="form-control" type="date" id="visit_date"
+                                                            name="visit_date">
+                                                    </div>
+                                                </div>
+
+                                                <!-- Visit Time -->
+                                                <div class="col-sm-6">
+                                                    <div class="mb-4">
+                                                        <label class="form-label" for="visit_time">Visit Time</label>
+                                                        <input class="form-control" type="time" id="visit_time"
+                                                            name="visit_time">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
                                     </div>
                                 </div>
-                                <div class="onboarding-content">
-                                    <h4 class="onboarding-title text-body">Example Request Information</h4>
-                                    <form>
-                                        <div class="row g-6">
-                                            <div class="col-sm-6">
-                                                <div class="mb-4">
-                                                    <label for="nameEx" class="form-label">Your Full Name</label>
-                                                    <input class="form-control" placeholder="Enter your full name..."
-                                                        type="text" value="" tabindex="0" id="nameEx">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="mb-4">
-                                                    <label for="roleEx" class="form-label">Your Role</label>
-                                                    <select class="form-select" tabindex="0" id="roleEx">
-                                                        <option>Web Developer</option>
-                                                        <option>Business Owner</option>
-                                                        <option>Other</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                <div class="carousel-item">
+                                    <div class="onboarding-media">
+                                        <div class="mx-2">
+                                            <img src="../../assets/img/illustrations/boy-with-laptop-light.png"
+                                                alt="boy-with-laptop-light" width="222" class="img-fluid"
+                                                data-app-dark-img="illustrations/boy-with-laptop-dark.png"
+                                                data-app-light-img="illustrations/boy-with-laptop-light.png">
                                         </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="carousel-item" style="">
-                                <div class="onboarding-media">
-                                    <div class="mx-2">
-                                        <img src="../../assets/img/illustrations/boy-with-laptop-light.png"
-                                            alt="boy-with-laptop-light" width="300" class="img-fluid"
-                                            data-app-dark-img="illustrations/boy-with-laptop-dark.png"
-                                            data-app-light-img="illustrations/boy-with-laptop-light.png">
+                                    </div>
+                                    <div class="onboarding-content">
+                                        <h4 class="onboarding-title text-body">Example Request Information</h4>
+                                        {{-- <div class="onboarding-info">In this example you can see a form where you can request
+                                            some
+                                            additional information from the customer when they land on the app page.</div> --}}
+                                        <form>
+                                            <div class="row g-6">
+                                                <!-- Notes -->
+                                                <div class="col-sm-12">
+                                                    <div class="mb-4">
+                                                        <label class="form-label" for="notes">Notes</label>
+                                                        <textarea class="form-control" id="notes" rows="3" name="notes"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-6">
+                                                <!-- Customer Feedback -->
+                                                <div class="col-sm-12">
+                                                    <div class="mb-4">
+                                                        <label class="form-label" for="customer_feedback">Customer
+                                                            Feedback</label>
+                                                        <textarea class="form-control" id="customer_feedback" rows="3" name="customer_feedback"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
-                                <div class="onboarding-content">
-                                    <h4 class="onboarding-title text-body">Example Request Information</h4>
-                                    <div class="onboarding-info">In this example you can see a form where you can request
-                                        some
-                                        additional information from the customer when they land on the app page.</div>
-                                    <form>
-                                        <div class="row g-6">
-                                            <div class="col-sm-6">
-                                                <div class="mb-4">
-                                                    <label for="nameEx1" class="form-label">Your Full Name</label>
-                                                    <input class="form-control" placeholder="Enter your full name..."
-                                                        type="text" value="" tabindex="0" id="nameEx1">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="mb-4">
-                                                    <label for="roleEx1" class="form-label">Your Role</label>
-                                                    <select class="form-select" tabindex="0" id="roleEx1">
-                                                        <option>Web Developer</option>
-                                                        <option>Business Owner</option>
-                                                        <option>Other</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                <div class="carousel-item">
+                                    <div class="onboarding-media">
+                                        <div class="mx-2">
+                                            <img src="../../assets/img/illustrations/girl-verify-password-light.png"
+                                                alt="girl-verify-password-light" width="222" class="img-fluid"
+                                                data-app-dark-img="illustrations/girl-verify-password-dark.png"
+                                                data-app-light-img="illustrations/girl-verify-password-light.png">
                                         </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="carousel-item active" style="">
-                                <div class="onboarding-media">
-                                    <div class="mx-2">
-                                        <img src="../../assets/img/illustrations/girl-verify-password-light.png"
-                                            alt="girl-verify-password-light" width="300" class="img-fluid"
-                                            data-app-dark-img="illustrations/girl-verify-password-dark.png"
-                                            data-app-light-img="illustrations/girl-verify-password-light.png">
+                                    </div>
+                                    <div class="onboarding-content">
+                                        <h4 class="onboarding-title text-body">Example Request Information</h4>
+                                        {{-- <div class="onboarding-info">In this example you can see a form where you can request
+                                            some
+                                            additional information from the customer when they land on the app page.</div> --}}
+                                        <form>
+                                            <div class="row g-6">
+                                                <!-- Next Steps -->
+                                                <div class="col-sm-12">
+                                                    <div class="mb-4">
+                                                        <label class="form-label" for="next_steps">Next Steps</label>
+                                                        <textarea class="form-control" id="next_steps" rows="4" name="next_steps"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-6">
+                                                <!-- Follow Up Date -->
+                                                <div class="col-sm-6">
+                                                    <div class="mb-4">
+                                                        <label class="form-label" for="follow_up_date">Follow Up
+                                                            Date</label>
+                                                        <input class="form-control" type="date" id="follow_up_date"
+                                                            name="follow_up_date">
+                                                    </div>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Submit</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
-                                <div class="onboarding-content">
-                                    <h4 class="onboarding-title text-body">Example Request Information</h4>
-                                    <div class="onboarding-info">In this example you can see a form where you can request
-                                        some
-                                        additional information from the customer when they land on the app page.</div>
-                                    <form>
-                                        <div class="row g-6">
-                                            <div class="col-sm-6">
-                                                <div class="mb-4">
-                                                    <label for="nameEx2" class="form-label">Your Full Name</label>
-                                                    <input class="form-control" placeholder="Enter your full name..."
-                                                        type="text" value="" tabindex="0" id="nameEx2">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="mb-4">
-                                                    <label for="roleEx2" class="form-label">Your Role</label>
-                                                    <select class="form-select" tabindex="0" id="roleEx2">
-                                                        <option>Web Developer</option>
-                                                        <option>Business Owner</option>
-                                                        <option>Other</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                         <a class="carousel-control-prev" href="#modalCarouselControls" role="button"
                             data-bs-slide="prev">
@@ -846,7 +805,7 @@
                         <label class="form-label" for="add-user-customer">Customer</label>
                         <select id="add-user-customer" class="form-select" name="customer">
                             <option>Default select</option>
-                            @foreach ($custom->sortBy('company') as $cust)
+                            @foreach ($customer->sortBy('company') as $cust)
                                 <option value="{{ $cust->company }}">{{ $cust->company }}</option>
                             @endforeach
                         </select>
@@ -959,10 +918,7 @@
                             data: 'status',
                             name: 'status'
                         },
-                        {
-                            data: 'created_at',
-                            name: 'created_at'
-                        },
+                        // { data: 'created_at', name: 'created_at', width: '100px' },
                         {
                             data: 'action',
                             name: 'action',
@@ -970,6 +926,32 @@
                             searchable: false
                         }
                     ]
+                });
+            });
+        </script>
+
+        {{-- customer-filter --}}
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const companySelect = document.getElementById('customer-company');
+                const nameSelect = document.getElementById('customer-name');
+
+                // Store all options in a variable
+                const allOptions = Array.from(nameSelect.querySelectorAll('option[data-company]'));
+
+                companySelect.addEventListener('change', function() {
+                    const selectedCompany = this.value;
+
+                    // Clear the existing options
+                    nameSelect.innerHTML = '<option value="">Select Name</option>';
+
+                    // Add filtered options based on the selected company
+                    allOptions.forEach(option => {
+                        if (option.getAttribute('data-company') === selectedCompany ||
+                            selectedCompany === "") {
+                            nameSelect.appendChild(option);
+                        }
+                    });
                 });
             });
         </script>

@@ -26,19 +26,19 @@
       <div class="row">
         <div class="col-12 col-xl-12 mb-4">
           <div class="dt-action-buttons text-end pt-3 pt-md-0">
-              <div class="dt-buttons btn-group flex-wrap"> 
+              <div class="dt-buttons btn-group flex-wrap">
                   <div class="btn-group">
                       <button class="btn buttons-collection dropdown-toggle btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">
-                          <span><i class="bx bx-export me-sm-1"></i> 
+                          <span><i class="bx bx-export me-sm-1"></i>
                               <span class="d-none d-sm-inline-block">Export</span>
                           </span>
                       </button>
-                  </div> 
+                  </div>
                   <button class="btn btn-secondary create-new btn-primary" data-bs-toggle="modal" data-bs-target="#newLabelModal">
-                      <span><i class="bx bx-plus me-sm-1"></i> 
+                      <span><i class="bx bx-plus me-sm-1"></i>
                           <span class="d-none d-sm-inline-block">Add Labels</span>
                       </span>
-                  </button> 
+                  </button>
               </div>
           </div>
         </div>
@@ -156,7 +156,7 @@
                                 `;
                 document.getElementById('dynamicTypeQty').appendChild(div);
             }
-    
+
             function removeTypeQty(btn) {
                 // btn.parent.parentNode.remove();
                 btn.closest('.row').remove();
@@ -231,7 +231,7 @@
                   </div>
               </div>
               <div class="card-body row g-3">
-                  <div class="col-md-6" style="position: relative;">                    
+                  <div class="col-md-6" style="position: relative;">
                   <div id="TAT"></div>
                   <div id="chart"></div>
                   <script>
@@ -291,7 +291,7 @@
                                   }
                               }
                           };
-              
+
                           const chart = new ApexCharts(document.querySelector("#TAT"), options);
                           chart.render();
                       });
@@ -299,13 +299,13 @@
                   <script>
                       document.addEventListener('DOMContentLoaded', function () {
                           const customTexts = [
-                            'Turnaround Time (TAT)', 
-                            'First-Pass Yield (FPY)', 
-                            'Defect Detection Rate', 
-                            'Equipment Utilization Rate', 
-                            'Compliance Rate', 
-                            'Customer Satisfaction', 
-                            'Cost Efficiency', 
+                            'Turnaround Time (TAT)',
+                            'First-Pass Yield (FPY)',
+                            'Defect Detection Rate',
+                            'Equipment Utilization Rate',
+                            'Compliance Rate',
+                            'Customer Satisfaction',
+                            'Cost Efficiency',
                             'Error Rate',
                             'Staff Training and Development'
                           ]; // Custom text labels
@@ -356,7 +356,7 @@
                                   }
                               }
                           };
-              
+
                           const chart = new ApexCharts(document.querySelector("#chart"), options);
                           chart.render();
                       });
@@ -407,7 +407,7 @@
                       </div>
                       </div>
                   </div>
-          
+
                   <div>
                       <div class="d-flex align-items-baseline">
                       <span class="text-warning me-2"><i class="bx bxs-circle"></i></span>
