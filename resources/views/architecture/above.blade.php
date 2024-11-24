@@ -65,7 +65,6 @@
     <link rel="stylesheet" href="{{asset('sneat/assets/vendor/libs/select2/select2.css')}}"/>
     <link rel="stylesheet" href="{{asset('sneat/assets/vendor/libs/%40form-validation/umd/styles/index.min.css')}}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css" integrity="" crossorigin="anonymous"/>
-    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"/> --}}
     <link rel="stylesheet" href="{{asset('sneat/assets/vendor/libs/apex-charts/apex-charts.css')}}"/>
     <link rel="stylesheet" href="{{asset('sneat/assets/vendor/libs/animate-css/animate.css')}}"/>
     <link rel="stylesheet" href="{{asset('sneat/assets/vendor/libs/sweetalert2/sweetalert2.css')}}"/>
@@ -78,7 +77,6 @@
     <link rel="stylesheet" href="{{asset('sneat/assets/vendor/libs/flatpickr/flatpickr.css')}}">
 
     <!-- Optional: Bootstrap CSS -->
-    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css"> --}}
 
     <!-- Row Group CSS -->
     <link rel="stylesheet" href="{{asset('sneat/assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css')}}"/>
@@ -104,7 +102,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script type="text/javascript" src="https://a.omappapi.com/app/js/api.min.js" async="" data-user="252882" data-account="269977"></script><link rel="stylesheet" href="https://a.omappapi.com/app/js/api.min.css" id="omapi-css" media="all">
+    {{-- <script type="text/javascript" src="https://a.omappapi.com/app/js/api.min.js" async="" data-user="252882" data-account="269977"></script><link rel="stylesheet" href="https://a.omappapi.com/app/js/api.min.css" id="omapi-css" media="all"> --}}
 
     <style>
         /* Custom styles for sorting arrows */
