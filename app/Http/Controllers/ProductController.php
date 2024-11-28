@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use DataTables;
 
 class ProductController extends Controller
 {
@@ -12,8 +15,35 @@ class ProductController extends Controller
      */
     public function index()
     {
+        // $product = Product::all();
+        return view('base.product'
+            // , compact('product')
+        );
+    }
+
+    public function getData()
+    {
         $product = Product::all();
-        return view('base.product', compact('product'));
+
+        return DataTables::of($product)
+            ->editColumn('created_at', function ($product) {
+                return $product->created_at->format('Y-m-d H:i');
+            })
+            ->addColumn('action', function($product) {
+                $showUrl = route('Product.show', $product->id_product);
+                // $editUrl = route('Product.edit', $product->id_product);
+                // <a href="'.$editUrl.'" class="btn btn-xs btn-primary">Edit</a>
+                $deleteUrl = route('Product.destroy', $product->id_product);
+                return '
+                    <a href="'.$showUrl.'" class="btn btn-xs btn-primary">View</a>
+                    <form action="'.$deleteUrl.'" method="POST" style="display: inline-block;">
+                        '.csrf_field().'
+                        '.method_field('DELETE').'
+                        <button type="submit" class="btn btn-xs btn-danger" onclick="return confirm(\'Are you sure?\')">Delete</button>
+                    </form>
+                ';
+            })
+            ->make(true);
     }
 
     /**
@@ -59,8 +89,15 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy($id_product)
     {
-        //
+        $id = Product::find($id_product);
+
+        if ($id) {
+            $id->delete();
+            return redirect()->back()->with('success', 'User deleted successfully.');
+        }
+
+        return redirect()->back()->with('error', 'User not found.');
     }
 }

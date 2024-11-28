@@ -14,14 +14,16 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id('id_product');
             $table->string('brand');
-            $table->string('type');
-            $table->string('image');
-            $table->string('category');
-            $table->string('spek1');
-            $table->string('spek2');
-            $table->string('spek3');
-            $table->string('price');
-            $table->string('diskon');
+            $table->string('name');
+            $table->string('function');
+            $table->string('mode');
+            $table->string('input');
+            $table->string('display');
+            $table->string('output');
+            $table->string('webbase');
+            $table->string('comm');
+            $table->string('image', 50)->nullable();
+            $table->string('price', 50)->nullable();
             $table->string('status');
             $table->timestamps();
         });

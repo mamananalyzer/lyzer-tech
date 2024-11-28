@@ -26,19 +26,19 @@
 
     <div class="">
         <div class="dt-action-buttons text-end pt-3 pt-md-0">
-            <div class="dt-buttons btn-group flex-wrap"> 
+            <div class="dt-buttons btn-group flex-wrap">
                 <div class="btn-group">
                     {{-- <button class="btn buttons-collection dropdown-toggle btn-label-primary me-2" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false">
-                        <span><i class="bx bx-export me-sm-1"></i> 
+                        <span><i class="bx bx-export me-sm-1"></i>
                             <span class="d-none d-sm-inline-block">Export</span>
                         </span>
                     </button> --}}
-                </div> 
+                </div>
                 <button class="btn btn-secondary create-new btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
-                    <span><i class="bx bx-plus me-sm-1"></i> 
+                    <span><i class="bx bx-plus me-sm-1"></i>
                         <span class="d-none d-sm-inline-block">Add Service</span>
                     </span>
-                </button> 
+                </button>
             </div>
         </div>
     </div>
@@ -246,7 +246,7 @@
                     { data: 'id_motor', name: 'id_motor' },
                     { data: 'namaMotor', name: 'namaMotor' },
                     { data: 'id_user', name: 'id_user' },
-                    { data: 'typeService', name: 'typeService' },            
+                    { data: 'typeService', name: 'typeService' },
                     { data: 'totalBelanja', name: 'totalBelanja' },
                     { data: 'serviceDate', name: 'serviceDate' },
                     { data: 'action', name: 'action', orderable: false, searchable: false }
@@ -256,11 +256,11 @@
         });
 
     </script>
-    
-    
 
-    
+
+
+
 
 </div>
-   
+
 @endsection

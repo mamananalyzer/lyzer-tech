@@ -169,11 +169,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/motor/{id_user}/suspend', [MotorController::class, 'suspend'])->name('Motor.suspend');
 
     // Route::get('/product', [ProductController::class, 'index']);
-    Route::get('/product/{id_user}/show', [ProductController::class, 'show'])->name('product.show');
-    Route::post('/product.store', [ProductController::class, 'store'])->name('product.create');
-    Route::get('/product/{id_user}/edit', [ProductController::class, 'edit'])->name('product.edit');
-    Route::delete('/product/{id_user}', [ProductController::class, 'destroy'])->name('product.destroy');
-    Route::get('/product/{id_user}/suspend', [ProductController::class, 'suspend'])->name('product.suspend');
+    Route::get('/product/data', [ProductController::class, 'getData'])->name('Product.data');
+    Route::get('/product/{id_user}/show', [ProductController::class, 'show'])->name('Product.show');
+    Route::post('/product.store', [ProductController::class, 'store'])->name('Product.create');
+    Route::get('/product/{id_user}/edit', [ProductController::class, 'edit'])->name('Product.edit');
+    Route::delete('/product/{id_user}', [ProductController::class, 'destroy'])->name('Product.destroy');
+    Route::get('/product/{id_user}/suspend', [ProductController::class, 'suspend'])->name('Product.suspend');
 
     // Route::get('/quickpin', [QuickpinController::class, 'index']);
     Route::get('/quickpin/data', [QuickpinController::class, 'getData'])->name('quickpin.data');

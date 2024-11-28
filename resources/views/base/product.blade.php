@@ -6,46 +6,29 @@
 
 @endsection
 
-{{-- @section('zone-link')
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-
-    <script src="sneat/assets/vendor/libs/hammer/hammer.js"></script>
-    <script src="sneat/assets/vendor/libs/i18n/i18n.js"></script>
-    <script src="sneat/assets/vendor/libs/typeahead-js/typeahead.js"></script>
-    <script src="sneat/assets/vendor/js/menu.js"></script>
-
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="sneat/assets/vendor/libs/moment/moment.js"></script>
-    <script src="sneat/assets/vendor/libs/datatable-bs5/datatable-bootstrap5.js"></script>
-    <script src="sneat/assets/vendor/libs/select2/select2.js"></script>
-    <script src="sneat/assets/vendor/libs/%40form-validation/umd/bundle/popular.min.js"></script>
-    <script src="sneat/assets/vendor/libs/%40form-validation/umd/plugin-bootstrap5/index.min.js"></script>
-    <script src="sneat/assets/vendor/libs/%40form-validation/umd/plugin-auto-focus/index.min.js"></script>
-    <script src="sneat/assets/vendor/libs/cleavejs/cleave.js"></script>
-    <script src="sneat/assets/vendor/libs/cleavejs/cleave-phone.js"></script>
-
-    <!-- Page JS -->
-    <script src="sneat/assets/js/app-user-list.js"></script>
-@endsection --}}
+@section('zone-link')
+    <!-- Optional: jQuery (required for DataTables) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="sneat/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <!-- DataTables Bootstrap 5 JS -->
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <!-- Optional: Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+@endsection
 
 @section('content')
     <div class="flex-grow-1 container-p-y container-fluid">
         <div class="row mt-4">
-            <div class="col-md-8 col-lg-9 mb-0">
+            <div class="col-md-8 col-lg-12 mb-0">
                 <div class="card">
                     <div class="card-datatable table-responsive">
                         <div class="row mx-2 my-3">
                             <div
                                 class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
-                                <div id="DataTable_Table_0_filter" class="dataTable_filter">
-                                    <label>
-                                        <input type="search" id="searchInput" class="form-control" placeholder="Search.."
-                                            aria-controls="DataTable_Table_0">
-                                    </label>
-                                </div>
                                 <div class="dt-buttons my-1">
                                     <button class="dt-button add-new btn btn-primary mx-3" tabindex="0"
                                         aria-controls="DataTable_Table_0" type="button" data-bs-toggle="offcanvas"
@@ -58,93 +41,110 @@
                             </div>
                         </div>
 
-                        <div class="dataTables_scrollBody"
-                            style="position: relative; overflow: auto; width: 100%; max-height: 400px;">
-                            <table class="invoice-list-table table" id="customer">
+                        <div class="card card-datatable table-responsive mt-3">
+                            <table class="table table-bordered" id="product-table" data-page-length='7'>
                                 <thead>
                                     <tr>
+                                        <th>ID</th>
                                         <th>Brand</th>
-                                        <th>Type</th>
+                                        <th>Name</th>
+                                        <th>Function</th>
+                                        <th>Mode</th>
+                                        <th>Input</th>
+                                        <th>Display</th>
+                                        <th>Output</th>
+                                        <th>Webbase</th>
+                                        <th>Comm</th>
                                         <th>Image</th>
-                                        <th>Category</th>
-                                        <th>Spek 1</th>
-                                        <th>Spek 2</th>
-                                        <th>Spek 3</th>
                                         <th>Price</th>
-                                        <th>Discount</th>
                                         <th>Status</th>
                                         <th class="cell-fit">Actions</th>
                                     </tr>
                                 </thead>
-                                <script>
-                                    document.getElementById('searchInput').addEventListener('input', function() {
-                                        // Get user input
-                                        const searchText = this.value.toLowerCase();
-
-                                        // Get all menu items
-                                        const menuItems = document.querySelectorAll('#customer tr');
-
-                                        // Loop through each menu item and hide/show based on user input
-                                        menuItems.forEach(function(item) {
-                                            const itemName = item.textContent.toLowerCase();
-                                            if (itemName.includes(searchText)) {
-                                                item.style.display = 'block';
-                                            } else {
-                                                item.style.display = 'none';
-                                            }
-                                        });
-                                    });
-                                </script>
-                                <tbody class="table-border-bottom-0">
-                                    @foreach ($product as $p)
-                                        <tr>
-                                            <td><span class="badge bg-label-success"> {{ $p->brand }} </span></td>
-                                            <td><a href="pages-profile-user.html"
-                                                    class="text-body text-truncate fw-medium">{{ $p->type }}</a></td>
-                                            <td>
-                                                <div class="avatar-wrapper">
-                                                    <div class="avatar avatar-sm me-2"><img
-                                                            src="/storage/{{ $p->image }}" alt="Avatar"
-                                                            class="rounded-circle"></div>
-                                                </div>
-                                            </td>
-                                            <td> {{ $p->category }} </span></td>
-                                            <td> {{ $p->spek1 }} </span></td>
-                                            <td> {{ $p->spek2 }} </span></td>
-                                            <td> {{ $p->spek3 }} </span></td>
-                                            <td> Rp.{{ number_format($p->price, 2, '.', ',') }}</td>
-                                            <td> {{ $p->diskon }}% </span></td>
-                                            <td>
-                                                @if ($p->status == 1)
-                                                    <span class="badge bg-label-success">Active</span>
-                                                @elseif($p->status == 2)
-                                                    <span class="badge bg-label-warning">Not Active</span>
-                                                @else
-                                                    <span class="badge bg-danger">Unknown Status</span>
-                                                @endif
-
-                                            </td>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="dropdown"><a href="javascript:;"
-                                                            class="btn dropdown-toggle hide-arrow text-body p-0"
-                                                            data-bs-toggle="dropdown"><i
-                                                                class="bx bx-dots-vertical-rounded"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                            <a href="javascript:void(0);" class="dropdown-item">Edit</a>
-                                                            <a href="javascript:;" class="dropdown-item">Duplicate</a>
-                                                            <div class="dropdown-divider"></div>
-                                                            <a href="javascript:;"
-                                                                class="dropdown-item delete-record text-danger">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
                             </table>
                         </div>
+
+                        <script type="text/javascript">
+                            $(document).ready(function() {
+                                // Destroy existing DataTable before re-initializing
+                                if ($.fn.DataTable.isDataTable('#product-table')) {
+                                    $('#product-table').DataTable().destroy();
+                                }
+
+                                // Initialize DataTable
+                                $('#product-table').DataTable({
+                                    serverSide: true,
+                                    ajax: '{{ route('Product.data') }}',
+                                    dataSrc: function(json) {
+                                        console.log(json); // Debugging response data
+                                        return json.data;
+                                    },
+                                    columns: [
+                                        {
+                                            data: 'id_product',
+                                            name: 'id_product'
+                                        },
+                                        {
+                                            data: 'brand',
+                                            name: 'brand'
+                                        },
+                                        {
+                                            data: 'name',
+                                            name: 'name'
+                                        },
+                                        {
+                                            data: 'function',
+                                            name: 'function'
+                                        },
+                                        {
+                                            data: 'mode',
+                                            name: 'mode'
+                                        },
+                                        {
+                                            data: 'input',
+                                            name: 'input'
+                                        },
+                                        {
+                                            data: 'display',
+                                            name: 'display'
+                                        },
+                                        {
+                                            data: 'output',
+                                            name: 'output'
+                                        },
+                                        {
+                                            data: 'webbase',
+                                            name: 'webbase'
+                                        },
+                                        {
+                                            data: 'comm',
+                                            name: 'comm'
+                                        },
+                                        {
+                                            data: 'image',
+                                            name: 'image'
+                                        },
+                                        {
+                                            data: 'price',
+                                            name: 'price'
+                                        },
+                                        {
+                                            data: 'status',
+                                            name: 'status'
+                                        },
+                                        {
+                                            data: 'action',
+                                            name: 'action',
+                                            orderable: false,
+                                            searchable: false
+                                        }
+                                    ],
+                                    order: [
+                                        [1, 'desc']
+                                    ] // Order by the created_at column (index 4) in descending order
+                                });
+                            });
+                        </script>
                     </div>
                 </div>
             </div>

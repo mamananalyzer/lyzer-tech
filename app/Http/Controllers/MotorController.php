@@ -61,10 +61,10 @@ class MotorController extends Controller
                 return $motor->created_at->format('Y-m-d H:i');
             })
             ->addColumn('action', function($motor) {
-                $showUrl = route('Motor.show', $motor->id_motor); 
-                // $editUrl = route('Motor.edit', $motor->id_motor); 
+                $showUrl = route('Motor.show', $motor->id_motor);
+                // $editUrl = route('Motor.edit', $motor->id_motor);
                 // <a href="'.$editUrl.'" class="btn btn-xs btn-primary">Edit</a>
-                $deleteUrl = route('Motor.destroy', $motor->id_motor); 
+                $deleteUrl = route('Motor.destroy', $motor->id_motor);
                 return '
                     <a href="'.$showUrl.'" class="btn btn-xs btn-primary">View</a>
                     <form action="'.$deleteUrl.'" method="POST" style="display: inline-block;">
@@ -103,14 +103,14 @@ class MotorController extends Controller
             'image' => 'required',
             'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'serviceDate' => 'required|date',
-        ]);        
+        ]);
 
         // Format serviceDate to store only the date part (YYYY-MM-DD)
         $formattedServiceDate = date('Y-m-d', strtotime($validatedData['serviceDate']));
 
         $userName = Auth::user()->name; // Get the authenticated user's name
         // Set namaMotor based on the user's name
-        $namaMotor = $userName === 'Zakiyah Ais Syafira' ? 'All New Vario 150' : 
+        $namaMotor = $userName === 'Zakiyah Ais Syafira' ? 'All New Vario 150' :
                     ($userName === 'Ade Maman Suherman' ? 'ADV 160' : 'User Not Listed');
 
         // Create a new User instance

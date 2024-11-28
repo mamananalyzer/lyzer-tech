@@ -18,14 +18,16 @@ class ProductFactory extends Factory
     {
         return [
             'brand' => $this->faker->company,
-            'type' => $this->faker->word,
-            'image' => fake()->image(),
-            'category' => fake()->name(),
-            'spek1' => $this->faker->sentence,
-            'spek2' => $this->faker->sentence,
-            'spek3' => $this->faker->sentence,
+            'name' => $this->faker->word,
+            'function' => $this->faker->word,
+            'mode' => $this->faker->word,
+            'input' => $this->faker->word,
+            'display' => $this->faker->word,
+            'output' => $this->faker->word,
+            'webbase' => $this->faker->word,
+            'comm' => $this->faker->word,
+            'image' => $this->faker->word,
             'price' => fake()->numberBetween($min = 100000, $max = 100000000),
-            'diskon' => fake()->numberBetween($min = 10, $max = 50),
             'status' => fake()->numberBetween($min = 1, $max = 2),
         ];
     }
