@@ -200,6 +200,7 @@ Route::get('/users/{id_user}', [UsersController::class, 'show'])->name('users.sh
 Route::post('/users.store', [UsersController::class, 'store'])->name('users.create');
 Route::post('/roles.store', [UsersController::class, 'storeRole'])->name('roles.create');
 Route::get('/users/{id_user}/edit', [UsersController::class, 'edit'])->name('users.edit');
+Route::post('/users/update', [UsersController::class, 'update'])->name('users.update');
 Route::delete('/users/{id_user}', [UsersController::class, 'destroy'])->name('users.destroy');
 Route::get('/users/{id_user}/suspend', [UsersController::class, 'suspend'])->name('users.suspend');
 

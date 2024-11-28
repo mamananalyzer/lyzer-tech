@@ -197,18 +197,54 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit($user)
     {
-        //
+        // dd($user);
+        $user = User::findOrFail($user);
+        $role = DB::table('users_role')->pluck('role', 'id')->toArray();
+
+        // dd($role);
+        return view('base.usersEdit', compact('user', 'role'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request)
     {
-        //
+
+        // dd($request);
+
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'company' => 'required',
+            'phone' => 'nullable|string|max:15',
+            'address' => 'nullable|string|max:255',
+            'state' => 'nullable|string|max:255',
+        ]);
+
+        // dd($validatedData);
+
+        // Find the user by ID
+        $user = User::findOrFail($request->id_user);
+
+        // Update user data
+        $user->name = $validatedData['name'];
+        $user->email = $validatedData['email'];
+        $user->company = $validatedData['company'];
+        $user->phone = $validatedData['phone'];
+        $user->address = $validatedData['address'];
+        $user->state = $validatedData['state'];
+
+        // Save changes
+        $user->save();
+
+        // Redirect or return a success response
+        return redirect('/users')->with('success', 'Form updated successfully!');
     }
+
 
     /**
      * Remove the specified resource from storage.

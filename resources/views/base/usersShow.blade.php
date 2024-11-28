@@ -41,7 +41,7 @@
                 <div class="card-body">
                   <div class="user-avatar-section">
                     <div class=" d-flex align-items-center flex-column">
-                      <img class="img-fluid rounded my-4" src="{{asset('storage/'. $user->image)}}" height="110" width="110" alt="User avatar">
+                      <img class="img-fluid rounded my-4" src="/sneat/assets/img/avatars/1.png" height="110" width="110" alt="User avatar">
                       <div class="user-info text-center">
                         <h4 class="mb-2">{{ $user->name }}</h4>
                         <span class="badge bg-label-secondary">{{ $user->company }}</span>
@@ -94,25 +94,25 @@
                             <span class="badge bg-primary">{{ $role[$user->role_id] }}</span>
                         @endif
                       </li>
-                      <li class="mb-3">
+                      {{-- <li class="mb-3">
                         <span class="fw-medium me-2">Tax id:</span>
                         <span>Tax-8965</span>
-                      </li>
+                      </li> --}}
                       <li class="mb-3">
                         <span class="fw-medium me-2">Contact:</span>
                         <span>{{ $user->phone }}</span>
                       </li>
-                      <li class="mb-3">
+                      {{-- <li class="mb-3">
                         <span class="fw-medium me-2">Languages:</span>
                         <span>French</span>
-                      </li>
+                      </li> --}}
                       <li class="mb-3">
-                        <span class="fw-medium me-2">Country:</span>
+                        <span class="fw-medium me-2">Address:</span>
                         <span>{{ $user->address }}, {{ $user->state }}</span>
                       </li>
                     </ul>
                     <div class="d-flex justify-content-center pt-3">
-                      <a href="javascript:;" class="btn btn-primary me-3" data-bs-target="#editUser" data-bs-toggle="modal">Edit</a>
+                      <a href="{{ route('users.edit', $user->id_user) }}" class="btn btn-primary me-3">Edit</a>
                       <a href="javascript:;" class="btn btn-label-danger suspend-user">Suspended</a>
                     </div>
                   </div>
@@ -151,8 +151,8 @@
               <!-- /Plan Card -->
             </div>
             <!--/ User Sidebar -->
-          
-          
+
+
             <!-- User Content -->
             {{-- <div class="col-xl-8 col-lg-7 col-md-7 order-0 order-md-1">
               <!-- User Pills -->
@@ -164,7 +164,7 @@
                 <li class="nav-item"><a class="nav-link" href="app-user-view-connections.html"><i class="bx bx-link-alt me-1"></i>Connections</a></li>
               </ul>
               <!--/ User Pills -->
-          
+
               <!-- Project table -->
               <div class="card mb-4">
                 <h5 class="card-header">User's Projects List</h5>
@@ -177,7 +177,7 @@
                 </div>
               </div>
               <!-- /Project table -->
-          
+
               <!-- Activity Timeline -->
               <div class="card mb-4">
                 <h5 class="card-header">User Activity Timeline</h5>
@@ -262,7 +262,7 @@
                 </div>
               </div>
               <!-- /Activity Timeline -->
-          
+
               <!-- Invoice table -->
               <div class="card mb-4">
                 <div class="table-responsive mb-3">

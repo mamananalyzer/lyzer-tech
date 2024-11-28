@@ -36,7 +36,7 @@
     </style>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="sneat/assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="{{asset('sneat/assets/img/favicon/favicon.ico')}}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

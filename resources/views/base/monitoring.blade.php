@@ -42,6 +42,39 @@
     <div class="flex-grow-1 container-p-y container-fluid">
 
         <div class="row mb-4 justify-content-center">
+            <div class="col-lg-4 col-md-12">
+                <div class="card card-border-shadow-primary h-100 text-left">
+                    <div class="card-header py-3">
+                        <div class="row">
+                            <div class="col-lg-4 pt-1">
+                                <h4>Energy</h4>
+                            </div>
+                            <div class="col-lg-8 card card-border-shadow-primary h-100">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card">Today</h5>
+                                    </div>
+                                    <div class="col">
+                                        <h5 class="card">Week</h5>
+                                    </div>
+                                    <div class="col">
+                                        <h5 class="card">Month</h5>
+                                    </div>
+                                    <div class="col">
+                                        <h5 class="card">Year</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col" id="energy" style="width: 60vw; height: 50vh;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4 justify-content-center">
             <div class="col-lg-8 col-md-12">
                 <div class="card card-border-shadow-primary h-100 text-left">
                     <div class="row">
@@ -174,356 +207,6 @@
                 tabContent.appendChild(contentPane); // Append pane to tab content
             });
         </script>
-
-
-        {{-- <div class="row mb-4 g-6 justify-content-center">
-        <div class="col-lg-10 col-md-12 order-3 order-lg-4 mb-4 mb-lg-0">
-            <div class="card text-center">
-                <div class="card-header py-3">
-                    <ul class="nav nav-pills" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-F" aria-controls="navs-pills-F" aria-selected="true">Freq</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-U1" aria-controls="navs-pills-U1" aria-selected="false" tabindex="-1">V1</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-U2" aria-controls="navs-pills-U2" aria-selected="false" tabindex="-1">V2</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-U3" aria-controls="navs-pills-U3" aria-selected="false" tabindex="-1">V3</button>
-                    </li>
-                    </ul>
-                </div>
-                <div class="tab-content pt-0">
-                    <div class="tab-pane fade active show" id="navs-pills-F" role="tabpanel">
-                        <div class="d-flex justify-content-center">
-                            <div id="F" style="width: 75vw; height: 50vh;"></div>
-                        </div>
-                        <div class="row mt-4 justify-content-center">
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="card card-border-shadow-primary h-100">
-                                  <div class="card-body">
-                                    <div class="d-flex align-items-center mb-2">
-                                      <div class="avatar me-4">
-                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
-                                      </div>
-                                      <h5 class="mb-0">Highest Reading</h5>
-                                    </div>
-                                    <p class="mb-2" id="highestFValue">No data available</p>
-                                    <p class="mb-0">
-                                      <span class="text-heading fw-medium me-2">+18.2%</span>
-                                      <span class="text-muted">than last week</span>
-                                    </p>
-                                  </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="card card-border-shadow-primary h-100">
-                                  <div class="card-body">
-                                    <div class="d-flex align-items-center mb-2">
-                                      <div class="avatar me-4">
-                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
-                                      </div>
-                                      <h5 class="mb-0">42</h5>
-                                    </div>
-                                    <p class="mb-2">On route vehicles</p>
-                                    <p class="mb-0">
-                                      <span class="text-heading fw-medium me-2">+18.2%</span>
-                                      <span class="text-muted">than last week</span>
-                                    </p>
-                                  </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="card card-border-shadow-primary h-100">
-                                  <div class="card-body">
-                                    <div class="d-flex align-items-center mb-2">
-                                      <div class="avatar me-4">
-                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
-                                      </div>
-                                      <h5 class="mb-0">42</h5>
-                                    </div>
-                                    <p class="mb-2">On route vehicles</p>
-                                    <p class="mb-0">
-                                      <span class="text-heading fw-medium me-2">+18.2%</span>
-                                      <span class="text-muted">than last week</span>
-                                    </p>
-                                  </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="card card-border-shadow-primary h-100">
-                                  <div class="card-body">
-                                    <div class="d-flex align-items-center mb-2">
-                                      <div class="avatar me-4">
-                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
-                                      </div>
-                                      <h5 class="mb-0">42</h5>
-                                    </div>
-                                    <p class="mb-2">On route vehicles</p>
-                                    <p class="mb-0">
-                                      <span class="text-heading fw-medium me-2">+18.2%</span>
-                                      <span class="text-muted">than last week</span>
-                                    </p>
-                                  </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="navs-pills-U1" role="tabpanel">
-                        <div class="d-flex justify-content-center">
-                            <div id="U1" style="width:75vw; height: 50vh;"></div>
-                        </div>
-                        <div class="row mt-4 justify-content-center">
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="card card-border-shadow-primary h-100">
-                                  <div class="card-body">
-                                    <div class="d-flex align-items-center mb-2">
-                                      <div class="avatar me-4">
-                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
-                                      </div>
-                                      <h5 class="mb-0">Highest Reading</h5>
-                                    </div>
-                                    <p class="mb-2" id="highestU1Value">No data available</p>
-                                    <p class="mb-0">
-                                      <span class="text-heading fw-medium me-2">+18.2%</span>
-                                      <span class="text-muted">than last week</span>
-                                    </p>
-                                  </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="card card-border-shadow-primary h-100">
-                                  <div class="card-body">
-                                    <div class="d-flex align-items-center mb-2">
-                                      <div class="avatar me-4">
-                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
-                                      </div>
-                                      <h5 class="mb-0">42</h5>
-                                    </div>
-                                    <p class="mb-2">On route vehicles</p>
-                                    <p class="mb-0">
-                                      <span class="text-heading fw-medium me-2">+18.2%</span>
-                                      <span class="text-muted">than last week</span>
-                                    </p>
-                                  </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="card card-border-shadow-primary h-100">
-                                  <div class="card-body">
-                                    <div class="d-flex align-items-center mb-2">
-                                      <div class="avatar me-4">
-                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
-                                      </div>
-                                      <h5 class="mb-0">42</h5>
-                                    </div>
-                                    <p class="mb-2">On route vehicles</p>
-                                    <p class="mb-0">
-                                      <span class="text-heading fw-medium me-2">+18.2%</span>
-                                      <span class="text-muted">than last week</span>
-                                    </p>
-                                  </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="card card-border-shadow-primary h-100">
-                                  <div class="card-body">
-                                    <div class="d-flex align-items-center mb-2">
-                                      <div class="avatar me-4">
-                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
-                                      </div>
-                                      <h5 class="mb-0">42</h5>
-                                    </div>
-                                    <p class="mb-2">On route vehicles</p>
-                                    <p class="mb-0">
-                                      <span class="text-heading fw-medium me-2">+18.2%</span>
-                                      <span class="text-muted">than last week</span>
-                                    </p>
-                                  </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="navs-pills-U2" role="tabpanel">
-                        <div class="d-flex justify-content-center">
-                            <div id="U2" style="width:75vw; height: 50vh;"></div>
-                        </div>
-                        <div class="row mt-4 justify-content-center">
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="card card-border-shadow-primary h-100">
-                                  <div class="card-body">
-                                    <div class="d-flex align-items-center mb-2">
-                                      <div class="avatar me-4">
-                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
-                                      </div>
-                                      <h5 class="mb-0">Highest Reading</h5>
-                                    </div>
-                                    <p class="mb-2" id="highestU2Value">No data available</p>
-                                    <p class="mb-0">
-                                      <span class="text-heading fw-medium me-2">+18.2%</span>
-                                      <span class="text-muted">than last week</span>
-                                    </p>
-                                  </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="card card-border-shadow-primary h-100">
-                                  <div class="card-body">
-                                    <div class="d-flex align-items-center mb-2">
-                                      <div class="avatar me-4">
-                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
-                                      </div>
-                                      <h5 class="mb-0">42</h5>
-                                    </div>
-                                    <p class="mb-2">On route vehicles</p>
-                                    <p class="mb-0">
-                                      <span class="text-heading fw-medium me-2">+18.2%</span>
-                                      <span class="text-muted">than last week</span>
-                                    </p>
-                                  </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="card card-border-shadow-primary h-100">
-                                  <div class="card-body">
-                                    <div class="d-flex align-items-center mb-2">
-                                      <div class="avatar me-4">
-                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
-                                      </div>
-                                      <h5 class="mb-0">42</h5>
-                                    </div>
-                                    <p class="mb-2">On route vehicles</p>
-                                    <p class="mb-0">
-                                      <span class="text-heading fw-medium me-2">+18.2%</span>
-                                      <span class="text-muted">than last week</span>
-                                    </p>
-                                  </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="card card-border-shadow-primary h-100">
-                                  <div class="card-body">
-                                    <div class="d-flex align-items-center mb-2">
-                                      <div class="avatar me-4">
-                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
-                                      </div>
-                                      <h5 class="mb-0">42</h5>
-                                    </div>
-                                    <p class="mb-2">On route vehicles</p>
-                                    <p class="mb-0">
-                                      <span class="text-heading fw-medium me-2">+18.2%</span>
-                                      <span class="text-muted">than last week</span>
-                                    </p>
-                                  </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="navs-pills-U3" role="tabpanel">
-                        <div class="d-flex justify-content-center">
-                            <div id="U3" style="width:75vw; height: 50vh;"></div>
-                        </div>
-                        <div class="row mt-4 justify-content-center">
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="card card-border-shadow-primary h-100">
-                                  <div class="card-body">
-                                    <div class="d-flex align-items-center mb-2">
-                                      <div class="avatar me-4">
-                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
-                                      </div>
-                                      <h5 class="mb-0">Highest Reading</h5>
-                                    </div>
-                                    <p class="mb-2" id="highestU3Value">No data available</p>
-                                    <p class="mb-0">
-                                      <span class="text-heading fw-medium me-2">+18.2%</span>
-                                      <span class="text-muted">than last week</span>
-                                    </p>
-                                  </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="card card-border-shadow-primary h-100">
-                                  <div class="card-body">
-                                    <div class="d-flex align-items-center mb-2">
-                                      <div class="avatar me-4">
-                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
-                                      </div>
-                                      <h5 class="mb-0">42</h5>
-                                    </div>
-                                    <p class="mb-2">On route vehicles</p>
-                                    <p class="mb-0">
-                                      <span class="text-heading fw-medium me-2">+18.2%</span>
-                                      <span class="text-muted">than last week</span>
-                                    </p>
-                                  </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="card card-border-shadow-primary h-100">
-                                  <div class="card-body">
-                                    <div class="d-flex align-items-center mb-2">
-                                      <div class="avatar me-4">
-                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
-                                      </div>
-                                      <h5 class="mb-0">42</h5>
-                                    </div>
-                                    <p class="mb-2">On route vehicles</p>
-                                    <p class="mb-0">
-                                      <span class="text-heading fw-medium me-2">+18.2%</span>
-                                      <span class="text-muted">than last week</span>
-                                    </p>
-                                  </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="card card-border-shadow-primary h-100">
-                                  <div class="card-body">
-                                    <div class="d-flex align-items-center mb-2">
-                                      <div class="avatar me-4">
-                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bxs-truck bx-lg"></i></span>
-                                      </div>
-                                      <h5 class="mb-0">42</h5>
-                                    </div>
-                                    <p class="mb-2">On route vehicles</p>
-                                    <p class="mb-0">
-                                      <span class="text-heading fw-medium me-2">+18.2%</span>
-                                      <span class="text-muted">than last week</span>
-                                    </p>
-                                  </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
-        {{-- <div class="row mb-12 g-6">
-        <div class="col-lg-3 col-md-6">
-            <div id="F" style="width: 450px; height: 200px;"></div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div id="U1" style="width: 450px; height: 200px;"></div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div id="U2" style="width: 450px; height: 200px;"></div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div id="U3" style="width: 450px; height: 200px;"></div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div id="U12" style="width: 450px; height: 200px;"></div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div id="U23" style="width: 450px; height: 200px;"></div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div id="U31" style="width: 450px; height: 200px;"></div>
-        </div>
-    </div> --}}
 
 
         {{-- Real-time --}}

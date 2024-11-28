@@ -12,6 +12,7 @@ class ZerotestController extends Controller
      */
     public function index()
     {
+
         // Example data to pass to ECharts
         $chartData = [
             'xAxis' => ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -19,6 +20,11 @@ class ZerotestController extends Controller
         ];
 
         return view('base.zerotest', compact('chartData'));
+    }
+
+    public function getDataAndCompare()
+    {
+
     }
 
     /**

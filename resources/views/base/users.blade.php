@@ -137,6 +137,8 @@
                     </div>
                 </div>
             </div>
+
+
             <!-- Offcanvas to add new user -->
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddUser"
                 aria-labelledby="offcanvasAddUserLabel">
