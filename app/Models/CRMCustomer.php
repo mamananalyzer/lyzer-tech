@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Model
+class CRMCustomer extends Model
 {
     use HasFactory;
 
-    protected $table = 'customers';
+    protected $table = 'crm_customers';
     protected $primaryKey = 'id_customer';
     protected $fillable = [
         'name',

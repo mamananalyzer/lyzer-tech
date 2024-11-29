@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\CRM;
 use App\Models\User;
-use App\Models\Customer;
+use App\Models\CRMCustomer;
+use App\Models\CRMVisit;
 use App\Models\Product;
 use App\Models\Quotation;
 use GuzzleHttp\Handler\Proxy;
@@ -33,7 +34,7 @@ class CRMController extends Controller
 
 
         //Customer List
-        $customer = Customer::all();
+        $customer = CRMCustomer::all();
         // $customers = Customer::all();
 
         // dd($customers);
@@ -48,9 +49,9 @@ class CRMController extends Controller
         return view('base.CRM', compact('sales', 'customer', 'sales_quot', 'product', 'quotation_list', 'task', 'totaltask'));
     }
 
-    public function getData()
+    public function customer_getData()
     {
-        $customers = Customer::all();
+        $customers = CRMCustomer::all();
 
         // dd($customers);
 
@@ -76,7 +77,33 @@ class CRMController extends Controller
             ->make(true);
     }
 
+    public function visit_getData()
+    {
+        $visits = CRMVisit::all();
 
+        // dd($visits);
+
+        return DataTables::of($visits)
+            ->editColumn('created_at', function ($visit) {
+                return $visit->created_at->format('Y-m-d H:i');
+            })
+            ->addColumn('action', function ($visit) {
+                $showUrl = route('Visit.show', $visit->id_visit);
+                $editUrl = route('Visit.edit', $visit->id_visit);
+                $deleteUrl = route('Visit.destroy', $visit->id_visit);
+                return '
+                    <a href="' . $showUrl . '" class="btn btn-xs btn-primary">View</a>
+                    <a href="' . $editUrl . '" class="btn btn-xs btn-primary">Edit</a>
+                    <form action="' . $deleteUrl . '" method="POST" style="display: inline-block;">
+                        ' . csrf_field() . '
+                        ' . method_field('DELETE') . '
+                        <button type="submit" class="btn btn-xs btn-danger" onclick="return confirm(\'Are you sure?\')">Delete</button>
+                    </form>
+                ';
+            })
+            ->rawColumns(['action']) // Allow raw HTML in the action column
+            ->make(true);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -225,7 +252,7 @@ class CRMController extends Controller
         }
 
         // Create a new Customer instance
-        $customer = new Customer([
+        $customer = new CRMCustomer([
             'id_customer' => $validatedData['id_customer'],
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
@@ -244,6 +271,29 @@ class CRMController extends Controller
         $customer->save();
 
         return redirect('/CRM')->with('success', 'Form submitted successfully!');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function visit_store(Request $request)
+    {
+        // dd($request->all());
+
+        $request['contact_person'] = $request->input('password', '12345');
+        $request['contact_number'] = $request->input('password', '12345');
+
+        CRMVisit::create($request->only([
+            'customer_name',
+            'location',
+            'contact_person',
+            'contact_number',
+            'visit_date',
+            'visit_time',
+            'purpose',
+        ]));
+
+        return back()->with('success', 'CRMVisit added successfully!');
     }
 
     /**
@@ -276,5 +326,17 @@ class CRMController extends Controller
     public function destroy(CRM $cRM)
     {
         //
+    }
+
+    public function visit_destroy($id_visit)
+    {
+        $id = CRMVisit::find($id_visit);
+
+        if ($id) {
+            $id->delete();
+            return redirect()->back()->with('success', 'User deleted successfully.');
+        }
+
+        return redirect()->back()->with('error', 'User not found.');
     }
 }

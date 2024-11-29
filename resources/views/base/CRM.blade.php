@@ -123,17 +123,16 @@
                         </div>
                         <div class="table-responsive text-start">
                             <div class="card card-datatable table-responsive mt-3">
-                                <table class="table table-bordered" id="customer-table" data-page-length='7'>
+                                <table class="table table-bordered" id="visit-table" data-page-length='7'>
                                     <thead>
                                         <tr>
                                             <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Area</th>
-                                            <th>Phone Number</th>
-                                            <th>Mobile Phone</th>
-                                            <th>Company</th>
+                                            <th>Location</th>
+                                            <th>Visit Date</th>
+                                            <th>Visit Time</th>
+                                            <th>Purpose</th>
+                                            <th>Follow Up Date</th>
                                             <th>Status</th>
-                                            <th>Created At</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -601,169 +600,171 @@
                         <div class="carousel-inner">
                             <form method="post" action="{{ route('Visit.create') }}" enctype="multipart/form-data">
                                 @csrf <!-- CSRF protection -->
-                                @method('POST')
-                                <div class="carousel-item active">
-                                    <div class="onboarding-media">
-                                        <div class="mx-2">
-                                            <img src="../../assets/img/illustrations/girl-with-laptop-light.png"
-                                                alt="girl-with-laptop-light" width="222" class="img-fluid"
-                                                data-app-dark-img="illustrations/girl-with-laptop-dark.png"
-                                                data-app-light-img="illustrations/girl-with-laptop-light.png">
+                                <div class="modal-content text-center">
+                                    <div class="modal-body p-0">
+                                        <!-- Carousel Item 1 -->
+                                        <div class="carousel-item active">
+                                            <div class="onboarding-media">
+                                                <div class="mx-2">
+                                                    <img src="../../assets/img/illustrations/girl-with-laptop-light.png"
+                                                        alt="girl-with-laptop-light" width="222" class="img-fluid"
+                                                        data-app-dark-img="illustrations/girl-with-laptop-dark.png"
+                                                        data-app-light-img="illustrations/girl-with-laptop-light.png">
+                                                </div>
+                                            </div>
+                                            <div class="onboarding-content">
+                                                <h4 class="onboarding-title text-body">Visit Information</h4>
+                                                <div class="row g-6">
+                                                    <!-- Customer Name -->
+                                                    <div class="col-sm-6">
+                                                        <div class="mb-4">
+                                                            <label class="form-label" for="customer-company">Customer
+                                                                Company</label>
+                                                            <select id="customer-company" class="form-select"
+                                                                name="customer_name">
+                                                                <option value="">Select Company</option>
+                                                                @foreach ($customer->sortBy('company') as $cust)
+                                                                    <option value="{{ $cust->company }}">
+                                                                        {{ $cust->company }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Contact Person -->
+                                                    <div class="col-sm-6">
+                                                        <div class="mb-4">
+                                                            <label class="form-label" for="customer-name">Contact
+                                                                Person</label>
+                                                            <select id="customer-name" class="form-select"
+                                                                name="contact_person">
+                                                                <option value="">Select Name</option>
+                                                                @foreach ($customer->sortBy('company') as $cust)
+                                                                    <option value="{{ $cust->name }}"
+                                                                        data-company="{{ $cust->company }}">
+                                                                        {{ $cust->name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row g-6">
+                                                    <!-- Location -->
+                                                    <div class="col-sm-6">
+                                                        <div class="mb-4">
+                                                            <label class="form-label" for="location">Location</label>
+                                                            <input type="text" id="location" class="form-control"
+                                                                placeholder="Meruya Utara" name="location">
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Purpose -->
+                                                    <div class="col-sm-6">
+                                                        <div class="mb-4">
+                                                            <label class="form-label" for="purpose">Purpose</label>
+                                                            <input type="text" id="purpose" class="form-control"
+                                                                placeholder="Present Transducer & Annunciator"
+                                                                name="purpose">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row g-6">
+                                                    <!-- Visit Date -->
+                                                    <div class="col-sm-6">
+                                                        <div class="mb-4">
+                                                            <label class="form-label" for="visit_date">Visit Date</label>
+                                                            <input class="form-control" type="date" id="visit_date"
+                                                                name="visit_date">
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Visit Time -->
+                                                    <div class="col-sm-6">
+                                                        <div class="mb-4">
+                                                            <label class="form-label" for="visit_time">Visit Time</label>
+                                                            <input class="form-control" type="time" id="visit_time"
+                                                                name="visit_time">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Carousel Item 2 -->
+                                        <div class="carousel-item">
+                                            <div class="onboarding-media">
+                                                <div class="mx-2">
+                                                    <img src="../../assets/img/illustrations/boy-with-laptop-light.png"
+                                                        alt="boy-with-laptop-light" width="219" class="img-fluid"
+                                                        data-app-dark-img="illustrations/boy-with-laptop-dark.png"
+                                                        data-app-light-img="illustrations/boy-with-laptop-light.png">
+                                                </div>
+                                            </div>
+                                            <div class="onboarding-content">
+                                                <h4 class="onboarding-title text-body">Example Request Information</h4>
+                                                <div class="row g-6">
+                                                    <!-- Notes -->
+                                                    <div class="col-sm-12">
+                                                        <div class="mb-4">
+                                                            <label class="form-label" for="notes">Notes</label>
+                                                            <textarea class="form-control" id="notes" rows="3" name="notes"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row g-6">
+                                                    <!-- Customer Feedback -->
+                                                    <div class="col-sm-12">
+                                                        <div class="mb-4">
+                                                            <label class="form-label" for="customer_feedback">Customer
+                                                                Feedback</label>
+                                                            <textarea class="form-control" id="customer_feedback" rows="3" name="customer_feedback"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Carousel Item 3 -->
+                                        <div class="carousel-item">
+                                            <div class="onboarding-media">
+                                                <div class="mx-2">
+                                                    <img src="../../assets/img/illustrations/girl-verify-password-light.png"
+                                                        alt="girl-verify-password-light" width="239" class="img-fluid"
+                                                        data-app-dark-img="illustrations/girl-verify-password-dark.png"
+                                                        data-app-light-img="illustrations/girl-verify-password-light.png">
+                                                </div>
+                                            </div>
+                                            <div class="onboarding-content">
+                                                <h4 class="onboarding-title text-body">Next Steps</h4>
+                                                <div class="row g-6">
+                                                    <!-- Next Steps -->
+                                                    <div class="col-sm-12">
+                                                        <div class="mb-4">
+                                                            <label class="form-label" for="next_steps">Next Steps</label>
+                                                            <textarea class="form-control" id="next_steps" rows="4" name="next_steps"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row g-6">
+                                                    <!-- Follow Up Date -->
+                                                    <div class="col-sm-6">
+                                                        <div class="mb-4">
+                                                            <label class="form-label" for="follow_up_date">Follow Up
+                                                                Date</label>
+                                                            <input class="form-control" type="date"
+                                                                id="follow_up_date" name="follow_up_date">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="onboarding-content">
-                                        <h4 class="onboarding-title text-body">Visit Information</h4>
-                                        <form>
-                                            <div class="row g-6">
-                                                <!-- Customer Name -->
-                                                <div class="col-sm-6">
-                                                    <div class="mb-4">
-                                                        <label class="form-label" for="customer-company">Customer
-                                                            Company</label>
-                                                        <select id="customer-company" class="form-select"
-                                                            name="customer_name">
-                                                            <option value="">Select Company</option>
-                                                            @foreach ($customer->sortBy('company') as $cust)
-                                                                <option value="{{ $cust->company }}">{{ $cust->company }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
 
-                                                <!-- Contact Person -->
-                                                <div class="col-sm-6">
-                                                    <div class="mb-4">
-                                                        <label class="form-label" for="customer-name">Contact
-                                                            Person</label>
-                                                        <select id="customer-name" class="form-select">
-                                                            <option value="">Select Name</option>
-                                                            @foreach ($customer->sortBy('company') as $cust)
-                                                                <option value="{{ $cust->name }}"
-                                                                    data-company="{{ $cust->company }}">
-                                                                    {{ $cust->name }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row g-6">
-                                                <!-- Location -->
-                                                <div class="col-sm-6">
-                                                    <div class="mb-4">
-                                                        <label class="form-label" for="location">Location</label>
-                                                        <input type="text" id="location" class="form-control"
-                                                            placeholder="Meruya Utara" name="location">
-                                                    </div>
-                                                </div>
-
-                                                <!-- Purpose -->
-                                                <div class="col-sm-6">
-                                                    <div class="mb-4">
-                                                        <label class="form-label" for="purpose">Purpose</label>
-                                                        <input type="text" id="purpose" class="form-control"
-                                                            placeholder="Present Transducer & Annunciator" name="purpose">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row g-6">
-                                                <!-- Visit Date -->
-                                                <div class="col-sm-6">
-                                                    <div class="mb-4">
-                                                        <label class="form-label" for="visit_date">Visit Date</label>
-                                                        <input class="form-control" type="date" id="visit_date"
-                                                            name="visit_date">
-                                                    </div>
-                                                </div>
-
-                                                <!-- Visit Time -->
-                                                <div class="col-sm-6">
-                                                    <div class="mb-4">
-                                                        <label class="form-label" for="visit_time">Visit Time</label>
-                                                        <input class="form-control" type="time" id="visit_time"
-                                                            name="visit_time">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="onboarding-media">
-                                        <div class="mx-2">
-                                            <img src="../../assets/img/illustrations/boy-with-laptop-light.png"
-                                                alt="boy-with-laptop-light" width="222" class="img-fluid"
-                                                data-app-dark-img="illustrations/boy-with-laptop-dark.png"
-                                                data-app-light-img="illustrations/boy-with-laptop-light.png">
-                                        </div>
-                                    </div>
-                                    <div class="onboarding-content">
-                                        <h4 class="onboarding-title text-body">Example Request Information</h4>
-                                        {{-- <div class="onboarding-info">In this example you can see a form where you can request
-                                            some
-                                            additional information from the customer when they land on the app page.</div> --}}
-                                        <form>
-                                            <div class="row g-6">
-                                                <!-- Notes -->
-                                                <div class="col-sm-12">
-                                                    <div class="mb-4">
-                                                        <label class="form-label" for="notes">Notes</label>
-                                                        <textarea class="form-control" id="notes" rows="3" name="notes"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row g-6">
-                                                <!-- Customer Feedback -->
-                                                <div class="col-sm-12">
-                                                    <div class="mb-4">
-                                                        <label class="form-label" for="customer_feedback">Customer
-                                                            Feedback</label>
-                                                        <textarea class="form-control" id="customer_feedback" rows="3" name="customer_feedback"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="onboarding-media">
-                                        <div class="mx-2">
-                                            <img src="../../assets/img/illustrations/girl-verify-password-light.png"
-                                                alt="girl-verify-password-light" width="222" class="img-fluid"
-                                                data-app-dark-img="illustrations/girl-verify-password-dark.png"
-                                                data-app-light-img="illustrations/girl-verify-password-light.png">
-                                        </div>
-                                    </div>
-                                    <div class="onboarding-content">
-                                        <h4 class="onboarding-title text-body">Example Request Information</h4>
-                                        {{-- <div class="onboarding-info">In this example you can see a form where you can request
-                                            some
-                                            additional information from the customer when they land on the app page.</div> --}}
-                                        <form>
-                                            <div class="row g-6">
-                                                <!-- Next Steps -->
-                                                <div class="col-sm-12">
-                                                    <div class="mb-4">
-                                                        <label class="form-label" for="next_steps">Next Steps</label>
-                                                        <textarea class="form-control" id="next_steps" rows="4" name="next_steps"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row g-6">
-                                                <!-- Follow Up Date -->
-                                                <div class="col-sm-6">
-                                                    <div class="mb-4">
-                                                        <label class="form-label" for="follow_up_date">Follow Up
-                                                            Date</label>
-                                                        <input class="form-control" type="date" id="follow_up_date"
-                                                            name="follow_up_date">
-                                                    </div>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Submit</button>
-                                            </div>
-                                        </form>
+                                    <div class="modal-footer border-0">
+                                        <button type="button" class="btn btn-label-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
                             </form>
@@ -889,7 +890,7 @@
                 // Initialize DataTable
                 $('#customer-table').DataTable({
                     serverSide: true,
-                    ajax: '{{ route('CRM.data') }}',
+                    ajax: '{{ route('Customers.data') }}',
                     columns: [{
                             data: 'name',
                             name: 'name'
@@ -930,7 +931,59 @@
             });
         </script>
 
-        {{-- customer-filter --}}
+        {{-- visit-table --}}
+        <script type="text/javascript">
+            $(document).ready(function() {
+                // Destroy existing DataTable before re-initializing
+                if ($.fn.DataTable.isDataTable('#visit-table')) {
+                    $('#visit-table').DataTable().destroy();
+                }
+
+                // Initialize DataTable
+                $('#visit-table').DataTable({
+                    serverSide: true,
+                    ajax: '{{ route('Visit.data') }}',
+                    columns: [{
+                            data: 'customer_name',
+                            name: 'customer_name'
+                        },
+                        {
+                            data: 'location',
+                            name: 'location'
+                        },
+                        {
+                            data: 'visit_date',
+                            name: 'visit_date'
+                        },
+                        {
+                            data: 'visit_time',
+                            name: 'visit_time'
+                        },
+                        {
+                            data: 'purpose',
+                            name: 'purpose'
+                        },
+                        {
+                            data: 'follow_up_date',
+                            name: 'follow_up_date'
+                        },
+                        {
+                            data: 'status',
+                            name: 'status'
+                        },
+                        // { data: 'created_at', name: 'created_at', width: '100px' },
+                        {
+                            data: 'action',
+                            name: 'action',
+                            orderable: false,
+                            searchable: false
+                        }
+                    ]
+                });
+            });
+        </script>
+
+        {{-- visit-customer-filter --}}
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const companySelect = document.getElementById('customer-company');
