@@ -41,93 +41,164 @@
 
     <div class="flex-grow-1 container-p-y container-fluid">
 
-        <div class="row mb-4 justify-content-center">
-            <div class="col-lg-4 col-md-12">
-                <div class="card card-border-shadow-primary h-100 text-left">
-                    <div class="card-header py-3">
-                        <div class="row">
-                            <div class="col-lg-4 pt-1">
-                                <h4>Energy</h4>
-                            </div>
-                            <div class="col-lg-8 card card-border-shadow-primary h-100">
-                                <div class="row">
-                                    <div class="col">
-                                        <h5 class="card">Today</h5>
-                                    </div>
-                                    <div class="col">
-                                        <h5 class="card">Week</h5>
-                                    </div>
-                                    <div class="col">
-                                        <h5 class="card">Month</h5>
-                                    </div>
-                                    <div class="col">
-                                        <h5 class="card">Year</h5>
-                                    </div>
-                                </div>
+        <div class="card mb-6">
+            <div class="row row-bordered g-0">
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="card-header d-flex align-items-center justify-content-between">
+                                <label for="exampleFormControlSelect1" class="form-label" hidden>Example select</label>
+                                <select class="form-select" id="exampleFormControlSelect1"
+                                    aria-label="Default select example">
+                                    <option selected="">Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col" id="energy" style="width: 60vw; height: 50vh;"></div>
+                        <div class="col-lg-8">
+
                         </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 d-flex align-items-center">
+                    <div class="card-body px-xl-9" style="position: relative;">
+                        <button type="button" class="btn btn-text-primary">Main System Diagram</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row mb-4 justify-content-center">
-            <div class="col-lg-8 col-md-12">
-                <div class="card card-border-shadow-primary h-100 text-left">
-                    <div class="row">
-                        <div class="col-lg-9 px-2">
+
+        <div class="row">
+            <div class="col-xxl-2 mb-6 order-0">
+                <div class="card">
+                    <div class="d-flex align-items-start row">
+                        <div class="col-sm-7">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary mb-3">Congratulations John! 🎉</h5>
+                                <p class="mb-6">You have done 72% more sales today.<br>Check your new badge in your
+                                    profile.</p>
+
+                                <a href="javascript:;" class="btn btn-sm btn-label-primary">View Badges</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-5 text-center text-sm-left">
+                            <div class="card-body pb-0 px-0 px-md-6">
+                                <img src="../../assets/img/illustrations/man-with-laptop.png" height="175"
+                                    class="scaleX-n1-rtl" alt="View Badge User">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xxl-10 col-lg-12 col-md-10 order-1">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 col-6 mb-6">
+                        <div class="card h-100">
+                            <div class="card-body pb-4">
+                                <span class="d-block fw-medium mb-1">Order</span>
+                                <h4 class="card-title mb-0">276k</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-6 mb-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="card-title d-flex align-items-start justify-content-between mb-4">
+
+                                </div>
+                                <p class="mb-1">Sales</p>
+                                <h4 class="card-title mb-3">$4,679</h4>
+                                <small class="text-success fw-medium"><i class="bx bx-up-arrow-alt"></i> +28.42%</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 col-6 mb-6">
+                        <div class="card h-100">
+                            <div class="card-body pb-4">
+                                <span class="d-block fw-medium mb-1">Order</span>
+                                <h4 class="card-title mb-0">276k</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-6 mb-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="card-title d-flex align-items-start justify-content-between mb-4">
+
+                                </div>
+                                <p class="mb-1">Sales</p>
+                                <h4 class="card-title mb-3">$4,679</h4>
+                                <small class="text-success fw-medium"><i class="bx bx-up-arrow-alt"></i> +28.42%</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-4 justify-content-center">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card card-border-shadow-primary h-100 text-left">
+                            <div class="row">
+                                <div class="col-lg-9 px-2">
+                                    <div class="card-header py-3">
+                                        <div class="row">
+                                            <div class="col-lg-4 pt-1">
+                                                <h4>Real-time</h4>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <ul class="nav nav-pills" role="tablist" id="tabList"></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-content" id="tabContent"></div>
+                                </div>
+                                <div class="col-lg-3 px-2 mt-4">
+                                    <div class="" id="datepicker"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- <div class="col-lg-4 col-md-12">
+                        <div class="card card-border-shadow-primary h-100 text-left">
                             <div class="card-header py-3">
                                 <div class="row">
                                     <div class="col-lg-4 pt-1">
-                                        <h4>Real-time</h4>
+                                        <h4>Energy</h4>
                                     </div>
-                                    <div class="col-lg-8">
-                                        <ul class="nav nav-pills" role="tablist" id="tabList"></ul>
+                                    <div class="col-lg-8 card card-border-shadow-primary h-100">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h5 class="card">Today</h5>
+                                            </div>
+                                            <div class="col">
+                                                <h5 class="card">Week</h5>
+                                            </div>
+                                            <div class="col">
+                                                <h5 class="card">Month</h5>
+                                            </div>
+                                            <div class="col">
+                                                <h5 class="card">Year</h5>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-content" id="tabContent"></div>
-                        </div>
-                        <div class="col-lg-3 px-2 mt-4">
-                            <div class="" id="datepicker"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-12">
-                <div class="card card-border-shadow-primary h-100 text-left">
-                    <div class="card-header py-3">
-                        <div class="row">
-                            <div class="col-lg-4 pt-1">
-                                <h4>Energy</h4>
-                            </div>
-                            <div class="col-lg-8 card card-border-shadow-primary h-100">
                                 <div class="row">
-                                    <div class="col">
-                                        <h5 class="card">Today</h5>
-                                    </div>
-                                    <div class="col">
-                                        <h5 class="card">Week</h5>
-                                    </div>
-                                    <div class="col">
-                                        <h5 class="card">Month</h5>
-                                    </div>
-                                    <div class="col">
-                                        <h5 class="card">Year</h5>
-                                    </div>
+                                    <div class="col" id="energy" style="width: 60vw; height: 50vh;"></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col" id="energy" style="width: 60vw; height: 50vh;"></div>
-                        </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
+
+
+
+
+
 
         <script>
             // Define your tabs here
@@ -303,7 +374,9 @@
                                     dataZoom: {
                                         yAxisIndex: 'none'
                                     },
-                                    dataView: { readOnly: false },
+                                    dataView: {
+                                        readOnly: false
+                                    },
                                     restore: {},
                                     saveAsImage: {}
                                 }
@@ -546,11 +619,11 @@
                         } = dataByDay[day];
                         if (start.Ep_sum !== null && end.Ep_sum !== null) {
                             dataByDay[day].difference.Ep_sum = (end.Ep_sum - start.Ep_sum).toFixed(
-                            2); // Calculate Ep_sum difference
+                                2); // Calculate Ep_sum difference
                         }
                         if (start.Eq_sum !== null && end.Eq_sum !== null) {
                             dataByDay[day].difference.Eq_sum = (end.Eq_sum - start.Eq_sum).toFixed(
-                            2); // Calculate Eq_sum difference
+                                2); // Calculate Eq_sum difference
                         }
                     });
 
