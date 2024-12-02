@@ -9,9 +9,22 @@ use Illuminate\Support\Facades\DB;
 class MeteringController extends Controller
 {
     // List all metering
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(Metering::all(), 200);
+        // Retrieve the 'date' parameter from the query string
+        $date = $request->input('date');
+
+        if ($date) {
+            // Filter data by the exact date
+            $data = Metering::whereDate('created_at', $date)->get();
+        } else {
+            // If no date is provided, return all data (optional)
+            $data = Metering::all();
+        }
+
+        return response()->json($data);
+
+        // return response()->json(Metering::all(), 200);
     }
 
     // Store a new metering

@@ -62,7 +62,7 @@ Route::group(['middleware' => ['checkRole:1']], function() {
     Route::get('/Labs_Label', [LabsController::class, 'index']);
 });
 Route::group(['middleware' => ['checkRole:1']], function() {
-    Route::get('/monitoring', [MonitoringController::class, 'index']);
+    Route::get('/monitoring-realtime', [MonitoringController::class, 'index']);
 });
 Route::group(['middleware' => ['checkRole:1,14']], function() {
     Route::get('/motor', [MotorController::class, 'index']);

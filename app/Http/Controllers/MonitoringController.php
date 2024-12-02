@@ -18,7 +18,7 @@ class MonitoringController extends Controller
         // $monitoring = Monitoring::all();
         // $monitoring = Monitoring::where('sn', '1102200200321034')->latest()->take(14)->get();
         // dd($metering->all());
-        return view('base.monitoring');
+        return view('base.monitoring-realtime');
     }
 
     /**

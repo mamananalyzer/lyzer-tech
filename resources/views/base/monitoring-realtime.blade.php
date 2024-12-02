@@ -9,33 +9,29 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <link rel="stylesheet" href="sneat/assets/vendor/libs/flatpickr/flatpickr.css">
     <link rel="stylesheet" href="sneat/assets/vendor/css/pages/app-calendar.css">
+    <link rel="stylesheet" href="sneat/assets/vendor/libs/jstree/jstree.css">
 
 @endsection
 
-{{-- @section('zone-link')
-<!-- Core JS -->
-<!-- build:js assets/vendor/js/core.js -->
+@section('zone-link')
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
 
-<script src="sneat/assets/vendor/libs/hammer/hammer.js"></script>
-<script src="sneat/assets/vendor/libs/i18n/i18n.js"></script>
-<script src="sneat/assets/vendor/libs/typeahead-js/typeahead.js"></script>
-<script src="sneat/assets/vendor/js/menu.js"></script>
+    <script src="sneat/assets/vendor/libs/hammer/hammer.js"></script>
+    <script src="sneat/assets/vendor/libs/i18n/i18n.js"></script>
+    <script src="sneat/assets/vendor/libs/typeahead-js/typeahead.js"></script>
+    <script src="sneat/assets/vendor/js/menu.js"></script>
 
-<!-- endbuild -->
+    <!-- endbuild -->
 
-<!-- Vendors JS -->
-<script src="sneat/assets/vendor/libs/moment/moment.js"></script>
-<script src="sneat/assets/vendor/libs/datatable-bs5/datatable-bootstrap5.js"></script>
-<script src="sneat/assets/vendor/libs/select2/select2.js"></script>
-<script src="sneat/assets/vendor/libs/%40form-validation/umd/bundle/popular.min.js"></script>
-<script src="sneat/assets/vendor/libs/%40form-validation/umd/plugin-bootstrap5/index.min.js"></script>
-<script src="sneat/assets/vendor/libs/%40form-validation/umd/plugin-auto-focus/index.min.js"></script>
-<script src="sneat/assets/vendor/libs/cleavejs/cleave.js"></script>
-<script src="sneat/assets/vendor/libs/cleavejs/cleave-phone.js"></script>
+    <!-- Vendors JS -->
+    <script src="sneat/assets/vendor/libs/jstree/jstree.js"></script>
 
-<!-- Page JS -->
-<script src="sneat/assets/js/app-user-list.js"></script>
-@endsection --}}
+
+    <!-- Page JS -->
+    <script src="sneat/assets/js/app-user-list.js"></script>
+    <script src="sneat/assets/js/extended-ui-treeview.js"></script>
+@endsection
 
 @section('content')
 
@@ -75,19 +71,69 @@
             <div class="col-xxl-2 mb-6 order-0">
                 <div class="card">
                     <div class="d-flex align-items-start row">
-                        <div class="col-sm-7">
+                        <div class="col-sm-12">
                             <div class="card-body">
-                                <h5 class="card-title text-primary mb-3">Congratulations John! 🎉</h5>
-                                <p class="mb-6">You have done 72% more sales today.<br>Check your new badge in your
-                                    profile.</p>
+                                <h5 class="card-title text-primary mb-3">List Devices</h5>
+                                <div id="jstree-checkboxx" class="jstree jstree-5 jstree-default jstree-checkbox-selection"
+                                    role="tree" aria-multiselectable="true" tabindex="0">
+                                    <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots">
+                                        <!-- Tree content will go here -->
+                                    </ul>
+                                </div>
 
-                                <a href="javascript:;" class="btn btn-sm btn-label-primary">View Badges</a>
-                            </div>
-                        </div>
-                        <div class="col-sm-5 text-center text-sm-left">
-                            <div class="card-body pb-0 px-0 px-md-6">
-                                <img src="../../assets/img/illustrations/man-with-laptop.png" height="175"
-                                    class="scaleX-n1-rtl" alt="View Badge User">
+                                @php
+                                    $treeData = [
+                                        [
+                                            'text' => 'css',
+                                            'icon' => 'fas fa-folder',
+                                            'state' => ['opened' => true],
+                                        ],
+                                        [
+                                            'text' => 'img',
+                                            'icon' => 'fas fa-folder',
+                                            'state' => ['opened' => true],
+                                            'children' => [
+                                                ['text' => 'bg.jpg', 'icon' => 'fas fa-image text-success'],
+                                                ['text' => 'logo.png', 'icon' => 'fas fa-image text-success'],
+                                                ['text' => 'avatar.png', 'icon' => 'fas fa-image text-success'],
+                                            ],
+                                        ],
+                                        [
+                                            'text' => 'js',
+                                            'icon' => 'fas fa-folder',
+                                            'state' => ['opened' => true],
+                                            'children' => [
+                                                ['text' => 'jquery.js', 'icon' => 'fab fa-js-square text-warning'],
+                                                ['text' => 'app.js', 'icon' => 'fab fa-js-square text-warning'],
+                                            ],
+                                        ],
+                                        ['text' => 'index.html', 'icon' => 'fab fa-html5 text-danger'],
+                                        ['text' => 'page-one.html', 'icon' => 'fab fa-html5 text-danger'],
+                                        ['text' => 'page-two.html', 'icon' => 'fab fa-html5 text-danger'],
+                                    ];
+                                @endphp
+
+                                <script>
+                                    // Pass the PHP array to JavaScript
+                                    const jsTreeData = @json($treeData);
+
+                                    $(document).ready(function() {
+                                        $('#jstree-checkboxx').jstree({
+                                            core: {
+                                                data: jsTreeData, // Your tree data should be in this format
+                                                themes: {
+                                                    name: "default", // Corrected to use a string for the theme
+                                                    dots: false, // Disable dots (tree lines)
+                                                    icons: true // Enable icons for the nodes
+                                                },
+                                            },
+                                            plugins: ['checkbox'] // Checkbox plugin to enable checkboxes
+                                        });
+
+                                    });
+                                </script>
+
+                                <a href="javascript:;" class="mt-4 btn btn-sm btn-label-primary">View Badges</a>
                             </div>
                         </div>
                     </div>
@@ -96,7 +142,7 @@
             <div class="col-xxl-10 col-lg-12 col-md-10 order-1">
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-6 mb-6">
-                        <div class="card h-100">
+                        <div class="card card-border-shadow-primary h-100">
                             <div class="card-body pb-4">
                                 <span class="d-block fw-medium mb-1">Order</span>
                                 <h4 class="card-title mb-0">276k</h4>
@@ -104,7 +150,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-6 mb-6">
-                        <div class="card h-100">
+                        <div class="card card-border-shadow-primary h-100">
                             <div class="card-body">
                                 <div class="card-title d-flex align-items-start justify-content-between mb-4">
 
@@ -118,7 +164,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-6 mb-6">
-                        <div class="card h-100">
+                        <div class="card card-border-shadow-primary h-100">
                             <div class="card-body pb-4">
                                 <span class="d-block fw-medium mb-1">Order</span>
                                 <h4 class="card-title mb-0">276k</h4>
@@ -126,7 +172,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-6 mb-6">
-                        <div class="card h-100">
+                        <div class="card card-border-shadow-primary h-100">
                             <div class="card-body">
                                 <div class="card-title d-flex align-items-start justify-content-between mb-4">
 
