@@ -527,10 +527,10 @@
                         <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
                         </div>
                     </div>
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label class="form-label" for="add-user-picture">Picture</label>
                         <input class="form-control" type="file" id="formFile" name="image">
-                    </div>
+                    </div> --}}
                     <div class="mb-3 fv-plugins-icon-container">
                         <label class="form-label" for="add-user-area">Area</label>
                         <input type="text" class="form-control" id="add-user-area" placeholder="Jakarta"
@@ -683,10 +683,40 @@
                                                     <div class="col-sm-6">
                                                         <div class="mb-4">
                                                             <label class="form-label" for="visit_time">Visit Time</label>
-                                                            <input class="form-control" type="time" id="visit_time"
+                                                            <select class="form-control" id="visit_time"
                                                                 name="visit_time">
+                                                                <!-- Options will be dynamically generated -->
+                                                            </select>
                                                         </div>
                                                     </div>
+
+                                                    <script>
+                                                        // Generate time options dynamically
+                                                        function generateTimeOptions(start, end, interval) {
+                                                            const select = document.getElementById('visit_time');
+                                                            const startTime = start.split(':').map(Number); // Convert "07:00" to [7, 0]
+                                                            const endTime = end.split(':').map(Number); // Convert "18:00" to [18, 0]
+                                                            let [hour, minute] = startTime;
+
+                                                            while (hour < endTime[0] || (hour === endTime[0] && minute <= endTime[1])) {
+                                                                const time = `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+                                                                const option = document.createElement('option');
+                                                                option.value = time;
+                                                                option.textContent = time;
+                                                                select.appendChild(option);
+
+                                                                // Increment by the interval
+                                                                minute += interval;
+                                                                if (minute >= 60) {
+                                                                    minute = 0;
+                                                                    hour++;
+                                                                }
+                                                            }
+                                                        }
+
+                                                        // Generate options from 07:00 to 18:00 with 30-minute intervals
+                                                        generateTimeOptions('07:00', '18:00', 30);
+                                                    </script>
                                                 </div>
                                             </div>
                                         </div>
@@ -917,7 +947,10 @@
                         },
                         {
                             data: 'status',
-                            name: 'status'
+                            name: 'status',
+                            render: function(data, type, row) {
+                                return (data === 1 || data === "1") ? 'Active' : 'Inactive';
+                            }
                         },
                         // { data: 'created_at', name: 'created_at', width: '100px' },
                         {

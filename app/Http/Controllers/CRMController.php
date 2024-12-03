@@ -65,13 +65,13 @@ class CRMController extends Controller
                 $deleteUrl = route('Customers.destroy', $customer->id_customer);
                 return '
                     <a href="' . $showUrl . '" class="btn btn-xs btn-primary">View</a>
-                    <a href="' . $editUrl . '" class="btn btn-xs btn-primary">Edit</a>
-                    <form action="' . $deleteUrl . '" method="POST" style="display: inline-block;">
-                        ' . csrf_field() . '
-                        ' . method_field('DELETE') . '
-                        <button type="submit" class="btn btn-xs btn-danger" onclick="return confirm(\'Are you sure?\')">Delete</button>
-                    </form>
-                ';
+                    ';
+                    // <a href="' . $editUrl . '" class="btn btn-xs btn-primary">Edit</a>
+                    // <form action="' . $deleteUrl . '" method="POST" style="display: inline-block;">
+                    //     ' . csrf_field() . '
+                    //     ' . method_field('DELETE') . '
+                    //     <button type="submit" class="btn btn-xs btn-danger" onclick="return confirm(\'Are you sure?\')">Delete</button>
+                    // </form>
             })
             ->rawColumns(['action']) // Allow raw HTML in the action column
             ->make(true);
@@ -94,12 +94,12 @@ class CRMController extends Controller
                 return '
                     <a href="' . $showUrl . '" class="btn btn-xs btn-primary">View</a>
                     <a href="' . $editUrl . '" class="btn btn-xs btn-primary">Edit</a>
-                    <form action="' . $deleteUrl . '" method="POST" style="display: inline-block;">
-                        ' . csrf_field() . '
-                        ' . method_field('DELETE') . '
-                        <button type="submit" class="btn btn-xs btn-danger" onclick="return confirm(\'Are you sure?\')">Delete</button>
-                    </form>
-                ';
+                    ';
+                    // <form action="' . $deleteUrl . '" method="POST" style="display: inline-block;">
+                    //     ' . csrf_field() . '
+                    //     ' . method_field('DELETE') . '
+                    //     <button type="submit" class="btn btn-xs btn-danger" onclick="return confirm(\'Are you sure?\')">Delete</button>
+                    // </form>
             })
             ->rawColumns(['action']) // Allow raw HTML in the action column
             ->make(true);
@@ -227,7 +227,7 @@ class CRMController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the allowed file types and size as needed
+            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the allowed file types and size as needed
             'area' => 'required|max:255',
             'address' => 'required|max:255',
             'phonenumber' => 'required|max:255',
@@ -241,15 +241,16 @@ class CRMController extends Controller
         $validatedData['id_customer'] = $yearOfJoin . 1234;
 
         // $validatedData['company'] = $request->input('company', "PT. LyZer-Tech");
+        $validatedData['image'] = $request->input('image', 1);
         $validatedData['status'] = $request->input('status', 1);
 
         // Handle file upload
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images', 'public');
-            $validatedData['image'] = $imagePath;
-        } else {
-            return redirect()->back()->withErrors(['image' => 'Image upload failed'])->withInput();
-        }
+        // if ($request->hasFile('image')) {
+        //     $imagePath = $request->file('image')->store('images', 'public');
+        //     $validatedData['image'] = $imagePath;
+        // } else {
+        //     return redirect()->back()->withErrors(['image' => 'Image upload failed'])->withInput();
+        // }
 
         // Create a new Customer instance
         $customer = new CRMCustomer([
