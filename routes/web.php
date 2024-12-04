@@ -106,7 +106,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Route::get('/CRM', [CRMController::class, 'index']);
     Route::get('customers/data', [CRMController::class, 'customer_getData'])->name('Customers.data');
-    Route::get('/customers/{id_user}/show', [CRMController::class, 'show'])->name('Customers.show');
+    Route::get('/customers/{id_user}/show', [CRMController::class, 'customers_show'])->name('Customers.show');
     Route::post('/customers.store', [CRMController::class, 'customers_store'])->name('Customers.create');
     // Route::post('/quot.store', [CRMController::class, 'quot_store'])->name('quot.create');
     Route::get('/customers/{id_user}/edit', [CRMController::class, 'edit'])->name('Customers.edit');

@@ -586,7 +586,6 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content text-center">
                     <div class="modal-header border-0">
-                        {{-- <a class="text-muted close-label" href="javascript:void(0);" data-bs-dismiss="modal">Skip Intro</a> --}}
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                         </button>
                     </div>

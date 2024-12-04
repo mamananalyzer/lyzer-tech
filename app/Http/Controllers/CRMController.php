@@ -300,9 +300,13 @@ class CRMController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CRM $cRM)
+    public function customers_show($CRMCustomer)
     {
-        //
+        $CRMCustomer = CRMCustomer::findOrFail($CRMCustomer);
+        // dd($CRMCustomer);
+
+        // dd($role);
+        return view('base.CRMCustomerShow', compact('CRMCustomer'));
     }
 
     /**

@@ -188,7 +188,7 @@
                     <div class="col-lg-12 col-md-12">
                         <div class="card card-border-shadow-primary h-100 text-left">
                             <div class="row">
-                                <div class="col-lg-9 px-2">
+                                <div class="col-lg-12 px-2">
                                     <div class="card-header py-3">
                                         <div class="row">
                                             <div class="col-lg-4 pt-1">
@@ -201,9 +201,9 @@
                                     </div>
                                     <div class="tab-content" id="tabContent"></div>
                                 </div>
-                                <div class="col-lg-3 px-2 mt-4">
+                                {{-- <div class="col-lg-3 px-2 mt-4">
                                     <div class="" id="datepicker"></div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -462,6 +462,7 @@
                                 type: 'line',
                                 showSymbol: true,
                                 connectNulls: false, // Do not connect gaps, show breaks instead
+                                smooth: true, // Enable smooth curve
                                 data: filledData
                             }]
                         };
