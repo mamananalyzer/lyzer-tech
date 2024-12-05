@@ -22,7 +22,93 @@
 @endsection
 
 @section('content')
+    <style>
+        table thead tr{
+            background-color: #ffffff;
+        }
+        /* Odd rows - light gray */
+        table tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        /* Even rows - white */
+        table tbody tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        /* Optional: Hover effect */
+        table tbody tr:hover {
+            background-color: #e6f7ff;
+        }
+    </style>
+
     <div class="flex-grow-1 container-p-y container-fluid">
+        <div class="row g-4 mb-4">
+            <div class="col-sm-6 col-xl-12">
+                <table id="realtimeTable" class="table table-bordered display responsive nowrap" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Phase A</th>
+                            <th>Phase B</th>
+                            <th>Phase C</th>
+                            <th>Average</th>
+                            <th>System</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Line-to-Neutral Voltage (V)</td>
+                            <td>230.010</td>
+                            <td>230.010</td>
+                            <td>230.010</td>
+                            <td>230.010</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Line-to-Line Voltage (V)</td>
+                            <td>398.397</td>
+                            <td>398.370</td>
+                            <td>398.397</td>
+                            <td>398.388</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Current (A)</td>
+                            <td>5.000</td>
+                            <td>5.000</td>
+                            <td>5.000</td>
+                            <td>5.000</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Active Power (kW)</td>
+                            <td>1.150</td>
+                            <td>1.150</td>
+                            <td>1.150</td>
+                            <td>-</td>
+                            <td>3.450</td>
+                        </tr>
+                        <tr>
+                            <td>Reactive Power (kVar)</td>
+                            <td>0.000</td>
+                            <td>0.000</td>
+                            <td>0.000</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Frequency (Hz)</td>
+                            <td>59.999</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <div class="row g-4 mb-4">
             <div class="col-sm-6 col-xl-3">
                 <div class="card">

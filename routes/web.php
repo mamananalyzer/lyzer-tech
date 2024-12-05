@@ -121,6 +121,14 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/Visit/{id_user}', [CRMController::class, 'visit_destroy'])->name('Visit.destroy');
     Route::get('/Visit/{id_user}/suspend', [CRMController::class, 'visit_suspend'])->name('Visit.suspend');
 
+    // Route::get('/CRM', [CRMController::class, 'index']);
+    Route::get('po/data', [CRMController::class, 'po_getData'])->name('Po.data');
+    Route::get('/po/{id_user}/show', [CRMController::class, 'po_show'])->name('Po.show');
+    Route::post('/po.store', [CRMController::class, 'po_store'])->name('Po.create');
+    Route::get('/po/{id_user}/edit', [CRMController::class, 'po_edit'])->name('Po.edit');
+    Route::delete('/po/{id_user}', [CRMController::class, 'po_destroy'])->name('Po.destroy');
+    Route::get('/po/{id_user}/suspend', [CRMController::class, 'po_suspend'])->name('Po.suspend');
+
     // Route::get('/daily', [DailyController::class, 'index']);
     Route::get('/daily/{id_user}/show', [DailyController::class, 'show'])->name('Daily.show');
     Route::post('/daily.store', [DailyController::class, 'store'])->name('Daily.create');

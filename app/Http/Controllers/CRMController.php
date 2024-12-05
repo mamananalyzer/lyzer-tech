@@ -6,6 +6,7 @@ use App\Models\CRM;
 use App\Models\User;
 use App\Models\CRMCustomer;
 use App\Models\CRMVisit;
+use App\Models\CRMPo;
 use App\Models\Product;
 use App\Models\Quotation;
 use GuzzleHttp\Handler\Proxy;
@@ -91,6 +92,34 @@ class CRMController extends Controller
                 $showUrl = route('Visit.show', $visit->id_visit);
                 $editUrl = route('Visit.edit', $visit->id_visit);
                 $deleteUrl = route('Visit.destroy', $visit->id_visit);
+                return '
+                    <a href="' . $showUrl . '" class="btn btn-xs btn-primary">View</a>
+                    <a href="' . $editUrl . '" class="btn btn-xs btn-primary">Edit</a>
+                    ';
+                    // <form action="' . $deleteUrl . '" method="POST" style="display: inline-block;">
+                    //     ' . csrf_field() . '
+                    //     ' . method_field('DELETE') . '
+                    //     <button type="submit" class="btn btn-xs btn-danger" onclick="return confirm(\'Are you sure?\')">Delete</button>
+                    // </form>
+            })
+            ->rawColumns(['action']) // Allow raw HTML in the action column
+            ->make(true);
+    }
+
+    public function po_getData()
+    {
+        $po = CRMPo::all();
+
+        // dd($po);
+
+        return DataTables::of($po)
+            ->editColumn('created_at', function ($po) {
+                return $po->created_at->format('Y-m-d H:i');
+            })
+            ->addColumn('action', function ($po) {
+                $showUrl = route('Po.show', $po->id_po);
+                $editUrl = route('Po.edit', $po->id_po);
+                $deleteUrl = route('Po.destroy', $po->id_po);
                 return '
                     <a href="' . $showUrl . '" class="btn btn-xs btn-primary">View</a>
                     <a href="' . $editUrl . '" class="btn btn-xs btn-primary">Edit</a>
@@ -307,6 +336,15 @@ class CRMController extends Controller
 
         // dd($role);
         return view('base.CRMCustomerShow', compact('CRMCustomer'));
+    }
+
+    public function po_show($CRMPo)
+    {
+        $CRMPo = CRMPo::findOrFail($CRMPo);
+        // dd($CRMCustomer);
+
+        // dd($role);
+        return view('base.CRMPoShow', compact('CRMPo'));
     }
 
     /**

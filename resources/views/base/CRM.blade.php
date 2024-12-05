@@ -16,6 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <!-- DataTables Bootstrap 5 JS -->
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.js"></script>
     <!-- Optional: Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 @endsection
@@ -23,407 +24,275 @@
 @section('content')
     <div class="flex-grow-1 container-p-y container-fluid">
 
-        <div class="col-md-12 order-3 order-lg-12 mb-4">
-            <div class="card text-center">
-                {{-- tab-list --}}
-                <div class="card-header py-4">
-                    <ul class="nav nav-pills" role="tablist">
-                        <li class="nav-item px-2" role="presentation">
-                            <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
-                                data-bs-target="#navs-pills-customer" aria-controls="navs-pills-customer"
-                                aria-selected="true">Customer</button>
-                        </li>
-                        <li class="nav-item px-2" role="presentation">
-                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
-                                data-bs-target="#navs-pills-visit" aria-controls="navs-pills-visit"
-                                aria-selected="true">Visit Report</button>
-                        </li>
-                        <li class="nav-item px-2" role="presentation">
-                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
-                                data-bs-target="#navs-pills-quot" aria-controls="navs-pills-quot" aria-selected="false"
-                                tabindex="-1">Quotation</button>
-                        </li>
-                        <li class="nav-item px-2" role="presentation">
-                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
-                                data-bs-target="#navs-pills-po" aria-controls="navs-pills-po" aria-selected="false"
-                                tabindex="-1">PO</button>
-                        </li>
-                    </ul>
-                </div>
+        <div class="row mb-6">
+            <div class="col-md-12 order-3 order-lg-12">
+                <div class="card text-center">
+                    {{-- tab-list --}}
+                    <div class="card-header py-4">
+                        <ul class="nav nav-pills" role="tablist">
+                            <li class="nav-item px-2" role="presentation">
+                                <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
+                                    data-bs-target="#navs-pills-customer" aria-controls="navs-pills-customer"
+                                    aria-selected="true">Customer</button>
+                            </li>
+                            <li class="nav-item px-2" role="presentation">
+                                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
+                                    data-bs-target="#navs-pills-visit" aria-controls="navs-pills-visit"
+                                    aria-selected="true">Visit Report</button>
+                            </li>
+                            {{-- <li class="nav-item px-2" role="presentation">
+                                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
+                                    data-bs-target="#navs-pills-quot" aria-controls="navs-pills-quot" aria-selected="false"
+                                    tabindex="-1">Quotation</button>
+                            </li> --}}
+                            <li class="nav-item px-2" role="presentation">
+                                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
+                                    data-bs-target="#navs-pills-po" aria-controls="navs-pills-po" aria-selected="false"
+                                    tabindex="-1">PO</button>
+                            </li>
+                        </ul>
+                    </div>
 
-                {{-- tab-content --}}
-                <div class="tab-content pt-0">
-                    {{-- Customer --}}
-                    <div class="tab-pane fade active show" id="navs-pills-customer" role="tabpanel">
-                        <div class="">
-                            <div class="dt-action-buttons text-end pt-3 pt-md-0">
-                                <div class="dt-buttons btn-group flex-wrap">
-                                    <div class="btn-group">
-                                        <button class="btn buttons-collection dropdown-toggle btn-label-primary me-2"
-                                            tabindex="0" aria-controls="DataTables_Table_0" type="button"
-                                            aria-haspopup="dialog" aria-expanded="false">
-                                            <span><i class="bx bx-export me-sm-1"></i>
-                                                <span class="d-none d-sm-inline-block">Export</span>
+                    {{-- tab-content --}}
+                    <div class="tab-content pt-0">
+                        {{-- Customer --}}
+                        <div class="tab-pane fade active show" id="navs-pills-customer" role="tabpanel">
+                            <div class="">
+                                <div class="dt-action-buttons text-end pt-3 pt-md-0">
+                                    <div class="dt-buttons btn-group flex-wrap">
+                                        <div class="btn-group">
+                                            <button class="btn buttons-collection dropdown-toggle btn-label-primary me-2"
+                                                tabindex="0" aria-controls="DataTables_Table_0" type="button"
+                                                aria-haspopup="dialog" aria-expanded="false">
+                                                <span><i class="bx bx-export me-sm-1"></i>
+                                                    <span class="d-none d-sm-inline-block">Export</span>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <button class="dt-button add-new btn btn-primary mx-3" tabindex="0"
+                                            aria-controls="DataTable_Table_0" type="button" data-bs-toggle="offcanvas"
+                                            data-bs-target="#offcanvasAddCustomer">
+                                            <span><i class="bx bx-plus me-0 me-sm-1"></i>
+                                                <span class="d-none d-sm-inline-block">Add New Customer</span>
                                             </span>
                                         </button>
                                     </div>
-                                    <button class="dt-button add-new btn btn-primary mx-3" tabindex="0"
-                                        aria-controls="DataTable_Table_0" type="button" data-bs-toggle="offcanvas"
-                                        data-bs-target="#offcanvasAddCustomer">
-                                        <span><i class="bx bx-plus me-0 me-sm-1"></i>
-                                            <span class="d-none d-sm-inline-block">Add New Customer</span>
-                                        </span>
-                                    </button>
+                                </div>
+                            </div>
+                            <div class="table-responsive text-start">
+                                <div class="card card-datatable table-responsive mt-3">
+                                    <table class="table table-bordered" id="customer-table" data-page-length='7'>
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Area</th>
+                                                <th>Phone Number</th>
+                                                <th>Mobile Phone</th>
+                                                <th>Company</th>
+                                                <th>Status</th>
+                                                {{-- <th>Created At</th> --}}
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
                                 </div>
                             </div>
                         </div>
-                        <div class="table-responsive text-start">
-                            <div class="card card-datatable table-responsive mt-3">
-                                <table class="table table-bordered" id="customer-table" data-page-length='7'>
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Area</th>
-                                            <th>Phone Number</th>
-                                            <th>Mobile Phone</th>
-                                            <th>Company</th>
-                                            <th>Status</th>
-                                            {{-- <th>Created At</th> --}}
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
 
-                    {{-- Visit --}}
-                    <div class="tab-pane fade" id="navs-pills-visit" role="tabpanel">
-                        <div class="">
-                            <div class="dt-action-buttons text-end pt-3 pt-md-0">
-                                <div class="dt-buttons btn-group flex-wrap">
-                                    <div class="btn-group">
-                                        <button class="btn buttons-collection dropdown-toggle btn-label-primary me-2"
-                                            tabindex="0" aria-controls="DataTables_Table_0" type="button"
-                                            aria-haspopup="dialog" aria-expanded="false">
-                                            <span><i class="bx bx-export me-sm-1"></i>
-                                                <span class="d-none d-sm-inline-block">Export</span>
+                        {{-- Visit --}}
+                        <div class="tab-pane fade" id="navs-pills-visit" role="tabpanel">
+                            <div class="">
+                                <div class="dt-action-buttons text-end pt-3 pt-md-0">
+                                    <div class="dt-buttons btn-group flex-wrap">
+                                        <div class="btn-group">
+                                            <button class="btn buttons-collection dropdown-toggle btn-label-primary me-2"
+                                                tabindex="0" aria-controls="DataTables_Table_0" type="button"
+                                                aria-haspopup="dialog" aria-expanded="false">
+                                                <span><i class="bx bx-export me-sm-1"></i>
+                                                    <span class="d-none d-sm-inline-block">Export</span>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <button type="button" class="dt-button add-new btn btn-primary mx-3"
+                                            data-bs-toggle="modal" data-bs-target="#ModalAddVisit">
+                                            <span><i class="bx bx-plus me-0 me-sm-1"></i>
+                                                <span class="d-none d-sm-inline-block">Add New Visit</span>
                                             </span>
                                         </button>
                                     </div>
-                                    <button type="button" class="dt-button add-new btn btn-primary mx-3"
-                                        data-bs-toggle="modal" data-bs-target="#ModalAddVisit">
-                                        <span><i class="bx bx-plus me-0 me-sm-1"></i>
-                                            <span class="d-none d-sm-inline-block">Add New Visit</span>
-                                        </span>
-                                    </button>
+                                </div>
+                            </div>
+                            <div class="table-responsive text-start">
+                                <div class="card card-datatable table-responsive mt-3">
+                                    <table class="table table-bordered" id="visit-table" data-page-length='7'>
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Location</th>
+                                                <th>Visit Date</th>
+                                                <th>Visit Time</th>
+                                                <th>Purpose</th>
+                                                <th>Follow Up Date</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
                                 </div>
                             </div>
                         </div>
-                        <div class="table-responsive text-start">
-                            <div class="card card-datatable table-responsive mt-3">
-                                <table class="table table-bordered" id="visit-table" data-page-length='7'>
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Location</th>
-                                            <th>Visit Date</th>
-                                            <th>Visit Time</th>
-                                            <th>Purpose</th>
-                                            <th>Follow Up Date</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
 
-                    {{-- Quotation --}}
-                    <div class="tab-pane fade" id="navs-pills-quot" role="tabpanel">
-                        <div class="table-responsive text-start">
-                            <div class="card">
-                                <div class="card-datatable table-responsive">
-                                    <div class="row mx-2 my-3">
-                                        <div
-                                            class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
-                                            <div id="DataTable_Table_0_filter" class="dataTable_filter">
-                                                <label>
-                                                    <input type="search" id="searchQuot" class="form-control"
-                                                        placeholder="Search.." aria-controls="DataTable_Table_0">
-                                                </label>
-                                            </div>
-                                            <div class="dt-buttons my-1">
-                                                <button class="dt-button add-new btn btn-primary mx-3" tabindex="0"
-                                                    aria-controls="DataTable_Table_0" type="button"
-                                                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddQuotation">
-                                                    <span><i class="bx bx-plus me-0 me-sm-1"></i>
-                                                        <span class="d-none d-sm-inline-block">Add New Quotation</span>
-                                                    </span>
-                                                </button>
+                        {{-- Quotation --}}
+                        <div class="tab-pane fade" id="navs-pills-quot" role="tabpanel">
+                            <div class="table-responsive text-start">
+                                <div class="card">
+                                    <div class="card-datatable table-responsive">
+                                        <div class="row mx-2 my-3">
+                                            <div
+                                                class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0">
+                                                <div id="DataTable_Table_0_filter" class="dataTable_filter">
+                                                    <label>
+                                                        <input type="search" id="searchQuot" class="form-control"
+                                                            placeholder="Search.." aria-controls="DataTable_Table_0">
+                                                    </label>
+                                                </div>
+                                                <div class="dt-buttons my-1">
+                                                    <button class="dt-button add-new btn btn-primary mx-3" tabindex="0"
+                                                        aria-controls="DataTable_Table_0" type="button"
+                                                        data-bs-toggle="offcanvas"
+                                                        data-bs-target="#offcanvasAddQuotation">
+                                                        <span><i class="bx bx-plus me-0 me-sm-1"></i>
+                                                            <span class="d-none d-sm-inline-block">Add New Quotation</span>
+                                                        </span>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="dataTables_scrollBody"
-                                        style="position: relative; overflow: auto; width: 100%; max-height: 322px;">
-                                        <table class="invoice-list-table table" id="quotation">
-                                            <thead>
-                                                <tr>
-                                                    <th>Quotation Number</th>
-                                                    <th>Project</th>
-                                                    <th>Customer</th>
-                                                    <th>Amount</th>
-                                                    <th>Sales</th>
-                                                    <th>Status</th>
-                                                    <th class="cell-fit">Paid By</th>
-                                                    <th class="cell-fit">Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <script>
-                                                document.getElementById('searchQuot').addEventListener('input', function() {
-                                                    // Get user input
-                                                    const searchText = this.value.toLowerCase();
-
-                                                    // Get all menu items
-                                                    const menuItems = document.querySelectorAll('#quotation tr');
-
-                                                    // Loop through each menu item and hide/show based on user input
-                                                    menuItems.forEach(function(item) {
-                                                        const itemName = item.textContent.toLowerCase();
-                                                        if (itemName.includes(searchText)) {
-                                                            item.style.display = 'block';
-                                                        } else {
-                                                            item.style.display = 'none';
-                                                        }
-                                                    });
-                                                });
-                                            </script>
-                                            @foreach ($quotation_list as $q_list)
-                                                <tbody class="table-border-bottom-0">
+                                        <div class="dataTables_scrollBody"
+                                            style="position: relative; overflow: auto; width: 100%; max-height: 322px;">
+                                            <table class="invoice-list-table table" id="quotation">
+                                                <thead>
                                                     <tr>
-                                                        <td>
-                                                            <div class="d-flex justify-content-start align-items-center">
-                                                                <div class="d-flex flex-column">
-                                                                    <a href="pages-profile-user.html"
-                                                                        class="text-body text-truncate fw-medium">{{ $q_list->quotNumber }}</a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>{{ $q_list->project }}</td>
-                                                        <td>{{ $q_list->customer }}</td>
-                                                        <td>Rp.{{ number_format($q_list->amount, 2, '.', ',') }}</td>
-                                                        <td>{{ $q_list->sales }}</td>
-                                                        <td><span class="badge bg-label-success"> {{ $q_list->status }}
-                                                            </span></td>
-                                                        <td><img src="../../assets/img/icons/payments/master-light.png"
-                                                                class="img-fluid" width="222 alt="masterCard"
-                                                                data-app-light-img="icons/payments/master-light.png"
-                                                                data-app-dark-img="icons/payments/master-dark.png"></td>
-                                                        <td>
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="dropdown"><a href="javascript:;"
-                                                                        class="btn dropdown-toggle hide-arrow text-body p-0"
-                                                                        data-bs-toggle="dropdown"><i
-                                                                            class="bx bx-dots-vertical-rounded"></i></a>
-                                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                                        <a href="javascript:void(0);"
-                                                                            class="dropdown-item">Edit</a>
-                                                                        <a href="javascript:;"
-                                                                            class="dropdown-item">Duplicate</a>
-                                                                        <div class="dropdown-divider"></div>
-                                                                        <a href="javascript:;"
-                                                                            class="dropdown-item delete-record text-danger">Delete</a>
+                                                        <th>Quotation Number</th>
+                                                        <th>Project</th>
+                                                        <th>Customer</th>
+                                                        <th>Amount</th>
+                                                        <th>Sales</th>
+                                                        <th>Status</th>
+                                                        <th class="cell-fit">Paid By</th>
+                                                        <th class="cell-fit">Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <script>
+                                                    document.getElementById('searchQuot').addEventListener('input', function() {
+                                                        // Get user input
+                                                        const searchText = this.value.toLowerCase();
+
+                                                        // Get all menu items
+                                                        const menuItems = document.querySelectorAll('#quotation tr');
+
+                                                        // Loop through each menu item and hide/show based on user input
+                                                        menuItems.forEach(function(item) {
+                                                            const itemName = item.textContent.toLowerCase();
+                                                            if (itemName.includes(searchText)) {
+                                                                item.style.display = 'block';
+                                                            } else {
+                                                                item.style.display = 'none';
+                                                            }
+                                                        });
+                                                    });
+                                                </script>
+                                                @foreach ($quotation_list as $q_list)
+                                                    <tbody class="table-border-bottom-0">
+                                                        <tr>
+                                                            <td>
+                                                                <div
+                                                                    class="d-flex justify-content-start align-items-center">
+                                                                    <div class="d-flex flex-column">
+                                                                        <a href="pages-profile-user.html"
+                                                                            class="text-body text-truncate fw-medium">{{ $q_list->quotNumber }}</a>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            @endforeach
-                                        </table>
+                                                            </td>
+                                                            <td>{{ $q_list->project }}</td>
+                                                            <td>{{ $q_list->customer }}</td>
+                                                            <td>Rp.{{ number_format($q_list->amount, 2, '.', ',') }}</td>
+                                                            <td>{{ $q_list->sales }}</td>
+                                                            <td><span class="badge bg-label-success"> {{ $q_list->status }}
+                                                                </span></td>
+                                                            <td><img src="../../assets/img/icons/payments/master-light.png"
+                                                                    class="img-fluid" width="222 alt="masterCard"
+                                                                    data-app-light-img="icons/payments/master-light.png"
+                                                                    data-app-dark-img="icons/payments/master-dark.png">
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="dropdown"><a href="javascript:;"
+                                                                            class="btn dropdown-toggle hide-arrow text-body p-0"
+                                                                            data-bs-toggle="dropdown"><i
+                                                                                class="bx bx-dots-vertical-rounded"></i></a>
+                                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                                            <a href="javascript:void(0);"
+                                                                                class="dropdown-item">Edit</a>
+                                                                            <a href="javascript:;"
+                                                                                class="dropdown-item">Duplicate</a>
+                                                                            <div class="dropdown-divider"></div>
+                                                                            <a href="javascript:;"
+                                                                                class="dropdown-item delete-record text-danger">Delete</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                @endforeach
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    {{-- PO --}}
-                    <div class="tab-pane fade" id="navs-pills-po" role="tabpanel">
-                        <div class="table-responsive text-start">
-                            <table class="table table-borderless">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Country</th>
-                                        <th>Visits</th>
-                                        <th class="w-50">Data In Percentage</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <i class="fis fi fi-us rounded-circle fs-3 me-2"></i>
-                                                <span>USA</span>
-                                            </div>
-                                        </td>
-                                        <td>87.24k</td>
-                                        <td>
-                                            <div class="d-flex justify-content-between align-items-center gap-3">
-                                                <div class="progress w-100" style="height:10px;">
-                                                    <div class="progress-bar bg-success" role="progressbar"
-                                                        style="width: 89.12%" aria-valuenow="89.12" aria-valuemin="0"
-                                                        aria-valuemax="100"></div>
-                                                </div>
-                                                <small class="fw-medium">89.12%</small>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <i class="fis fi fi-br rounded-circle fs-3 me-2"></i>
-                                                <span>Brazil</span>
-                                            </div>
-                                        </td>
-                                        <td>62.68k</td>
-                                        <td>
-                                            <div class="d-flex justify-content-between align-items-center gap-3">
-                                                <div class="progress w-100" style="height:10px;">
-                                                    <div class="progress-bar bg-primary" role="progressbar"
-                                                        style="width: 78.23%" aria-valuenow="78.23" aria-valuemin="0"
-                                                        aria-valuemax="100"></div>
-                                                </div>
-                                                <small class="fw-medium">78.23%</small>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <i class="fis fi fi-in rounded-circle fs-3 me-2"></i>
-                                                <span>India</span>
-                                            </div>
-                                        </td>
-                                        <td>52.58k</td>
-                                        <td>
-                                            <div class="d-flex justify-content-between align-items-center gap-3">
-                                                <div class="progress w-100" style="height:10px;">
-                                                    <div class="progress-bar bg-info" role="progressbar"
-                                                        style="width: 69.82%" aria-valuenow="69.82" aria-valuemin="0"
-                                                        aria-valuemax="100"></div>
-                                                </div>
-                                                <small class="fw-medium">69.82%</small>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <i class="fis fi fi-au rounded-circle fs-3 me-2"></i>
-                                                <span>Australia</span>
-                                            </div>
-                                        </td>
-                                        <td>44.13k</td>
-                                        <td>
-                                            <div class="d-flex justify-content-between align-items-center gap-3">
-                                                <div class="progress w-100" style="height:10px;">
-                                                    <div class="progress-bar bg-warning" role="progressbar"
-                                                        style="width: 59.90%" aria-valuenow="59.90" aria-valuemin="0"
-                                                        aria-valuemax="100"></div>
-                                                </div>
-                                                <small class="fw-medium">59.90%</small>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <i class="fis fi fi-de rounded-circle fs-3 me-2"></i>
-                                                <span>Germany</span>
-                                            </div>
-                                        </td>
-                                        <td>32.21k</td>
-                                        <td>
-                                            <div class="d-flex justify-content-between align-items-center gap-3">
-                                                <div class="progress w-100" style="height:10px;">
-                                                    <div class="progress-bar bg-warning" role="progressbar"
-                                                        style="width: 57.11%" aria-valuenow="57.11" aria-valuemin="0"
-                                                        aria-valuemax="100"></div>
-                                                </div>
-                                                <small class="fw-medium">57.11%</small>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <i class="fis fi fi-fr rounded-circle fs-3 me-2"></i>
-                                                <span>France</span>
-                                            </div>
-                                        </td>
-                                        <td>37.87k</td>
-                                        <td>
-                                            <div class="d-flex justify-content-between align-items-center gap-3">
-                                                <div class="progress w-100" style="height:10px;">
-                                                    <div class="progress-bar bg-warning" role="progressbar"
-                                                        style="width: 41.23%" aria-valuenow="41.23" aria-valuemin="0"
-                                                        aria-valuemax="100"></div>
-                                                </div>
-                                                <small class="fw-medium">41.23%</small>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <i class="fis fi fi-pt rounded-circle fs-3 me-2"></i>
-                                                <span>Portugal</span>
-                                            </div>
-                                        </td>
-                                        <td>20.29k</td>
-                                        <td>
-                                            <div class="d-flex justify-content-between align-items-center gap-3">
-                                                <div class="progress w-100" style="height:10px;">
-                                                    <div class="progress-bar bg-danger" role="progressbar"
-                                                        style="width: 37.11%" aria-valuenow="37.11" aria-valuemin="0"
-                                                        aria-valuemax="100"></div>
-                                                </div>
-                                                <small class="fw-medium">37.11%</small>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <i class="fis fi fi-cn rounded-circle fs-3 me-2"></i>
-                                                <span>China</span>
-                                            </div>
-                                        </td>
-                                        <td>12.21k</td>
-                                        <td>
-                                            <div class="d-flex justify-content-between align-items-center gap-3">
-                                                <div class="progress w-100" style="height:10px;">
-                                                    <div class="progress-bar bg-danger" role="progressbar"
-                                                        style="width: 17.61%" aria-valuenow="17.61" aria-valuemin="0"
-                                                        aria-valuemax="100"></div>
-                                                </div>
-                                                <small class="fw-medium">17.61%</small>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        {{-- PO --}}
+                        <div class="tab-pane fade" id="navs-pills-po" role="tabpanel">
+                            <div class="">
+                                <div class="dt-action-buttons text-end pt-3 pt-md-0">
+                                    <div class="dt-buttons btn-group flex-wrap">
+                                        <div class="btn-group">
+                                            <button class="btn buttons-collection dropdown-toggle btn-label-primary me-2"
+                                                tabindex="0" aria-controls="DataTables_Table_0" type="button"
+                                                aria-haspopup="dialog" aria-expanded="false">
+                                                <span><i class="bx bx-export me-sm-1"></i>
+                                                    <span class="d-none d-sm-inline-block">Export</span>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <button type="button" class="dt-button add-new btn btn-primary mx-3"
+                                            data-bs-toggle="modal" data-bs-target="#ModalAddPO">
+                                            <span><i class="bx bx-plus me-0 me-sm-1"></i>
+                                                <span class="d-none d-sm-inline-block">Add New PO</span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive text-start">
+                                <div class="card card-datatable table-responsive mt-3">
+                                    <table class="table table-bordered" id="po-table" data-page-length='7'>
+                                        <thead>
+                                            <tr>
+                                                <th>Company</th>
+                                                <th>File PO</th>
+                                                <th>Status</th>
+                                                <th>Sales</th>
+                                                <th>Delivery Date</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -432,7 +301,7 @@
 
         <div class="row">
             {{-- Team Member --}}
-            <div class="col-md-6 col-lg-4 mb-md-0 mb-4">
+            <div class="col-md-6 col-lg-4 mb-md-0">
                 <div class="card h-100">
                     <div class="card-header d-flex align-items-center justify-content-between">
                         <h5 class="card-title m-0 me-2">Team Members</h5>
@@ -811,6 +680,58 @@
             </div>
         </div>
 
+        <!-- Modal to add new po -->
+        <div class="modal-onboarding modal fade animate_animated" id="ModalAddPO" tabindex="-1" style="display: none;"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content text-center">
+                    <div class="modal-header border-0">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        </button>
+                    </div>
+                    <div class="modal-body onboarding-horizontal p-0">
+                        <div class="onboarding-media">
+                            <img src="sneat/assets/img/illustrations/boy-verify-email-light.png"
+                                alt="boy-verify-email-light" width="273" class="img-fluid"
+                                data-app-dark-img="illustrations/boy-verify-email-dark.png"
+                                data-app-light-img="illustrations/boy-verify-email-light.png">
+                        </div>
+                        <div class="onboarding-content mb-0">
+                            <h4 class="onboarding-title text-body">Example Request Information</h4>
+                            <div class="onboarding-info">In this example you can see a form where you can request some
+                                additional
+                                information from the customer when they land on the app page.</div>
+                            <form>
+                                <div class="row g-6">
+                                    <div class="col-sm-6">
+                                        <div class="mb-4">
+                                            <label for="nameEx7" class="form-label">Your Full Name</label>
+                                            <input class="form-control" placeholder="Enter your full name..."
+                                                type="text" value="" tabindex="0" id="nameEx7">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="mb-4">
+                                            <label for="roleEx7" class="form-label">Your Role</label>
+                                            <select class="form-select" tabindex="0" id="roleEx7">
+                                                <option>Web Developer</option>
+                                                <option>Business Owner</option>
+                                                <option>Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Offcanvas to add new quotation -->
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddQuotation"
             aria-labelledby="offcanvasAddUserLabel">
@@ -1037,6 +958,50 @@
                             nameSelect.appendChild(option);
                         }
                     });
+                });
+            });
+        </script>
+
+        {{-- po-table --}}
+        <script type="text/javascript">
+            $(document).ready(function() {
+                // Destroy existing DataTable before re-initializing
+                if ($.fn.DataTable.isDataTable('#po-table')) {
+                    $('#po-table').DataTable().destroy();
+                }
+
+                // Initialize DataTable
+                $('#po-table').DataTable({
+                    serverSide: true,
+                    ajax: '{{ route('Po.data') }}',
+                    columns: [{
+                            data: 'company',
+                            name: 'company'
+                        },
+                        {
+                            data: 'file_po',
+                            name: 'file_po'
+                        },
+                        {
+                            data: 'status',
+                            name: 'status'
+                        },
+                        {
+                            data: 'sales',
+                            name: 'sales'
+                        },
+                        {
+                            data: 'delivery_date',
+                            name: 'delivery_date'
+                        },
+                        // { data: 'created_at', name: 'created_at', width: '100px' },
+                        {
+                            data: 'action',
+                            name: 'action',
+                            orderable: false,
+                            searchable: false
+                        }
+                    ]
                 });
             });
         </script>

@@ -37,6 +37,7 @@
 
     <div class="flex-grow-1 container-p-y container-fluid">
 
+        {{-- Facility --}}
         <div class="card mb-6">
             <div class="row row-bordered g-0">
                 <div class="col-lg-8">
@@ -66,7 +67,7 @@
             </div>
         </div>
 
-
+        {{-- Measurement --}}
         <div class="row">
             <div class="col-xxl-2 mb-6 order-0">
                 <div class="card">
@@ -74,62 +75,19 @@
                         <div class="col-sm-12">
                             <div class="card-body">
                                 <h5 class="card-title text-primary mb-3">List Devices</h5>
-                                <div id="jstree-checkboxx" class="jstree jstree-5 jstree-default jstree-checkbox-selection"
-                                    role="tree" aria-multiselectable="true" tabindex="0">
-                                    <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots">
-                                        <!-- Tree content will go here -->
-                                    </ul>
+                                <div id="jstree">
                                 </div>
 
-                                @php
-                                    $treeData = [
-                                        [
-                                            'text' => 'css',
-                                            'icon' => 'fas fa-folder',
-                                            'state' => ['opened' => true],
-                                        ],
-                                        [
-                                            'text' => 'img',
-                                            'icon' => 'fas fa-folder',
-                                            'state' => ['opened' => true],
-                                            'children' => [
-                                                ['text' => 'bg.jpg', 'icon' => 'fas fa-image text-success'],
-                                                ['text' => 'logo.png', 'icon' => 'fas fa-image text-success'],
-                                                ['text' => 'avatar.png', 'icon' => 'fas fa-image text-success'],
-                                            ],
-                                        ],
-                                        [
-                                            'text' => 'js',
-                                            'icon' => 'fas fa-folder',
-                                            'state' => ['opened' => true],
-                                            'children' => [
-                                                ['text' => 'jquery.js', 'icon' => 'fab fa-js-square text-warning'],
-                                                ['text' => 'app.js', 'icon' => 'fab fa-js-square text-warning'],
-                                            ],
-                                        ],
-                                        ['text' => 'index.html', 'icon' => 'fab fa-html5 text-danger'],
-                                        ['text' => 'page-one.html', 'icon' => 'fab fa-html5 text-danger'],
-                                        ['text' => 'page-two.html', 'icon' => 'fab fa-html5 text-danger'],
-                                    ];
-                                @endphp
-
                                 <script>
-                                    // Pass the PHP array to JavaScript
-                                    const jsTreeData = @json($treeData);
-
                                     $(document).ready(function() {
-                                        $('#jstree-checkboxx').jstree({
-                                            core: {
-                                                data: jsTreeData, // Your tree data should be in this format
-                                                themes: {
-                                                    name: "default", // Corrected to use a string for the theme
-                                                    dots: false, // Disable dots (tree lines)
-                                                    icons: true // Enable icons for the nodes
+                                        $('#jstree').jstree({
+                                            'core': {
+                                                "themes": {
+                                                    "dots": false, // Disable the dots
                                                 },
-                                            },
-                                            plugins: ['checkbox'] // Checkbox plugin to enable checkboxes
+                                                'data': {!! $treeData !!} // Pass the tree data from the controller
+                                            }
                                         });
-
                                     });
                                 </script>
 
