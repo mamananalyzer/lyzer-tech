@@ -128,6 +128,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/po/{id_user}/edit', [CRMController::class, 'po_edit'])->name('Po.edit');
     Route::delete('/po/{id_user}', [CRMController::class, 'po_destroy'])->name('Po.destroy');
     Route::get('/po/{id_user}/suspend', [CRMController::class, 'po_suspend'])->name('Po.suspend');
+    Route::get('/po/{filename}', [CRMController::class, 'po_download'])->name('po.direct_download');
 
     // Route::get('/daily', [DailyController::class, 'index']);
     Route::get('/daily/{id_user}/show', [DailyController::class, 'show'])->name('Daily.show');

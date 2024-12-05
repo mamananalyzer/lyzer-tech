@@ -12,6 +12,7 @@ use App\Models\Quotation;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Carbon;
 use DataTables;
 
@@ -324,6 +325,55 @@ class CRMController extends Controller
         ]));
 
         return back()->with('success', 'CRMVisit added successfully!');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function po_store(Request $request)
+    {
+        // dd($request->all());
+
+        // Set a default value for 'status'
+        $request['status'] = $request->input('status', '1');
+
+        // Initialize $filePath as null
+        $filePath = null;
+
+        // Store the file if it exists
+        if ($request->hasFile('file_po')) {
+            $fileName = $request->file('file_po')->getClientOriginalName();
+            // Save the file in the "po" folder and get the file name only
+            $request->file('file_po')->storeAs('po', $fileName, 'public');
+            // Assign the file name to $filePath
+            $filePath = $fileName;
+        }
+
+        // dd($filePath);
+
+        // Create the CRMPo record
+        CRMPo::create([
+            'po_number' => $request->input('po_number'),
+            'company' => $request->input('company'),
+            'file_po' => $filePath, // Save the file path or null if no file uploaded
+            'status' => $request->input('status'),
+            'sales' => $request->input('sales'),
+            'delivery_date' => $request->input('delivery_date'),
+        ]);
+
+        // Return success response
+        return back()->with('success', 'CRMPo added successfully!');
+    }
+
+    public function po_download($filename)
+    {
+        $path = 'po/' . $filename;
+
+        if (Storage::disk('public')->exists($path)) {
+            return Storage::disk('public')->download($path);
+        }
+
+        abort(404, 'File not found');
     }
 
     /**

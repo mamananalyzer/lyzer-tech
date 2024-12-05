@@ -680,58 +680,6 @@
             </div>
         </div>
 
-        <!-- Modal to add new po -->
-        <div class="modal-onboarding modal fade animate_animated" id="ModalAddPO" tabindex="-1" style="display: none;"
-            aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document">
-                <div class="modal-content text-center">
-                    <div class="modal-header border-0">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        </button>
-                    </div>
-                    <div class="modal-body onboarding-horizontal p-0">
-                        <div class="onboarding-media">
-                            <img src="sneat/assets/img/illustrations/boy-verify-email-light.png"
-                                alt="boy-verify-email-light" width="273" class="img-fluid"
-                                data-app-dark-img="illustrations/boy-verify-email-dark.png"
-                                data-app-light-img="illustrations/boy-verify-email-light.png">
-                        </div>
-                        <div class="onboarding-content mb-0">
-                            <h4 class="onboarding-title text-body">Example Request Information</h4>
-                            <div class="onboarding-info">In this example you can see a form where you can request some
-                                additional
-                                information from the customer when they land on the app page.</div>
-                            <form>
-                                <div class="row g-6">
-                                    <div class="col-sm-6">
-                                        <div class="mb-4">
-                                            <label for="nameEx7" class="form-label">Your Full Name</label>
-                                            <input class="form-control" placeholder="Enter your full name..."
-                                                type="text" value="" tabindex="0" id="nameEx7">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mb-4">
-                                            <label for="roleEx7" class="form-label">Your Role</label>
-                                            <select class="form-select" tabindex="0" id="roleEx7">
-                                                <option>Web Developer</option>
-                                                <option>Business Owner</option>
-                                                <option>Other</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="modal-footer border-0">
-                        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Submit</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Offcanvas to add new quotation -->
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddQuotation"
             aria-labelledby="offcanvasAddUserLabel">
@@ -825,6 +773,89 @@
                     <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
                     <input type="hidden">
                 </form>
+            </div>
+        </div>
+
+        <!-- Modal to add new po -->
+        <div class="modal-onboarding modal fade animate_animated" id="ModalAddPO" tabindex="-1" style="display: none;"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content text-center">
+                    <div class="modal-header border-0">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        </button>
+                    </div>
+                    <div class="modal-body onboarding-horizontal p-0">
+                        <div class="onboarding-media">
+                            <img src="sneat/assets/img/illustrations/boy-verify-email-light.png"
+                                alt="boy-verify-email-light" width="273" class="img-fluid"
+                                data-app-dark-img="illustrations/boy-verify-email-dark.png"
+                                data-app-light-img="illustrations/boy-verify-email-light.png">
+                        </div>
+                        <div class="onboarding-content mb-0">
+                            <h4 class="onboarding-title text-body">Example Request Information</h4>
+                            <div class="onboarding-info">In this example you can see a form where you can request some
+                                additional
+                                information from the customer when they land on the app page.</div>
+                            <form method="post" action="{{ route('Po.create') }}" enctype="multipart/form-data">
+                                @csrf <!-- CSRF protection -->
+                                <div class="row g-6">
+                                    <div class="col-sm-6">
+                                        <div class="mb-4">
+                                            <label for="po_number" class="form-label">PO Number</label>
+                                            <input class="form-control" placeholder="Enter PO Number..." type="text"
+                                                value="" tabindex="0" id="po_number" name="po_number">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="mb-4">
+                                            <label for="company" class="form-label">Company</label>
+                                            <select class="form-select" tabindex="0" id="company" name="company">
+                                                <option value="">Select Company</option>
+                                                @foreach ($customer->sortBy('company') as $cust)
+                                                    <option value="{{ $cust->company }}">
+                                                        {{ $cust->company }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-6">
+                                    <div class="col-sm-12">
+                                        <div class="mb-4">
+                                            <label for="file_po" class="form-label">File PO</label>
+                                            <input class="form-control" type="file" id="file_po" name="file_po">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-6">
+                                    <div class="col-sm-6">
+                                        <div class="mb-4">
+                                            <label class="form-label" for="add-user-sales">Sales</label>
+                                            <select id="add-user-sales" class="form-select" name="sales">
+                                                <option>Default select</option>
+                                                @foreach ($sales_quot->sortBy('name') as $sales_q)
+                                                    <option value="{{ $sales_q->name }}">{{ $sales_q->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="mb-4">
+                                            <label for="delivery_date" class="form-label">Delivery Date</label>
+                                            <input class="form-control" placeholder="Enter PO Number..." type="date"
+                                                value="" tabindex="0" id="delivery_date" name="delivery_date">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer border-0">
+                                    <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

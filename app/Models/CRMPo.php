@@ -12,11 +12,12 @@ class CRMPo extends Model
     protected $table = 'crm_po';
     protected $primaryKey = 'id_po';
     protected $fillable = [
+        'po_number',
         'company',
         'file_po',
         'status',
         'sales',
-        'delivery date',
+        'delivery_date',
         'updated_at',
         'created_at'
     ];
