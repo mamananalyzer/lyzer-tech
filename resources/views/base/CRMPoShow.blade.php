@@ -34,7 +34,7 @@
 @section('content')
     <div class="flex-grow-1 container-p-y container-fluid">
         <div class="row">
-            <div class="col-md-4 order-3 order-lg-6">
+            <div class="col-md-6 order-3 order-lg-6">
                 <div class="card">
                     <h5 class="card-header">Basic</h5>
                     <div class="card-body">
@@ -129,7 +129,7 @@
                                 <div class="timeline-event">
                                     <div class="timeline-header mb-3">
                                         <h6 class="mb-0">Received a PO from {{ $CRMPo->company }}</h6>
-                                        <small class="text-muted">12 min ago</small>
+                                        {{-- <small class="text-muted">{{ $lastUpdated->diffForHumans() }}</small> --}}
                                     </div>
                                     <p class="mb-2">
                                         PO Number : {{ $CRMPo->po_number }}
@@ -145,6 +145,28 @@
                                             </a>
                                         </div>
                                     </div>
+                                    @if ($CRMPo->status == 1)
+                                        <form method="POST" action="{{ route('Po.update', $CRMPo->id_po) }}"
+                                            enctype="multipart/form-data">
+                                            @csrf <!-- CSRF protection -->
+                                            @method('PUT')
+
+                                            <div class="row g-6">
+                                                <div class="col-sm-12">
+                                                    <label for="file_po" class="form-label">File PO</label>
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control" id="file_po"
+                                                            name="file_po" required>
+                                                        <button class="btn btn-outline-primary"
+                                                            type="submit">Upload</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    @else
+                                        <!-- Optionally display a message if the form is hidden -->
+                                        <p class="text-muted">The File PO has already been signed on your end.</p>
+                                    @endif
                                 </div>
                             </li>
                         </ul>

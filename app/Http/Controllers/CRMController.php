@@ -408,9 +408,22 @@ class CRMController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CRM $cRM)
+    public function po_update(Request $request, CRMPo $CRMPo)
     {
-        //
+        // dd($CRMPo->status);
+
+        if ($request->hasFile('file_po')) {
+            $fileName = $request->file('file_po')->getClientOriginalName();
+            $request->file('file_po')->storeAs('po', $fileName, 'public');
+
+            // Update both file_po and status in one operation
+            $CRMPo->update([
+                'file_po' => $fileName,
+                'status' => $CRMPo->status + 1,
+            ]);
+        }
+
+        return back()->with('success', 'File PO updated successfully!');
     }
 
     /**
