@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('metering', function (Blueprint $table) {
-            $table->id('id_metering');
-            $table->string('project', 50)->nullable(); // Assuming a max length of 50 characters for text fields
-            $table->string('section', 50)->nullable();
-            $table->string('device', 50)->nullable();
-            $table->string('sn', 50)->nullable();
-            $table->enum('status', ['active', 'inactive'])->nullable(); // Use an enum if possible
+        Schema::create('metering_data', function (Blueprint $table) {
+            $table->id('id_metering_data');
+            $table->string('device_model', 50)->nullable();
+            $table->string('device_name', 50)->nullable();
+            $table->time('timestamp')->nullable();
+            $table->enum('online', ['active', 'inactive'])->nullable(); // Use an enum if possible
             // Use smaller numeric types for numeric fields
             $table->string('F', 50)->nullable();
             $table->string('U1', 50)->nullable();
@@ -97,6 +96,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('metering');
+        Schema::dropIfExists('metering_data');
     }
 };

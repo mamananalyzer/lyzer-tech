@@ -62,7 +62,10 @@ Route::group(['middleware' => ['checkRole:1']], function() {
     Route::get('/Labs_Label', [LabsController::class, 'index']);
 });
 Route::group(['middleware' => ['checkRole:1']], function() {
-    Route::get('/monitoring-realtime', [MonitoringController::class, 'index']);
+    Route::get('/monitoring-realtime', [MonitoringController::class, 'realtime']);
+});
+Route::group(['middleware' => ['checkRole:1']], function() {
+    Route::get('/monitoring-comparison', [MonitoringController::class, 'comparison'])->name('monitoring-comparison');;
 });
 Route::group(['middleware' => ['checkRole:1,14']], function() {
     Route::get('/motor', [MotorController::class, 'index']);
@@ -164,6 +167,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/Labs_Label/{id_user}/suspend', [Labs_LabelController::class, 'suspend'])->name('Labs_Label.suspend');
 
     // Route::get('/monitoring', [MonitoringController::class, 'index']);
+    Route::post('/monitoring.selectedDevice', [MonitoringController::class, 'selectedDevice'])->name('Monitoring.selectedDevice');
     Route::get('/monitoring/{id_user}/show', [MonitoringController::class, 'show'])->name('Monitoring.show');
     Route::post('/monitoring.store', [MonitoringController::class, 'store'])->name('Monitoring.create');
     Route::get('/monitoring/{id_user}/edit', [MonitoringController::class, 'edit'])->name('Monitoring.edit');

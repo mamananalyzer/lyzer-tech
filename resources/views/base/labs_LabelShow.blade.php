@@ -1,4 +1,4 @@
-@extends('base.1layout')
+@extends('base.0layout')
 
 @section('title', 'Labs Label')
 
@@ -33,61 +33,82 @@
 
 @section('content')
 
-<style>
-    #printableArea {
+    <style>
+        #printableArea {}
 
-    }
-    @media print {
-        /* Adjust the font size in the print preview */
-        #printableArea {
-            font-size: 6px; /* Change to your desired font size */
-        }
-        /* Optional: Hide other content during print preview */
-        body * {
-            visibility: hidden;
-        }
-        #printableArea, #printableArea * {
-            visibility: visible;
-        }
-        #printableArea {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-        }
-        #printableArea {
-            padding: 0; /* Remove padding */
-            border: none; /* Remove border */
-            margin: 0; /* Remove margin if needed */
-        }
-    }
+        @media print {
 
-    .letter-paper {
-        width: 8.5in; /* Letter size width */
-        min-height: 10in; /* Letter size height */
-        margin: auto;
-        /* padding: 1in; */
-        border: 1px solid #ccc;
-        background-color: #fff;
-        position: relative;
-        font-size: 9px; /* Change to your desired font size */
-    }
+            /* Adjust the font size in the print preview */
+            #printableArea {
+                font-size: 6px;
+                /* Change to your desired font size */
+            }
 
-    img {
-        width: 90%; /* Scale image to 50% */
-    }
-    .bord {
-        border: 0.5pt dashed black; /* 2px width, dashed style, black color */
-    }
-</style>
+            /* Optional: Hide other content during print preview */
+            body * {
+                visibility: hidden;
+            }
 
-<button onclick="printArea()">Print Specific Area</button>
+            #printableArea,
+            #printableArea * {
+                visibility: visible;
+            }
 
-<script>
-    function printArea() {
-        window.print();
-    }
-</script>
+            #printableArea {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+            }
+
+            #printableArea {
+                padding: 0;
+                /* Remove padding */
+                border: none;
+                /* Remove border */
+                margin: 0;
+                /* Remove margin if needed */
+            }
+        }
+
+        .letter-paper {
+            width: 8.5in;
+            /* Letter size width */
+            min-height: 10in;
+            /* Letter size height */
+            margin: auto;
+            /* padding: 1in; */
+            border: 1px solid #ccc;
+            background-color: #fff;
+            position: relative;
+            font-size: 9px;
+            /* Change to your desired font size */
+        }
+
+        img {
+            width: 150%;
+            height: 80%;
+            /* Scale image to 50% */
+        }
+
+        .bord2 {
+            border: 0.5pt solid;
+            /* 0.5pt width, dashed style, light gray color */
+        }
+
+        .bord {
+            border: 0.5pt dashed lightgray;
+            /* 0.5pt width, dashed style, light gray color */
+        }
+    </style>
+
+    <button onclick="printArea()">Print Specific Area</button>
+
+    <script>
+        function printArea() {
+            window.print();
+        }
+    </script>
 
     <div class="flex-grow-1 container-p-y container-fluid" id="printableArea">
         <div class="row letter-paper">
@@ -97,19 +118,33 @@
                         @php
                             $chunks = $Labs_Label->chunk(5);
                         @endphp
-                            @foreach ($chunks as $chunk)
+                        @foreach ($chunks as $chunk)
                             <div class="row">
                                 @foreach ($chunk as $Label)
                                     <div class="col-sm col-lg p-1 bord">
-                                        <div class="p-1 border">
+                                        <div class="p-1 bord2">
                                             <div class="row">
                                                 <div class="d-flex">
-                                                    <div class="col-8">
-                                                        <p class="mb-0 small-font">Type : {{ $Label->type }}</p>
-                                                        <p class="mb-0 small-font">Scale : {{ $Label->scale }}</p>
-                                                        <p class="mb-0 small-font">Input : {{ $Label->input }}</p>
+                                                    <div class="col-10">
+                                                        <div class="row">
+                                                            <div class="d-flex">
+                                                                <div class="col-5">
+                                                                    <p class="mb-0 small-font">Type</p>
+                                                                    <p class="mb-0 small-font">Scale</p>
+                                                                    <p class="mb-0 small-font">
+                                                                        {{ in_array($Label->type, ['DE96', 'DE72']) ? 'Input' : $Label->type }}
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-7">
+                                                                    <p class="mb-0 small-font">: {{ $Label->type }}</p>
+                                                                    <p class="mb-0 small-font">: {{ $Label->scale }}</p>
+                                                                    <p class="mb-0 small-font">: {{ $Label->input }}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <span class="badge d-flex justify-content-end p-0">
+                                                    <span class="badge d-flex justify-content-between p-0">
                                                         <img src="{{ asset('img/logo/aii.png') }}" alt="">
                                                     </span>
                                                 </div>
@@ -118,17 +153,21 @@
                                             <div class="row">
                                                 <div class="d-flex">
                                                     <div class="col">
-                                                        <p class="mb-0 small-font d-flex justify-content-center">{{ $Label->type == 'DE96' ? '50/60Hz' : $Label->type }}</p>
+                                                        <p class="mb-0 small-font d-flex justify-content-center">
+                                                            {{ in_array($Label->type, ['DE96', 'DE72']) ? '50/60Hz' : $Label->type }}
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="d-flex">
-                                                    <div class="col">
-                                                        <p class="mb-0 small-font d-flex justify-content-start">{{ $Label->PO }} Line 00001</p>
+                                                    <div class="col-9">
+                                                        <p class="mb-0 small-font d-flex justify-content-start">
+                                                            {{ $Label->PO }} Line 00001</p>
                                                     </div>
-                                                    <div class="col">
-                                                        <p class="mb-0 small-font d-flex justify-content-end">{{ substr(date('Y'), 2) }}0{{ $Label->id_label }}</p>
+                                                    <div class="col-3">
+                                                        <p class="mb-0 small-font d-flex justify-content-end">
+                                                            {{ substr(date('Y'), 2) }}0{{ $Label->id_label }}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -148,7 +187,7 @@
                                     @endfor
                                 @endif
                             </div>
-                            @endforeach
+                        @endforeach
                     </div>
                 </div>
             </div>

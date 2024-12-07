@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Metering;
+use App\Models\Metering_Data;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -16,10 +16,10 @@ class MeteringController extends Controller
 
         if ($date) {
             // Filter data by the exact date
-            $data = Metering::whereDate('created_at', $date)->get();
+            $data = Metering_Data::whereDate('created_at', $date)->get();
         } else {
             // If no date is provided, return all data (optional)
-            $data = Metering::all();
+            $data = Metering_Data::all();
         }
 
         return response()->json($data);
@@ -108,15 +108,16 @@ class MeteringController extends Controller
         // ]);
 
         $validatedData = $request->all();
-        $validatedData['project'] = $request->input('is_active', 'amptron office');
-        $validatedData['section'] = $request->input('is_active', 'panel kantor');
-        $validatedData['device'] = $request->input('is_active', 'Acuvim II');
-        $validatedData['sn'] = $request->input('is_active', 'AMxxxxxxxx');
-        $validatedData['status'] = $request->input('is_active', 1);
+        // $validatedData['project'] = $request->input('is_active', 'amptron office');
+        // $validatedData['section'] = $request->input('is_active', 'panel kantor');
+        $validatedData['device_model'] = $request->input('is_active', 'Acuvim II');
+        $validatedData['device_name'] = $request->input('is_active', 'AMxxxxxxxx');
+        // $validatedData['timestamp'] = $request->input('is_active', '253152532');
+        $validatedData['online'] = $request->input('is_active', 1);
 
         try {
             // Create a new Metering instance and save it
-            Metering::create($validatedData);
+            Metering_Data::create($validatedData);
 
             // $metering = new Metering([
             //     'project' => $validatedData['project'],
@@ -207,7 +208,7 @@ class MeteringController extends Controller
     // Show a specific metering
     public function show($id)
     {
-        $metering = Metering::find($id);
+        $metering = Metering_Data::find($id);
         if (!$metering) {
             return response()->json(['error' => 'metering not found'], 404);
         }
@@ -217,7 +218,7 @@ class MeteringController extends Controller
     // Update an metering
     public function update(Request $request, $id)
     {
-        $metering = Metering::find($id);
+        $metering = Metering_Data::find($id);
         if (!$metering) {
             return response()->json(['error' => 'metering not found'], 404);
         }
@@ -228,7 +229,7 @@ class MeteringController extends Controller
     // Delete an metering
     public function destroy($id)
     {
-        $metering = Metering::find($id);
+        $metering = Metering_Data::find($id);
         if (!$metering) {
             return response()->json(['error' => 'metering not found'], 404);
         }
@@ -239,7 +240,7 @@ class MeteringController extends Controller
     public function getData()
     {
         // Fetch all relevant data from the database
-        $data = Metering::select([
+        $data = Metering_Data::select([
             'project', 'section', 'device', 'sn', 'status',
             'F', 'U1', 'U2', 'U3', 'Uavg', 'U12', 'U23', 'U31', 'Ulavg',
             'IL1', 'IL2', 'IL3', 'Iavg', 'In', 'Pa', 'Pb', 'Pc', 'Psum',

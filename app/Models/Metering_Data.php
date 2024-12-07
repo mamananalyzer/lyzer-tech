@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Metering extends Model
+class Metering_Data extends Model
 {
     use HasFactory;
 
-    protected $table = 'metering';
-    protected $primaryKey = 'id_metering';
+    protected $table = 'metering_data';
+    protected $primaryKey = 'id_metering_data';
     protected $fillable = [
-        'project', 'section', 'device', 'sn', 'status',
+        'device_model', 'device_name', 'timestamp', 'online',
         'F', 'U1', 'U2', 'U3', 'Uavg', 'U12', 'U23', 'U31', 'Ulavg',
         'IL1', 'IL2', 'IL3', 'Iavg', 'In', 'Pa', 'Pb', 'Pc', 'Psum',
         'Qa', 'Qb', 'Qc', 'Qsum', 'Sa', 'Sb', 'Sc', 'Ssum',
@@ -23,8 +23,7 @@ class Metering extends Model
         'Epb_Exp', 'Epc_Imp', 'Epc_Exp', 'Eqa_Imp', 'Eqa_Exp',
         'Eqb_Imp', 'Eqb_Exp', 'Eqc_Imp', 'Eqc_Exp', 'Esa', 'Esb',
         'Esc', 'PhsAngV2toV1', 'PhsAngV3toV1', 'PhsAngI1toV1',
-        'PhsAngI2toV1', 'PhsAngI3toV1', 'project', 'section',
-        'device', 'sn', 'status',
+        'PhsAngI2toV1', 'PhsAngI3toV1',
     ];
 
     public $timestamps = true;
