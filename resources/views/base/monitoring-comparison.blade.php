@@ -47,10 +47,10 @@
                                 <label for="exampleFormControlSelect1" class="form-label" hidden>Example select</label>
                                 <select class="form-select" id="exampleFormControlSelect1"
                                     aria-label="Default select example">
-                                    <option selected="">Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    @foreach ($Metering_Facility as $Facility)
+                                        {{-- <option selected="">Open this select menu</option> --}}
+                                        <option value="1">{{ $Facility->facility }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -101,6 +101,7 @@
                                                     'cascade': 'down+undetermined' // Propagate changes
                                                 },
                                             });
+
                                             // Capture form submission
                                             $('#getSelectedForm').on('submit', function(e) {
                                                 const selectedDevices = [];
@@ -114,17 +115,12 @@
 
                                                 // Add the selected devices to the hidden input
                                                 $('#selectedDevicesInput').val(JSON.stringify(selectedDevices));
-
-                                                // Debugging: Check if the input is updated
-                                                console.log('Selected Devices:', selectedDevices);
-                                                console.log('Hidden Input Value:', $('#selectedDevicesInput').val());
                                             });
                                         });
                                     </script>
 
+
                                     <input type="hidden" name="selectedDevices" id="selectedDevicesInput">
-
-
                                     <button type="submit" class="mt-4 btn btn-sm btn-label-primary">Submit</button>
                                 </form>
                             </div>
@@ -134,11 +130,12 @@
             </div>
             <div class="col-xxl-10 col-lg-12 col-md-10 order-1">
                 <div class="row">
+
                     @foreach ($Metering_Data as $data)
                         <div class="col-lg-2 col-md-12 col-6 mb-6">
                             <div class="card card-border-shadow-primary h-100">
                                 <div class="card-body pb-4">
-                                    {{-- <h4 class="card-title mb-0">{{ $nameDevices }}</h4> --}}
+                                    <h4 class="card-title mb-0">{{ $data->device }}</h4>
                                     @php
                                         $attributes = [
                                             'device_model' => [
@@ -153,7 +150,10 @@
                                             ],
                                             'timestamp' => [
                                                 'label' => 'timestamp',
-                                                'value' => $data->timestamp,
+                                                'value' => \Carbon\Carbon::createFromTimestamp(
+                                                    $data->timestamp,
+                                                )->format('d-M H:i:s'),
+                                                // $data->timestamp,
                                                 'unit' => '',
                                             ],
                                             'online' => ['label' => 'online', 'value' => $data->online, 'unit' => ''],
@@ -296,25 +296,23 @@
                                             // Add other fields you want to display here
                                         ];
                                     @endphp
-                                    @foreach ($attributes as $attribute)
-                                        <div class="row">
-                                            <div class="col-5">
-                                                <span class="d-block fw-medium mb-1">{{ $attribute['label'] }}</span>
-                                            </div>
-                                            <div class="col-1">
-                                                <span
-                                                    class="d-block fw-medium mb-1 d-flex justify-content-start p-0">:</span>
-                                            </div>
-                                            <div class="col-4">
-                                                <span
-                                                    class="d-block fw-medium mb-1 d-flex justify-content-end p-0">{{ $attribute['value'] }}</span>
-                                            </div>
-                                            <div class="col-1">
-                                                <span
-                                                    class="d-block fw-medium mb-1 d-flex justify-content-end p-0">{{ $attribute['unit'] }}</span>
-                                            </div>
-                                        </div>
-                                    @endforeach
+                                    <table class="table table-striped">
+                                        @foreach ($attributes as $attribute)
+                                            <tr>
+                                                <td class="col-5 p-1"><span
+                                                        class="d-block fw-medium mb-1">{{ $attribute['label'] }}</span></td>
+                                                <td class="col-1 p-1"><span
+                                                        class="d-block fw-medium mb-1 d-flex justify-content-start p-0">:</span>
+                                                </td>
+                                                <td class="col-5 p-1"><span
+                                                        class="d-block fw-medium mb-1 d-flex justify-content-end p-0">{{ $attribute['value'] }}</span>
+                                                </td>
+                                                <td class="col-1 p-1"><span
+                                                        class="d-block fw-medium mb-1 d-flex justify-content-end p-0">{{ $attribute['unit'] }}</span>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </table>
                                 </div>
                             </div>
                         </div>

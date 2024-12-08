@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_metering_data');
             $table->string('device_model', 50)->nullable();
             $table->string('device_name', 50)->nullable();
-            $table->time('timestamp')->nullable();
+            $table->string('timestamp')->nullable();
             $table->enum('online', ['active', 'inactive'])->nullable(); // Use an enum if possible
             // Use smaller numeric types for numeric fields
             $table->string('F', 50)->nullable();
