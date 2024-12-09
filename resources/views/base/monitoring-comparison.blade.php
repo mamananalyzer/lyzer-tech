@@ -69,7 +69,7 @@
 
         {{-- Measurement --}}
         <div class="row">
-            <div class="col-xxl-2 mb-6 order-0">
+            <div class="col-xxl-3 mb-6 order-0">
                 <div class="card">
                     <div class="d-flex align-items-start row">
                         <div class="col-sm-12">
@@ -128,11 +128,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xxl-10 col-lg-12 col-md-10 order-1">
+            <div class="col-xxl-9 col-lg-12 col-md-10 order-1">
                 <div class="row">
 
                     @foreach ($Metering_Data as $data)
-                        <div class="col-lg-2 col-md-12 col-6 mb-6">
+                        <div class="col-lg-4 col-md-12 col-6 mb-6">
                             <div class="card card-border-shadow-primary h-100">
                                 <div class="card-body pb-4">
                                     <h4 class="card-title mb-0">{{ $data->device }}</h4>
@@ -175,123 +175,123 @@
                                             'Pb' => ['label' => 'Pb', 'value' => $data->Pb, 'unit' => 'kW'],
                                             'Pc' => ['label' => 'Pc', 'value' => $data->Pc, 'unit' => 'kW'],
                                             'Psum' => ['label' => 'Psum', 'value' => $data->Psum, 'unit' => 'kW'],
-                                            'Qa' => ['label' => 'Qa', 'value' => $data->Qa, 'unit' => ''],
-                                            'Qb' => ['label' => 'Qb', 'value' => $data->Qb, 'unit' => ''],
-                                            'Qc' => ['label' => 'Qc', 'value' => $data->Qc, 'unit' => ''],
-                                            'Qsum' => ['label' => 'Qsum', 'value' => $data->Qsum, 'unit' => ''],
-                                            'Sa' => ['label' => 'Sa', 'value' => $data->Sa, 'unit' => ''],
-                                            'Sb' => ['label' => 'Sb', 'value' => $data->Sb, 'unit' => ''],
-                                            'Sc' => ['label' => 'Sc', 'value' => $data->Sc, 'unit' => ''],
-                                            'Ssum' => ['label' => 'Ssum', 'value' => $data->Ssum, 'unit' => ''],
+                                            'Qa' => ['label' => 'Qa', 'value' => $data->Qa, 'unit' => 'kvar'],
+                                            'Qb' => ['label' => 'Qb', 'value' => $data->Qb, 'unit' => 'kvar'],
+                                            'Qc' => ['label' => 'Qc', 'value' => $data->Qc, 'unit' => 'kvar'],
+                                            'Qsum' => ['label' => 'Qsum', 'value' => $data->Qsum, 'unit' => 'kvar'],
+                                            'Sa' => ['label' => 'Sa', 'value' => $data->Sa, 'unit' => 'kVA'],
+                                            'Sb' => ['label' => 'Sb', 'value' => $data->Sb, 'unit' => 'kVA'],
+                                            'Sc' => ['label' => 'Sc', 'value' => $data->Sc, 'unit' => 'kVA'],
+                                            'Ssum' => ['label' => 'Ssum', 'value' => $data->Ssum, 'unit' => 'kVA'],
                                             'PFa' => ['label' => 'PFa', 'value' => $data->PFa, 'unit' => ''],
                                             'PFb' => ['label' => 'PFb', 'value' => $data->PFb, 'unit' => ''],
                                             'PFc' => ['label' => 'PFc', 'value' => $data->PFc, 'unit' => ''],
                                             'PFsum' => ['label' => 'PFsum', 'value' => $data->PFsum, 'unit' => ''],
-                                            'U_unbl' => ['label' => 'U_unbl', 'value' => $data->U_unbl, 'unit' => ''],
-                                            'I_unbl' => ['label' => 'I_unbl', 'value' => $data->I_unbl, 'unit' => ''],
+                                            'U_unbl' => ['label' => 'U_unbl', 'value' => $data->U_unbl, 'unit' => '%'],
+                                            'I_unbl' => ['label' => 'I_unbl', 'value' => $data->I_unbl, 'unit' => '%'],
                                             'LCR' => ['label' => 'LCR', 'value' => $data->LCR, 'unit' => ''],
-                                            'P_Dmd' => ['label' => 'P_Dmd', 'value' => $data->P_Dmd, 'unit' => ''],
-                                            'Q_Dmd' => ['label' => 'Q_Dmd', 'value' => $data->Q_Dmd, 'unit' => ''],
-                                            'S_Dmd' => ['label' => 'S_Dmd', 'value' => $data->S_Dmd, 'unit' => ''],
-                                            'I1_Dmd' => ['label' => 'I1_Dmd', 'value' => $data->I1_Dmd, 'unit' => ''],
-                                            'I2_Dmd' => ['label' => 'I2_Dmd', 'value' => $data->I2_Dmd, 'unit' => ''],
-                                            'I3_Dmd' => ['label' => 'I3_Dmd', 'value' => $data->I3_Dmd, 'unit' => ''],
-                                            'Ep_Imp' => ['label' => 'Ep_Imp', 'value' => $data->Ep_Imp, 'unit' => ''],
-                                            'Ep_Exp' => ['label' => 'Ep_Exp', 'value' => $data->Ep_Exp, 'unit' => ''],
-                                            'Eq_Imp' => ['label' => 'Eq_Imp', 'value' => $data->Eq_Imp, 'unit' => ''],
-                                            'Eq_Exp' => ['label' => 'Eq_Exp', 'value' => $data->Eq_Exp, 'unit' => ''],
-                                            'Ep_sum' => ['label' => 'Ep_sum', 'value' => $data->Ep_sum, 'unit' => ''],
-                                            'Ep_net' => ['label' => 'Ep_net', 'value' => $data->Ep_net, 'unit' => ''],
-                                            'Eq_sum' => ['label' => 'Eq_sum', 'value' => $data->Eq_sum, 'unit' => ''],
-                                            'Eq_net' => ['label' => 'Eq_net', 'value' => $data->Eq_net, 'unit' => ''],
-                                            'Es' => ['label' => 'Es', 'value' => $data->Es, 'unit' => ''],
+                                            'P_Dmd' => ['label' => 'P_Dmd', 'value' => $data->P_Dmd, 'unit' => 'kW'],
+                                            'Q_Dmd' => ['label' => 'Q_Dmd', 'value' => $data->Q_Dmd, 'unit' => 'kvar'],
+                                            'S_Dmd' => ['label' => 'S_Dmd', 'value' => $data->S_Dmd, 'unit' => 'kVA'],
+                                            'I1_Dmd' => ['label' => 'I1_Dmd', 'value' => $data->I1_Dmd, 'unit' => 'A'],
+                                            'I2_Dmd' => ['label' => 'I2_Dmd', 'value' => $data->I2_Dmd, 'unit' => 'A'],
+                                            'I3_Dmd' => ['label' => 'I3_Dmd', 'value' => $data->I3_Dmd, 'unit' => 'A'],
+                                            'Ep_Imp' => ['label' => 'Ep_Imp', 'value' => $data->Ep_Imp, 'unit' => 'kWh'],
+                                            'Ep_Exp' => ['label' => 'Ep_Exp', 'value' => $data->Ep_Exp, 'unit' => 'kWh'],
+                                            'Eq_Imp' => ['label' => 'Eq_Imp', 'value' => $data->Eq_Imp, 'unit' => 'kvarh'],
+                                            'Eq_Exp' => ['label' => 'Eq_Exp', 'value' => $data->Eq_Exp, 'unit' => 'kvarh'],
+                                            'Ep_sum' => ['label' => 'Ep_sum', 'value' => $data->Ep_sum, 'unit' => 'kWh'],
+                                            'Ep_net' => ['label' => 'Ep_net', 'value' => $data->Ep_net, 'unit' => 'kWh'],
+                                            'Eq_sum' => ['label' => 'Eq_sum', 'value' => $data->Eq_sum, 'unit' => 'kvarh'],
+                                            'Eq_net' => ['label' => 'Eq_net', 'value' => $data->Eq_net, 'unit' => 'kvarh'],
+                                            'Es' => ['label' => 'Es', 'value' => $data->Es, 'unit' => 'kVAh'],
                                             'Epa_Imp' => [
                                                 'label' => 'Epa_Imp',
                                                 'value' => $data->Epa_Imp,
-                                                'unit' => '',
+                                                'unit' => 'kWh',
                                             ],
                                             'Epa_Exp' => [
                                                 'label' => 'Epa_Exp',
                                                 'value' => $data->Epa_Exp,
-                                                'unit' => '',
+                                                'unit' => 'kWh',
                                             ],
                                             'Epb_Imp' => [
                                                 'label' => 'Epb_Imp',
                                                 'value' => $data->Epb_Imp,
-                                                'unit' => '',
+                                                'unit' => 'kWh',
                                             ],
                                             'Epb_Exp' => [
                                                 'label' => 'Epb_Exp',
                                                 'value' => $data->Epb_Exp,
-                                                'unit' => '',
+                                                'unit' => 'kWh',
                                             ],
                                             'Epc_Imp' => [
                                                 'label' => 'Epc_Imp',
                                                 'value' => $data->Epc_Imp,
-                                                'unit' => '',
+                                                'unit' => 'kWh',
                                             ],
                                             'Epc_Exp' => [
                                                 'label' => 'Epc_Exp',
                                                 'value' => $data->Epc_Exp,
-                                                'unit' => '',
+                                                'unit' => 'kWh',
                                             ],
                                             'Eqa_Imp' => [
                                                 'label' => 'Eqa_Imp',
                                                 'value' => $data->Eqa_Imp,
-                                                'unit' => '',
+                                                'unit' => 'kvarh',
                                             ],
                                             'Eqa_Exp' => [
                                                 'label' => 'Eqa_Exp',
                                                 'value' => $data->Eqa_Exp,
-                                                'unit' => '',
+                                                'unit' => 'kvarh',
                                             ],
                                             'Eqb_Imp' => [
                                                 'label' => 'Eqb_Imp',
                                                 'value' => $data->Eqb_Imp,
-                                                'unit' => '',
+                                                'unit' => 'kvarh',
                                             ],
                                             'Eqb_Exp' => [
                                                 'label' => 'Eqb_Exp',
                                                 'value' => $data->Eqb_Exp,
-                                                'unit' => '',
+                                                'unit' => 'kvarh',
                                             ],
                                             'Eqc_Imp' => [
                                                 'label' => 'Eqc_Imp',
                                                 'value' => $data->Eqc_Imp,
-                                                'unit' => '',
+                                                'unit' => 'kvarh',
                                             ],
                                             'Eqc_Exp' => [
                                                 'label' => 'Eqc_Exp',
                                                 'value' => $data->Eqc_Exp,
-                                                'unit' => '',
+                                                'unit' => 'kvarh',
                                             ],
-                                            'Esa' => ['label' => 'Esa', 'value' => $data->Esa, 'unit' => ''],
-                                            'Esb' => ['label' => 'Esb', 'value' => $data->Esb, 'unit' => ''],
-                                            'Esc' => ['label' => 'Esc', 'value' => $data->Esc, 'unit' => ''],
+                                            'Esa' => ['label' => 'Esa', 'value' => $data->Esa, 'unit' => 'kVAh'],
+                                            'Esb' => ['label' => 'Esb', 'value' => $data->Esb, 'unit' => 'kVAh'],
+                                            'Esc' => ['label' => 'Esc', 'value' => $data->Esc, 'unit' => 'kVAh'],
                                             'PhsAngV2toV1' => [
                                                 'label' => 'PhsAngV2toV1',
                                                 'value' => $data->PhsAngV2toV1,
-                                                'unit' => '',
+                                                'unit' => 'deg',
                                             ],
                                             'PhsAngV3toV1' => [
                                                 'label' => 'PhsAngV3toV1',
                                                 'value' => $data->PhsAngV3toV1,
-                                                'unit' => '',
+                                                'unit' => 'deg',
                                             ],
                                             'PhsAngI1toV1' => [
                                                 'label' => 'PhsAngI1toV1',
                                                 'value' => $data->PhsAngI1toV1,
-                                                'unit' => '',
+                                                'unit' => 'deg',
                                             ],
                                             'PhsAngI2toV1' => [
                                                 'label' => 'PhsAngI2toV1',
                                                 'value' => $data->PhsAngI2toV1,
-                                                'unit' => '',
+                                                'unit' => 'deg',
                                             ],
                                             'PhsAngI3toV1' => [
                                                 'label' => 'PhsAngI3toV1',
                                                 'value' => $data->PhsAngI3toV1,
-                                                'unit' => '',
+                                                'unit' => 'deg',
                                             ],
                                             // Add other fields you want to display here
                                         ];
