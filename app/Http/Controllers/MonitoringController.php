@@ -17,7 +17,6 @@ class MonitoringController extends Controller
     {
         $projects = DB::table('metering_facility')->distinct()->pluck('project');
         $tree = [];
-
         // Loop through each project and build the tree
         foreach ($projects as $project) {
             $projectNode = [
@@ -63,10 +62,6 @@ class MonitoringController extends Controller
             // Add project node to tree
             $tree[] = $projectNode;
         }
-
-        // Debug: Check the structure of the tree before passing it to the view
-        // dd($tree);
-
         // Convert tree to JSON to pass to the view
         $treeData = json_encode($tree, JSON_UNESCAPED_UNICODE);
 
@@ -100,81 +95,127 @@ class MonitoringController extends Controller
         ->pluck('device_name') // Get device_name column
         ->toArray(); // Convert to array
 
-        $facilitys = DB::table('metering_facility')->distinct()->pluck('facility');
+        // $facilitys = DB::table('metering_facility')->distinct()->pluck('facility');
+        // $deviceNames = $deviceNames; // Replace with your device names
+        // $tree = [];
+        // // Loop through each project and build the tree
+        // foreach ($facilitys as $facility) {
+        //     $facilityNode = [
+        //         'id' => 'facility_' . $facility,
+        //         'text' => $facility,
+        //         'icon' => 'fas fa-folder', // Add icon for parent (facility)
+        //         'state' => ['opened' => true],
+        //         'children' => [],
+        //     ];
 
-        $deviceNames = $deviceNames; // Replace with your device names
+        //     $projects = DB::table('metering_facility')->where('facility', $facility)->distinct()->pluck('project');
 
+        //     foreach ($projects as $project) {
+        //         $projectNode = [
+        //             'id' => 'project_' . $project,
+        //             'text' => $project,
+        //             'icon' => 'fas fa-folder', // Add icon for parent (project)
+        //             'state' => ['opened' => true],
+        //             'children' => [],
+        //         ];
+
+        //         // Find sections for each project
+        //         $sections = DB::table('metering_facility')->where('project', $project)->distinct()->pluck('section');
+
+        //         foreach ($sections as $section) {
+        //             $sectionNode = [
+        //                 'id' => 'section_' . $section,
+        //                 'text' => $section,
+        //                 'icon' => 'fas fa-folder', // Add icon for parent (project)
+        //                 'state' => ['opened' => true],
+        //                 'children' => [],
+        //             ];
+
+        //             // Find sn (serial numbers) for each section
+        //             $devices = DB::table('metering_facility')->where('section', $section)->distinct()->pluck('device');
+
+        //             foreach ($devices as $device) {
+        //                 $deviceNode = [
+        //                     'id' => 'device_' . $device,
+        //                     'text' => $device,
+        //                     'icon' => 'fas fa-image text-success', // Add icon for sn (child) with color
+        //                     'state' => ['opened' => true],
+        //                     'children' => [], // Ensure this is an empty array
+        //                 ];
+
+        //                 // Add sn node to section node
+        //                 $sectionNode['children'][] = $deviceNode;
+        //             }
+
+        //             // Add section node to project node
+        //             $projectNode['children'][] = $sectionNode;
+        //         }
+
+        //         // Add section node to project node
+        //         $facilityNode['children'][] = $projectNode;
+        //     }
+
+        //     // Add project node to tree
+        //     $tree[] = $projectNode;
+        // }
+        // // Convert tree to JSON to pass to the view
+        // // Filter the tree data to remove the node with ID 0
+        // $tree = collect($tree)->filter(function ($node) {
+        //     return $node['id'] > 0; // Assuming 'id' is the key
+        // })->values()->toArray(); // Reindex array
+        // // Now, encode the filtered array to JSON
+        // $treeData = json_encode($tree, JSON_UNESCAPED_UNICODE);
+
+        $projects = DB::table('metering_facility')->distinct()->pluck('project');
         $tree = [];
-
         // Loop through each project and build the tree
-        foreach ($facilitys as $facility) {
-            $facilityNode = [
-                'id' => 'facility_' . $facility,
-                'text' => $facility,
-                'icon' => 'fas fa-folder', // Add icon for parent (facility)
+        foreach ($projects as $project) {
+            $projectNode = [
+                'id' => 'project_' . $project,
+                'text' => $project,
+                'icon' => 'fas fa-folder', // Add icon for parent (project)
                 'state' => ['opened' => true],
                 'children' => [],
             ];
 
-            $projects = DB::table('metering_facility')->where('facility', $facility)->distinct()->pluck('project');
+            // Find sections for each project
+            $sections = DB::table('metering_facility')->where('project', $project)->distinct()->pluck('section');
 
-            foreach ($projects as $project) {
-                $projectNode = [
-                    'id' => 'project_' . $project,
-                    'text' => $project,
+            foreach ($sections as $section) {
+                $sectionNode = [
+                    'id' => 'section_' . $section,
+                    'text' => $section,
                     'icon' => 'fas fa-folder', // Add icon for parent (project)
                     'state' => ['opened' => true],
                     'children' => [],
                 ];
 
-                // Find sections for each project
-                $sections = DB::table('metering_facility')->where('project', $project)->distinct()->pluck('section');
+                // Find sn (serial numbers) for each section
+                $devices = DB::table('metering_facility')->where('section', $section)->distinct()->pluck('device');
 
-                foreach ($sections as $section) {
-                    $sectionNode = [
-                        'id' => 'section_' . $section,
-                        'text' => $section,
-                        'icon' => 'fas fa-folder', // Add icon for parent (project)
+                foreach ($devices as $device) {
+                    $deviceNode = [
+                        'id' => 'device_' . $device,
+                        'text' => $device,
+                        'icon' => 'fas fa-image text-success', // Add icon for sn (child) with color
                         'state' => ['opened' => true],
-                        'children' => [],
+                        'children' => [], // Ensure this is an empty array
                     ];
 
-                    // Find sn (serial numbers) for each section
-                    $devices = DB::table('metering_facility')->where('section', $section)->distinct()->pluck('device');
-
-                    foreach ($devices as $device) {
-                        $deviceNode = [
-                            'id' => 'device_' . $device,
-                            'text' => $device,
-                            'icon' => 'fas fa-image text-success', // Add icon for sn (child) with color
-                            'state' => ['opened' => true],
-                            'children' => [], // Ensure this is an empty array
-                        ];
-
-                        // Add sn node to section node
-                        $sectionNode['children'][] = $deviceNode;
-                    }
-
-                    // Add section node to project node
-                    $projectNode['children'][] = $sectionNode;
+                    // Add sn node to section node
+                    $sectionNode['children'][] = $deviceNode;
                 }
 
                 // Add section node to project node
-                $facilityNode['children'][] = $projectNode;
+                $projectNode['children'][] = $sectionNode;
             }
 
             // Add project node to tree
             $tree[] = $projectNode;
         }
         // Convert tree to JSON to pass to the view
-        // Filter the tree data to remove the node with ID 0
-        $tree = collect($tree)->filter(function ($node) {
-            return $node['id'] > 0; // Assuming 'id' is the key
-        })->values()->toArray(); // Reindex array
-
-        // Now, encode the filtered array to JSON
         $treeData = json_encode($tree, JSON_UNESCAPED_UNICODE);
-        // dd($treeData);
+
 
         $Metering_Data = DB::table('metering_data')
             ->leftJoin('metering_facility', 'metering_data.device_name', '=', 'metering_facility.device_name')
@@ -184,12 +225,12 @@ class MonitoringController extends Controller
             ->orderBy('metering_data.timestamp', 'desc') // Ensure latest data comes first
             ->get()
             ->unique('device_name'); // Keep only the latest record for each device_name
-        
+
         $Metering_Facility = DB::table('metering_facility')->get();
 
         // Remove duplicates based on 'facility'
         $Metering_Facility = $Metering_Facility->unique('facility');
-            
+
         // dd($Metering_Facility);
 
         // Pass to the view
