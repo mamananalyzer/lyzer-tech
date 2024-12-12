@@ -67,6 +67,9 @@ Route::group(['middleware' => ['checkRole:1']], function() {
 Route::group(['middleware' => ['checkRole:1']], function() {
     Route::get('/monitoring-comparison', [MonitoringController::class, 'comparison'])->name('monitoring-comparison');;
 });
+Route::group(['middleware' => ['checkRole:1']], function() {
+    Route::get('/monitoring-datalog', [MonitoringController::class, 'datalog'])->name('monitoring-datalog');;
+});
 Route::group(['middleware' => ['checkRole:1,14']], function() {
     Route::get('/motor', [MotorController::class, 'index']);
 });
@@ -168,6 +171,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Route::get('/monitoring', [MonitoringController::class, 'index']);
     Route::post('/monitoring.selectedDevice', [MonitoringController::class, 'selectedDevice'])->name('Monitoring.selectedDevice');
+    Route::post('/monitoring.selectedDeviceDatalog', [MonitoringController::class, 'selectedDeviceDatalog'])->name('Monitoring.selectedDeviceDatalog');
     Route::get('/monitoring/{id_user}/show', [MonitoringController::class, 'show'])->name('Monitoring.show');
     Route::post('/monitoring.store', [MonitoringController::class, 'store'])->name('Monitoring.create');
     Route::get('/monitoring/{id_user}/edit', [MonitoringController::class, 'edit'])->name('Monitoring.edit');

@@ -1,0 +1,235 @@
+{
+    "timestamp": [
+        "1726589700"
+    ],
+    "gateway": {
+        "name": "AXM-WEB2",
+        "model": "AXM-WEB2",
+        "serial": "AN20100025"
+    },
+    "device": {
+        "name": " ",
+        "model": "Acuvim-L",
+        "serial": "CLD52402180",
+        "online": true,
+        "readings": [
+            {
+                "param": "V1",
+                "value": [
+                    "119.978"
+                ],
+                "unit": "V"
+            },
+            {
+                "param": "V2",
+                "value": [
+                    "119.977"
+                ],
+                "unit": "V"
+            },
+            {
+                "param": "V3",
+                "value": [
+                    "119.983"
+                ],
+                "unit": "V"
+            },
+            {
+                "param": "Vnavg_V",
+                "value": [
+                    "119.979"
+                ],
+                "unit": "V"
+            },
+            {
+                "param": "V12",
+                "value": [
+                    "207.813"
+                ],
+                "unit": "V"
+            },
+            {
+                "param": "V23",
+                "value": [
+                    "207.836"
+                ],
+                "unit": "V"
+            },
+            {
+                "param": "V31",
+                "value": [
+                    "207.797"
+                ],
+                "unit": "V"
+            },
+            {
+                "param": "VIavg_V",
+                "value": [
+                    "207.816"
+                ],
+                "unit": "V"
+            },
+            {
+                "param": "I1",
+                "value": [
+                    "1.016"
+                ],
+                "unit": "A"
+            },
+            {
+                "param": "I2",
+                "value": [
+                    "1.012"
+                ],
+                "unit": "A"
+            },
+            {
+                "param": "I3",
+                "value": [
+                    "1.011"
+                ],
+                "unit": "A"
+            },
+            {
+                "param": "Iavg_A",
+                "value": [
+                    "1.013"
+                ],
+                "unit": "A"
+            },
+            {
+                "param": "In",
+                "value": [
+                    "0.0"
+                ],
+                "unit": "A"
+            },
+            {
+                "param": "P1",
+                "value": [
+                    "0.122"
+                ],
+                "unit": "kW"
+            },
+            {
+                "param": "P2",
+                "value": [
+                    "0.121"
+                ],
+                "unit": "kW"
+            },
+            {
+                "param": "P3",
+                "value": [
+                    "0.121"
+                ],
+                "unit": "kW"
+            },
+            {
+                "param": "Psum_kW",
+                "value": [
+                    "0.365"
+                ],
+                "unit": "kW"
+            },
+            {
+                "param": "Q1",
+                "value": [
+                    "0.002"
+                ],
+                "unit": "kvar"
+            },
+            {
+                "param": "Q2",
+                "value": [
+                    "0.001"
+                ],
+                "unit": "kvar"
+            },
+            {
+                "param": "Q3",
+                "value": [
+                    "0.001"
+                ],
+                "unit": "kvar"
+            },
+            {
+                "param": "Qsum_kvar",
+                "value": [
+                    "0.003"
+                ],
+                "unit": "kvar"
+            },
+            {
+                "param": "S1",
+                "value": [
+                    "0.122"
+                ],
+                "unit": "kVA"
+            },
+            {
+                "param": "S2",
+                "value": [
+                    "0.121"
+                ],
+                "unit": "kVA"
+            },
+            {
+                "param": "S3",
+                "value": [
+                    "0.121"
+                ],
+                "unit": "kVA"
+            },
+            {
+                "param": "Ssum_kVA",
+                "value": [
+                    "0.365"
+                ],
+                "unit": "kVA"
+            },
+            {
+                "param": "PF1",
+                "value": [
+                    "0.999"
+                ],
+                "unit": "kW"
+            },
+            {
+                "param": "PF2",
+                "value": [
+                    "1.0"
+                ],
+                "unit": "kW"
+            },
+            {
+                "param": "PF3",
+                "value": [
+                    "1.0"
+                ],
+                "unit": "kW"
+            },
+            {
+                "param": "PF",
+                "value": [
+                    "1.0"
+                ],
+                "unit": "kW"
+            },
+            {
+                "param": "Freq_Hz",
+                "value": [
+                    "50.0"
+                ],
+                "unit": "Hz"
+            },
+            {
+                "param": "LoadType",
+                "value": [
+                    "R"
+                ],
+                "unit": ""
+            }
+        ]
+    }
+}

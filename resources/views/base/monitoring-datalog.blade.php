@@ -100,7 +100,7 @@
                                 <div id="jstree">
                                 </div>
 
-                                <form method="post" action="{{ route('Monitoring.selectedDevice') }}"
+                                <form method="post" action="{{ route('Monitoring.selectedDeviceDatalog') }}"
                                     enctype="multipart/form-data"
                                     class="add-new-user pt-0 fv-plugins-bootstrap5 fv-plugins-framework"
                                     id="getSelectedForm">
@@ -542,7 +542,6 @@
                                                         </tr>
                                                     @endforeach
                                                 </table>
-
                                             </div>
                                         </div>
                                     </div>

@@ -162,13 +162,38 @@
                 @php
                     $menus = [
                         1 => [
-                            ['url' => '/monitoring-overview', 'icon' => 'bx bxs-user-account', 'label' => 'System Overview'],
-                            ['url' => '/monitoring-realtime', 'icon' => 'bx bx-line-chart', 'label' => 'Real-time Monitoring'],
-                            ['url' => '/monitoring-comparison', 'icon' => 'bx bxs-bar-chart-alt-2', 'label' => 'Comparison Monitoring'],
+                            [
+                                'url' => '/monitoring-overview',
+                                'icon' => 'bx bxs-user-account',
+                                'label' => 'System Overview',
+                            ],
+                            [
+                                'url' => '/monitoring-realtime',
+                                'icon' => 'bx bx-line-chart',
+                                'label' => 'Real-time Monitoring',
+                            ],
+                            [
+                                'url' => '/monitoring-comparison',
+                                'icon' => 'bx bxs-bar-chart-alt-2',
+                                'label' => 'Comparison Monitoring',
+                            ],
                             ['url' => '/monitoring-analysis', 'icon' => 'bx bxs-chart', 'label' => 'Energy Analysis'],
-                            ['url' => '/monitoring-quality', 'icon' => 'bx bxl-kubernetes', 'label' => 'Power Quality Analysis'],
-                            ['url' => '/monitoring-event', 'icon' => 'bx bx-plus-medical', 'label' => 'Event Management'],
-                            ['url' => '/monitoring-system', 'icon' => 'bx bx-user-check', 'label' => 'System Management'],
+                            ['url' => '/monitoring-datalog', 'icon' => 'bx bx-data', 'label' => 'Datalog Management'],
+                            [
+                                'url' => '/monitoring-quality',
+                                'icon' => 'bx bxl-kubernetes',
+                                'label' => 'Power Quality Analysis',
+                            ],
+                            [
+                                'url' => '/monitoring-event',
+                                'icon' => 'bx bx-plus-medical',
+                                'label' => 'Event Management',
+                            ],
+                            [
+                                'url' => '/monitoring-system',
+                                'icon' => 'bx bx-user-check',
+                                'label' => 'System Management',
+                            ],
                             ['url' => '/monitoring-admin', 'icon' => 'bx bx-user', 'label' => 'Admin'],
                             // ['url' => '/monitoring', 'icon' => 'bx bx-line-chart', 'label' => 'Monitoring'],
                             // ['url' => '/motor', 'icon' => 'bx bx-recycle', 'label' => 'Motor'],

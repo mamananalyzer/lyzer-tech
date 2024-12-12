@@ -107,95 +107,59 @@ class MeteringController extends Controller
         //     'PhsAngI3toV1' => 'required',
         // ]);
 
+        // $data = $request->json()->all();
+        // $timestamp = $data['timestamp'][0];
+        // $gateway = $data['gateway'];
+        // $device = $data['device'];
+        // foreach ($device['readings'] as $reading) {
+        //     $validatedData[$reading['param']] = $reading['value'][0];
+        // }
+        // $validatedData = [
+        //     'device_model' => $device['model'],
+        //     'device_name' => $device['serial'],
+        //     'timestamp' => $timestamp,
+        //     'online' => $device['online'],
+        //     'F' => $validatedData['Freq_Hz'],
+        //     'U1' => $validatedData['V1'],
+        //     'U2' => $validatedData['V2'],
+        //     'U3' => $validatedData['V3'],
+        //     'Uavg' => $validatedData['Vnavg_V'],
+        //     'U12' => $validatedData['V12'],
+        //     'U23' => $validatedData['V23'],
+        //     'U31' => $validatedData['V31'],
+        //     'Ulavg' => $validatedData['VIavg_V'],
+        //     'IL1' => $validatedData['I1'],
+        //     'IL2' => $validatedData['I2'],
+        //     'IL3' => $validatedData['I3'],
+        //     'Iavg' => $validatedData['Iavg_A'],
+        //     'In' => $validatedData['In'],
+        //     'Pa' => $validatedData['P1'],
+        //     'Pb' => $validatedData['P2'],
+        //     'Pc' => $validatedData['P3'],
+        //     'Psum' => $validatedData['Psum_kW'],
+        //     'Qa' => $validatedData['Q1'],
+        //     'Qb' => $validatedData['Q2'],
+        //     'Qc' => $validatedData['Q3'],
+        //     'Qsum' => $validatedData['Qsum_kvar'],
+        //     'Sa' => $validatedData['S1'],
+        //     'Sb' => $validatedData['S2'],
+        //     'Sc' => $validatedData['S3'],
+        //     'Ssum' => $validatedData['Ssum_kVA'],
+        //     'PFa' => $validatedData['PF1'],
+        //     'PFb' => $validatedData['PF2'],
+        //     'PFc' => $validatedData['PF3'],
+        //     'PFsum' => $validatedData['PF'],
+        //     'LCR' => $validatedData['LoadType'],
+        // ];
+
         $validatedData = $request->all();
-        // $validatedData['project'] = $request->input('is_active', 'amptron office');
-        // $validatedData['section'] = $request->input('is_active', 'panel kantor');
         $validatedData['device_model'] = $request->input('is_active', 'Acuvim II');
         $validatedData['device_name'] = $request->input('is_active', 'AMxxxxxxxx');
-        // $validatedData['timestamp'] = $request->input('is_active', '253152532');
         $validatedData['online'] = $request->input('is_active', 1);
 
         try {
             // Create a new Metering instance and save it
             Metering_Data::create($validatedData);
-
-            // $metering = new Metering([
-            //     'project' => $validatedData['project'],
-            //     'section' => $validatedData['section'],
-            //     'device' => $validatedData['device'],
-            //     'sn' => $validatedData['sn'],
-            //     'status' => $validatedData['status'],
-            //     'F' => $validatedData['F'],
-            //     'U1' => $validatedData['U1'],
-            //     'U2' => $validatedData['U2'],
-            //     'U3' => $validatedData['U3'],
-            //     'Uavg' => $validatedData['Uavg'],
-            //     'U12' => $validatedData['U12'],
-            //     'U23' => $validatedData['U23'],
-            //     'U31' => $validatedData['U31'],
-            //     'Ulavg' => $validatedData['Ulavg'],
-            //     'IL1' => $validatedData['IL1'],
-            //     'IL2' => $validatedData['IL2'],
-            //     'IL3' => $validatedData['IL3'],
-            //     'Iavg' => $validatedData['Iavg'],
-            //     'In' => $validatedData['In'],
-            //     'Pa' => $validatedData['Pa'],
-            //     'Pb' => $validatedData['Pb'],
-            //     'Pc' => $validatedData['Pc'],
-            //     'Psum' => $validatedData['Psum'],
-            //     'Qa' => $validatedData['Qa'],
-            //     'Qb' => $validatedData['Qb'],
-            //     'Qc' => $validatedData['Qc'],
-            //     'Qsum' => $validatedData['Qsum'],
-            //     'Sa' => $validatedData['Sa'],
-            //     'Sb' => $validatedData['Sb'],
-            //     'Sc' => $validatedData['Sc'],
-            //     'Ssum' => $validatedData['Ssum'],
-            //     'PFa' => $validatedData['PFa'],
-            //     'PFb' => $validatedData['PFb'],
-            //     'PFc' => $validatedData['PFc'],
-            //     'PFsum' => $validatedData['PFsum'],
-            //     'U_unbl' => $validatedData['U_unbl'],
-            //     'I_unbl' => $validatedData['I_unbl'],
-            //     'LCR' => $validatedData['LCR'],
-            //     'P_Dmd' => $validatedData['P_Dmd'],
-            //     'Q_Dmd' => $validatedData['Q_Dmd'],
-            //     'S_Dmd' => $validatedData['S_Dmd'],
-            //     'I1_Dmd' => $validatedData['I1_Dmd'],
-            //     'I2_Dmd' => $validatedData['I2_Dmd'],
-            //     'I3_Dmd' => $validatedData['I3_Dmd'],
-            //     'Ep_Imp' => $validatedData['Ep_Imp'],
-            //     'Ep_Exp' => $validatedData['Ep_Exp'],
-            //     'Eq_Imp' => $validatedData['Eq_Imp'],
-            //     'Eq_Exp' => $validatedData['Eq_Exp'],
-            //     'Ep_sum' => $validatedData['Ep_sum'],
-            //     'Ep_net' => $validatedData['Ep_net'],
-            //     'Eq_sum' => $validatedData['Eq_sum'],
-            //     'Eq_net' => $validatedData['Eq_net'],
-            //     'Es' => $validatedData['Es'],
-            //     'Epa_Imp' => $validatedData['Epa_Imp'],
-            //     'Epa_Exp' => $validatedData['Epa_Exp'],
-            //     'Epb_Imp' => $validatedData['Epb_Imp'],
-            //     'Epb_Exp' => $validatedData['Epb_Exp'],
-            //     'Epc_Imp' => $validatedData['Epc_Imp'],
-            //     'Epc_Exp' => $validatedData['Epc_Exp'],
-            //     'Eqa_Imp' => $validatedData['Eqa_Imp'],
-            //     'Eqa_Exp' => $validatedData['Eqa_Exp'],
-            //     'Eqb_Imp' => $validatedData['Eqb_Imp'],
-            //     'Eqb_Exp' => $validatedData['Eqb_Exp'],
-            //     'Eqc_Imp' => $validatedData['Eqc_Imp'],
-            //     'Eqc_Exp' => $validatedData['Eqc_Exp'],
-            //     'Esa' => $validatedData['Esa'],
-            //     'Esb' => $validatedData['Esb'],
-            //     'Esc' => $validatedData['Esc'],
-            //     'PhsAngV2toV1' => $validatedData['PhsAngV2toV1'],
-            //     'PhsAngV3toV1' => $validatedData['PhsAngV3toV1'],
-            //     'PhsAngI1toV1' => $validatedData['PhsAngI1toV1'],
-            //     'PhsAngI2toV1' => $validatedData['PhsAngI2toV1'],
-            //     'PhsAngI3toV1' => $validatedData['PhsAngI3toV1'],
-            // ]);
-
-            // $metering->save();
 
             return response()->json(['message' => 'Data inserted successfully'], 201);
         } catch (\Exception $e) {
