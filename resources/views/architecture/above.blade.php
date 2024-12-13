@@ -15,12 +15,14 @@
 <html
   lang="en"
   class=
-  "light-style layout-compact layout-menu-fixed layout-navbar-fixed"
+  "light-style layout-navbar-fixed layout-compact layout-menu-fixed layout-menu-collapsed"
+  {{-- "light-style layout-compact layout-menu-fixed layout-navbar-fixed" --}}
   {{-- "light-style layout-menu-fixed" --}}
   dir="ltr"
   data-theme="theme-default"
   data-assets-path="sneat/assets/"
-  data-template="vertical-menu-template-free"
+  data-template="vertical-menu-template"
+  data-style="dark"
 >
   <head>
     <meta charset="utf-8" />

@@ -5,7 +5,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
             <div class="app-brand demo">
-                <a href="index.html" class="app-brand-link">
+                <a href="{{ url('/base') }}" class="app-brand-link">
                     <span class="app-brand-logo demo">
                         <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -53,9 +53,12 @@
                     <span class="app-brand-text demo menu-text fw-bolder ms-2">lyzer-tech</span>
                 </a>
 
-                <a href="javascript:void(0);"
+                {{-- <a href="javascript:void(0);"
                     class="layout-menu-toggle menu-link sidebar-link text-large ms-auto d-block d-xl-none">
                     <i class="bx bx-chevron-left bx-sm align-middle"></i>
+                </a> --}}
+                <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+                    <i class="bx bx-chevron-left bx-sm d-flex align-items-center justify-content-center"></i>
                 </a>
             </div>
 
@@ -111,7 +114,7 @@
                 };
             </script>
 
-            <ul class="menu-inner py-1">
+            <ul class="menu-inner py-1 ps ps--active-y">
                 <!-- Dashboard -->
                 <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
                     <a href="{{ url('/base') }}" class="menu-link sidebar-link">
@@ -162,7 +165,7 @@
                 @php
                     $menus = [
                         1 => [
-                            ['url' => '/account', 'icon' => 'bx bxs-user-account', 'label' => 'Account'],
+                            ['url' => '/account', 'icon' => 'bx bx-dollar', 'label' => 'Account'],
                             ['url' => '/belanja', 'icon' => 'bx bx-cart-alt', 'label' => 'Belanja'],
                             ['url' => '/CRM', 'icon' => 'bx bxs-business', 'label' => 'CRM'],
                             ['url' => '/daily', 'icon' => 'bx bxl-kubernetes', 'label' => 'Daily'],
@@ -477,14 +480,14 @@
                         <div data-i18n="Documentation">Documentation</div>
                     </a>
                     </li> --}}
+                <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
+                    <a href="{{ url('/logout') }}" class="menu-link sidebar-link">
+                        <i class="menu-icon tf-icons tf-icons bx bx-log-out"></i>
+                        <div data-i18n="Logout">Logout</div>
+                    </a>
+                </li>
             </ul>
 
-            <li class="menu-item sidebar-item" onclick="activateSidebarItem(this)">
-                <a href="{{ url('/logout') }}" class="menu-link sidebar-link">
-                    <i class="menu-icon tf-icons tf-icons bx bx-log-out"></i>
-                    <div data-i18n="Logout">Logout</div>
-                </a>
-            </li>
         </aside>
         <!-- / Menu -->
 
@@ -504,9 +507,6 @@
 
                 <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
 
-
-
-
                     <!-- Search -->
                     <div class="navbar-nav align-items-center">
                         <div class="nav-item navbar-search-wrapper mb-0">
@@ -518,14 +518,7 @@
                     </div>
                     <!-- /Search -->
 
-
-
-
-
                     <ul class="navbar-nav flex-row align-items-center ms-auto">
-
-
-
 
                         <!-- Language -->
                         <li class="nav-item dropdown-language dropdown me-2 me-xl-0">
